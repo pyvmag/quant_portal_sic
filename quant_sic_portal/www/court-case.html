@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <title>कोर्ट केस</title>
+        <link rel="shortcut icon" href="/assets/sicsangli/img/logo/maharashtra.png" type="image/x-icon">
+        <meta name="author" content="Templines">
+        <meta name="description" content="जलसंपदा विभाग">
+        <meta name="keywords"
+                content=" जलसंपदा विभाग, green energy, heating, hydropower, nature energy, power saving, recycling, renewable energy, solar energy, Solar Panels, wing turbines">
+        <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/assets/sicsangli/css/owl.carousel.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/fontawesome-all.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/simple-line-icons.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/animate.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/flaticon.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/video.min.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/lightbox.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/style.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/footer.css">
+        <link rel="stylesheet" href="/assets/sicsangli/css/header2.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+                body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        overflow-y: auto;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                }
+
+                body.no-scroll {
+                        overflow: hidden;
+                }
+
+                #output {
+                        margin-top: 20px;
+                        min-height: 200px;
+                }
+
+                /* Ensure output has minimum height */
+                .table-section {
+                        margin-bottom: 20px;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        text-align: center;
+                        /* Center align content */
+                        opacity: 0;
+                        transform: translateY(30px);
+                        animation: fadeInUp 0.8s ease-out forwards;
+                }
+
+                .table-section:nth-child(1) {
+                        animation-delay: 0.1s;
+                }
+
+                .table-section:nth-child(2) {
+                        animation-delay: 0.2s;
+                }
+
+                .table-section:nth-child(3) {
+                        animation-delay: 0.3s;
+                }
+
+                .table-section:nth-child(4) {
+                        animation-delay: 0.4s;
+                }
+
+                .table-section:nth-child(5) {
+                        animation-delay: 0.5s;
+                }
+
+                @keyframes fadeInUp {
+                        from {
+                                opacity: 0;
+                                transform: translateY(30px);
+                        }
+
+                        to {
+                                opacity: 1;
+                                transform: translateY(0);
+                        }
+                }
+
+                h2 {
+                        color: #333;
+                }
+
+                p {
+                        margin: 5px 0;
+                }
+
+                button {
+                        padding: 10px;
+                        background: #007bff;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                }
+
+                ul {
+                        list-style-type: none;
+                        padding: 0;
+                }
+
+                .kpi-grid {
+                        margin: 10px 0;
+                }
+
+                .kpi-item {
+                        background: #a5bfd2ab;
+                        padding: 15px;
+                        border-radius: 8px;
+                        text-align: center;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        margin: 0 auto;
+                        /* Center the KPI item */
+                        opacity: 0;
+                        transform: scale(0.9) translateY(20px);
+                        animation: bounceInUp 0.6s ease-out forwards;
+                }
+
+                .kpi-item:nth-child(1) {
+                        animation-delay: 0.2s;
+                }
+
+                .kpi-item:nth-child(2) {
+                        animation-delay: 0.3s;
+                }
+
+                .kpi-item:nth-child(3) {
+                        animation-delay: 0.4s;
+                }
+
+                .kpi-item:nth-child(4) {
+                        animation-delay: 0.5s;
+                }
+
+                @keyframes bounceInUp {
+                        0% {
+                                opacity: 0;
+                                transform: scale(0.3) translateY(2000px);
+                        }
+
+                        60% {
+                                opacity: 1;
+                                transform: scale(0.7) translateY(-30px);
+                        }
+
+                        80% {
+                                transform: scale(0.9) translateY(10px);
+                        }
+
+                        100% {
+                                opacity: 1;
+                                transform: scale(1) translateY(0);
+                        }
+                }
+
+                .kpi-wrapper {
+                        max-width: 800px;
+                        /* Will be overridden by media queries */
+                        width: 100%;
+                        margin: 0 auto;
+                }
+
+                .kpi-item:hover {
+                        transform: translateY(-5px) scale(1.02);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                }
+
+                .kpi-item strong {
+                        display: block;
+                        color: #1976d2;
+                        font-size: 0.9em;
+                        margin-bottom: 5px;
+                }
+
+                .kpi-item .value {
+                        font-size: 1.8em;
+                        color: #d32f2f;
+                        font-weight: bold;
+                }
+
+                .chart-container {
+                        position: relative;
+                        height: 550px;
+                        /* Increased height for multi-line labels */
+                        margin: 10px auto;
+                        /* Center the chart container */
+                        width: 90%;
+                        /* Slightly less than 100% for better centering on small screens */
+                        max-width: 800px;
+                        /* Limit max width for better centering on large screens */
+                        border-radius: 12px;
+                        overflow: hidden;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+                        min-height: 450px;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        /* Attractive gradient background */
+                        opacity: 0;
+                        transform: translateY(30px);
+                        animation: fadeInUp 1s ease-out forwards;
+                        transition: all 0.3s ease;
+                }
+
+                .chart-container:hover {
+                        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+                        transform: translateY(-2px);
+                }
+
+                .chart-container canvas {
+                        animation: drawIn 1s ease-out forwards;
+                }
+
+                @keyframes drawIn {
+                        from {
+                                opacity: 0;
+                                stroke-dashoffset: 1000;
+                        }
+
+                        to {
+                                opacity: 1;
+                                stroke-dashoffset: 0;
+                        }
+                }
+
+                #loadingOverlay {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(255, 255, 255, 0.8);
+                        display: none;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 9999;
+                }
+
+                #loadingOverlay.show {
+                        display: flex;
+                }
+
+                .spinner {
+                        border: 4px solid #f3f3f3;
+                        border-top: 4px solid #007bff;
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        animation: spin 1s linear infinite;
+                }
+
+                @keyframes spin {
+                        0% {
+                                transform: rotate(0deg);
+                        }
+
+                        100% {
+                                transform: rotate(360deg);
+                        }
+                }
+
+                .error-message {
+                        color: #d32f2f;
+                        background: #ffebee;
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin: 10px 0;
+                }
+
+                .debug-section {
+                        background: #f5f5f5;
+                        padding: 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                        margin: 10px 0;
+                        font-family: monospace;
+                        font-size: 0.9em;
+                        white-space: pre-wrap;
+                        overflow-x: auto;
+                        max-height: 400px;
+                        overflow-y: auto;
+                }
+
+                .debug-section h4 {
+                        margin-top: 0;
+                        color: #666;
+                }
+
+                /* Ensure main content scrolls properly */
+                .project-section {
+                        overflow: visible !important;
+                        position: relative;
+                        z-index: 1;
+                        min-height: calc(100vh - 200px);
+                }
+
+                /* Main content wrapper for scrolling */
+                .main-content {
+                        padding: 20px;
+                        box-sizing: border-box;
+                        overflow-y: auto;
+                }
+
+                /* Responsive adjustments */
+                @media (max-width: 768px) {
+                        .main-content {
+                                padding: 10px;
+                        }
+
+                        .kpi-item {
+                                padding: 12px;
+                                margin-bottom: 10px;
+                                width: 100%;
+                                /* Full width on small screens */
+                        }
+
+                        .kpi-item .value {
+                                font-size: 1.4em;
+                        }
+
+                        .chart-container {
+                                height: 70vh;
+                                min-height: 400px;
+                                width: 95%;
+                        }
+
+                        .table-section {
+                                padding: 8px;
+                                margin-bottom: 15px;
+                        }
+
+                        h3 {
+                                font-size: 1.2em;
+                        }
+
+                        #output {
+                                max-width: none;
+                                /* Full width on mobile */
+                                padding: 0 10px;
+                        }
+
+                        .chart-container,
+                        .kpi-grid {
+                                width: 100%;
+                                max-width: none;
+                        }
+                }
+
+                @media (max-width: 480px) {
+                        .main-content {
+                                padding: 5px;
+                        }
+
+                        .chart-container {
+                                height: 65vh;
+                                min-height: 350px;
+                                width: 100%;
+                        }
+
+                        .kpi-item .value {
+                                font-size: 1.2em;
+                        }
+                }
+
+                /* Responsive centering and width limits for #output content */
+                #output .row {
+                        justify-content: center;
+                }
+
+                #output .col-12 {
+                        margin: 0 auto;
+                }
+
+                /* Base for small-medium screens */
+                @media (min-width: 200px) {
+                        #output {
+                                max-width: 800px;
+                                margin: 0 auto;
+                        }
+
+                        .chart-container {
+                                width: 90%;
+                                max-width: 800px;
+                        }
+
+                        /* For KPI wrapper - override inline if needed */
+                        .kpi-grid {
+                                max-width: 800px;
+                                margin: 0 auto;
+                        }
+                }
+
+                /* Scale up at xl breakpoint (>1200px / your 1220px threshold) */
+                @media (min-width: 1221px) {
+                        #output {
+                                max-width: 1000px;
+                                margin: 0 auto;
+                        }
+
+                        .chart-container {
+                                width: 85%;
+                                /* Slightly wider for balance */
+                                max-width: 1000px;
+                        }
+
+                        .kpi-grid {
+                                max-width: 1000px;
+                                margin: 0 auto;
+                        }
+
+                        /* Ensure outer project col-12 doesn't override */
+                        .project-section .col-12 {
+                                max-width: none !important;
+                                /* Let inner limits handle it */
+                                padding-left: 15px;
+                                padding-right: 15px;
+                        }
+                }
+
+                /* Further scale at xxl (ultra-wide >1400px) */
+                @media (min-width: 1401px) {
+                        #output {
+                                max-width: 1200px;
+                                margin: 0 auto;
+                        }
+
+                        .chart-container {
+                                width: 80%;
+                                max-width: 1800px;
+                        }
+
+                        .kpi-grid {
+                                max-width: 1200px;
+                                margin: 0 auto;
+                        }
+                }
+
+                /* Center content horizontally from 200px to 2000px - REMOVED as it's now handled by the above queries */
+                /* Table specific styles - Enhanced for attractiveness */
+                .table {
+                        width: 100%;
+                        margin-bottom: 1rem;
+                        color: #212529;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: all 0.3s ease;
+                }
+
+                .table:hover {
+                        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+                }
+
+                .table th,
+                .table td {
+                        padding: 0.75rem;
+                        vertical-align: top;
+                        border-top: 1px solid #dee2e6;
+                        text-align: center;
+                }
+
+                .table thead th {
+                        vertical-align: bottom;
+                        border-bottom: 2px solid #dee2e6;
+                        background-color: #007bff;
+                        color: white;
+                        font-weight: bold;
+                }
+
+                .table tbody tr:nth-of-type(odd) {
+                        background-color: rgba(0, 123, 255, 0.05);
+                }
+
+                .table tbody tr:hover {
+                        background-color: rgba(0, 123, 255, 0.15);
+                        transform: scale(1.01);
+                        transition: all 0.2s ease;
+                }
+
+                .table tbody+tbody {
+                        border-top: 2px solid #dee2e6;
+                }
+
+                .table-sm th,
+                .table-sm td {
+                        padding: 0.3rem;
+                }
+
+                .table-bordered {
+                        border: 1px solid #dee2e6;
+                }
+
+                .table-bordered th,
+                .table-bordered td {
+                        border: 1px solid #dee2e6;
+                }
+
+                .table-bordered thead th,
+                .table-bordered thead td {
+                        border-bottom-width: 2px;
+                }
+
+                .totals-row {
+                        background-color: #fff3cd !important;
+                        font-weight: bold;
+                        color: #856404;
+                }
+
+                .table-section h3 {
+                        color: #007bff;
+                        border-bottom: 2px solid #007bff;
+                        padding-bottom: 10px;
+                }
+
+                @media (max-width: 768px) {
+                        .table {
+                                font-size: 0.875rem;
+                        }
+
+                        .table th,
+                        .table td {
+                                padding: 0.5rem;
+                        }
+                }
+        </style>
+</head>
+
+<body class="page-court-case">
+        <div id="preloader"></div>
+        <div class="up">
+                <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+        </div>
+        <div id="header-placeholder"></div>
+        <div class="main-content">
+                <section id="breadcrumb" class="breadcrumb-section position-relative"
+                        data-background="/assets/sicsangli/img/tender/Jayakwadi_Dam.jpg">
+                        <div class="background_overlay"></div>
+                        <div class="container">
+                                <div class="breadcrumb-content headline">
+                                        <h2 class="breadcrumb-title"> कोर्ट केस</h2>
+                                        <div class="breadcrumb_item ul-li">
+                                                <ul class="breadcrumb">
+                                                        <li class="breadcrumb-item"><a href="#">मुख्य पान</a></li>
+                                                        <li class="breadcrumb-item active">कोर्ट केस</li>
+                                                </ul>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <section id="about" class="about-section about-page-about">
+                        <div class="container">
+                                <div class="about-content">
+                                        <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                        <div class="about-text">
+                                                                <div class="section-title-left">
+                                                                        <span class="title-tag"><img
+                                                                                        src="/assets/sicsangli/icon/icon5.svg"
+                                                                                        alt=""></span>
+                                                                        <h2>कोर्ट केस</h2>
+                                                                </div>
+                                                                <!-- title -->
+                                                                <div class="about-content pera-content">
+                                                                        <div class="about-btn text-uppercase">
+                                                                                <a href="/assets/sicsangli/pdf/temb.pdf"
+                                                                                        target="_blank">
+                                                                                        <i class="fa fa-file-pdf"
+                                                                                                style="color: #fb1d04;"></i>
+                                                                                        <span>कोर्ट केस PDF</span>
+                                                                                </a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <section id="project" class="project-section project-section-two" style="padding-top: 0px !important;">
+                        <div class="container">
+                                <div class="project-text-content">
+                                        <div class="row">
+                                                <div class="col-lg-5 col-md-12">
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row justify-content-center dashboard-row">
+                                        <!-- Added justify-content-center for centering and dashboard-row class -->
+                                        <div class="col-12 mx-auto">
+                                                <!-- <h1>Dashboard: Extracted Tables from Google Sheet</h1> -->
+                                                <div id="output"></div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+        </div>
+        <div id="footer-placeholder"></div>
+        <div id="loadingOverlay">
+                <div class="spinner"></div>
+        </div>
+        <script src="/assets/sicsangli/js/jquery.min.js"></script>
+        <script src="/assets/sicsangli/js/bootstrap.min.js"></script>
+        <script src="/assets/sicsangli/js/popper.min.js"></script>
+        <script src="/assets/sicsangli/js/owl.carousel.min.js"></script>
+        <script src="/assets/sicsangli/js/jarallax.js"></script>
+        <script src="/assets/sicsangli/js/jquery.magnific-popup.min.js"></script>
+        <script src="/assets/sicsangli/js/appear.js"></script>
+        <script src="/assets/sicsangli/js/isotope.pkgd.min.js"></script>
+        <script src="/assets/sicsangli/js/masonry.pkgd.min.js"></script>
+        <script src="/assets/sicsangli/js/imagesloaded.pkgd.min.js"></script>
+        <script src="/assets/sicsangli/js/lightbox.js"></script>
+        <script src="/assets/sicsangli/js/waypoints.min.js"></script>
+        <script src="/assets/sicsangli/js/jquery.counterup.min.js"></script>
+        <script src="/assets/sicsangli/js/tilt.jquery.min.js"></script>
+        <script src="/assets/sicsangli/js/wow.min.js"></script>
+        <script src="/assets/sicsangli/js/script.js"></script>
+        <script src="/assets/sicsangli/js/gmap3.min.js"></script>
+        <script async src="http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA"></script>
+        <script>
+                async function loadHeader() {
+                        try {
+                                const res = await fetch('header2.html');
+                                const data = await res.text();
+                                document.getElementById('header-placeholder').innerHTML = data;
+                                // Calculate scrollbar width to prevent layout shift
+                                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                                // Adjust body padding for fixed header
+                                setTimeout(() => {
+                                        const header = document.getElementById('header-placeholder');
+                                        if (header && window.getComputedStyle(header).position === 'fixed') {
+                                                const headerHeight = header.offsetHeight || 80; // Default fallback
+                                                document.body.style.paddingTop = headerHeight + 'px';
+                                                console.log('Adjusted padding-top for fixed header:', headerHeight + 'px');
+                                        }
+                                }, 100);
+                                const hamburger = document.querySelector('.hamburger');
+                                const navMenu = document.getElementById('nav-menu');
+                                if (!hamburger || !navMenu) return;
+                                // Hamburger toggle with layout shift prevention
+                                hamburger.addEventListener('click', () => {
+                                        hamburger.classList.toggle('open');
+                                        navMenu.classList.toggle('active');
+                                        document.body.classList.toggle('no-scroll');
+                                        if (navMenu.classList.contains('active')) {
+                                                document.body.style.paddingRight = scrollbarWidth + 'px';
+                                        } else {
+                                                document.body.style.paddingRight = '';
+                                        }
+                                });
+                                // Toggle dropdown when arrow is clicked
+                                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                                        arrow.addEventListener('click', e => {
+                                                if (window.innerWidth <= 992) {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        const parentLi = arrow.closest('.dropdown');
+                                                        parentLi.classList.toggle('active');
+                                                }
+                                        });
+                                });
+                                // Prevent main link from toggling submenu on mobile
+                                document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
+                                        link.addEventListener('click', e => {
+                                                if (window.innerWidth <= 992) {
+                                                        e.preventDefault();
+                                                }
+                                        });
+                                });
+                                // ✅ FIXED: Close menu on link click EXCEPT when clicking on arrow
+                                navMenu.querySelectorAll('a').forEach(link => {
+                                        link.addEventListener('click', (e) => {
+                                                // Don't close the menu if the arrow was clicked
+                                                if (e.target.closest('.dropdown-arrow')) {
+                                                        return;
+                                                }
+                                                if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                                                        navMenu.classList.remove('active');
+                                                        hamburger.classList.remove('open');
+                                                        document.body.classList.remove('no-scroll');
+                                                        document.body.style.paddingRight = '';
+                                                        // Close all open dropdowns
+                                                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                                                }
+                                        });
+                                });
+                                // Reset menu and dropdowns on window resize
+                                window.addEventListener('resize', () => {
+                                        if (window.innerWidth > 992) {
+                                                navMenu.classList.remove('active');
+                                                hamburger.classList.remove('open');
+                                                document.body.classList.remove('no-scroll');
+                                                document.body.style.paddingRight = '';
+                                                document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                                        }
+                                });
+                        } catch (err) {
+                                console.error("Header load error:", err);
+                        }
+                }
+                async function loadFooter() {
+                        try {
+                                const res = await fetch('footer.html');
+                                const data = await res.text();
+                                document.getElementById('footer-placeholder').innerHTML = data;
+                                // Adjust body padding for fixed footer to prevent content hiding behind it
+                                setTimeout(() => {
+                                        const footer = document.getElementById('footer-placeholder');
+                                        if (footer && window.getComputedStyle(footer).position === 'fixed') {
+                                                const footerHeight = footer.offsetHeight || 100; // Default fallback
+                                                document.body.style.paddingBottom = footerHeight + 'px';
+                                                console.log('Adjusted padding-bottom for fixed footer:', footerHeight + 'px');
+                                        }
+                                }, 100);
+                        } catch (err) {
+                                console.error("Footer load error:", err);
+                        }
+                }
+                loadHeader();
+                loadFooter();
+                document.addEventListener("DOMContentLoaded", async () => {
+                        console.log("DOM Loaded"); // Debug log
+                        const overlay = document.getElementById("loadingOverlay");
+                        const title = document.querySelector("h1");
+                        const output = document.getElementById('output');
+                        console.log("Elements found:", { overlay: !!overlay, title: !!title, output: !!output }); // Debug
+                        // Always show title
+                        if (title) title.style.display = "block";
+                        overlay.classList.add("show");
+                        try {
+                                const resp = await fetch("/api/method/sicsangli.api2.run_test_py_demo");
+                                
+                                console.log("API Response Status:", resp.status); // Additional logging
+                                if (!resp.ok) throw new Error(`HTTP error: ${resp.status}`);
+                                const result = await resp.json();
+                                console.log("Full API Response:", result); // Enhanced logging
+                                let rawData;
+                                if (result.message && result.message.status === "ok") {
+                                        rawData = result.message.message;
+                                } else {
+                                        // Handle non-ok status more gracefully
+                                        rawData = result; // Fallback to full result for debugging
+                                        console.warn("API status not OK, using full result for debug:", result);
+                                }
+                                console.log("Raw Data (post-status check):", rawData);
+                                console.log("Raw Data Type:", typeof rawData);
+                                let kpi_data = [];
+                                let chart_data = [];
+                                let sheet_date = new Date().toLocaleDateString('mr-IN');
+                                if (Array.isArray(rawData)) {
+                                        // Assume array of tables; use for both kpi and chart if no separate
+                                        kpi_data = rawData.filter(item => item && item.kpis && item.kpis.length > 0);
+                                        chart_data = rawData.filter(item => item && item.charts && item.charts.length > 0);
+                                        if (rawData.length > 0 && rawData[0] && rawData[0].sheet_date) {
+                                                sheet_date = rawData[0].sheet_date;
+                                        }
+                                } else if (typeof rawData === 'object' && rawData !== null) {
+                                        kpi_data = rawData.kpi_data || (rawData.tables ? rawData.tables.filter(t => t.kpis && t.kpis.length > 0) : []);
+                                        chart_data = rawData.chart_data || (rawData.tables ? rawData.tables.filter(t => t.charts && t.charts.length > 0) : []);
+                                        sheet_date = rawData.sheet_date || sheet_date;
+                                } else {
+                                        console.error("Unexpected data format:", typeof rawData, rawData);
+                                        // Don't throw, proceed to show debug
+                                }
+                                console.log("Processed KPI Data:", kpi_data);
+                                console.log("Processed Chart Data:", chart_data);
+                                // Display sheet date
+                                initDashboard(kpi_data, chart_data, rawData);
+                        } catch (err) {
+                                console.error("Error fetching data from Frappe API:", err);
+                                const errorDiv = document.createElement("div");
+                                errorDiv.className = "error-message";
+                                errorDiv.innerHTML = `<strong>डेटा लोड करण्यात त्रुटी:</strong> ${err.message}. कृपया पृष्ठ रीफ्रेश करा।<br><small>कॉन्सोलमध्ये अधिक माहिती पहा।</small>`;
+                                if (output) {
+                                        output.innerHTML = ''; // Clear any existing content
+                                        output.appendChild(errorDiv);
+                                }
+                        } finally {
+                                console.log("Finally block executed"); // Debug
+                                overlay.classList.remove("show");
+                        }
+                });
+                function initDashboard(kpi_data, chart_data, rawData) {
+                        console.log("initDashboard called"); // Debug
+                        const output = document.getElementById('output');
+                        if (!output) {
+                                console.error("Output element not found!");
+                                return;
+                        }
+                        console.log("Output element found, current innerHTML:", output.innerHTML); // Debug
+                        let html = '';
+                        let hasContent = false;
+                        // Process KPIs
+                        if (kpi_data && kpi_data.length > 0) {
+                                console.log("Processing KPIs"); // Debug
+                                kpi_data.forEach((table, tIndex) => {
+                                        const kpis = table.kpis || [];
+                                        const tableTitle = table.sheet_name || table.title || `Table ${tIndex + 1}`;
+                                        if (kpis.length > 0) {
+                                                hasContent = true;
+                                                html += `<div class="table-section"><h3>${tableTitle} - केपीआय</h3><div class="d-flex justify-content-center"><div class="kpi-wrapper"><div class="row kpi-grid justify-content-center">`; // Updated to use class="kpi-wrapper" instead of inline style
+                                                kpis.forEach(kpi => {
+                                                        const label = kpi.label || 'Unknown';
+                                                        const value = kpi.value !== undefined ? kpi.value : (kpi.data ? kpi.data[0] || 0 : 0); // Fallback to first data point or 0
+                                                        html += `
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="kpi-item">
+                                        <strong>${label}</strong>
+                                        <div class="value">${value}</div>
+                                    </div>
+                                </div>
+                            `;
+                                                });
+                                                html += `</div></div></div></div>`;
+                                        }
+                                });
+                        }
+                        // Process Charts
+                        if (chart_data && chart_data.length > 0) {
+                                console.log("Processing Charts"); // Debug
+                                chart_data.forEach((table, tIndex) => {
+                                        const charts = table.charts || [];
+                                        const tableTitle = table.sheet_name || table.title || `Table ${tIndex + 1}`;
+                                        if (charts.length > 0) {
+                                                hasContent = true;
+                                                html += `<div class="table-section"><h3>${tableTitle} - आलेख</h3><div class="row justify-content-center">`; // Added justify-content-center
+                                                charts.forEach((chart, cIndex) => {
+                                                        const chartLabel = chart.label || 'Chart';
+                                                        html += `
+                                <div class="col-12 mx-auto">
+                                    <div class="d-flex justify-content-center"> <!-- Added d-flex justify-content-center -->
+                                        <div class="chart-container">
+                                            <canvas id="chart-${tIndex}-${cIndex}"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                                                });
+                                                html += '</div></div>';
+                                        }
+                                });
+                        }
+                        // Process Tables
+                        if (rawData && rawData.length > 0) {
+                                console.log("Processing Tables"); // Debug
+                                rawData.forEach((table, tIndex) => {
+                                        const rows = table.rows || [];
+                                        const totals = table.totals || null;
+                                        const headers = table.headers || [];
+                                        const tableTitle = table.title || `Table ${tIndex + 1}`;
+                                        if (rows.length > 0 && headers.length > 0) {
+                                                hasContent = true;
+                                                html += `<div class="table-section"><h3>${tableTitle}</h3>`;
+                                                html += `<div class="table-responsive"><table class="table table-striped table-bordered table-hover">`;
+                                                html += `<thead><tr><th>अ.क्र.</th><th>विभागाचे नाव</th>`; // Fixed typo: removed "Educ "
+                                                headers.forEach(header => {
+                                                        html += `<th>${header}</th>`;
+                                                });
+                                                html += `</tr></thead><tbody>`;
+                                                rows.forEach(row => {
+                                                        html += `<tr>`;
+                                                        if (row.length > 0) html += `<td>${row[0]?.value || ''}</td>`;
+                                                        if (row.length > 1) html += `<td>${row[1]?.value || ''}</td>`;
+                                                        for (let c = 2; c < Math.max(row.length, headers.length + 2); c++) {
+                                                                html += `<td>${row[c]?.value || ''}</td>`;
+                                                        }
+                                                        html += `</tr>`;
+                                                });
+                                                html += `</tbody>`;
+                                                if (totals && totals.length > 0) {
+                                                        html += `<tfoot><tr class="totals-row">`;
+                                                        if (totals.length > 0) html += `<td colspan="2"><strong>एकूण</strong></td>`;
+                                                        for (let c = 2; c < Math.max(totals.length, headers.length + 2); c++) {
+                                                                html += `<td><strong>${totals[c]?.value || ''}</strong></td>`;
+                                                        }
+                                                        html += `</tr></tfoot>`;
+                                                }
+                                                html += `</table></div></div>`;
+                                        }
+                                });
+                        }
+                        if (!hasContent) {
+                                console.log("No content, adding error and debug"); // Debug
+                                html += '<div class="error-message"><p>कोणतेही केपीआय, आलेख किंवा टेबल डेटा सापडले नाही.</p></div>';
+                        }
+                        output.innerHTML = html;
+                        console.log("Generated HTML:", html);
+                        console.log("Output updated with HTML length:", html.length); // Debug
+                        // Render charts after DOM update (with delay to ensure elements exist)
+                        setTimeout(() => {
+                                console.log("Chart rendering timeout executed"); // Debug
+                                if (chart_data && chart_data.length > 0) {
+                                        chart_data.forEach((table, tIndex) => {
+                                                table.charts.forEach((chart, cIndex) => {
+                                                        const canvasId = `chart-${tIndex}-${cIndex}`;
+                                                        const canvas = document.getElementById(canvasId);
+                                                        if (canvas) {
+                                                                const ctx = canvas.getContext('2d');
+                                                                const labels = chart.labels || [];
+                                                                const dataPoints = chart.data || [];
+                                                                const chartType = chart.type || 'bar'; // Default to bar
+                                                                // Ensure data is array of numbers
+                                                                const numericData = dataPoints.map(d => Number(d) || 0);
+                                                                // Determine interaction settings based on chart type
+                                                                const isRadial = chartType === 'pie' || chartType === 'doughnut';
+                                                                const interactionMode = isRadial ? 'point' : 'index';
+                                                                const intersect = isRadial ? true : false;
+                                                                const isBarChart = chartType === 'bar';
+                                                                const isLineChart = chartType === 'line';
+                                                                // Full labels (no truncation)
+                                                                const processedLabels = labels.map(label => label);
+                                                                console.log(`Rendering ${canvasId}:`, { labels: processedLabels, data: numericData, type: chartType });
+                                                                // Dataset with conditional enhancements for line charts
+                                                                const dataset = {
+                                                                        label: chart.label || 'Data',
+                                                                        data: numericData,
+                                                                        backgroundColor: [
+                                                                                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+                                                                                '#FF6384', '#C9CBCF', '#4BC0C0', '#FFCE56'
+                                                                        ].slice(0, numericData.length),
+                                                                        borderWidth: 1
+                                                                };
+                                                                if (isLineChart) {
+                                                                        dataset.tension = 0.4; // Smooth curves for line charts
+                                                                }
+                                                                // Enhanced animation config (staggered for non-radial, elastic/bouncy for radial)
+                                                                const animationConfig = {
+                                                                        duration: isRadial ? 2500 : 800,
+                                                                        easing: isRadial ? 'easeOutElastic' : 'easeOutQuart'
+                                                                };
+                                                                if (!isRadial) {
+                                                                        animationConfig.delay = (ctx) => (ctx.type === 'data') ? ctx.dataIndex * 150 : 0;
+                                                                }
+                                                                new Chart(ctx, {
+                                                                        type: chartType,
+                                                                        data: {
+                                                                                labels: processedLabels,
+                                                                                datasets: [dataset]
+                                                                        },
+                                                                        options: {
+                                                                                responsive: true,
+                                                                                maintainAspectRatio: false,
+                                                                                animation: animationConfig,
+                                                                                layout: {
+                                                                                        padding: {
+                                                                                                bottom: isBarChart ? 150 : 20 // Extra space for multi-line labels on bar; minimal for pie/doughnut
+                                                                                        }
+                                                                                },
+                                                                                interaction: {
+                                                                                        intersect: intersect,
+                                                                                        mode: interactionMode
+                                                                                },
+                                                                                plugins: {
+                                                                                        tooltip: {
+                                                                                                enabled: true,
+                                                                                                callbacks: {
+                                                                                                        label: function (context) {
+                                                                                                                let tooltipLabel = context.dataset.label || '';
+                                                                                                                if (tooltipLabel) {
+                                                                                                                        tooltipLabel += ': ';
+                                                                                                                }
+                                                                                                                const chartLabels = context.chart.data.labels;
+                                                                                                                if (chartLabels && chartLabels[context.dataIndex]) {
+                                                                                                                        tooltipLabel += chartLabels[context.dataIndex] + ' - ';
+                                                                                                                }
+                                                                                                                const value = context.parsed.y !== undefined ? context.parsed.y : (context.parsed || 0);
+                                                                                                                tooltipLabel += value;
+                                                                                                                return tooltipLabel;
+                                                                                                        }
+                                                                                                }
+                                                                                        },
+                                                                                        legend: {
+                                                                                                position: isRadial ? 'right' : 'top', // Right legend for pie/doughnut to save vertical space
+                                                                                                labels: {
+                                                                                                        font: {
+                                                                                                                size: 12
+                                                                                                        }
+                                                                                                }
+                                                                                        },
+                                                                                        title: {
+                                                                                                display: true,
+                                                                                                text: chart.label || 'Chart',
+                                                                                                font: {
+                                                                                                        size: 16
+                                                                                                }
+                                                                                        }
+                                                                                },
+                                                                                scales: isBarChart ? {
+                                                                                        x: {
+                                                                                                ticks: {
+                                                                                                        maxRotation: 0,
+                                                                                                        minRotation: 0,
+                                                                                                        autoSkip: false,
+                                                                                                        font: {
+                                                                                                                size: 11
+                                                                                                        },
+                                                                                                        // Multi-line: each word on its own line (as per your example)
+                                                                                                        callback: function (value) {
+                                                                                                                const label = this.getLabelForValue(value);
+                                                                                                                return label.split(' '); // Splits on space → each word on new line
+                                                                                                        }
+                                                                                                }
+                                                                                        },
+                                                                                        y: {
+                                                                                                beginAtZero: true,
+                                                                                                ticks: {
+                                                                                                        font: {
+                                                                                                                size: 11
+                                                                                                        }
+                                                                                                }
+                                                                                        }
+                                                                                } : undefined, // No scales for pie/doughnut
+                                                                                // For pie/doughnut: make it fuller and more attractive
+                                                                                circumference: isRadial ? 360 : undefined,
+                                                                                rotation: isRadial ? -90 : undefined,
+                                                                                cutout: chartType === 'doughnut' ? '50%' : '0%' // Full pie or 50% cutout for doughnut
+                                                                        }
+                                                                });
+                                                        } else {
+                                                                console.warn(`Canvas ${canvasId} not found!`);
+                                                        }
+                                                });
+                                        });
+                                } else {
+                                        console.log("No chart data to render");
+                                }
+                        }, 100); // Small delay for DOM rendering
+                }
+        </script>
+</body>
+
+</html>

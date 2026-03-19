@@ -1,0 +1,125 @@
+<footer id="footer-id" class="footer-section">
+    <div class="footer-content py-3">
+        <div class="container-fluid">
+            <div class="footer-row">
+
+                <div class="footer-left">
+                    <ul class="bottomLink list-unstyled mb-2">
+                        <li><a href="/Site/1407/Copyright-Policy">स्वामित्व हक्क धोरण</a></li>
+                        <li><a href="/Site/1289/Disclaimer-and-Policies">अस्वीकरण आणि धोरणे</a></li>
+                        <li><a href="/Site/1290/Help">मदत</a></li>
+                        <li><a href="/Site/1291/Accessibility-Statement">वापरसुलभता</a></li>
+                        <li><a href="/Site/sitemap">साईटमॅप</a></li>
+                    </ul>
+                    <p class="medium">
+                        © जलसंपदा विभाग, महाराष्ट्र शासन, भारत यांचे हे अधिकृत संकेतस्थळ आहे. सर्व अधिकार सुरक्षित. |
+                        <a class="ExternalLinkClick" href="https://mahait.org/" target="_blank">महाराष्ट्र माहिती
+                            तंत्रज्ञान</a>
+                    </p>
+                </div>
+
+                <div class="footer-center">
+                    <p id="total-visitors">एकूण दर्शक : ०</p>
+                    <p id="today-visitors">आजचे दर्शक : ०</p>
+                    <p id="review-date">शेवटचे पुनरावलोकन: </p>
+                </div>
+
+                <div class="footer-right">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a class="ExternalLinkClick" href="https://www.india.gov.in" target="_blank">
+                                <img alt="Government of India"
+                                    src="https://wrd.maharashtra.gov.in/Images/indiaGovLogo.jpg" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="ExternalLinkClick" href="https://www.maharashtra.gov.in" target="_blank">
+                                <img alt="Government of Maharashtra"
+                                    src="https://wrd.maharashtra.gov.in/Images/maharastraLogo.gif" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <img alt="GIGW" src="https://wrd.maharashtra.gov.in/Images/gigwLogo.jpg" class="img-fluid">
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="ExternalLinkClick" href="https://jigsaw.w3.org/css-validator/check/referer"
+                                target="_blank">
+                                <img alt="CSS Validator" src="https://wrd.maharashtra.gov.in/Images/vcss.gif"
+                                    class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="ExternalLinkClick" href="http://validator.w3.org/check?uri=referer"
+                                target="_blank">
+                                <img alt="HTML Validator" src="https://wrd.maharashtra.gov.in/Images/w3cxhtm.gif"
+                                    class="img-fluid">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright-text text-center">
+        <p>©2025 <a href="https://www.quantbit.io/" target="_blank">QUANTBIT TECHNOLOGIES PVT.LTD.</a></p>
+    </div>
+
+    <script>
+        function toMarathiDigits(num) {
+            const englishDigits = '0123456789';
+            const marathiDigits = '०१२३४५६७८९';
+            return num.toString().replace(/[0-9]/g, (digit) => marathiDigits[englishDigits.indexOf(digit)]);
+        }
+
+        function formatDateToMarathi(date) {
+            const day = toMarathiDigits(date.getDate().toString().padStart(2, '0'));
+            const month = toMarathiDigits((date.getMonth() + 1).toString().padStart(2, '0'));
+            const year = toMarathiDigits(date.getFullYear().toString());
+            return `${day}-${month}-${year}`;
+        }
+
+        async function updateCounters() {
+            // Update review date
+            const today = new Date();
+            const todayFormatted = formatDateToMarathi(today);
+            const reviewElement = document.getElementById('review-date');
+            if (reviewElement) reviewElement.innerHTML = `शेवटचे पुनरावलोकन: ${todayFormatted}`;
+
+            const namespace = 'wrd-maharashtra';
+            const totalKey = 'total';
+            const todayDate = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+            const dailyKey = `daily_${todayDate}`;
+            const apiBase = 'https://api.countapi.xyz';
+
+            try {
+                // Total visitors
+                const totalRes = await fetch(`${apiBase}/hit/${namespace}/${totalKey}`);
+                const totalData = await totalRes.json();
+                const totalElement = document.getElementById('total-visitors');
+                if (totalElement) totalElement.innerHTML = `एकूण दर्शक : ${toMarathiDigits(totalData.value)}`;
+
+                // Today's visitors
+                const dailyRes = await fetch(`${apiBase}/hit/${namespace}/${dailyKey}`);
+                const dailyData = await dailyRes.json();
+                const todayElement = document.getElementById('today-visitors');
+                if (todayElement) todayElement.innerHTML = `आजचे दर्शक : ${toMarathiDigits(dailyData.value)}`;
+
+            } catch (error) {
+                console.error('Counter update failed:', error);
+                const totalElement = document.getElementById('total-visitors');
+                const todayElement = document.getElementById('today-visitors');
+                if (totalElement) totalElement.innerHTML = `एकूण दर्शक : ०`;
+                if (todayElement) todayElement.innerHTML = `आजचे दर्शक : ०`;
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateCounters);
+        } else {
+            updateCounters();
+        }
+        window.addEventListener('load', updateCounters);
+    </script>
+</footer>

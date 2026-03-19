@@ -1,0 +1,389 @@
+/* Base Body Adjustment for Fixed Header */
+body {
+    padding-top: 140px !important; /* Accounts for top bar + menu */
+    margin: 0 !important;
+}
+
+/* Full Header Sticky Container */
+#header_id.main_header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
+    background: #fff !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+}
+
+/* Header Top Bar */
+#header_id .header_top {
+    background: #f8f9fa !important;
+    padding: 8px 40px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+#header_id .header_top ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    gap: 20px !important;
+}
+
+#header_id .header_top li {
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    color: #666 !important;
+    font-size: 14px !important;
+}
+
+#header_id .header_top a {
+    color: #666 !important;
+    text-decoration: none !important;
+}
+
+#header_id .header_top a:hover {
+    color: #0071b4 !important;
+}
+
+/* Main Menu */
+#header_id .site-main-menu.stickymenu-on {
+    background-color: #fff !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    padding: 15px 40px !important;
+    gap: 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+#header_id #main-nav,
+#header_id #main-nav ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#header_id #main-nav li {
+    text-align: center !important;
+}
+
+#header_id .site-main-menu .main_navigation li a {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    padding: 10px 5px !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: color 0.3s !important;
+}
+
+#header_id .site-main-menu .main_navigation li a:hover {
+    color: #0071b4 !important;
+}
+
+/* Logos: Left (Maharashtra) and Right (Emblem) */
+#header_id .emblem-container,
+#header_id .right-emblem {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#header_id .maharashtra-logo {
+    height: 60px !important;
+    width: 60px !important;
+    object-fit: contain !important;
+    margin-right: 10px !important;
+}
+
+#header_id .dept-text {
+    width: 150px !important;
+    text-align: left !important;
+}
+
+#header_id .dept-text strong {
+    font-size: 16px !important;
+    color: #333 !important;
+    display: block !important;
+}
+
+#header_id .dept-text small {
+    font-size: 12px !important;
+    color: #666 !important;
+}
+
+#header_id .emblem-logo {
+    height: 50px !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
+
+/* Navigation */
+#header_id .main_navigation {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    max-width: 70% !important;
+}
+
+#header_id #main-nav {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important; /* 6 equal columns per row, auto-wraps */
+    gap: 10px 25px !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Dropdowns */
+#header_id .dropdown {
+    position: relative !important;
+}
+
+#header_id .dropdown-arrow {
+    display: inline-block !important; /* Visible on all devices */
+    margin-left: 5px !important;
+    font-size: 12px !important;
+    transition: transform 0.3s ease !important;
+    user-select: none !important;
+    color: #666 !important;
+}
+
+#header_id .dropdown.active > a > .dropdown-arrow {
+    transform: rotate(180deg) !important;
+}
+
+#header_id .dropdown-menu1 {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    min-width: 170px !important;
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px !important;
+    flex-direction: column !important;
+    z-index: 9999 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    overflow: hidden !important;
+    margin-top: 5px !important;
+}
+
+#header_id .dropdown:hover .dropdown-menu1,
+#header_id .dropdown.active .dropdown-menu1 {
+    display: flex !important;
+}
+
+#header_id .dropdown-menu1 li a {
+    padding: 8px 15px !important;
+    display: block !important;
+    color: #333 !important;
+    white-space: nowrap !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+#header_id .dropdown-menu1 li:last-child a {
+    border-bottom: none !important;
+}
+
+#header_id .dropdown-menu1 li a:hover {
+    background: #f8f9fa !important;
+    color: #0071b4 !important;
+    padding-left: 20px !important;
+}
+
+/* Hamburger */
+#header_id .hamburger {
+    display: none !important;
+    flex-direction: column !important;
+    cursor: pointer !important;
+    gap: 4px !important;
+    z-index: 10001 !important;
+}
+
+#header_id .hamburger span {
+    height: 3px !important;
+    width: 25px !important;
+    background: #222 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 2px !important;
+}
+
+#header_id .hamburger.open span:nth-child(1) { 
+    background: #0071b4 !important; 
+    transform: rotate(45deg) translate(5px, 5px) !important; 
+}
+#header_id .hamburger.open span:nth-child(2) { 
+    opacity: 0 !important; 
+}
+#header_id .hamburger.open span:nth-child(3) { 
+    background: #0071b4 !important; 
+    transform: rotate(-45deg) translate(7px, -6px) !important; 
+}
+
+/* Tablet Responsive (992px and below) */
+@media (max-width: 992px) {
+    body {
+        padding-top: 120px !important; /* Reduce for smaller header */
+    }
+
+    #header_id .site-main-menu {
+        padding: 10px 20px !important;
+        gap: 10px !important;
+    }
+
+    #header_id .header_top {
+        padding: 5px 20px !important;
+    }
+
+    #header_id #main-nav {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 per row on tablet */
+        gap: 5px 15px !important;
+    }
+
+    #header_id .dropdown-menu1 {
+        position: relative !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border-top: 1px solid #e0e0e0 !important;
+        background: #f9f9f9 !important;
+    }
+
+    #header_id .dropdown.active > .dropdown-menu1 {
+        display: flex !important;
+    }
+
+    #header_id #nav-menu {
+        display: none !important;
+        position: fixed !important;
+        top: 60px !important; /* Below top bar */
+        left: 0 !important;
+        width: 100% !important;
+        background: #fff !important;
+        flex-direction: column !important;
+        z-index: 9998 !important;
+        padding: 10px !important;
+        max-height: calc(100vh - 60px) !important;
+        overflow-y: auto !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    #header_id #nav-menu.active {
+        display: flex !important;
+    }
+
+    #header_id #main-nav {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    #header_id #main-nav li {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    #header_id #main-nav li a {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 12px 15px !important;
+        font-size: 14px !important;
+        border-bottom: 1px solid #eee !important;
+    }
+
+    #header_id .hamburger {
+        display: flex !important;
+    }
+}
+
+/* Mobile Responsive (990px and below) */
+@media (max-width: 990px) {
+    #header_id .maharashtra-logo,
+    #header_id .emblem-logo {
+        height: 40px !important;
+        width: 40px !important;
+    }
+
+    #header_id .dept-text strong {
+        font-size: 14px !important;
+    }
+
+    #header_id .dept-text small {
+        font-size: 11px !important;
+        display: none !important; /* Hide subtitle on very small screens */
+    }
+
+    #header_id .site-main-menu {
+        padding: 10px 15px !important;
+        gap: 10px !important;
+    }
+
+    #header_id .header_top {
+        padding: 5px 15px !important;
+        font-size: 12px !important;
+    }
+
+    #header_id .header_top ul {
+        gap: 10px !important;
+    }
+
+    #header_id #main-nav li a {
+        font-size: 12px !important;
+        padding: 10px !important;
+    }
+
+    #header_id .dropdown-menu1 li a {
+        font-size: 12px !important;
+        padding: 10px 15px !important;
+        color: #0073e6 !important;
+        border-bottom: 1px solid #ddd !important;
+    }
+
+    #header_id .dropdown-menu1 li a:hover {
+        background: #e9f0ff !important;
+        color: #004a99 !important;
+    }
+
+    body.no-scroll {
+        overflow: hidden !important;
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    #header_id #main-nav {
+        grid-template-columns: 1fr !important; /* Stack all on tiny screens */
+    }
+
+    #header_id .site-main-menu {
+        flex-direction: column !important;
+        padding: 10px !important;
+    }
+
+    #header_id .main_navigation {
+        max-width: 100% !important;
+        order: 3 !important; /* Nav below logos on xs */
+    }
+
+    #header_id .right-emblem {
+        order: 2 !important;
+        margin-left: auto !important;
+    }
+
+    #header_id .hamburger {
+        position: absolute !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+}

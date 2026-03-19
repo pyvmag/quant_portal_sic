@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenLayers Map with Satellite & Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.7.0/ol.css">
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+        #search-container {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        #search-input {
+            width: 250px;
+        }
+        #toggle-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="toggle-btn">Toggle Satellite</div>
+
+<div id="search-container">
+    <input type="text" id="search-input" placeholder="Search location..." />
+    <button id="search-btn">Search</button>
+</div>
+
+<div id="map"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/ol@v10.7.0/dist/ol.js"></script>
+<script>
+    // Base layers
+    const osmLayer = new ol.layer.Tile({
+        source: new ol.source.OSM()
+    });
+
+    const satelliteLayer = new ol.layer.Tile({
+        source: new ol.source.XYZ({
+            attributions: 'Tiles © Esri',
+            url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        })
+    });
+
+    // Map initialization
+    const map = new ol.Map({
+        target: 'map',
+        layers: [osmLayer],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([78.9629, 20.5937]), // India center
+            zoom: 5
+        })
+    });
+
+    // Toggle button
+    const toggleBtn = document.getElementById('toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+        if (map.getLayers().getArray().includes(osmLayer)) {
+            map.removeLayer(osmLayer);
+            map.addLayer(satelliteLayer);
+        } else {
+            map.removeLayer(satelliteLayer);
+            map.addLayer(osmLayer);
+        }
+    });
+
+    // Landmarks
+    const landmarks = [
+        { name: "Gateway of India", lon: 72.8347, lat: 18.9220 },
+        { name: "Taj Mahal", lon: 78.0421, lat: 27.1751 },
+        { name: "India Gate", lon: 77.2295, lat: 28.6129 }
+    ];
+
+    const landmarkFeatures = landmarks.map(l => new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([l.lon, l.lat])),
+        name: l.name
+    }));
+
+    const landmarkLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({ features: landmarkFeatures }),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                src: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+                scale: 0.5
+            })
+        })
+    });
+
+    map.addLayer(landmarkLayer);
+
+    // Popup overlay
+    const popupContainer = document.createElement('div');
+    popupContainer.style.background = 'white';
+    popupContainer.style.padding = '5px';
+    popupContainer.style.border = '1px solid black';
+    popupContainer.style.borderRadius = '4px';
+
+    const popupOverlay = new ol.Overlay({
+        element: popupContainer,
+        positioning: 'bottom-center',
+        stopEvent: false,
+        offset: [0, -10]
+    });
+
+    map.addOverlay(popupOverlay);
+
+    // Show popup on landmark click
+    map.on('click', function(evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, f => f);
+        if (feature) {
+            const coordinates = feature.getGeometry().getCoordinates();
+            popupContainer.innerHTML = `<b>${feature.get('name')}</b>`;
+            popupOverlay.setPosition(coordinates);
+        } else {
+            popupOverlay.setPosition(undefined);
+        }
+    });
+
+    // Search function using Nominatim
+    let searchLayer;
+    document.getElementById('search-btn').addEventListener('click', function() {
+        const query = document.getElementById('search-input').value;
+        if (!query) return;
+
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.length > 0) {
+                const result = data[0];
+                const lon = parseFloat(result.lon);
+                const lat = parseFloat(result.lat);
+                const coord = ol.proj.fromLonLat([lon, lat]);
+
+                // Move map to searched location
+                map.getView().animate({center: coord, zoom: 14});
+
+                // Remove previous search marker
+                if (searchLayer) map.removeLayer(searchLayer);
+
+                // Add new search marker
+                const searchFeature = new ol.Feature({
+                    geometry: new ol.geom.Point(coord),
+                    name: result.display_name
+                });
+
+                searchLayer = new ol.layer.Vector({
+                    source: new ol.source.Vector({ features: [searchFeature] }),
+                    style: new ol.style.Style({
+                        image: new ol.style.Icon({
+                            anchor: [0.5, 1],
+                            src: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+                            scale: 0.5
+                        })
+                    })
+                });
+
+                map.addLayer(searchLayer);
+
+                // Show popup
+                popupContainer.innerHTML = `<b>${result.display_name}</b>`;
+                popupOverlay.setPosition(coord);
+            } else {
+                alert('Location not found');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

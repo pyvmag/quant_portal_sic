@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>100 दिवस कार्यक्रम</title>
+    <link rel="shortcut icon" href="/assets/sicsangli/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/sicsangli/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/animate.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/video.min.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/style.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/footer.css">
+    <link rel="stylesheet" href="/assets/sicsangli/css/header2.css">
+
+    <!-- Your Custom CSS (separate file) -->
+    <link rel="stylesheet" href="/assets/sicsangli/css/pani-vapar.css">
+</head>
+<body class="page-divas-karyakram">
+    <div id="preloader"></div>
+    <div class="up">
+        <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <div class="main-content">
+        <section id="breadcrumb" class="breadcrumb-section position-relative"
+                 data-background="/assets/sicsangli/img/water-level/krishna_kalva.jpg">
+            <div class="background_overlay"></div>
+            <div class="container">
+                <div class="breadcrumb-content headline">
+                    <h2 class="breadcrumb-title">100 दिवस कार्यक्रम</h2>
+                    <div class="breadcrumb_item ul-li">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">मुख्य पान</a></li>
+                            <li class="breadcrumb-item active">निविदा माहिती</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-wrapper py-5">
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/assets/sicsangli/js/jquery.min.js"></script>
+    <script src="/assets/sicsangli/js/bootstrap.min.js"></script>
+    <script src="/assets/sicsangli/js/popper.min.js"></script>
+    <script src="/assets/sicsangli/js/owl.carousel.min.js"></script>
+    <script src="/assets/sicsangli/js/jarallax.js"></script>
+    <script src="/assets/sicsangli/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/sicsangli/js/appear.js"></script>
+    <script src="/assets/sicsangli/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/sicsangli/js/masonry.pkgd.min.js"></script>
+    <script src="/assets/sicsangli/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/sicsangli/js/lightbox.js"></script>
+    <script src="/assets/sicsangli/js/waypoints.min.js"></script>
+    <script src="/assets/sicsangli/js/jquery.counterup.min.js"></script>
+    <script src="/assets/sicsangli/js/tilt.jquery.min.js"></script>
+    <script src="/assets/sicsangli/js/wow.min.js"></script>
+    <script src="/assets/sicsangli/js/script.js"></script>
+    <script src="/assets/sicsangli/js/gmap3.min.js"></script>
+    <script async src="http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA"></script>
+
+    <script>
+        async function loadHeader() {
+            try {
+                const res = await fetch('header2.html');
+                const data = await res.text();
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                setTimeout(() => {
+                    const header = document.getElementById('header-placeholder');
+                    if (header && window.getComputedStyle(header).position === 'fixed') {
+                        const headerHeight = header.offsetHeight || 80;
+                        document.body.style.paddingTop = headerHeight + 'px';
+                    }
+                }, 100);
+
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (hamburger && navMenu) {
+                    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('open');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('no-scroll');
+                        if (navMenu.classList.contains('active')) {
+                            document.body.style.paddingRight = scrollbarWidth + 'px';
+                        } else {
+                            document.body.style.paddingRight = '';
+                        }
+                    });
+
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (window.innerWidth <= 992) {
+                                navMenu.classList.remove('active');
+                                hamburger.classList.remove('open');
+                                document.body.classList.remove('no-scroll');
+                                document.body.style.paddingRight = '';
+                            }
+                        });
+                    });
+                }
+            } catch (err) {
+                console.error("Header load error:", err);
+            }
+        }
+
+        async function loadFooter() {
+            try {
+                const res = await fetch('footer.html');
+                const data = await res.text();
+                document.getElementById('footer-placeholder').innerHTML = data;
+
+                setTimeout(() => {
+                    const footer = document.getElementById('footer-placeholder');
+                    if (footer && window.getComputedStyle(footer).position === 'fixed') {
+                        const footerHeight = footer.offsetHeight || 100;
+                        document.body.style.paddingBottom = footerHeight + 'px';
+                    }
+                }, 100);
+            } catch (err) {
+                console.error("Footer load error:", err);
+            }
+        }
+
+        loadHeader();
+        loadFooter();
+    </script>
+</body>
+</html>

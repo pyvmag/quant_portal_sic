@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>प्रकल्प पाणीसाठा</title>
+    <link rel="shortcut icon" href="/assets/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="author" content="Templines">
+    <meta name="description" content="Eltron - Alternative Energy HTML Template">
+    <meta name="keywords"
+          content="alternative energy, ecology, energy business, green energy, heating, hydropower, nature energy, power saving, recycling, renewable energy, solar energy, Solar Panels, wing turbines">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/video.min.css">
+    <link rel="stylesheet" href="/assets/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/koyna.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/header2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 2000px;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        .table-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+            transition: box-shadow 0.3s ease;
+        }
+        .table-container:hover {
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+        }
+        .table-responsive {
+            border-radius: 10px;
+            overflow-x: auto;
+            min-width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            margin-bottom: 0;
+        }
+        th,
+        td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+            word-wrap: break-word;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+        .table-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #007bff;
+            text-align: center;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        .table-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            border-radius: 2px;
+        }
+        .kpi-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.08);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+        }
+        .kpi-container:hover {
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .kpi-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 15px 5px;
+            border: 1px solid rgba(0, 123, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #0056b3, #28a745);
+        }
+        .kpi-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #007bff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+            letter-spacing: -0.5px;
+        }
+        .kpi-label {
+            font-size: 1.1em;
+            color: #495057;
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .district-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8f0 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 5px;
+            border: 1px solid rgba(40, 167, 69, 0.15);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .district-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745, #20c997, #007bff);
+        }
+        .district-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
+            border-color: rgba(40, 167, 69, 0.3);
+        }
+        .district-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #28a745;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
+            letter-spacing: -0.5px;
+        }
+        .project-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .project-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            margin: 5px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.06);
+            transition: all 0.2s ease;
+        }
+        .project-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.12);
+        }
+        .project-label {
+            font-size: 1em;
+            color: #495057;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .project-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #28a745;
+            text-shadow: 0 1px 2px rgba(40, 167, 69, 0.1);
+        }
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        .spinner-border {
+            width: 4rem;
+            height: 4rem;
+            border-width: 0.3em;
+        }
+        .loading-text {
+            font-size: 1.2em;
+            margin-left: 15px;
+            font-weight: 500;
+        }
+        .chart-container {
+            position: relative;
+            height: 0;
+            padding-bottom: 60%;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .chart-container canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        .table-section {
+            margin-bottom: 60px;
+            padding: 30px 0;
+            border-bottom: 2px solid #dee2e6;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .table-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .table-section h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            position: relative;
+        }
+        .table-section h2 i {
+            margin-right: 10px;
+            color: #28a745;
+        }
+        h1 {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 3px solid #007bff;
+            position: relative;
+            font-size: 2.5em;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #28a745);
+            border-radius: 2px;
+        }
+        .chart-title {
+            word-break: break-word;
+            hyphens: auto;
+            white-space: normal;
+            font-size: 1.2em;
+        }
+        /* Extra Small Devices (phones, <576px) */
+        @media (max-width: 575.98px) {
+            .container {
+                padding: 0 10px;
+            }
+            body {
+                padding: 5px;
+                font-size: 0.85em;
+            }
+            h1 {
+                font-size: 1.8em;
+                padding: 15px 0;
+            }
+            .table-section h2 {
+                font-size: 1.4em;
+            }
+            .table-container {
+                padding: 10px;
+                margin: 10px 0;
+            }
+            table {
+                font-size: 0.75em;
+                min-width: 500px;
+                /* Force horizontal scroll */
+            }
+            th,
+            td {
+                padding: 4px 2px;
+            }
+            .kpi-container,
+            .table-section {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            .kpi-card,
+            .district-card {
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 8px;
+            }
+            .kpi-value {
+                font-size: 1.6em;
+            }
+            .project-row {
+                flex-direction: column;
+            }
+            .project-item {
+                min-width: auto;
+                margin: 5px 0;
+                text-align: left;
+            }
+            .chart-container {
+                padding-bottom: 120%;
+            }
+            .loading-text {
+                font-size: 0.9em;
+            }
+            .spinner-border {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            .table-title {
+                font-size: 1.2em;
+            }
+        }
+        /* Small Devices (landscape phones, 576px - 767px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .container {
+                padding: 0 12px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .table-section h2 {
+                font-size: 1.6em;
+            }
+            table {
+                font-size: 0.8em;
+                min-width: 600px;
+            }
+            th,
+            td {
+                padding: 6px 4px;
+            }
+            .kpi-container {
+                padding: 20px;
+            }
+            .chart-container {
+                padding-bottom: 90%;
+            }
+            .kpi-value {
+                font-size: 1.8em;
+            }
+        }
+        /* Medium Devices (tablets, 768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .container {
+                padding: 0 15px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            .table-section h2 {
+                font-size: 1.8em;
+            }
+            table {
+                font-size: 0.85em;
+            }
+            .chart-container {
+                padding-bottom: 70%;
+            }
+            .kpi-value {
+                font-size: 2em;
+            }
+            .project-row {
+                justify-content: space-between;
+            }
+        }
+        /* Large Devices (desktops, 992px - 1399px) */
+        @media (min-width: 992px) and (max-width: 1399.98px) {
+            .container {
+                max-width: 960px;
+            }
+            .chart-container {
+                padding-bottom: 60%;
+            }
+            .kpi-value {
+                font-size: 2.2em;
+            }
+            .kpi-card,
+            .district-card {
+                padding: 25px;
+            }
+        }
+        /* Extra Large Devices (large desktops, 1400px - 1919px) */
+        @media (min-width: 1400px) and (max-width: 1919.98px) {
+            .container {
+                max-width: 1320px;
+            }
+            h1 {
+                font-size: 2.8em;
+            }
+            .table-section h2 {
+                font-size: 2.2em;
+            }
+            .kpi-value {
+                font-size: 2.8em;
+            }
+            .chart-container {
+                padding-bottom: 55%;
+            }
+            .kpi-card,
+            .district-card {
+                padding: 30px;
+            }
+            .table-container {
+                padding: 25px;
+            }
+            table {
+                font-size: 0.95em;
+            }
+        }
+        /* XXL Devices (4K and larger, >=1920px) */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
+            }
+            body {
+                font-size: 1.1em;
+            }
+            h1 {
+                font-size: 3.5em;
+                padding: 30px 0;
+            }
+            .table-section h2 {
+                font-size: 2.5em;
+            }
+            .table-container {
+                padding: 40px;
+            }
+            table {
+                font-size: 1.1em;
+            }
+            th,
+            td {
+                padding: 16px 12px;
+            }
+            .kpi-container {
+                padding: 40px;
+            }
+            .kpi-card,
+            .district-card {
+                padding: 35px;
+                margin: 20px 10px;
+            }
+            .kpi-value {
+                font-size: 3.5em;
+            }
+            .district-title {
+                font-size: 1.6em;
+            }
+            .project-value {
+                font-size: 2.2em;
+            }
+            .chart-container {
+                padding-bottom: 50%;
+            }
+            .chart-title {
+                font-size: 1.4em;
+            }
+            .table-title {
+                font-size: 2.2em;
+            }
+        }
+        /* Universal Adjustments */
+        .row {
+            margin: 0 -10px;
+        }
+        .row > * {
+            padding: 0 10px;
+        }
+        @media (min-width: 1200px) {
+            .row {
+                margin: 0 -15px;
+            }
+            .row > * {
+                padding: 0 15px;
+            }
+        }
+        .refresh-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .refresh-btn:hover {
+            background: #0056b3;
+            transform: rotate(180deg);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div id="loadingOverlay" style="display: none;">
+        <div style="text-align: center;">
+            <div class="spinner-border text-light mb-3" role="status"></div>
+            <span class="loading-text">डेटा लोड होत आहे...</span>
+        </div>
+    </div>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">प्रकल्प पाणीसाठा</h1>
+        <!-- To add/delete columns, edit the 'config' object in the <script> section below (e.g., add to kpiCols array) -->
+        <!-- Table 1 Section -->
+        <div id="table1Section" class="table-section">
+            <h2><i class="bi bi-table"></i>सांगली जिल्ह्यातील मध्यम व लघु प्रकल्पातील पाणीसाठा (द.ल.घ.फू.) </h2>
+            <div id="kpiSectionTable1"></div>
+            <div id="table1ChartsSection"></div>
+            <div id="table1DataSection"></div> <!-- New section for actual table -->
+        </div>
+        <!-- Table 2 Section -->
+        <div id="table2Section" class="table-section">
+            <h2><i class="bi bi-table"></i>मध्यम व लघुपाटबंधारे प्रकल्पांच्या जलाशयातील उपयुक्त साठ्याची तुलनात्मक
+                स्थिती (द.ल.घ.फू.)</h2>
+            <div id="kpiSectionTable2"></div>
+            <div id="table2ChartsSection"></div>
+            <div id="table2DataSection"></div> <!-- New section for actual table -->
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <button class="refresh-btn" onclick="loadData()" title="Refresh Data"><i class="bi bi-arrow-clockwise"></i></button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // ==================== IMPROVED MULTILINE LABEL WRAPPING (respects words, splits only long words) ====================
+        function wrapLabel(label, maxWidth = 20) {
+            label = String(label || '').trim();
+            if (label.length <= maxWidth) return label;
+            const words = label.split(/\s+/);
+            const lines = [];
+            let currentLine = '';
+            for (let word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                    if (word.length > maxWidth) {
+                        while (word.length > maxWidth) {
+                            lines.push(word.slice(0, maxWidth));
+                            word = word.slice(maxWidth);
+                        }
+                        currentLine = word;
+                    }
+                    currentLine += ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            if (currentLine.trim()) lines.push(currentLine.trim());
+            return lines.join('\n');
+        }
+        // Common X-axis options – multiline, no rotation
+        const commonXOptions = {
+            grid: { display: false },
+            ticks: {
+                maxRotation: 0,
+                minRotation: 0,
+                callback: function (value) { return wrapLabel(value, 20); },
+                font: { size: 12, family: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif' },
+                color: '#333',
+                padding: 25,
+                autoSkip: false,
+                display: true
+            }
+        };
+        // Common chart options for layout padding (moved to global scope to fix scope error)
+        const commonChartOptions = {
+            layout: {
+                padding: {
+                    bottom: 50
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 0
+            }
+        };
+        // HEADER LOAD + HAMBURGER
+        fetch('header2.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            arrow.closest('.dropdown').classList.toggle('active');
+                        }
+                    });
+                });
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', e => {
+                        if (!e.target.closest('.dropdown-arrow') && navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('open');
+                            document.body.classList.remove('no-scroll');
+                            document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                        }
+                    });
+                });
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                    }
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+        // Template Config: Edit here to add/delete columns. Changes will auto-generate KPIs, cards, and charts.
+        let config = {
+            categoryCol: 'तालुक्याचे नांव', // X-axis category (e.g., taluka names)
+            kpiCols: ['प्रकल्प संख्या'], // Add/delete KPI columns here (comma-separated in array)
+            districtCols: ['मध्यम प्रकल्प', 'लघु प्रकल्प'], // Add/delete group/breakdown columns here
+            pctCol: 'उपयुक्त साठा (द.ल.घ.फू.) टक्केवारी %', // Percentage column for % charts (full phrase to match sheet)
+            secondPctCol: 'गतवर्षीच्या याच दिनांकाची टक्केवारी %', // Second percentage column for double bar chart (full phrase)
+            storageCol: 'आजचा साठा एकूण' // Numerical storage column to compute percentage
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+        });
+        function loadData() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+            // Pass config to API as GET query param to avoid JSON body parsing issues
+            const configStr = JSON.stringify(config);
+            const url = `/api/method/sicsangli.api.run_test_py?config=${encodeURIComponent(configStr)}`;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(resp => {
+                    if (!resp.ok) {
+                        throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+                    }
+                    return resp.json();
+                })
+                .then(result => {
+                    if (result.message.status === 'ok') {
+                        const data = result.message.message;
+                        console.log('Full API response data:', data); // Debug: Log full data
+                        console.log('Tables count:', data.tables ? data.tables.length : 0); // Debug: Log tables
+                        console.log('kpis_table2 from API:', data.kpis_table2); // Debug: Log raw kpis_table2
+                        console.log('config.districtCols:', config.districtCols); // Debug: Log config
+                        console.log('Chart data for Table 1:', data.chart_data); // Debug log for JS
+                        renderTable1(data);
+                        renderTable2(data);
+                    } else {
+                        console.error("API response:", result);
+                        alert("API Error: " + JSON.stringify(result.message.message));
+                    }
+                })
+                .catch(err => {
+                    console.error("Fetch error:", err);
+                    alert("Fetch Error: " + err.message + ". Check console for details.");
+                })
+                .finally(() => overlay.style.display = 'none');
+        }
+        function renderDataTable(tableRows, containerId, tableTitle) {
+            if (!tableRows || tableRows.length < 1) {
+                document.getElementById(containerId).innerHTML = '<div class="text-center text-muted py-5"><i class="bi bi-table" style="font-size: 3em; color: #6c757d;"></i><p>No data available for table.</p></div>';
+                return;
+            }
+            const header = tableRows[0];
+            const dataRows = tableRows.slice(1);
+            // Ignore empty columns: Check if all cells in a column (header + data rows) are empty
+            const numCols = header.length;
+            const activeCols = [];
+            for (let colIdx = 0; colIdx < numCols; colIdx++) {
+                const colIsEmpty = header[colIdx].trim() === '' && dataRows.every(row => (row[colIdx] || '').trim() === '');
+                if (!colIsEmpty) {
+                    activeCols.push(colIdx);
+                }
+            }
+            if (activeCols.length === 0) {
+                document.getElementById(containerId).innerHTML = '<div class="text-center text-muted py-5"><i class="bi bi-exclamation-triangle" style="font-size: 3em; color: #6c757d;"></i><p>No non-empty columns found.</p></div>';
+                return;
+            }
+            // Build header
+            let headerHtml = '<tr>' + activeCols.map(colIdx => `<th>${header[colIdx] || ''}</th>`).join('') + '</tr>';
+            // Build data rows
+            let bodyHtml = dataRows.map(row => {
+                let rowCells = activeCols.map(colIdx => `<td>${row[colIdx] || ''}</td>`).join('');
+                return `<tr>${rowCells}</tr>`;
+            }).join('');
+            let tableHtml = `
+                <div class="table-container">
+                    <h3 class="table-title">${tableTitle}</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>${headerHtml}</thead>
+                            <tbody>${bodyHtml}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.getElementById(containerId).innerHTML = tableHtml;
+        }
+        function renderTable1(data) {
+            const kpis = data.kpis || {};
+            const kpisTable1Districts = data.kpis_table1_districts || {};
+            const chartData = data.chart_data || { categories: [], values: {} }; // Dynamic: categories instead of talukas
+            console.log('Labels for Table 1:', chartData.categories); // Added console.log for Table 1 labels
+            // Dynamic KPIs for Table 1
+            const kpiSectionTable1 = document.getElementById('kpiSectionTable1');
+            let table1KpiHtml = `
+                <div class="kpi-container">
+                    <h5 class="text-center mb-4"><i class="bi bi-bar-chart-line"></i> </h5>
+                    <div class="row justify-content-center">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="kpi-card">
+                                <i class="bi bi-grid-3x3-gap-fill" style="font-size: 2em; color: #007bff; margin-bottom: 10px;"></i>
+                                <div class="kpi-value">${kpis.total_categories || 0}</div>
+                                <div class="kpi-label">Total Categories (e.g., Talukas)</div>
+                            </div>
+                        </div>
+            `;
+            // Add dynamic KPI cards based on config.kpiCols
+            config.kpiCols.forEach((col, idx) => {
+                const totalKey = `total_${col.replace(/\s+/g, '_').toLowerCase()}`;
+                table1KpiHtml += `
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kpi-card">
+                            <i class="bi bi-graph-up" style="font-size: 2em; color: #007bff; margin-bottom: 10px;"></i>
+                            <div class="kpi-value">${kpis[totalKey] || 0}</div>
+                            <div class="kpi-label">${col}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            table1KpiHtml += `
+                    </div>
+                </div>
+            `;
+            // District/Group Cards (dynamic based on config.districtCols)
+            if (Object.keys(kpisTable1Districts).length > 0 && config.districtCols.length > 0) {
+                table1KpiHtml += `
+                    <div class="kpi-container">
+                        <h5 class="text-center mb-4"><i class="bi bi-building"></i> Table 1 - Group Wise Counts</h5>
+                        <div class="row justify-content-center">
+                `;
+                Object.keys(kpisTable1Districts).forEach(group => {
+                    const groupData = kpisTable1Districts[group];
+                    table1KpiHtml += `
+                        <div class="col-md-4 col-sm-6">
+                            <div class="district-card">
+                                <div class="district-title"><i class="bi bi-geo-alt-fill" style="margin-right: 5px;"></i>${group}</div>
+                                <div class="project-row">
+                    `;
+                    config.districtCols.forEach(col => {
+                        table1KpiHtml += `
+                                    <div class="project-item">
+                                        <div class="project-label">${col}</div>
+                                        <div class="project-value">${groupData[col] || 0}</div>
+                                    </div>
+                        `;
+                    });
+                    table1KpiHtml += `
+                                    <div class="project-item" style="border-top: 2px solid #dee2e6; padding-top: 10px; margin-top: 10px;">
+                                        <div class="project-label"><strong>Total</strong></div>
+                                        <div class="project-value">${groupData['Total'] || 0}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                table1KpiHtml += `
+                        </div>
+                    </div>
+                `;
+            }
+            kpiSectionTable1.innerHTML = table1KpiHtml;
+            // Dynamic Charts for Table 1
+            const table1ChartsSection = document.getElementById('table1ChartsSection');
+            const projectCol = config.kpiCols[0]; // First KPI column for chart
+            const projectKey = projectCol.replace(/\s+/g, '_').toLowerCase();
+            const projectValues = chartData.values[projectKey] || [];
+            const pctValuesKey = config.pctCol.replace(/\s+/g, '_').toLowerCase();
+            const pctValues = chartData.values[pctValuesKey] || [];
+            const secondPctValuesKey = config.secondPctCol.replace(/\s+/g, '_').toLowerCase();
+            const secondPctValues = chartData.values[secondPctValuesKey] || [];
+            const storageCol = config.storageCol || '';
+            const storagePctKey = storageCol ? `${storageCol.replace(/\s+/g, '_').toLowerCase()}_pct` : '';
+            const storagePctValues = chartData.values[storagePctKey] || [];
+            console.log('Table 1 pctValues length:', pctValues.length, 'secondPctValues length:', secondPctValues.length); // Debug
+            let table1ChartsHtml = '<div class="row justify-content-center">';
+            let hasProjectChart = chartData.categories.length > 0 && projectValues.length > 0;
+            let hasPctChart = chartData.categories.length > 0 && pctValues.length > 0;
+            let hasStoragePctChart = chartData.categories.length > 0 && storagePctValues.length > 0;
+            let colClass = 'col-md-6 col-12 mb-4';
+            let chartCount = 0;
+            if (hasProjectChart) {
+                table1ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> तालुक्याचे नांव vs ${projectCol}</h5>
+                        <div class="chart-container">
+                            <canvas id="talukaProjectChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+            }
+            if (hasStoragePctChart) {
+                table1ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> तालुक्याचे नांव vs ${config.storageCol} %</h5>
+                        <div class="chart-container">
+                            <canvas id="talukaStoragePctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+            }
+            // Double bar chart for percentages
+            let hasDoublePctChart = chartData.categories.length > 0 && pctValues.length > 0 && secondPctValues.length > 0;
+            if (hasDoublePctChart) {
+                table1ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> तालुक्याचे नांव vs ${config.pctCol} & ${config.secondPctCol}</h5>
+                        <div class="chart-container">
+                            <canvas id="talukaDoublePctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+            } else if (hasPctChart) {
+                // Fallback to single pct chart
+                table1ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> तालुक्याचे नांव vs ${config.pctCol}</h5>
+                        <div class="chart-container">
+                            <canvas id="talukaPctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+            }
+            if (chartCount === 0) {
+                table1ChartsHtml += '<div class="col-12 text-center text-muted py-5"><i class="bi bi-graph-down" style="font-size: 3em; color: #6c757d;"></i><p>No Table 1 chart data available.</p></div>';
+            }
+            table1ChartsHtml += '</div>';
+            table1ChartsSection.innerHTML = table1ChartsHtml;
+            // Render Project Chart
+            if (hasProjectChart) {
+                const ctxProject = document.getElementById('talukaProjectChart');
+                if (ctxProject) {
+                    new Chart(ctxProject.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: chartData.categories,
+                            datasets: [{
+                                label: projectCol,
+                                data: projectValues,
+                                backgroundColor: 'rgba(0, 123, 255, 0.6)',
+                                borderColor: 'rgba(0, 123, 255, 1)',
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+            }
+            // Render Storage Percentage Chart
+            if (hasStoragePctChart) {
+                const ctxStoragePct = document.getElementById('talukaStoragePctChart');
+                if (ctxStoragePct) {
+                    new Chart(ctxStoragePct.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: chartData.categories,
+                            datasets: [{
+                                label: `${config.storageCol} %`,
+                                data: storagePctValues,
+                                backgroundColor: 'rgba(40, 167, 69, 0.6)',
+                                borderColor: 'rgba(40, 167, 69, 1)',
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+            }
+            // Render Double Percentage Chart (FIX: Use chartData.categories, not [1])
+            if (hasDoublePctChart) {
+                // Fix lengths mismatch
+                const maxLen = Math.min(chartData.categories.length, Math.min(pctValues.length, secondPctValues.length));
+                const validLabels = chartData.categories.slice(0, maxLen).filter(label => label && String(label).trim() !== '');
+                const validPct = pctValues.slice(0, maxLen);
+                const validSecondPct = secondPctValues.slice(0, maxLen);
+                const finalLabels = validLabels.length > 0 ? validLabels : Array.from({ length: validPct.length }, (_, i) => `Item ${i + 1}`);
+                const ctxDoublePct = document.getElementById('talukaDoublePctChart');
+                if (ctxDoublePct) {
+                    new Chart(ctxDoublePct.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: finalLabels,
+                            datasets: [
+                                {
+                                    label: config.pctCol,
+                                    data: validPct,
+                                    backgroundColor: 'rgba(40, 167, 69, 0.6)',
+                                    borderColor: 'rgba(40, 167, 69, 1)',
+                                    borderWidth: 2,
+                                    borderRadius: 0,
+                                    borderSkipped: false
+                                },
+                                {
+                                    label: config.secondPctCol,
+                                    data: validSecondPct,
+                                    backgroundColor: 'rgba(255, 193, 7, 0.6)',
+                                    borderColor: 'rgba(255, 193, 7, 1)',
+                                    borderWidth: 2,
+                                    borderRadius: 0,
+                                    borderSkipped: false
+                                }
+                            ]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+            }
+            // Fallback Render Single Percentage Chart
+            else if (hasPctChart) {
+                // Debug: Temporarily add these logs to verify data (remove after testing)
+                console.log('Debug - chartData.categories:', chartData.categories);
+                console.log('Debug - pctValues:', pctValues);
+                console.log('Debug - Lengths match?', chartData.categories.length === pctValues.length);
+                // Fix: Trim to equal lengths if mismatch and filter valid labels
+                const maxLen = Math.min(chartData.categories.length, pctValues.length);
+                const validLabels = chartData.categories
+                    .slice(0, maxLen)
+                    .filter(label => label && String(label).trim() !== '') // Remove invalids/empties
+                    .map(label => String(label)); // Ensure strings
+                const validData = pctValues.slice(0, maxLen);
+                // Fallback: If no valid labels, use generic indices as strings
+                const finalLabels = validLabels.length > 0 ? validLabels : Array.from({ length: validData.length }, (_, i) => `Item ${i + 1}`);
+                const ctxPct = document.getElementById('talukaPctChart');
+                if (ctxPct) {
+                    new Chart(ctxPct.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: finalLabels, // Use processed labels
+                            datasets: [{
+                                label: config.pctCol,
+                                data: validData,
+                                backgroundColor: 'rgba(40, 167, 69, 0.6)',
+                                borderColor: 'rgba(40, 167, 69, 1)',
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            // Increase bottom padding for better label spacing
+                            layout: {
+                                padding: {
+                                    bottom: 80 // Increased from default 50 for longer Marathi labels
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: {
+                                    type: 'category', // Explicitly force category axis to use labels (not indices)
+                                    ...commonXOptions,
+                                    ticks: {
+                                        ...commonXOptions.ticks,
+                                        // Robust callback: Ensure it uses string labels
+                                        callback: function (value, index) {
+                                            // value should be string; fallback to finalLabels if not
+                                            const label = typeof value === 'string' ? value : (finalLabels[index] || `Item ${index + 1}`);
+                                            return wrapLabel(label, 25); // Slightly wider wrap for Marathi text
+                                        },
+                                        font: { size: 11 }, // Slightly smaller for better fit on mobile
+                                        padding: 10 // Adjusted for spacing
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+            }
+            // Render actual Table 1 data (new)
+            if (data.tables && data.tables[0] && data.tables[0].rows) {
+                renderDataTable(data.tables[0].rows, 'table1DataSection', data.tables[0].title || 'Table 1 Data');
+            } else {
+                document.getElementById('table1DataSection').innerHTML = '<div class="text-center text-muted py-5"><i class="bi bi-table" style="font-size: 3em; color: #6c757d;"></i><p>No Table 1 data available.</p></div>';
+            }
+        }
+        // ==================== FIXED renderTable2 – COMMON SORTED LABELS FOR ALL CHARTS & KPIs ====================
+        function renderTable2(data) {
+            const kpisTable2 = data.kpis_table2 || {};
+            const storagePct = data.storage_pct || {};
+            // Common groups (union of both sources) + sorted + filtered
+            const groupSet = new Set([...Object.keys(kpisTable2), ...Object.keys(storagePct)]);
+            let groups = Array.from(groupSet)
+                .filter(g => g && g.trim() !== '' && g !== 'null' && g !== 'undefined')
+                .sort((a, b) => a.localeCompare(b)); // Proper Unicode sorting (works excellently for Marathi)
+            console.log('renderTable2 - kpisTable2:', kpisTable2); // Debug: Log kpisTable2 here
+            console.log('renderTable2 - Object.keys(kpisTable2).length:', Object.keys(kpisTable2).length); // Debug: Log length
+            console.log('renderTable2 - config.districtCols.length:', config.districtCols.length); // Debug: Log config length
+            console.log('renderTable2 - full data.tables[1]:', data.tables ? data.tables[1] : 'No tables[1]'); // Debug: Log Table 2 raw data
+            console.log('Table 2 – Final common sorted labels (groups):', groups); // Debug: Log common labels
+            // Dynamic KPIs for Table 2
+            const kpiSectionTable2 = document.getElementById('kpiSectionTable2');
+            let table2KpiHtml = '';
+            if (groups.length > 0 && config.districtCols.length > 0) {
+                table2KpiHtml = `
+                    <div class="kpi-container">
+                        <h5 class="text-center mb-4"><i class="bi bi-building"></i> जिल्हानिहाय / विभागनिहाय प्रकल्प संख्या</h5>
+                        <div class="row justify-content-center">
+                `;
+                groups.forEach(group => {
+                    const groupData = kpisTable2[group] || {};
+                    table2KpiHtml += `
+                        <div class="col-md-4 col-sm-6">
+                            <div class="district-card">
+                                <div class="district-title"><i class="bi bi-geo-alt-fill" style="margin-right: 5px;"></i>${group}</div>
+                                <div class="project-row">
+                    `;
+                    config.districtCols.forEach(col => {
+                        table2KpiHtml += `
+                                    <div class="project-item">
+                                        <div class="project-label">${col}</div>
+                                        <div class="project-value">${groupData[col] || 0}</div>
+                                    </div>
+                        `;
+                    });
+                    table2KpiHtml += `
+                                    <div class="project-item" style="border-top: 2px solid #dee2e6; padding-top: 10px; margin-top: 10px;">
+                                        <div class="project-label"><strong>एकूण</strong></div>
+                                        <div class="project-value">${groupData['Total'] || 0}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                table2KpiHtml += `
+                        </div>
+                    </div>
+                `;
+                kpiSectionTable2.innerHTML = table2KpiHtml;
+                console.log('renderTable2 - KPIs rendered successfully'); // Debug: Confirm rendering
+            } else {
+                kpiSectionTable2.innerHTML = '<div class="text-center text-muted py-5"><i class="bi bi-exclamation-triangle" style="font-size: 3em; color: #6c757d;"></i><p>No Table 2 KPI data available.</p></div>';
+                console.log('renderTable2 - KPIs NOT rendered - condition failed'); // Debug: Confirm failure
+            }
+            // Dynamic Charts for Table 2
+            const table2ChartsSection = document.getElementById('table2ChartsSection');
+            let table2ChartsHtml = '<div class="row justify-content-center">';
+            let colClass = 'col-md-6 col-12 mb-4';
+            let chartCount = 0;
+            if (groups.length > 0) {
+                // Chart 1: Districts vs Total Projects (from kpis_table2)
+                table2ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> जिल्हा / विभाग नुसार एकूण प्रकल्प</h5>
+                        <div class="chart-container">
+                            <canvas id="districtProjectTotalChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+                // Chart 2: Groups vs Storage % Breakdown (existing, for project types % per district)
+                table2ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart-fill"></i> सध्याची उपयुक्त साठा टक्केवारी (प्रकल्प प्रकार नुसार)</h5>
+                        <div class="chart-container">
+                            <canvas id="storagePctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+                // Chart 3: Districts vs Double % (current & previous average % per district)
+                table2ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart"></i> सध्याची व मागील वर्षीची सरासरी टक्केवारी</h5>
+                        <div class="chart-container">
+                            <canvas id="districtDoublePctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+                // New Chart 4: Districts vs Previous Year % Breakdown (for project types % per district)
+                table2ChartsHtml += `
+                    <div class="${colClass}">
+                        <h5 class="text-center mb-3 chart-title"><i class="bi bi-bar-chart-fill"></i> मागील वर्षीची उपयुक्त साठा टक्केवारी (प्रकल्प प्रकार नुसार)</h5>
+                        <div class="chart-container">
+                            <canvas id="prevStoragePctChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                chartCount++;
+            }
+            if (chartCount === 0) {
+                table2ChartsHtml += '<div class="col-12 text-center text-muted py-5"><i class="bi bi-graph-down" style="font-size: 3em; color: #6c757d;"></i><p>No Table 2 chart data available.</p></div>';
+            }
+            table2ChartsHtml += '</div>';
+            table2ChartsSection.innerHTML = table2ChartsHtml;
+            // ============= Render Charts with common labels =============
+            if (groups.length > 0) {
+                // 1. Total Projects Chart
+                const totalValues = groups.map(g => (kpisTable2[g]?.Total || 0));
+                const ctxProjectTotal = document.getElementById('districtProjectTotalChart');
+                if (ctxProjectTotal) {
+                    new Chart(ctxProjectTotal.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: groups,
+                            datasets: [{
+                                label: 'Total Projects',
+                                data: totalValues,
+                                backgroundColor: 'rgba(0, 123, 255, 0.6)',
+                                borderColor: 'rgba(0, 123, 255, 1)',
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+                // 2. Storage % Breakdown Chart (grouped bar)
+                const currentDatasets = config.districtCols.map((col, i) => ({
+                    label: `${col} %`,
+                    data: groups.map(g => storagePct[g]?.[`${col.replace(/\s+/g, '_')}_current_pct`] || 0),
+                    backgroundColor: `hsla(${i * 140 + 200}, 70%, 60%, 0.6)`,
+                    borderColor: `hsla(${i * 140 + 200}, 70%, 40%, 1)`,
+                    borderWidth: 2,
+                    borderRadius: 0,
+                    borderSkipped: false
+                }));
+                const ctxStorage = document.getElementById('storagePctChart');
+                if (ctxStorage) {
+                    new Chart(ctxStorage.getContext('2d'), {
+                        type: 'bar',
+                        data: { labels: groups, datasets: currentDatasets },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+                // 3. Double % Chart (average per district)
+                const currentPcts = groups.map(g => storagePct[g]?.total_current_pct || 0);
+                const prevPcts = groups.map(g => storagePct[g]?.total_prev_pct || 0);
+                const ctxDouble = document.getElementById('districtDoublePctChart');
+                if (ctxDouble) {
+                    new Chart(ctxDouble.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: groups,
+                            datasets: [
+                                {
+                                    label: config.pctCol,
+                                    data: currentPcts,
+                                    backgroundColor: 'rgba(40, 167, 69, 0.6)',
+                                    borderColor: 'rgba(40, 167, 69, 1)',
+                                    borderWidth: 2,
+                                    borderRadius: 0,
+                                    borderSkipped: false
+                                },
+                                {
+                                    label: config.secondPctCol,
+                                    data: prevPcts,
+                                    backgroundColor: 'rgba(255, 193, 7, 0.6)',
+                                    borderColor: 'rgba(255, 193, 7, 1)',
+                                    borderWidth: 2,
+                                    borderRadius: 0,
+                                    borderSkipped: false
+                                }
+                            ]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+                // 4. Previous Storage % Breakdown Chart (grouped bar for prev pcts)
+                const prevDatasets = config.districtCols.map((col, i) => ({
+                    label: `${col} % (मागील)`,
+                    data: groups.map(g => storagePct[g]?.[`${col.replace(/\s+/g, '_')}_prev_pct`] || 0),
+                    backgroundColor: `hsla(${i * 140 + 60}, 70%, 60%, 0.6)`,
+                    borderColor: `hsla(${i * 140 + 60}, 70%, 40%, 1)`,
+                    borderWidth: 2,
+                    borderRadius: 0,
+                    borderSkipped: false
+                }));
+                const ctxPrevStorage = document.getElementById('prevStoragePctChart');
+                if (ctxPrevStorage) {
+                    new Chart(ctxPrevStorage.getContext('2d'), {
+                        type: 'bar',
+                        data: { labels: groups, datasets: prevDatasets },
+                        options: {
+                            ...commonChartOptions,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: commonXOptions
+                            },
+                            plugins: {
+                                legend: { display: true, position: 'top' }
+                            }
+                        }
+                    });
+                }
+            }
+            // Render actual Table 2 data (new)
+            if (data.tables && data.tables[1] && data.tables[1].rows) {
+                renderDataTable(data.tables[1].rows, 'table2DataSection', data.tables[1].title || 'Table 2 Data');
+            } else {
+                document.getElementById('table2DataSection').innerHTML = '<div class="text-center text-muted py-5"><i class="bi bi-table" style="font-size: 3em; color: #6c757d;"></i><p>No Table 2 data available.</p></div>';
+            }
+        }
+    </script>
+</body>
+</html>

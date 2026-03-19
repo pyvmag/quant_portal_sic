@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Counter with Footer</title>
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/header2.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .website-counter {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #logs {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header-placeholder"></header>
+
+    <main>
+        <section class="content">
+            <h2>Main Page Content</h2>
+            <p>This is the main page. The footer below will be loaded dynamically using <code>fetch</code>.</p>
+            <div>Website visit count:</div>
+            <div class="website-counter"></div>
+            <div id="logs"></div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // ==========================
+        // Visitor Counter
+        // ==========================
+        const counterContainer = document.querySelector(".website-counter");
+        let visitCount = localStorage.getItem("page_view");
+        if (visitCount) {
+            visitCount = Number(visitCount) + 1;
+            localStorage.setItem("page_view", visitCount);
+        } else {
+            visitCount = 1;
+            localStorage.setItem("page_view", 1);
+        }
+        counterContainer.textContent = visitCount;
+
+        // ==========================
+        // Fetch Header
+        // ==========================
+        fetch('/header2.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Header load error:", err));
+
+        // ==========================
+        // Fetch Footer
+        // ==========================
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+    </script>
+</body>
+</html>

@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>निविदा पत्रिका तक्ता - सर्व शीट्स (Tender Sheet Table - All Sheets)</title>
+    <link rel="shortcut icon" href="/assets/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="author" content="Templines">
+    <meta name="description" content="Eltron - Alternative Energy HTML Template">
+    <meta name="keywords"
+        content="alternative energy, ecology, energy business, green energy, heating, hydropower, nature energy, power saving, recycling, renewable energy, solar energy, Solar Panels, wing turbines">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/video.min.css">
+    <link rel="stylesheet" href="/assets/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/css/flood_safety.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header2.css">
+    <link rel="stylesheet" href="/assets/css/sanghtan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto Sans+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            /* Changed to allow vertical scrolling */
+        }
+        .main-content {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            /* Changed to allow overflow and scrolling */
+        }
+        .pdf-section {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .horizontal-line {
+            height: 3px;
+            background: linear-gradient(to right, #28a745, #20c997);
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 0;
+            font-size: 0.875rem;
+        }
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, .05);
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        #loading {
+            text-align: center;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        /* Tab Styles */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #667eea;
+            color: white;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            /* Allow content to overflow for scrolling */
+        }
+        /* Common Table Styles */
+        .table-container {
+            flex: 1;
+            overflow: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background: #fff;
+            min-height: 700px;
+            /* Minimum height to display at least 15 rows (assuming ~40px per row including header) */
+            /* Removed the overriding min-height: 0; to allow the 700px to take effect */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 100%;
+            /* Changed to prevent horizontal scroll on small screens, allow wrap/scroll as needed */
+        }
+        th,
+        td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            text-align: left;
+            min-width: 100px;
+            max-width: 200px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+            color: #fff;
+            white-space: normal;
+            line-height: 1.3;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        tr:hover {
+            background: #e3f2fd !important;
+        }
+        tr.roman-header {
+            background: #e3f2fd !important;
+            font-weight: bold;
+        }
+        .table-container::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #a8a8a8;
+            border-radius: 6px;
+        }
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+        #loading {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #666;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .error {
+            color: #d32f2f;
+            padding: 15px;
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .info {
+            color: #1976d2;
+            padding: 15px;
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .summary {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #2e7d32;
+            text-align: center;
+        }
+        /* Chart Styles */
+        .chart-container {
+            margin-top: 40px;
+            max-width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+            flex-shrink: 0;
+            /* Prevent charts from shrinking */
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+        .chart-title {
+            margin: 0 0 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .group-chart {
+            margin-bottom: 40px;
+        }
+        .group-chart h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        h2,
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        /* PDF Section Styles */
+        .pdf-section {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .horizontal-line {
+            height: 3px;
+            background: linear-gradient(to right, #28a745, #20c997);
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+        .table-section {
+            margin: 30px 0;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table.table-striped th,
+        .table.table-striped td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+        .table.table-striped thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .table.table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, .05);
+        }
+        /* Ensure footer takes full width */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .kpi-section {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .district-kpi-group {
+            margin-bottom: 20px;
+        }
+        .district-kpi-group h4 {
+            text-align: center;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .district-kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .kpi-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .kpi-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .kpi-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        .district-sum {
+            grid-column: 1 / -1;
+            background: #e8f5e8 !important;
+            border: 2px solid #4CAF50 !important;
+            color: #2e7d32 !important;
+        }
+        .debug {
+            background: #fff3e0;
+            border: 1px solid #ffcc80;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            color: #ef6c00;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .title-section {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: #fff3cd;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        .title-row {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 18px;
+            margin: 10px 0;
+            color: #856404;
+            line-height: 1.4;
+        }
+        .total-row {
+            background: black !important;
+            color: white !important;
+        }
+        .total-row:hover {
+            background: black !important;
+            color: white !important;
+        }
+        .total-row td:hover {
+            background: black !important;
+            color: white !important;
+        }
+        .district-header {
+            background: #4CAF50 !important;
+            color: white !important;
+            font-weight: bold;
+            text-align: center;
+        }
+        .district-header:hover {
+            background: #4CAF50 !important;
+            color: white !important;
+        }
+        .district-header td:hover {
+            background: #4CAF50 !important;
+            color: white !important;
+        }
+        .no-data-msg {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div id="header-placeholder"></div>
+        <div class="horizontal-line"></div>
+        <!-- PDF section -->
+        <div class="pdf-section">
+            <p style="margin-top: 10px;">
+                <a href="/assets/pdf/Tembhu.docx" target="_blank"
+                    style="color: red; text-decoration: underline; cursor: pointer; font-weight: bold;">
+                    View the PDF
+                </a>
+            </p>
+        </div>
+        <h1>निविदा पत्रिका</h1>
+        <!-- Tab Navigation -->
+        <div class="tab">
+            <button class="tablinks" onclick="openSheet(event, 'sheet1')" id="defaultOpen">टेंभू उपसा सिंचन
+                प्रकल्प</button>
+            <button class="tablinks" onclick="openSheet(event, 'sheet2')">प्रगतीपथावरील निविदांची अद्यावत स्थिती (
+                30/10/2025 अखेर) </button>
+            <button class="tablinks" onclick="openSheet(event, 'sheet4')">टेंभू उपसा सिंचन प्रकल्प विभाग
+                क्र.1,सांगली</button>
+            <button class="tablinks" onclick="openSheet(event, 'sheet3')">निविदा पत्रिका तक्ता </button>
+        </div>
+        <!-- Sheet 1: Tender3 with charts -->
+        <div id="sheet1" class="tabcontent">
+            <h2>विस्तारीत टेंभू उपसा सिंचन प्रकल्प</h2>
+            <div class="summary" id="summary1" style="display:none;"></div>
+            <div id="loading1">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+            <div id="error1" class="error" style="display:none;"></div>
+            <div id="info1" class="info" style="display:none;"></div>
+            <div class="table-container" id="tableContainer1" style="display:none;">
+                <table id="tenderTable1">
+                    <thead>
+                        <tr id="tableHeaders1"></tr>
+                    </thead>
+                    <tbody id="tableBody1"></tbody>
+                </table>
+            </div>
+            <div id="chartsSection1" style="display:none;"></div>
+        </div>
+        <!-- Sheet 2: Tender simple table -->
+        <div id="sheet2" class="tabcontent">
+            <h2>शीट 2: निविदा पत्रिका तक्ता (Tender)</h2>
+            <div class="summary" id="summary2" style="display:none;"></div>
+            <div id="loading2">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+            <div id="error2" class="error" style="display:none;"></div>
+            <div id="info2" class="info" style="display:none;"></div>
+            <div class="table-container" id="tableContainer2" style="display:none;">
+                <table id="tenderTable2">
+                    <thead>
+                        <tr id="tableHeaders2"></tr>
+                    </thead>
+                    <tbody id="tableBody2"></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Sheet 4: Tender2 with grouped charts -->
+        <div id="sheet4" class="tabcontent">
+            <h2>विभाग :- टेंभू उपसा सिंचन प्रकल्प विभाग क्र.1,सांगली</h2>
+            <div class="summary" id="summary4" style="display:none;"></div>
+            <div id="loading4">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+            <div id="error4" class="error" style="display:none;"></div>
+            <div id="info4" class="info" style="display:none;"></div>
+            <div class="table-container" id="tableContainer4" style="display:none;">
+                <table id="tenderTable4">
+                    <thead>
+                        <tr id="tableHeaders4"></tr>
+                    </thead>
+                    <tbody id="tableBody4"></tbody>
+                </table>
+            </div>
+            <div class="chart-container" id="chartContainer4" style="display:none;">
+                <canvas id="romanBarChart4"></canvas>
+            </div>
+            <div id="perGroupCharts4"></div>
+            <div id="chartsSection4" style="display:none;"></div>
+        </div>
+        <!-- New Sheet 3: Advanced Tender3 -->
+        <div id="sheet3" class="tabcontent">
+            <h2>निविदा पत्रिका तक्ता (Advanced Tender Sheet Table)</h2>
+            <div class="summary" id="summary3" style="display:none;"></div>
+            <div id="loading3">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+            <div id="error3" class="error" style="display:none;"></div>
+            <div id="info3" class="info" style="display:none;"></div>
+            <div id="debug3" class="debug" style="display:none;"></div>
+            <!-- TITLE SECTION -->
+            <div class="title-section" id="titleSection3" style="display:none;"></div>
+            <!-- MAIN TABLE -->
+            <div class="table-container" id="tableContainer3" style="display:none;">
+                <table id="tenderTable3">
+                    <thead>
+                        <tr id="tableHeaders3"></tr>
+                    </thead>
+                    <tbody id="tableBody3"></tbody>
+                </table>
+            </div>
+            <!-- KPI SECTION -->
+            <div class="kpi-section" id="kpiSection3" style="display:none;"></div>
+            <!-- CHARTS SECTION -->
+            <div class="chart-section" id="chartsSection3" style="display:none;"></div>
+        </div>
+        <div id="footer-placeholder"></div>
+    </div>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function loadHeader() {
+            try {
+                const res = await fetch('header2.html');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.text();
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                // Hamburger toggle
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+                // Toggle dropdown when arrow is clicked
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const parentLi = arrow.closest('.dropdown');
+                            parentLi.classList.toggle('active');
+                        }
+                    });
+                });
+                // Prevent main link from toggling submenu on mobile
+                document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
+                    link.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                        }
+                    });
+                });
+                // Close menu on link click EXCEPT when clicking on arrow
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (e.target.closest('.dropdown-arrow')) {
+                            return;
+                        }
+                        if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('open');
+                            document.body.classList.remove('no-scroll');
+                            document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                        }
+                    });
+                });
+                // Reset menu and dropdowns on window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                    }
+                });
+                // Dynamically adjust table heights after header load
+                adjustTableHeights();
+            } catch (err) {
+                console.error("Header load error:", err);
+            }
+        }
+        async function loadFooter() {
+            try {
+                const res = await fetch('footer.html');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.text();
+                document.getElementById('footer-placeholder').innerHTML = data;
+                // Dynamically adjust table heights after footer load
+                adjustTableHeights();
+            } catch (err) {
+                console.error("Footer load error:", err);
+            }
+        }
+        // Load header and footer on page load
+        loadHeader();
+        loadFooter();
+        // Function to adjust table container heights to fill screen
+        function adjustTableHeights() {
+            const headerEl = document.getElementById('header-placeholder');
+            const footerEl = document.getElementById('footer-placeholder');
+            const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+            const footerHeight = footerEl ? footerEl.offsetHeight : 0;
+            const otherFixed = 150; // Reduced from 200 to allocate more space for tables (approximate for h1, tabs, padding, etc.)
+            const availableHeight = Math.max(window.innerHeight - headerHeight - footerHeight - otherFixed, 700); // Ensure minimum 700px
+            const tableContainers = document.querySelectorAll('.table-container');
+            tableContainers.forEach(container => {
+                if (container.style.display !== 'none') {
+                    container.style.maxHeight = availableHeight + 'px';
+                    container.style.minHeight = '700px'; // Enforce min-height dynamically for better visibility
+                }
+            });
+        }
+        // Listen for resize to re-adjust
+        window.addEventListener('resize', adjustTableHeights);
+        // Tab Functionality
+        async function openSheet(evt, sheetName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(sheetName).style.display = "block";
+            evt.currentTarget.className += " active";
+            // Load data if not loaded
+            if (sheetName === 'sheet1' && !document.getElementById('tableContainer1').dataset.loaded) {
+                await loadSheet1();
+            }
+            if (sheetName === 'sheet2' && !document.getElementById('tableContainer2').dataset.loaded) {
+                await loadSheet2();
+            }
+            if (sheetName === 'sheet4' && !document.getElementById('tableContainer4').dataset.loaded) {
+                await loadSheet4();
+            }
+            if (sheetName === 'sheet3' && !document.getElementById('tableContainer3').dataset.loaded) {
+                await loadSheet3();
+            }
+            // Adjust heights after tab switch
+            setTimeout(adjustTableHeights, 100);
+        }
+        document.getElementById("defaultOpen").click();
+        // Sheet 1: Tender3 Full Logic (async/await version)
+        async function loadSheet1() {
+            console.log('Starting fetch for Sheet1...');
+            const loading = document.getElementById('loading1');
+            const errorDiv = document.getElementById('error1');
+            const infoDiv = document.getElementById('info1');
+            const summaryDiv = document.getElementById('summary1');
+            const tableContainer = document.getElementById('tableContainer1');
+            const chartsSection = document.getElementById('chartsSection1');
+            try {
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                chartsSection.style.display = 'none';
+                chartsSection.innerHTML = '';
+                const res = await fetch("/api/method/sicsangli.tender3.get_tender_json");
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${errorText.substring(0, 200)}...`);
+                }
+                const apiResponse = await res.json();
+                const sheetData = apiResponse.message || apiResponse;
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                /* BUILD TABLE */
+                const headerRow = document.getElementById('tableHeaders1');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+                const tableBody = document.getElementById('tableBody1');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                    infoDiv.textContent = `एकूण ${dataRows.length} रांगा, ${sheetData.headers.length} कॉलम्स.`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `कॉलम्स: ${sheetData.headers.length} | रांगा: ${dataRows.length} | तारीख: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+                tableContainer.dataset.loaded = 'true';
+                // Adjust height after loading
+                adjustTableHeights();
+                /* CHART LOGIC */
+                const colIndices = {};
+                sheetData.headers.forEach((h, i) => { colIndices[h.trim()] = i; });
+                const workNameIdx = colIndices['कामाचे नाव'] || -1;
+                const agencyNameIdx = colIndices['अभिकरणाचे नाव'] || -1;
+                const tenderNoIdx = colIndices['निविदा क्र.'] || -1;
+                const techApprovalIdx = colIndices['तांत्रिक मान्यता किंमत (रु. लाख)'] || -1;
+                const tenderAmountIdx = colIndices['निविदा किंमत'] || -1;
+                const approvedAmountIdx = colIndices['स्वीकृत निविदा किंमत (रु. लाख)'] || -1;
+                const updatedAmountIdx = colIndices['अद्यावत निविदा किंमत (रु. लाख)'] || -1;
+                const workExpIdx = colIndices['कामाप्रित्यर्थ खर्च'] || -1;
+                const priceIncIdx = colIndices['भाववाढ'] || -1;
+                const gstIdx = colIndices['G.S.T.'] || -1;
+                const totalIdx = colIndices['एकुण'] || -1;
+                const remainingIdx = colIndices['उर्वरीत शिल्लक रक्कम (रु. लाख) – कामाप्रित्यर्थ / देखभाल दुरुस्ती खर्च'] || -1;
+                const reasonsIdx = colIndices['काम बंद असल्यास त्याची कारणे'] || -1;
+                const fundReqIdx = colIndices['मार्च 2025 अखेर लागणारा निधी'] || -1;
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+                const parseNum = v => isNumeric(v) ? parseFloat(String(v).trim()) : 0;
+                const getRandomWorks = (n = 7) => {
+                    if (workNameIdx === -1) return dataRows.slice(0, n);
+                    return dataRows.sort(() => Math.random() - 0.5).slice(0, n);
+                };
+                const getRandomAgencySums = (colIdx, n = 7) => {
+                    const sums = {};
+                    dataRows.forEach(row => {
+                        const agency = (row[agencyNameIdx] || '').trim();
+                        if (agency) {
+                            sums[agency] = (sums[agency] || 0) + parseNum(row[colIdx]);
+                        }
+                    });
+                    return Object.entries(sums)
+                        .map(([agency, sum]) => ({ agency, sum }))
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, n);
+                };
+                const getTopReasonCounts = (n = 5) => {
+                    const counts = {};
+                    dataRows.forEach(row => {
+                        const reason = (row[reasonsIdx] || '').trim();
+                        if (reason) {
+                            counts[reason] = (counts[reason] || 0) + 1;
+                        }
+                    });
+                    return Object.entries(counts)
+                        .map(([reason, count]) => ({ reason, count }))
+                        .sort((a, b) => b.count - a.count)
+                        .slice(0, n);
+                };
+                const wrapLabel = (label, maxLength = 8) => {
+                    label = label.trim();
+                    if (!label) return '';
+                    if (label.length <= maxLength) return label;
+                    const words = label.split(/\s+/);
+                    const lines = [];
+                    let current = '';
+                    words.forEach(word => {
+                        if (current.length + word.length + (current ? 1 : 0) > maxLength) {
+                            if (current) lines.push(current.trim());
+                            current = word;
+                        } else {
+                            current += (current ? ' ' : '') + word;
+                        }
+                    });
+                    if (current) lines.push(current.trim());
+                    return lines.join('\n');
+                };
+                const colors = [
+                    '#FFD700', '#FF4500', '#FF69B4', '#32CD32', '#4169E1', '#000000', '#FFFF00', '#DC143C', '#FFB6C1', '#228B22', '#0000FF', '#2F4F4F', '#FFA500', '#FF1493', '#008000'
+                ];
+                const createChartDiv = (title, canvasId) => {
+                    const div = document.createElement('div');
+                    div.className = 'chart-container';
+                    div.innerHTML = `<h3 class="chart-title">${title}</h3><div class="chart-wrapper"><canvas id="${canvasId}"></canvas></div>`;
+                    chartsSection.appendChild(div);
+                };
+                const barTicksOptions = {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        padding: 20,
+                        font: { size: 12, family: "'Noto Sans Devanagari', sans-serif" },
+                        lineHeight: 1.5,
+                        align: 'center',
+                        color: '#666'
+                    }
+                };
+                const commonLayoutPadding = {
+                    layout: { padding: { left: 120 } }
+                };
+                const randomWorks = getRandomWorks(7);
+                // Chart 1
+                if (workNameIdx > -1 && [techApprovalIdx, tenderAmountIdx, approvedAmountIdx, updatedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निविदा किंमत तुलना (Tender Price Comparison)', 'chart1_1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 1 labels:', wrappedLabels);
+                    const ctx1 = document.getElementById('chart1_1').getContext('2d');
+                    const datasets = [
+                        { label: 'तांत्रिक मान्यता किंमत', data: randomWorks.map(r => parseNum(r[techApprovalIdx])), backgroundColor: colors[0] + '80', borderColor: colors[0], borderWidth: 2, borderRadius: 0, borderSkipped: false },
+                        { label: 'निविदा किंमत', data: randomWorks.map(r => parseNum(r[tenderAmountIdx])), backgroundColor: colors[1] + '80', borderColor: colors[1], borderWidth: 2, borderRadius: 0, borderSkipped: false },
+                        { label: 'स्वीकृत निविदा किंमत', data: randomWorks.map(r => parseNum(r[approvedAmountIdx])), backgroundColor: colors[2] + '80', borderColor: colors[2], borderWidth: 2, borderRadius: 0, borderSkipped: false },
+                        { label: 'अद्यावत निविदा किंमत', data: randomWorks.map(r => parseNum(r[updatedAmountIdx])), backgroundColor: colors[3] + '80', borderColor: colors[3], borderWidth: 2, borderRadius: 0, borderSkipped: false }
+                    ];
+                    new Chart(ctx1, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 2
+                if (agencyNameIdx > -1 && approvedAmountIdx > -1) {
+                    createChartDiv('अभिकरणानुसार स्वीकृत मूल्य (Contractor/Department-wise Approved Value)', 'chart2_1');
+                    const randomAgencies = getRandomAgencySums(approvedAmountIdx, 7);
+                    const wrappedLabels = randomAgencies.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgencies.map(d => d.agency || '');
+                    console.log('Chart 2 labels:', wrappedLabels);
+                    const data = randomAgencies.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx2 = document.getElementById('chart2_1').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets: [{ label: 'स्वीकृत निविदा किंमत', data, backgroundColor: bgColors, borderColor: borderColors, borderWidth: 2, borderRadius: 0, borderSkipped: false }] },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 3
+                if (workNameIdx > -1 && remainingIdx > -1) {
+                    createChartDiv('प्रति निविदा उर्वरीत शिल्लक (Remaining Cost per Tender)', 'chart3_1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 3 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[remainingIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx3 = document.getElementById('chart3_1').getContext('2d');
+                    new Chart(ctx3, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets: [{ label: 'उर्वरीत शिल्लक', data, backgroundColor: bgColors, borderColor: borderColors, borderWidth: 2, borderRadius: 0, borderSkipped: false }] },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 4
+                if (workNameIdx > -1 && [workExpIdx, priceIncIdx, gstIdx, totalIdx].every(idx => idx > -1)) {
+                    createChartDiv('एकूण खर्च विभागणी (Total Cost Breakdown)', 'chart4_1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 4 labels:', wrappedLabels);
+                    const ctx4 = document.getElementById('chart4_1').getContext('2d');
+                    const datasets = [
+                        { label: 'कामाप्रित्यर्थ खर्च', data: randomWorks.map(r => parseNum(r[workExpIdx])), backgroundColor: colors[6] + '80', borderColor: colors[6], borderWidth: 2, stack: 'stack1', borderRadius: 0, borderSkipped: false },
+                        { label: 'भाववाढ', data: randomWorks.map(r => parseNum(r[priceIncIdx])), backgroundColor: colors[7] + '80', borderColor: colors[7], borderWidth: 2, stack: 'stack1', borderRadius: 0, borderSkipped: false },
+                        { label: 'G.S.T.', data: randomWorks.map(r => parseNum(r[gstIdx])), backgroundColor: colors[8] + '80', borderColor: colors[8], borderWidth: 2, stack: 'stack1', borderRadius: 0, borderSkipped: false },
+                        { label: 'एकूण', data: randomWorks.map(r => parseNum(r[totalIdx])), backgroundColor: colors[9] + '80', borderColor: colors[9], borderWidth: 2, stack: 'stack1', borderRadius: 0, borderSkipped: false }
+                    ];
+                    new Chart(ctx4, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, stacked: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    stacked: true,
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 5
+                if (workNameIdx > -1 && [fundReqIdx, approvedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निधी आवश्यकता विरुद्ध वाटप (Fund Requirement vs Allocation)', 'chart5_1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 5 labels:', wrappedLabels);
+                    const ctx5 = document.getElementById('chart5_1').getContext('2d');
+                    const datasets = [
+                        { label: 'मार्च 2025 अखेर लागणारा निधी', data: randomWorks.map(r => parseNum(r[fundReqIdx])), backgroundColor: colors[10] + '80', borderColor: colors[10], borderWidth: 2, borderRadius: 0, borderSkipped: false },
+                        { label: 'स्वीकृत निविदा किंमत', data: randomWorks.map(r => parseNum(r[approvedAmountIdx])), backgroundColor: colors[11] + '80', borderColor: colors[11], borderWidth: 2, borderRadius: 0, borderSkipped: false }
+                    ];
+                    new Chart(ctx5, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 6
+                if (workNameIdx > -1 && tenderAmountIdx > -1) {
+                    createChartDiv('निविदा रकमेनुसार टॉप कामे (Top Works by Tender Amount)', 'chart6_1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 6 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[tenderAmountIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx6 = document.getElementById('chart6_1').getContext('2d');
+                    new Chart(ctx6, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets: [{ label: 'निविदा किंमत', data, backgroundColor: bgColors, borderColor: borderColors, borderWidth: 2, borderRadius: 0, borderSkipped: false }] },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                // Chart 7
+                if (agencyNameIdx > -1 && totalIdx > -1) {
+                    createChartDiv('एकूण खर्चानुसार टॉप अभिकरणे (Top Agencies by Total Cost)', 'chart7_1');
+                    const randomAgenciesTotal = getRandomAgencySums(totalIdx, 7);
+                    const wrappedLabels = randomAgenciesTotal.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgenciesTotal.map(d => d.agency || '');
+                    console.log('Chart 7 labels:', wrappedLabels);
+                    const data = randomAgenciesTotal.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx7 = document.getElementById('chart7_1').getContext('2d');
+                    new Chart(ctx7, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets: [{ label: 'एकूण खर्च', data, backgroundColor: bgColors, borderColor: borderColors, borderWidth: 2, borderRadius: 0, borderSkipped: false }] },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) { return originalLabels[context[0].dataIndex]; },
+                                        label: function (context) { return context.dataset.label + ': ' + context.parsed.x.toFixed(2); }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: { bar: { borderSkipped: false } }
+                        }
+                    });
+                }
+                if (chartsSection.children.length > 0) {
+                    chartsSection.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+                loading.style.display = 'none';
+                errorDiv.textContent = "Error: " + err.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+        // Sheet 2: Tender Logic (async/await version)
+        async function loadSheet2() {
+            const loading = document.getElementById('loading2');
+            const errorDiv = document.getElementById('error2');
+            const infoDiv = document.getElementById('info2');
+            const summaryDiv = document.getElementById('summary2');
+            const tableContainer = document.getElementById('tableContainer2');
+            try {
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                const res = await fetch("/api/method/sicsangli.tender.get_tender_json");
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${errorText.substring(0, 200)}...`);
+                }
+                const apiResponse = await res.json();
+                const sheetData = apiResponse.message || apiResponse;
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error fetching sheet: " + (sheetData.error || "Unknown error");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                const headerRow = document.getElementById('tableHeaders2');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header || '';
+                    headerRow.appendChild(th);
+                });
+                const tableBody = document.getElementById('tableBody2');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length || 1;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        sheetData.headers.forEach((_, idx) => {
+                            const td = document.createElement('td');
+                            const cellValue = row[idx];
+                            td.textContent = cellValue !== undefined ? String(cellValue) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                    infoDiv.textContent = `एकूण ${dataRows.length} डेटा रांगा लोड केल्या ${sheetData.headers.length} कॉलम्ससह. (Total ${dataRows.length} data rows loaded with ${sheetData.headers.length} columns. Fetched total: ${sheetData.total_fetched_rows})`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `एकूण कॉलम्स: ${sheetData.headers.length} | एकूण रांगा: ${dataRows.length} (सकृड डेटा: ${dataRows.length}) | निविदा आढावा: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+                tableContainer.dataset.loaded = 'true';
+                // Adjust height after loading
+                adjustTableHeights();
+            } catch (err) {
+                console.error('Fetch or processing error:', err);
+                loading.style.display = 'none';
+                errorDiv.textContent = "Error fetching sheet data. Check console for details: " + err.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+        // Sheet 4: Tender2 Full Logic (async/await version)
+        async function loadSheet4() {
+            console.log('Starting fetch for Sheet4...');
+            const loading = document.getElementById('loading4');
+            const errorDiv = document.getElementById('error4');
+            const infoDiv = document.getElementById('info4');
+            const summaryDiv = document.getElementById('summary4');
+            const tableContainer = document.getElementById('tableContainer4');
+            const chartContainer = document.getElementById('chartContainer4');
+            const perGroupDiv = document.getElementById('perGroupCharts4');
+            const chartsSection4 = document.getElementById('chartsSection4');
+            try {
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                chartContainer.style.display = 'none';
+                perGroupDiv.innerHTML = '';
+                chartsSection4.style.display = 'none';
+                chartsSection4.innerHTML = '';
+                const res = await fetch("/api/method/sicsangli.tender.get_tender_json");
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${errorText.substring(0, 200)}...`);
+                }
+                const apiResponse = await res.json();
+                const sheetData = apiResponse.message || apiResponse;
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                /* BUILD TABLE WITH ROMAN HIGHLIGHT */
+                const headerRow = document.getElementById('tableHeaders4');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+                const tableBody = document.getElementById('tableBody4');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+                const romanRE = /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3}))\)?$/i;
+                const isRoman = s => typeof s === 'string' && s.trim() !== '' && romanRE.test(s.trim());
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        const firstCell = row[0] || '';
+                        if (isRoman(firstCell)) {
+                            tr.classList.add('roman-header');
+                        }
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                    infoDiv.textContent = `एकूण ${dataRows.length} रांगा, ${sheetData.headers.length} कॉलम्स.`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `कॉलम्स: ${sheetData.headers.length} | रांगा: ${dataRows.length} | तारीख: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+                tableContainer.dataset.loaded = 'true';
+                // Adjust height after loading
+                adjustTableHeights();
+                /* CHART LOGIC FOR TENDER2 */
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+                const groupColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'];
+                const columnColors = ['#6C5CE7', '#A29BFE', '#74B9FF', '#00B894', '#FD79A8', '#E17055', '#FDCB6E', '#6C5B7B', '#55A3FF', '#81ECEC'];
+                const numericColIdx = [];
+                for (let c = 1; c < sheetData.headers.length; c++) {
+                    let allNum = true;
+                    for (let r = 0; r < dataRows.length; r++) {
+                        if (!isNumeric(dataRows[r][c])) {
+                            allNum = false;
+                            break;
+                        }
+                    }
+                    if (allNum) numericColIdx.push(c);
+                }
+                const groups = [];
+                let cur = null;
+                dataRows.forEach(row => {
+                    const first = row[0] || '';
+                    if (isRoman(first)) {
+                        cur = { roman: first.trim(), rows: [], color: null };
+                        groups.push(cur);
+                    } else if (cur) {
+                        cur.rows.push(row);
+                    }
+                });
+                groups.forEach((g, i) => { g.color = groupColors[i % groupColors.length]; });
+                console.log('Roman Groups:', groups.map(g => g.roman));
+                console.log('Numeric Columns:', numericColIdx.map(i => sheetData.headers[i]));
+                /* COMBINED CHART */
+                if (groups.length && numericColIdx.length) {
+                    const datasets = numericColIdx.map((col, idx) => {
+                        const label = sheetData.headers[col] || `Col ${col + 1}`;
+                        const data = groups.map(g => g.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0));
+                        const color = columnColors[idx % columnColors.length];
+                        return { label, data, backgroundColor: color + 'B3', borderColor: color, borderWidth: 1 };
+                    });
+                    const ctx = document.getElementById('romanBarChart4').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: { labels: groups.map(g => g.roman), datasets },
+                        options: {
+                            responsive: true,
+                            plugins: { title: { display: true, text: 'रोमन गटानुसार एकत्रित बार चार्ट', font: { size: 16 } }, legend: { position: 'top' } },
+                            scales: { y: { beginAtZero: true, title: { display: true, text: 'एकूण मूल्य' } }, x: { title: { display: true, text: 'रोमन गट (I, II, III...)' } } }
+                        }
+                    });
+                    chartContainer.style.display = 'block';
+                }
+                /* PER-GROUP CHARTS */
+                groups.forEach((group, idx) => {
+                    if (!group.rows.length || !numericColIdx.length) return;
+                    const div = document.createElement('div');
+                    div.className = 'chart-container group-chart';
+                    div.innerHTML = `<h3 style="color:${group.color}">रोमन ${group.roman}</h3><canvas id="chart_${idx}_4"></canvas>`;
+                    perGroupDiv.appendChild(div);
+                    const datasets = numericColIdx.map((col, cIdx) => {
+                        const value = group.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0);
+                        const color = columnColors[cIdx % columnColors.length];
+                        return { label: sheetData.headers[col], data: [value], backgroundColor: group.color + '99', borderColor: group.color, borderWidth: 1 };
+                    });
+                    const ctx = div.querySelector('canvas').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: { labels: numericColIdx.map(i => sheetData.headers[i]), datasets },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            plugins: { title: { display: true, text: `${group.roman} – संख्यात्मक कॉलम्स`, font: { size: 14 } }, legend: { display: false } },
+                            scales: { x: { beginAtZero: true, title: { display: true, text: 'मूल्य' } }, y: { title: { display: true, text: 'कॉलम' } } }
+                        }
+                    });
+                });
+                if (groups.length && numericColIdx.length) {
+                    perGroupDiv.style.marginTop = '40px';
+                }
+                /* ADD 7 STANDARD CHARTS FROM FIRST CODE */
+                const colIndices = {};
+                sheetData.headers.forEach((h, i) => {
+                    colIndices[h.trim()] = i;
+                });
+                const workNameIdx = colIndices['कामाचे नाव'] || -1;
+                const agencyNameIdx = colIndices['अभिकरणाचे नाव'] || -1;
+                const tenderNoIdx = colIndices['निविदा क्र.'] || -1;
+                const techApprovalIdx = colIndices['तांत्रिक मान्यता किंमत (रु. लाख)'] || -1;
+                const tenderAmountIdx = colIndices['निविदा किंमत'] || -1;
+                const approvedAmountIdx = colIndices['स्वीकृत निविदा किंमत (रु. लाख)'] || -1;
+                const updatedAmountIdx = colIndices['अद्यावत निविदा किंमत (रु. लाख)'] || -1;
+                const workExpIdx = colIndices['कामाप्रित्यर्थ खर्च'] || -1;
+                const priceIncIdx = colIndices['भाववाढ'] || -1;
+                const gstIdx = colIndices['G.S.T.'] || -1;
+                const totalIdx = colIndices['एकुण'] || -1;
+                const remainingIdx = colIndices['उर्वरीत शिल्लक रक्कम (रु. लाख) – कामाप्रित्यर्थ / देखभाल दुरुस्ती खर्च'] || -1;
+                const reasonsIdx = colIndices['काम बंद असल्यास त्याची कारणे'] || -1;
+                const fundReqIdx = colIndices['मार्च 2025 अखेर लागणारा निधी'] || -1;
+                const parseNum = v => isNumeric(v) ? parseFloat(String(v).trim()) : 0;
+                const getRandomWorks = (n = 7) => {
+                    if (workNameIdx === -1) return dataRows.slice(0, n);
+                    return dataRows.sort(() => Math.random() - 0.5).slice(0, n);
+                };
+                const getRandomAgencySums = (colIdx, n = 7) => {
+                    const sums = {};
+                    dataRows.forEach(row => {
+                        const agency = (row[agencyNameIdx] || '').trim();
+                        if (agency) {
+                            sums[agency] = (sums[agency] || 0) + parseNum(row[colIdx]);
+                        }
+                    });
+                    return Object.entries(sums)
+                        .map(([agency, sum]) => ({ agency, sum }))
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, n);
+                };
+                const wrapLabel = (label, maxLength = 8) => { // Reduced maxLength to create 5-6 lines for long labels
+                    label = label.trim(); // Strip whitespace
+                    if (!label) return '';
+                    if (label.length <= maxLength) return label;
+                    const words = label.split(/\s+/);
+                    const lines = [];
+                    let current = '';
+                    words.forEach(word => {
+                        if (current.length + word.length + (current ? 1 : 0) > maxLength) {
+                            if (current) lines.push(current.trim());
+                            current = word;
+                        } else {
+                            current += (current ? ' ' : '') + word;
+                        }
+                    });
+                    if (current) lines.push(current.trim());
+                    return lines.join('\n');
+                };
+                const colors = [
+                    '#FFD700', // yellow/gold
+                    '#FF4500', // red/orange
+                    '#FF69B4', // pink
+                    '#32CD32', // green/lime
+                    '#4169E1', // blue/royal
+                    '#000000', // black
+                    '#FFFF00', // bright yellow
+                    '#DC143C', // crimson red
+                    '#FFB6C1', // light pink
+                    '#228B22', // forest green
+                    '#0000FF', // pure blue
+                    '#2F4F4F', // dark slate gray
+                    '#FFA500', // orange
+                    '#FF1493', // deep pink
+                    '#008000' // dark green
+                ];
+                const createChartDiv = (title, canvasId) => {
+                    const div = document.createElement('div');
+                    div.className = 'chart-container';
+                    div.innerHTML = `<h3 class="chart-title">${title}</h3><div class="chart-wrapper"><canvas id="${canvasId}"></canvas></div>`;
+                    chartsSection4.appendChild(div);
+                };
+                const barTicksOptions = {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        padding: 20,
+                        font: {
+                            size: 12, // Increased font size for better readability
+                            family: "'Noto Sans Devanagari', sans-serif"
+                        },
+                        lineHeight: 1.5, // Increased lineHeight for better multi-line spacing
+                        align: 'center',
+                        color: '#666'
+                    }
+                };
+                const commonLayoutPadding = {
+                    layout: {
+                        padding: {
+                            left: 120 // Reduced padding for horizontal bars with multi-line y-labels
+                        }
+                    }
+                };
+                const randomWorks = getRandomWorks(7);
+                // Chart 1: Tender Price Comparison - Horizontal Clustered Bar
+                if (workNameIdx > -1 && [techApprovalIdx, tenderAmountIdx, approvedAmountIdx, updatedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निविदा किंमत तुलना (Tender Price Comparison)', 'chart1_4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 1 labels:', wrappedLabels);
+                    const ctx1 = document.getElementById('chart1_4').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'तांत्रिक मान्यता किंमत',
+                            data: randomWorks.map(r => parseNum(r[techApprovalIdx])),
+                            backgroundColor: colors[0] + '80',
+                            borderColor: colors[0],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[tenderAmountIdx])),
+                            backgroundColor: colors[1] + '80',
+                            borderColor: colors[1],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'स्वीकृत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[approvedAmountIdx])),
+                            backgroundColor: colors[2] + '80',
+                            borderColor: colors[2],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'अद्यावत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[updatedAmountIdx])),
+                            backgroundColor: colors[3] + '80',
+                            borderColor: colors[3],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx1, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 2: Contractor/Department-wise Approved Value - Horizontal Bar
+                if (agencyNameIdx > -1 && approvedAmountIdx > -1) {
+                    createChartDiv('अभिकरणानुसार स्वीकृत मूल्य (Contractor/Department-wise Approved Value)', 'chart2_4');
+                    const randomAgencies = getRandomAgencySums(approvedAmountIdx, 7);
+                    const wrappedLabels = randomAgencies.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgencies.map(d => d.agency || '');
+                    console.log('Chart 2 labels:', wrappedLabels);
+                    const data = randomAgencies.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx2 = document.getElementById('chart2_4').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'स्वीकृत निविदा किंमत',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 3: Remaining Cost per Tender - Horizontal Bar
+                if (workNameIdx > -1 && remainingIdx > -1) {
+                    createChartDiv('प्रति निविदा उर्वरीत शिल्लक (Remaining Cost per Tender)', 'chart3_4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 3 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[remainingIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx3 = document.getElementById('chart3_4').getContext('2d');
+                    new Chart(ctx3, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'उर्वरीत शिल्लक',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 4: Total Cost Breakdown - Horizontal Stacked Bar
+                if (workNameIdx > -1 && [workExpIdx, priceIncIdx, gstIdx, totalIdx].every(idx => idx > -1)) {
+                    createChartDiv('एकूण खर्च विभागणी (Total Cost Breakdown)', 'chart4_4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 4 labels:', wrappedLabels);
+                    const ctx4 = document.getElementById('chart4_4').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'कामाप्रित्यर्थ खर्च',
+                            data: randomWorks.map(r => parseNum(r[workExpIdx])),
+                            backgroundColor: colors[6] + '80',
+                            borderColor: colors[6],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'भाववाढ',
+                            data: randomWorks.map(r => parseNum(r[priceIncIdx])),
+                            backgroundColor: colors[7] + '80',
+                            borderColor: colors[7],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'G.S.T.',
+                            data: randomWorks.map(r => parseNum(r[gstIdx])),
+                            backgroundColor: colors[8] + '80',
+                            borderColor: colors[8],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'एकूण',
+                            data: randomWorks.map(r => parseNum(r[totalIdx])),
+                            backgroundColor: colors[9] + '80',
+                            borderColor: colors[9],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx4, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, stacked: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    stacked: true,
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 5: Fund Requirement vs Allocation - Horizontal Bar
+                if (workNameIdx > -1 && [fundReqIdx, approvedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निधी आवश्यकता विरुद्ध वाटप (Fund Requirement vs Allocation)', 'chart5_4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 5 labels:', wrappedLabels);
+                    const ctx5 = document.getElementById('chart5_4').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'मार्च 2025 अखेर लागणारा निधी',
+                            data: randomWorks.map(r => parseNum(r[fundReqIdx])),
+                            backgroundColor: colors[10] + '80',
+                            borderColor: colors[10],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'स्वीकृत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[approvedAmountIdx])),
+                            backgroundColor: colors[11] + '80',
+                            borderColor: colors[11],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx5, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 6: Top Works by Tender Amount - Horizontal Bar
+                if (workNameIdx > -1 && tenderAmountIdx > -1) {
+                    createChartDiv('निविदा रकमेनुसार टॉप कामे (Top Works by Tender Amount)', 'chart6_4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 6 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[tenderAmountIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx6 = document.getElementById('chart6_4').getContext('2d');
+                    new Chart(ctx6, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'निविदा किंमत',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 7: Top Agencies by Total Cost - Horizontal Bar
+                if (agencyNameIdx > -1 && totalIdx > -1) {
+                    createChartDiv('एकूण खर्चानुसार टॉप अभिकरणे (Top Agencies by Total Cost)', 'chart7_4');
+                    const randomAgenciesTotal = getRandomAgencySums(totalIdx, 7);
+                    const wrappedLabels = randomAgenciesTotal.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgenciesTotal.map(d => d.agency || '');
+                    console.log('Chart 7 labels:', wrappedLabels);
+                    const data = randomAgenciesTotal.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx7 = document.getElementById('chart7_4').getContext('2d');
+                    new Chart(ctx7, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'एकूण खर्च',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                if (chartsSection4.children.length > 0) {
+                    chartsSection4.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+                loading.style.display = 'none';
+                errorDiv.textContent = "Error: " + err.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+        // New Sheet 3: Advanced Tender3 Full Logic
+        async function loadSheet3() {
+            console.log('Starting fetch for Sheet3...');
+            const loading = document.getElementById('loading3');
+            const errorDiv = document.getElementById('error3');
+            const infoDiv = document.getElementById('info3');
+            const summaryDiv = document.getElementById('summary3');
+            const debugDiv = document.getElementById('debug3');
+            const titleSection = document.getElementById('titleSection3');
+            const tableContainer = document.getElementById('tableContainer3');
+            const kpiSection = document.getElementById('kpiSection3');
+            const chartsSection = document.getElementById('chartsSection3');
+            loading.style.display = 'none';
+            errorDiv.style.display = 'none';
+            infoDiv.style.display = 'none';
+            summaryDiv.style.display = 'none';
+            debugDiv.style.display = 'none';
+            tableContainer.style.display = 'none';
+            titleSection.style.display = 'none';
+            chartsSection.style.display = 'none';
+            kpiSection.style.display = 'none';
+            chartsSection.innerHTML = '';
+            kpiSection.innerHTML = '';
+            debugDiv.innerHTML = ''; // Clear debug
+            let hasDebug = false; // Flag to show debug if issues
+            try {
+                const res = await fetch("/api/method/sicsangli.tender3.get_tender_json");
+                if (!res.ok) return res.text().then(t => { throw new Error(`HTTP ${res.status}: ${t.substring(0, 200)}...`); });
+                const apiResponse = await res.json();
+                console.log('API Response received:', apiResponse);
+                const sheetData = apiResponse.message || apiResponse;
+                if (!sheetData.success) {
+                    console.error('API Error:', sheetData.error);
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                console.log('Sheet data success. Title rows:', sheetData.title_rows.length, 'Headers:', sheetData.headers, 'Data rows:', sheetData.rows.length);
+                /* -------------------------------------------------
+                                                                           1. BUILD TITLE SECTION - Simple title-like paragraphs
+                                                                        ------------------------------------------------- */
+                const titleSectionEl = document.getElementById('titleSection3');
+                titleSectionEl.innerHTML = '';
+                sheetData.title_rows.forEach(titleRow => {
+                // Join non-empty cells with spaces to form a single title line
+                const titleText = titleRow.filter(cell => cell && cell.trim()).join(' ');
+                if (titleText.trim()) {
+                    const titlePara = document.createElement('p');
+                    titlePara.className = 'title-row';
+                    titlePara.textContent = titleText;
+                    titleSectionEl.appendChild(titlePara);
+                    }
+                });
+                console.log(`Rendered ${sheetData.title_rows.length} title rows`);
+                titleSection.style.display = 'block';
+                /* -------------------------------------------------
+                                                                           2. BUILD MAIN TABLE - Data rows only
+                                                                        ------------------------------------------------- */
+                const headerRow = document.getElementById('tableHeaders3');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+                console.log('Headers built:', sheetData.headers.length);
+                /* -------------------------------------------------
+                                                                           Define Indices Early
+                                                                        ------------------------------------------------- */
+                const colIndices = {};
+                sheetData.headers.forEach((h, i) => {
+                    colIndices[h.trim()] = i;
+                });
+                // Improved fuzzy matching for indices (logs matches/misses) - now also displays on page
+                const getIndex = (expected, headers, debugContainer) => {
+                    const trimmedExpected = expected.trim();
+                    let matchIndex = -1;
+                    for (let i = 0; i < headers.length; i++) {
+                        const headerTrim = headers[i].trim();
+                        if (headerTrim.includes(trimmedExpected) || trimmedExpected.includes(headerTrim)) {
+                            console.log(`Matched column "${headerTrim}" to expected "${expected}" at index ${i}`);
+                            matchIndex = i;
+                            break;
+                        }
+                    }
+                    if (matchIndex === -1) {
+                        console.log(`MISSING column match for "${expected}" - available headers:`, headers.map(h => h.trim()));
+                        if (debugContainer) {
+                            const missPara = document.createElement('p');
+                            missPara.innerHTML = `<strong>Missing match for expected column:</strong> "${expected}"<br>Available: ${headers.map(h => `"${h.trim()}"`).join(', ')}`;
+                            debugContainer.appendChild(missPara);
+                            hasDebug = true;
+                        }
+                    }
+                    return matchIndex;
+                };
+                const contractorIdx = getIndex('कंत्राटदारांचे नांव', sheetData.headers, debugDiv);
+                const approvedAmountIdx = getIndex('स्वीकृत निविदा किंमत (रु. लाख)', sheetData.headers, debugDiv);
+                const updatedAmountIdx = getIndex('अद्यावत निविदा किंमत (रु. लाख)', sheetData.headers, debugDiv);
+                const statusIdx = getIndex('कामाची सध्यस्थिती', sheetData.headers, debugDiv);
+                const workNameIdx = getIndex('निविदा कामाचे नांव', sheetData.headers, debugDiv);
+                const techApprovalIdx = getIndex('तांत्रिक मान्यता किंमत (रु. लाख)', sheetData.headers, debugDiv);
+                const startDateIdx = getIndex('कार्यारंभ आदेश दिनांक', sheetData.headers, debugDiv);
+                const remainingIdx = getIndex('उर्वरीत शिल्लक रक्कम (रु. लाख)', sheetData.headers, debugDiv);
+                const lessRateIdx = getIndex('निविदा स्वीकृती दर (%) – कमी', sheetData.headers, debugDiv);
+                const excessRateIdx = getIndex('निविदा स्वीकृती दर (%) – जादा', sheetData.headers, debugDiv);
+                console.log('Indices:', {workNameIdx, contractorIdx, approvedAmountIdx, statusIdx, remainingIdx, techApprovalIdx});
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+                const parseNum = v => isNumeric(v) ? parseFloat(String(v).trim()) : 0;
+                const parseDate = d => {
+                    if (!d) return null;
+                    const str = String(d).trim();
+                    // Assume DD-MM-YYYY format
+                    const parts = str.split('-');
+                    if (parts.length === 3) {
+                        const day = parseInt(parts[0], 10);
+                        const month = parseInt(parts[1], 10) - 1; // JS months 0-11
+                        const year = parseInt(parts[2], 10);
+                        const date = new Date(year, month, day);
+                        if (!isNaN(date.getTime())) return date;
+                    }
+                    // Fallback to standard Date constructor
+                    const date = new Date(str);
+                    return isNaN(date.getTime()) ? null : date;
+                };
+                // FIXED: Declare dataRows here, before grouping loop to avoid initialization error
+                let dataRows = sheetData.rows;
+                dataRows = dataRows.slice(1); // Ignore A5 row (first data row)
+                console.log('dataRows declared and ready after ignoring A5:', dataRows.length, 'rows');
+                /* -------------------------------------------------
+                                                                           GROUP DATA BY DISTRICT - Using buffer for rows above subtotals
+                                                                        ------------------------------------------------- */
+                const districtData = {};
+                let buffer = []; // Temporary buffer for data rows before subtotal
+                dataRows.forEach((row, rowIndex) => {
+                    const workName = workNameIdx > -1 ? String(row[workNameIdx] || '').trim() : '';
+                    const contractor = contractorIdx > -1 ? String(row[contractorIdx] || '').trim() : '';
+                    const amount = approvedAmountIdx > -1 ? parseNum(row[approvedAmountIdx]) : 0;
+                    const isTotal = workName.includes('एकूण');
+                    // Improved: Check if row is mostly empty (80% cells empty/non-numeric) for header detection
+                    const numCols = sheetData.headers.length;
+                    let emptyCellCount = 0;
+                    for (let i = 0; i < numCols; i++) {
+                        if (!isNumeric(row[i]) && !String(row[i] || '').trim()) emptyCellCount++;
+                    }
+                    const isMostlyEmpty = (emptyCellCount / numCols) >= 0.8;
+                    const isDistrictHeader = !isTotal && (workName.includes('सांगली') || workName.includes('सातारा')) && isMostlyEmpty;
+                    // Detect subtotal rows as district indicators (e.g., "एकूण सांगली रु.लक्ष")
+                    const isSubtotal = isTotal && (workName.includes('सांगली') || workName.includes('सातारा'));
+                    console.log(`Row ${rowIndex}: workName="${workName}", contractor="${contractor}", amount=${amount}, isTotal=${isTotal}, isMostlyEmpty=${isMostlyEmpty}, isDistrictHeader=${isDistrictHeader}, isSubtotal=${isSubtotal}`);
+                    if (isSubtotal) {
+                        const district = workName.includes('सांगली') ? 'सांगली' : 'सातारा';
+                        if (!districtData[district]) {
+                            districtData[district] = {
+                                rows: [],
+                                totals: { approved: 0, updated: 0, tech: 0, remaining: 0, count: 0 },
+                                statusCounts: {},
+                                contractors: {}
+                            };
+                        }
+                        // Assign buffered rows to this district
+                        buffer.forEach(brow => {
+                            districtData[district].rows.push(brow);
+                            districtData[district].totals.approved += parseNum(brow[approvedAmountIdx]);
+                            districtData[district].totals.updated += parseNum(brow[updatedAmountIdx]);
+                            districtData[district].totals.tech += parseNum(brow[techApprovalIdx]);
+                            districtData[district].totals.remaining += parseNum(brow[remainingIdx]);
+                            districtData[district].totals.count++;
+                            // Status count per district
+                            const status = (brow[statusIdx] || '').trim();
+                            if (status) {
+                                districtData[district].statusCounts[status] = (districtData[district].statusCounts[status] || 0) + 1;
+                            }
+                            // Contractors sum per district
+                            const contr = (brow[contractorIdx] || '').trim();
+                            if (contr && approvedAmountIdx > -1) {
+                                const amt = parseNum(brow[approvedAmountIdx]);
+                                if (amt > 0) {
+                                    districtData[district].contractors[contr] = (districtData[district].contractors[contr] || 0) + amt;
+                                }
+                            }
+                        });
+                        console.log(`Assigned ${buffer.length} rows to district "${district}" from subtotal`);
+                        buffer = []; // Clear buffer
+                        return; // Skip adding subtotal as data
+                    }
+                    if (isDistrictHeader || isTotal) {
+                        // Skip district headers, other totals, and subtotals (already handled)
+                        return;
+                    }
+                    if (isMostlyEmpty) {
+                        console.log(`Skipping mostly empty row ${rowIndex} (potential bg #ead1dc)`);
+                        return;
+                    }
+                    // Add potential data row to buffer (rows above subtotal)
+                    buffer.push(row);
+                });
+                // Handle any remaining rows in buffer after last subtotal (assign to 'अन्य')
+                if (buffer.length > 0) {
+                    const district = 'अन्य';
+                    if (!districtData[district]) {
+                        districtData[district] = {
+                            rows: [],
+                            totals: { approved: 0, updated: 0, tech: 0, remaining: 0, count: 0 },
+                            statusCounts: {},
+                            contractors: {}
+                        };
+                    }
+                    buffer.forEach(brow => {
+                        districtData[district].rows.push(brow);
+                        districtData[district].totals.approved += parseNum(brow[approvedAmountIdx]);
+                        districtData[district].totals.updated += parseNum(brow[updatedAmountIdx]);
+                        districtData[district].totals.tech += parseNum(brow[techApprovalIdx]);
+                        districtData[district].totals.remaining += parseNum(brow[remainingIdx]);
+                        districtData[district].totals.count++;
+                        // Status count per district
+                        const status = (brow[statusIdx] || '').trim();
+                        if (status) {
+                            districtData[district].statusCounts[status] = (districtData[district].statusCounts[status] || 0) + 1;
+                        }
+                        // Contractors sum per district
+                        const contr = (brow[contractorIdx] || '').trim();
+                        if (contr && approvedAmountIdx > -1) {
+                            const amt = parseNum(brow[approvedAmountIdx]);
+                            if (amt > 0) {
+                                districtData[district].contractors[contr] = (districtData[district].contractors[contr] || 0) + amt;
+                            }
+                        }
+                    });
+                    console.log(`Assigned ${buffer.length} remaining rows to 'अन्य'`);
+                }
+                console.log('District data grouped:', districtData);
+                if (Object.keys(districtData).length === 0) {
+                    const warnPara = document.createElement('p');
+                    warnPara.innerHTML = '<strong>WARNING: No districts grouped! Check console logs for row details. Charts will use fallback data if any.</strong>';
+                    debugDiv.appendChild(warnPara);
+                    hasDebug = true;
+                }
+                if (hasDebug) debugDiv.style.display = 'block';
+                const tableBody = document.getElementById('tableBody3');
+                tableBody.innerHTML = '';
+                let currentDistrict = null;
+                if (dataRows.length === 0) {
+                    console.log('No data rows available');
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach((row, index) => {
+                        const workName = workNameIdx > -1 ? String(row[workNameIdx] || '').trim() : '';
+                        const contractor = contractorIdx > -1 ? String(row[contractorIdx] || '').trim() : '';
+                        const amount = approvedAmountIdx > -1 ? parseNum(row[approvedAmountIdx]) : 0;
+                        const isTotal = workName.includes('एकूण');
+                        const numCols = sheetData.headers.length;
+                        let emptyCellCount = 0;
+                        for (let i = 0; i < numCols; i++) {
+                            if (!isNumeric(row[i]) && !String(row[i] || '').trim()) emptyCellCount++;
+                        }
+                        const isMostlyEmpty = (emptyCellCount / numCols) >= 0.8;
+                        const isDistrictHeader = !isTotal && (workName.includes('सांगली') || workName.includes('सातारा')) && isMostlyEmpty;
+                        let district = null;
+                        if (isDistrictHeader) {
+                            district = workName.includes('सांगली') ? 'सांगली' : 'सातारा';
+                            currentDistrict = district;
+                        }
+                        if (isMostlyEmpty && !isDistrictHeader && !isTotal) {
+                            console.log(`Skipping mostly empty row in rendering ${index} (potential bg #ead1dc)`);
+                            return;
+                        }
+                        // Add the data row
+                        const tr = document.createElement('tr');
+                        if (isTotal) {
+                            tr.className = 'total-row';
+                        } else if (isDistrictHeader) {
+                            tr.className = 'district-header';
+                        }
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                    console.log(`Built ${dataRows.length} data rows for table`);
+                }
+                tableContainer.style.display = 'block';
+                console.log('Table rendering complete');
+                // Update summary
+                const numDistricts = Object.keys(districtData).length;
+                summaryDiv.innerHTML = `कुल रांगा: ${dataRows.length} | जिल्हे: ${numDistricts} ${numDistricts === 0 ? '(No districts detected - check sheet structure)' : ''}`;
+                summaryDiv.style.display = 'block';
+                /* -------------------------------------------------
+                                                                           3. BUILD KPIs - District-wise Only
+                                                                        ------------------------------------------------- */
+                // Filter out total rows for overall status pie
+                const filteredRows = dataRows.filter(row => {
+                    if (workNameIdx === -1) return true;
+                    const workName = row[workNameIdx] ? String(row[workNameIdx]).trim() : '';
+                    const contractor = contractorIdx > -1 ? String(row[contractorIdx] || '').trim() : '';
+                    const amount = approvedAmountIdx > -1 ? parseNum(row[approvedAmountIdx]) : 0;
+                    const isTotal = workName.includes('एकूण');
+                    const numCols = sheetData.headers.length;
+                    let emptyCellCount = 0;
+                    for (let i = 0; i < numCols; i++) {
+                        if (!isNumeric(row[i]) && !String(row[i] || '').trim()) emptyCellCount++;
+                    }
+                    const isMostlyEmpty = (emptyCellCount / numCols) >= 0.8;
+                    const isDistrictHeader = !isTotal && (workName.includes('सांगली') || workName.includes('सातारा')) && isMostlyEmpty;
+                    return !isTotal && !isDistrictHeader && !isMostlyEmpty;
+                });
+                // District-specific Number Cards - FIXED: Only Sangli/Satara, skip 'अन्य'
+                const districts = ['सांगली', 'सातारा'];
+                districts.forEach(district => {
+                    if (districtData[district] && districtData[district].totals.count > 0) {
+                        const distTotals = districtData[district].totals;
+                        const districtGroup = document.createElement('div');
+                        districtGroup.className = 'district-kpi-group';
+                        const districtTitle = document.createElement('h4');
+                        districtTitle.textContent = `${district} जिल्हा सारांश`;
+                        districtGroup.appendChild(districtTitle);
+                        const districtRow = document.createElement('div');
+                        districtRow.className = 'district-kpi-row';
+                        // Item 1: Approved
+                        const item1 = document.createElement('div');
+                        item1.className = 'kpi-item';
+                        item1.innerHTML = `
+                            <div class="kpi-label">स्वीकृत निविदा किंमत (रु. लाख)</div>
+                            <div class="kpi-value">${distTotals.approved.toLocaleString('mr-IN')}</div>
+                        `;
+                        districtRow.appendChild(item1);
+                        // Item 2: Updated
+                        const item2 = document.createElement('div');
+                        item2.className = 'kpi-item';
+                        item2.innerHTML = `
+                            <div class="kpi-label">अद्यावत निविदा किंमत (रु. लाख)</div>
+                            <div class="kpi-value">${distTotals.updated.toLocaleString('mr-IN')}</div>
+                        `;
+                        districtRow.appendChild(item2);
+                        // Item 3: Remaining
+                        const item3 = document.createElement('div');
+                        item3.className = 'kpi-item';
+                        item3.innerHTML = `
+                            <div class="kpi-label">उर्वरीत शिल्लक रक्कम (रु. लाख)</div>
+                            <div class="kpi-value">${distTotals.remaining.toLocaleString('mr-IN')}</div>
+                        `;
+                        districtRow.appendChild(item3);
+                        districtGroup.appendChild(districtRow);
+                        // Sum of the three columns
+                        const districtSum = distTotals.approved + distTotals.updated + distTotals.remaining;
+                        const itemSum = document.createElement('div');
+                        itemSum.className = 'kpi-item district-sum';
+                        itemSum.innerHTML = `
+                            <div class="kpi-label">एकूण ${district} रु. लाख</div>
+                            <div class="kpi-value">${districtSum.toLocaleString('mr-IN')}</div>
+                        `;
+                        districtGroup.appendChild(itemSum);
+                        kpiSection.appendChild(districtGroup);
+                    }
+                });
+                kpiSection.style.display = 'block';
+                /* -------------------------------------------------
+                                                                           4. BUILD CHARTS
+                                                                        ------------------------------------------------- */
+                const createChartContainer = (title, canvasId, isEmpty = false) => {
+                    const div = document.createElement('div');
+                    div.className = 'chart-container';
+                    if (isEmpty) {
+                        div.innerHTML = `<h3 class="chart-title">${title}</h3><div class="chart-wrapper"><div class="no-data-msg">No data available for this chart. Check debug section and console logs.</div></div>`;
+                    } else {
+                        div.innerHTML = `<h3 class="chart-title">${title}</h3><div class="chart-wrapper"><canvas id="${canvasId}"></canvas></div>`;
+                    }
+                    chartsSection.appendChild(div);
+                };
+                const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+                // Common options without title lambda (fixed)
+                const commonOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true }
+                    }
+                };
+                // Function to safely create chart
+                const safeCreateChart = (ctx, config) => {
+                    try {
+                        new Chart(ctx, config);
+                    } catch (e) {
+                        console.error('Chart creation error:', e);
+                        ctx.canvas.parentNode.innerHTML += `<div style="color:red;">Chart error: ${e.message}</div>`;
+                    }
+                };
+                // District-wise Charts (no longer filter out 'अन्य' - FIXED: Only use actual districts)
+                // Chart 1: Bar Chart - Total Approved Amount per District
+                const districtLabels1 = Object.keys(districtData).filter(d => d !== 'अन्य');
+                const districtData1 = districtLabels1.map(d => districtData[d].totals.approved);
+                const dataEmptyDistrict1 = districtLabels1.length === 0 || districtData1.every(v => v === 0);
+                createChartContainer('जिल्हा-निहाय एकूण स्वीकृत निविदा किंमत (District-wise Total Approved Amount)', 'districtChart1', dataEmptyDistrict1);
+                if (!dataEmptyDistrict1) {
+                    const ctxDistrict1 = document.getElementById('districtChart1').getContext('2d');
+                    safeCreateChart(ctxDistrict1, {
+                        type: 'bar',
+                        data: {
+                            labels: districtLabels1,
+                            datasets: [{
+                                label: 'स्वीकृत निविदा किंमत (रु. लाख)',
+                                data: districtData1,
+                                backgroundColor: colors[0]
+                            }]
+                        },
+                        options: {
+                            ...commonOptions,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+                // Chart 2: Bar Chart - Technical vs Approved per District
+                const districtLabels2 = Object.keys(districtData).filter(d => d !== 'अन्य');
+                const districtTech2 = districtLabels2.map(d => districtData[d].totals.tech);
+                const districtApproved2 = districtLabels2.map(d => districtData[d].totals.approved);
+                const dataEmptyDistrict2 = districtLabels2.length === 0 || (districtTech2.every(v => v === 0) && districtApproved2.every(v => v === 0));
+                createChartContainer('जिल्हा-निहाय तांत्रिक vs स्वीकृत निविदा किंमत (District-wise Technical vs Approved)', 'districtChart2', dataEmptyDistrict2);
+                if (!dataEmptyDistrict2) {
+                    const ctxDistrict2 = document.getElementById('districtChart2').getContext('2d');
+                    safeCreateChart(ctxDistrict2, {
+                        type: 'bar',
+                        data: {
+                            labels: districtLabels2,
+                            datasets: [{
+                                label: 'तांत्रिक मान्यता किंमत',
+                                data: districtTech2,
+                                backgroundColor: colors[0]
+                            }, {
+                                label: 'स्वीकृत निविदा किंमत',
+                                data: districtApproved2,
+                                backgroundColor: colors[1]
+                            }]
+                        },
+                        options: {
+                            ...commonOptions,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+                // Chart 3: Pie Chart - Project Count per District
+                const districtLabels3 = Object.keys(districtData).filter(d => d !== 'अन्य');
+                const districtCount3 = districtLabels3.map(d => districtData[d].totals.count);
+                const dataEmptyDistrict3 = districtLabels3.length === 0 || districtCount3.every(v => v === 0);
+                createChartContainer('जिल्हा-निहाय प्रकल्प संख्या (District-wise Project Count)', 'districtChart3', dataEmptyDistrict3);
+                if (!dataEmptyDistrict3) {
+                    const ctxDistrict3 = document.getElementById('districtChart3').getContext('2d');
+                    safeCreateChart(ctxDistrict3, {
+                        type: 'pie',
+                        data: {
+                            labels: districtLabels3,
+                            datasets: [{
+                                data: districtCount3,
+                                backgroundColor: colors.slice(0, districtLabels3.length)
+                            }]
+                        },
+                        options: commonOptions
+                    });
+                }
+                // Chart 4: Bar Chart - Remaining Amount per District
+                const districtLabels4 = Object.keys(districtData).filter(d => d !== 'अन्य');
+                const districtRemaining4 = districtLabels4.map(d => districtData[d].totals.remaining);
+                const dataEmptyDistrict4 = districtLabels4.length === 0 || districtRemaining4.every(v => v === 0);
+                createChartContainer('जिल्हा-निहाय उर्वरीत शिल्लक रक्कम (District-wise Remaining Amount)', 'districtChart4', dataEmptyDistrict4);
+                if (!dataEmptyDistrict4) {
+                    const ctxDistrict4 = document.getElementById('districtChart4').getContext('2d');
+                    safeCreateChart(ctxDistrict4, {
+                        type: 'bar',
+                        data: {
+                            labels: districtLabels4,
+                            datasets: [{
+                                label: 'उर्वरीत शिल्लक रक्कम (रु. लाख)',
+                                data: districtRemaining4,
+                                backgroundColor: colors[2]
+                            }]
+                        },
+                        options: {
+                            ...commonOptions,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+                // Additional: Overall Status Pie (using filtered rows, but can be extended per district if needed)
+                let labelsStatus = [];
+                let dataStatus = [];
+                if (statusIdx > -1) {
+                    const statusCounts = {};
+                    filteredRows.forEach(row => {
+                        const status = (row[statusIdx] || '').trim();
+                        if (status) {
+                            statusCounts[status] = (statusCounts[status] || 0) + 1;
+                        }
+                    });
+                    labelsStatus = Object.keys(statusCounts);
+                    dataStatus = Object.values(statusCounts);
+                }
+                const dataEmptyStatus = labelsStatus.length === 0;
+                createChartContainer('एकूण कामाची सध्यस्थिती (Overall Project Status)', 'overallChartStatus', dataEmptyStatus);
+                if (!dataEmptyStatus) {
+                    const ctxStatus = document.getElementById('overallChartStatus').getContext('2d');
+                    safeCreateChart(ctxStatus, {
+                        type: 'pie',
+                        data: {
+                            labels: labelsStatus,
+                            datasets: [{
+                                data: dataStatus,
+                                backgroundColor: colors.slice(0, labelsStatus.length)
+                            }]
+                        },
+                        options: commonOptions
+                    });
+                }
+                chartsSection.style.display = 'block';
+                console.log('District-wise charts rendered');
+                tableContainer.dataset.loaded = 'true';
+                // Adjust height after loading
+                adjustTableHeights();
+            } catch (err) {
+                console.error('Fetch error:', err);
+                document.getElementById('loading3').style.display = 'none';
+                const e = document.getElementById('error3');
+                e.textContent = "Error: " + err.message;
+                e.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

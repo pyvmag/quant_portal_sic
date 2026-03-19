@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="mr" dir="auto"> <!-- Auto dir for LTR/RTL mix -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>निविदा पत्रिका तक्ता (Tender Sheet Table)</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .table-container {
+            max-height: 600px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 3120px;
+            /* 26 cols * 120px */
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px 6px;
+            text-align: left;
+            min-width: 120px;
+            max-width: 180px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+            color: #495057;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e9ecef !important;
+        }
+
+        /* Custom scrollbar */
+        .table-container::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .error {
+            color: red;
+            padding: 10px;
+            background: #ffe6e6;
+            border: 1px solid #ffcccc;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .info {
+            color: #0066cc;
+            padding: 10px;
+            background: #e6f2ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .summary {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h2>निविदा पत्रिका तक्ता (Tender Sheet Table)</h2>
+    <div class="summary" id="summary" style="display: none;"></div>
+    <div id="loading">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+    <div id="error" class="error" style="display: none;"></div>
+    <div id="info" class="info" style="display: none;"></div>
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <table id="tenderTable">
+            <thead>
+                <tr id="tableHeaders"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <script>
+        console.log('Starting fetch to API endpoint...');
+        fetch("/api/method/sicsangli.tender.get_tender_json")
+            .then(res => {
+                console.log('Received response. Status:', res.status, 'Status Text:', res.statusText, 'OK:', res.ok);
+                console.log('Response headers:', [...res.headers.entries()]);
+                if (!res.ok) {
+                    return res.text().then(text => {
+                        console.error('Full error response body:', text);
+                        try {
+                            const errJson = JSON.parse(text);
+                            console.error('Parsed error JSON:', errJson);
+                        } catch (parseErr) {
+                            console.error('Could not parse error as JSON:', parseErr);
+                        }
+                        throw new Error(`HTTP ${res.status}: ${text.substring(0, 200)}...`);
+                    });
+                }
+                return res.json();
+            })
+            .then(apiResponse => {
+                console.log('Parsed JSON response:', apiResponse);
+                const sheetData = apiResponse.message || apiResponse;
+                console.log('Extracted sheetData:', sheetData);
+                console.log('Headers array:', sheetData.headers);
+                console.log('Headers length:', sheetData.headers ? sheetData.headers.length : 'No headers');
+                console.log('Rows array sample:', sheetData.rows ? sheetData.rows.slice(0, 2) : 'No rows');
+                console.log('Rows length:', sheetData.rows ? sheetData.rows.length : 'No rows');
+                console.log('Total fetched rows from API:', sheetData.total_fetched_rows);
+                console.log('Data rows count from API:', sheetData.data_rows_count);
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const infoDiv = document.getElementById('info');
+                const summaryDiv = document.getElementById('summary');
+                const tableContainer = document.getElementById('tableContainer');
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                if (!sheetData.success) {
+                    console.log('API returned failure:', sheetData);
+                    errorDiv.textContent = "Error fetching sheet: " + (sheetData.error || "Unknown error");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                console.log('Building table headers...');
+                const headerRow = document.getElementById('tableHeaders');
+                headerRow.innerHTML = '';
+                let headerCount = 0;
+                sheetData.headers.forEach((header, idx) => {
+                    console.log(`Appending header ${idx + 1}:`, header);
+                    const th = document.createElement('th');
+                    th.textContent = header || '';
+                    headerRow.appendChild(th);
+                    headerCount++;
+                });
+                console.log('Total headers appended:', headerCount);
+                console.log('Header row children length:', headerRow.children.length);
+                console.log('Building table rows...');
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                // Use all rows to extract everything without skipping
+                const dataRows = sheetData.rows;
+                console.log('Data rows (no slice):', dataRows.length);
+                if (dataRows.length === 0) {
+                    console.log('No data rows available.');
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length || 1;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    let rowProcessed = 0;
+                    dataRows.forEach((row, dataRowIndex) => {
+                        console.log(`Processing data row ${dataRowIndex + 1} (original rows index ${dataRowIndex}):`, row);
+                        console.log('Row length:', row ? row.length : 'No row data');
+                        const tr = document.createElement('tr');
+                        let cellCount = 0;
+                        sheetData.headers.forEach((_, idx) => {
+                            const cellValue = row[idx];
+                            // Reduced logging to avoid console spam; only log for first few rows/cols if needed
+                            if (dataRowIndex < 2 && idx < 5) {
+                                console.log(`Row ${dataRowIndex + 1}, Col ${idx + 1}:`, cellValue);
+                            }
+                            const td = document.createElement('td');
+                            td.textContent = cellValue !== undefined ? String(cellValue) : '';
+                            tr.appendChild(td);
+                            cellCount++;
+                        });
+                        console.log(`Appended ${cellCount} cells to row ${dataRowIndex + 1}`);
+                        tableBody.appendChild(tr);
+                        rowProcessed++;
+                    });
+                    console.log(`Total rows processed: ${rowProcessed}`);
+                    infoDiv.textContent = `एकूण ${dataRows.length} डेटा रांगा लोड केल्या ${sheetData.headers.length} कॉलम्ससह. (Total ${dataRows.length} data rows loaded with ${sheetData.headers.length} columns. Fetched total: ${sheetData.total_fetched_rows})`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `एकूण कॉलम्स: ${sheetData.headers.length} | एकूण रांगा: ${dataRows.length} (सकृड डेटा: ${dataRows.length}) | निविदा आढावा: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                console.log('Table built, showing it...');
+                tableContainer.style.display = 'block';
+            })
+            .catch(err => {
+                console.error('Fetch or processing error:', err);
+                document.getElementById('loading').style.display = 'none';
+                const errorDiv = document.getElementById('error');
+                errorDiv.textContent = "Error fetching sheet data. Check console for details: " + err.message;
+                errorDiv.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>
+
+
+-----------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>निविदा</title>
+    <link rel="shortcut icon" href="/assets/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="author" content="Templines">
+    <meta name="description" content="Eltron - Alternative Energy HTML Template">
+    <meta name="keywords"
+        content="alternative energy, ecology, energy business, green energy, heating, hydropower, nature energy, power saving, recycling, renewable energy, solar energy, Solar Panels, wing turbines">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/video.min.css">
+    <link rel="stylesheet" href="/assets/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/css/flood_safety.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header2.css">
+    <link rel="stylesheet" href="/assets/css/sanghtan.css">
+    <style>
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .pdf-section {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .table-section {
+            margin: 30px 0;
+        }
+
+        .horizontal-line {
+            height: 3px;
+            background: linear-gradient(to right, #28a745, #20c997);
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 0;
+            font-size: 0.875rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <div id="header-placeholder"></div>
+        <div class="horizontal-line"></div>
+        <!-- PDF section -->
+        <div class="pdf-section">
+            <p style="margin-top: 10px;">
+                <a href="/assets/pdf/temb.pdf" target="_blank"
+                    style="color: red; text-decoration: underline; cursor: pointer; font-weight: bold;">
+                    View the PDF
+                </a>
+            </p>
+        </div>
+        <!-- Table section for sheet data -->
+        <div class="table-section">
+            <h3 style="text-align: center; color: #007bff; margin-bottom: 20px;">Data Table from Sheet</h3>
+            <div id="loading">Loading sheet data...</div>
+            <div id="error" style="display: none;"></div>
+            <div id="dataTable" style="display: none;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead id="tableHead"></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="footer-placeholder"></div>
+    </div>
+    <script>
+        fetch('header2.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                // Hamburger toggle
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+                // Toggle dropdown when arrow is clicked
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const parentLi = arrow.closest('.dropdown');
+                            parentLi.classList.toggle('active');
+                        }
+                    });
+                });
+                // Prevent main link from toggling submenu on mobile
+                document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
+                    link.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                        }
+                    });
+                });
+                // Close menu on link click EXCEPT when clicking on arrow
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (e.target.closest('.dropdown-arrow')) {
+                            return;
+                        }
+                        if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('open');
+                            document.body.classList.remove('no-scroll');
+                            document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                        }
+                    });
+                });
+                // Reset menu and dropdowns on window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                    }
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+
+        // Fetch sheet data using direct API call
+        fetch('/api/method/sicsangli.api.sheet_reader.get_sheet_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Raw response from get_sheet_data():', data.message); // Log the entire return value from Python
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const tableDiv = document.getElementById('dataTable');
+                const thead = document.getElementById('tableHead');
+                const tbody = document.getElementById('tableBody');
+
+                loading.style.display = 'none';
+
+                if (data.message && data.message.success) {
+                    const { title, subtitle, headers, rows } = data.message;
+                    console.log('Title:', title);     // Log title
+                    console.log('Subtitle:', subtitle); // Log subtitle
+                    console.log('Headers:', headers);  // Specific log for headers
+                    console.log('Rows:', rows);       // Specific log for rows
+
+                    // Render title if present
+                    if (title) {
+                        const titleElem = document.createElement('h4');
+                        titleElem.style.textAlign = 'center';
+                        titleElem.style.color = '#dc3545';
+                        titleElem.style.marginBottom = '10px';
+                        titleElem.textContent = title;
+                        tableDiv.insertBefore(titleElem, tableDiv.firstChild);
+                    }
+
+                    // Render subtitle if present
+                    if (subtitle) {
+                        const subElem = document.createElement('h5');
+                        subElem.style.textAlign = 'center';
+                        subElem.style.color = '#007bff';
+                        subElem.style.marginBottom = '20px';
+                        subElem.textContent = subtitle;
+                        tableDiv.insertBefore(subElem, tableDiv.firstChild);
+                    }
+
+                    // Render headers
+                    if (headers && headers.length > 0) {
+                        const headerRow = document.createElement('tr');
+                        headers.forEach(header => {
+                            const th = document.createElement('th');
+                            th.textContent = header || '';
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                    }
+
+                    // Render rows
+                    if (rows && rows.length > 0) {
+                        rows.forEach(row => {
+                            const tr = document.createElement('tr');
+                            row.forEach(cell => {
+                                const td = document.createElement('td');
+                                td.textContent = cell || '';
+                                tr.appendChild(td);
+                            });
+                            tbody.appendChild(tr);
+                        });
+                    }
+
+                    tableDiv.style.display = 'block';
+                } else {
+                    const errorMsg = data.message?.error || 'Unknown error occurred.';
+                    console.error('Error from get_sheet_data():', errorMsg);  // Log error specifically
+                    errorDiv.textContent = errorMsg;
+                    errorDiv.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);  // Log any fetch failures
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').textContent = 'Failed to fetch data: ' + error.message + '. Check console and Frappe logs.';
+                document.getElementById('error').style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>
+
+-------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <title>निविदा पत्रिका तक्ता (Tender Sheet Table)</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .table-container {
+            max-height: 600px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 3120px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px 6px;
+            text-align: left;
+            min-width: 120px;
+            max-width: 180px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+            color: #495057;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e9ecef !important;
+        }
+
+        /* Blue background ONLY for non-empty Roman header rows */
+        tr.roman-header {
+            background: #e3f2fd !important;
+            font-weight: bold;
+        }
+
+        .table-container::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .error {
+            color: red;
+            padding: 10px;
+            background: #ffe6e6;
+            border: 1px solid #ffcccc;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .info {
+            color: #0066cc;
+            padding: 10px;
+            background: #e6f2ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .summary {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            max-width: 1000px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-chart {
+            margin-bottom: 40px;
+        }
+
+        .group-chart h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h2>निविदा पत्रिका तक्ता (Tender Sheet Table)</h2>
+    <div class="summary" id="summary" style="display:none;"></div>
+    <div id="loading">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+    <div id="error" class="error" style="display:none;"></div>
+    <div id="info" class="info" style="display:none;"></div>
+
+    <!-- TABLE -->
+    <div class="table-container" id="tableContainer" style="display:none;">
+        <table id="tenderTable">
+            <thead>
+                <tr id="tableHeaders"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- COMBINED CHART -->
+    <div class="chart-container" id="chartContainer" style="display:none;">
+        <canvas id="romanBarChart"></canvas>
+    </div>
+
+    <!-- PER-GROUP CHARTS -->
+    <div id="perGroupCharts"></div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        console.log('Starting fetch...');
+        fetch("/api/method/sicsangli.tender.get_tender_json")
+            .then(res => {
+                if (!res.ok) return res.text().then(t => { throw new Error(`HTTP ${res.status}: ${t.substring(0, 200)}...`); });
+                return res.json();
+            })
+            .then(apiResponse => {
+                const sheetData = apiResponse.message || apiResponse;
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const infoDiv = document.getElementById('info');
+                const summaryDiv = document.getElementById('summary');
+                const tableContainer = document.getElementById('tableContainer');
+                const chartContainer = document.getElementById('chartContainer');
+                const perGroupDiv = document.getElementById('perGroupCharts');
+
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                chartContainer.style.display = 'none';
+                perGroupDiv.innerHTML = '';
+
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                /* -------------------------------------------------
+                   1. BUILD TABLE + ROMAN HEADER HIGHLIGHT
+                ------------------------------------------------- */
+                const headerRow = document.getElementById('tableHeaders');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+
+                // Roman regex – supports I), II), VI), X), etc. but NOT empty
+                const romanRE = /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3}))\)?$/i;
+                const isRoman = s => typeof s === 'string' && s.trim() !== '' && romanRE.test(s.trim());
+
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        const firstCell = row[0] || '';
+
+                        // ONLY apply blue background if first cell is NON-EMPTY Roman
+                        if (isRoman(firstCell)) {
+                            tr.classList.add('roman-header');
+                        }
+
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+
+                    infoDiv.textContent = `एकूण ${dataRows.length} रांगा, ${sheetData.headers.length} कॉलम्स.`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `कॉलम्स: ${sheetData.headers.length} | रांगा: ${dataRows.length} | तारीख: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+
+                /* -------------------------------------------------
+                   2. DATA PREP + COLOUR PALETTES
+                ------------------------------------------------- */
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+
+                // PALETTE 1: Roman Groups
+                const groupColors = [
+                    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57',
+                    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'
+                ];
+
+                // PALETTE 2: Numeric Columns
+                const columnColors = [
+                    '#6C5CE7', '#A29BFE', '#74B9FF', '#00B894', '#FD79A8',
+                    '#E17055', '#FDCB6E', '#6C5B7B', '#55A3FF', '#81ECEC'
+                ];
+
+                // Find numeric columns (skip first column "अ. क्र.")
+                const numericColIdx = [];
+                for (let c = 1; c < sheetData.headers.length; c++) {
+                    let allNum = true;
+                    for (let r = 0; r < dataRows.length; r++) {
+                        if (!isNumeric(dataRows[r][c])) {
+                            allNum = false;
+                            break;
+                        }
+                    }
+                    if (allNum) numericColIdx.push(c);
+                }
+
+                // Group rows by Roman in column 0
+                const groups = [];
+                let cur = null;
+                dataRows.forEach(row => {
+                    const first = row[0] || '';
+                    if (isRoman(first)) {
+                        cur = { roman: first.trim(), rows: [], color: null };
+                        groups.push(cur);
+                    } else if (cur) {
+                        cur.rows.push(row);
+                    }
+                });
+
+                groups.forEach((g, i) => {
+                    g.color = groupColors[i % groupColors.length];
+                });
+
+                console.log('Roman Groups:', groups.map(g => g.roman));
+                console.log('Numeric Columns:', numericColIdx.map(i => sheetData.headers[i]));
+
+                /* -------------------------------------------------
+                   3. COMBINED CHART
+                ------------------------------------------------- */
+                if (groups.length && numericColIdx.length) {
+                    const datasets = numericColIdx.map((col, idx) => {
+                        const label = sheetData.headers[col] || `Col ${col + 1}`;
+                        const data = groups.map(g =>
+                            g.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0)
+                        );
+                        const color = columnColors[idx % columnColors.length];
+                        return {
+                            label,
+                            data,
+                            backgroundColor: color + 'B3',
+                            borderColor: color,
+                            borderWidth: 1
+                        };
+                    });
+
+                    const ctx = document.getElementById('romanBarChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: { labels: groups.map(g => g.roman), datasets },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: 'रोमन गटानुसार एकत्रित बार चार्ट', font: { size: 16 } },
+                                legend: { position: 'top' }
+                            },
+                            scales: {
+                                y: { beginAtZero: true, title: { display: true, text: 'एकूण मूल्य' } },
+                                x: { title: { display: true, text: 'रोमन गट (I, II, III...)' } }
+                            }
+                        }
+                    });
+                    chartContainer.style.display = 'block';
+                }
+
+                /* -------------------------------------------------
+                   4. PER-GROUP CHARTS
+                ------------------------------------------------- */
+                groups.forEach((group, idx) => {
+                    if (!group.rows.length || !numericColIdx.length) return;
+
+                    const div = document.createElement('div');
+                    div.className = 'chart-container group-chart';
+                    div.innerHTML = `<h3 style="color:${group.color}">रोमन ${group.roman}</h3><canvas id="chart_${idx}"></canvas>`;
+                    perGroupDiv.appendChild(div);
+
+                    const datasets = numericColIdx.map((col, cIdx) => {
+                        const value = group.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0);
+                        const color = columnColors[cIdx % columnColors.length];
+                        return {
+                            label: sheetData.headers[col],
+                            data: [value],
+                            backgroundColor: group.color + '99',
+                            borderColor: group.color,
+                            borderWidth: 1
+                        };
+                    });
+
+                    const ctx = div.querySelector('canvas').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: numericColIdx.map(i => sheetData.headers[i]),
+                            datasets
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: `${group.roman} – संख्यात्मक कॉलम्स`, font: { size: 14 } },
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'मूल्य' } },
+                                y: { title: { display: true, text: 'कॉलम' } }
+                            }
+                        }
+                    });
+                });
+
+                if (groups.length && numericColIdx.length) {
+                    perGroupDiv.style.marginTop = '40px';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading').style.display = 'none';
+                const e = document.getElementById('error');
+                e.textContent = "Error: " + err.message;
+                e.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>
+-----------------------------
+
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <title>निविदा पत्रिका तक्ता (Tender Sheet Table)</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .table-container {
+            max-height: 600px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 3120px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px 6px;
+            text-align: left;
+            min-width: 120px;
+            max-width: 180px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+            color: #495057;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e9ecef !important;
+        }
+
+        /* Blue background ONLY for non-empty Roman header rows */
+        tr.roman-header {
+            background: #e3f2fd !important;
+            font-weight: bold;
+        }
+
+        .table-container::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .error {
+            color: red;
+            padding: 10px;
+            background: #ffe6e6;
+            border: 1px solid #ffcccc;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .info {
+            color: #0066cc;
+            padding: 10px;
+            background: #e6f2ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .summary {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            max-width: 1000px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-chart {
+            margin-bottom: 40px;
+        }
+
+        .group-chart h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h2>निविदा पत्रिका तक्ता (Tender Sheet Table)</h2>
+    <div class="summary" id="summary" style="display:none;"></div>
+    <div id="loading">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+    <div id="error" class="error" style="display:none;"></div>
+    <div id="info" class="info" style="display:none;"></div>
+
+    <!-- TABLE -->
+    <div class="table-container" id="tableContainer" style="display:none;">
+        <table id="tenderTable">
+            <thead>
+                <tr id="tableHeaders"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- COMBINED CHART -->
+    <div class="chart-container" id="chartContainer" style="display:none;">
+        <canvas id="romanBarChart"></canvas>
+    </div>
+
+    <!-- PER-GROUP CHARTS -->
+    <div id="perGroupCharts"></div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        console.log('Starting fetch...');
+        fetch("/api/method/sicsangli.tender2.get_tender_json")
+            .then(res => {
+                if (!res.ok) return res.text().then(t => { throw new Error(`HTTP ${res.status}: ${t.substring(0, 200)}...`); });
+                return res.json();
+            })
+            .then(apiResponse => {
+                const sheetData = apiResponse.message || apiResponse;
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const infoDiv = document.getElementById('info');
+                const summaryDiv = document.getElementById('summary');
+                const tableContainer = document.getElementById('tableContainer');
+                const chartContainer = document.getElementById('chartContainer');
+                const perGroupDiv = document.getElementById('perGroupCharts');
+
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                chartContainer.style.display = 'none';
+                perGroupDiv.innerHTML = '';
+
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                /* -------------------------------------------------
+                   1. BUILD TABLE + ROMAN HEADER HIGHLIGHT
+                ------------------------------------------------- */
+                const headerRow = document.getElementById('tableHeaders');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+
+                // Roman regex – supports I), II), VI), X), etc. but NOT empty
+                const romanRE = /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3}))\)?$/i;
+                const isRoman = s => typeof s === 'string' && s.trim() !== '' && romanRE.test(s.trim());
+
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        const firstCell = row[0] || '';
+
+                        // ONLY apply blue background if first cell is NON-EMPTY Roman
+                        if (isRoman(firstCell)) {
+                            tr.classList.add('roman-header');
+                        }
+
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+
+                    infoDiv.textContent = `एकूण ${dataRows.length} रांगा, ${sheetData.headers.length} कॉलम्स.`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `कॉलम्स: ${sheetData.headers.length} | रांगा: ${dataRows.length} | तारीख: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+
+                /* -------------------------------------------------
+                   2. DATA PREP + COLOUR PALETTES
+                ------------------------------------------------- */
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+
+                // PALETTE 1: Roman Groups
+                const groupColors = [
+                    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57',
+                    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'
+                ];
+
+                // PALETTE 2: Numeric Columns
+                const columnColors = [
+                    '#6C5CE7', '#A29BFE', '#74B9FF', '#00B894', '#FD79A8',
+                    '#E17055', '#FDCB6E', '#6C5B7B', '#55A3FF', '#81ECEC'
+                ];
+
+                // Find numeric columns (skip first column "अ. क्र.")
+                const numericColIdx = [];
+                for (let c = 1; c < sheetData.headers.length; c++) {
+                    let allNum = true;
+                    for (let r = 0; r < dataRows.length; r++) {
+                        if (!isNumeric(dataRows[r][c])) {
+                            allNum = false;
+                            break;
+                        }
+                    }
+                    if (allNum) numericColIdx.push(c);
+                }
+
+                // Group rows by Roman in column 0
+                const groups = [];
+                let cur = null;
+                dataRows.forEach(row => {
+                    const first = row[0] || '';
+                    if (isRoman(first)) {
+                        cur = { roman: first.trim(), rows: [], color: null };
+                        groups.push(cur);
+                    } else if (cur) {
+                        cur.rows.push(row);
+                    }
+                });
+
+                groups.forEach((g, i) => {
+                    g.color = groupColors[i % groupColors.length];
+                });
+
+                console.log('Roman Groups:', groups.map(g => g.roman));
+                console.log('Numeric Columns:', numericColIdx.map(i => sheetData.headers[i]));
+
+                /* -------------------------------------------------
+                   3. COMBINED CHART
+                ------------------------------------------------- */
+                if (groups.length && numericColIdx.length) {
+                    const datasets = numericColIdx.map((col, idx) => {
+                        const label = sheetData.headers[col] || `Col ${col + 1}`;
+                        const data = groups.map(g =>
+                            g.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0)
+                        );
+                        const color = columnColors[idx % columnColors.length];
+                        return {
+                            label,
+                            data,
+                            backgroundColor: color + 'B3',
+                            borderColor: color,
+                            borderWidth: 1
+                        };
+                    });
+
+                    const ctx = document.getElementById('romanBarChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: { labels: groups.map(g => g.roman), datasets },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: 'रोमन गटानुसार एकत्रित बार चार्ट', font: { size: 16 } },
+                                legend: { position: 'top' }
+                            },
+                            scales: {
+                                y: { beginAtZero: true, title: { display: true, text: 'एकूण मूल्य' } },
+                                x: { title: { display: true, text: 'रोमन गट (I, II, III...)' } }
+                            }
+                        }
+                    });
+                    chartContainer.style.display = 'block';
+                }
+
+                /* -------------------------------------------------
+                   4. PER-GROUP CHARTS
+                ------------------------------------------------- */
+                groups.forEach((group, idx) => {
+                    if (!group.rows.length || !numericColIdx.length) return;
+
+                    const div = document.createElement('div');
+                    div.className = 'chart-container group-chart';
+                    div.innerHTML = `<h3 style="color:${group.color}">रोमन ${group.roman}</h3><canvas id="chart_${idx}"></canvas>`;
+                    perGroupDiv.appendChild(div);
+
+                    const datasets = numericColIdx.map((col, cIdx) => {
+                        const value = group.rows.reduce((s, r) => s + (isNumeric(r[col]) ? Number(r[col]) : 0), 0);
+                        const color = columnColors[cIdx % columnColors.length];
+                        return {
+                            label: sheetData.headers[col],
+                            data: [value],
+                            backgroundColor: group.color + '99',
+                            borderColor: group.color,
+                            borderWidth: 1
+                        };
+                    });
+
+                    const ctx = div.querySelector('canvas').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: numericColIdx.map(i => sheetData.headers[i]),
+                            datasets
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: `${group.roman} – संख्यात्मक कॉलम्स`, font: { size: 14 } },
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'मूल्य' } },
+                                y: { title: { display: true, text: 'कॉलम' } }
+                            }
+                        }
+                    });
+                });
+
+                if (groups.length && numericColIdx.length) {
+                    perGroupDiv.style.marginTop = '40px';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading').style.display = 'none';
+                const e = document.getElementById('error');
+                e.textContent = "Error: " + err.message;
+                e.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>
+
+-------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <title>निविदा पत्रिका तक्ता (Tender Sheet Table)</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            padding: 10px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+        }
+
+        .table-container {
+            max-height: 600px;
+            overflow: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 1200px;
+        }
+
+        /* Reduced min-width for better responsiveness */
+        th,
+        td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            text-align: left;
+            min-width: 100px;
+            max-width: 200px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+            color: #fff;
+            white-space: normal;
+            line-height: 1.3;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #e3f2fd !important;
+        }
+
+        .table-container::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #a8a8a8;
+            border-radius: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: #666;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .error {
+            color: #d32f2f;
+            padding: 15px;
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .info {
+            color: #1976d2;
+            padding: 15px;
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .summary {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #2e7d32;
+            text-align: center;
+        }
+
+        .chart-container {
+            margin-top: 40px;
+            max-width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+
+        /* Adjusted height for horizontal bars */
+        .chart-title {
+            margin: 0 0 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto Sans Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h2>निविदा पत्रिका तक्ता (Tender Sheet Table)</h2>
+    <div class="summary" id="summary" style="display:none;"></div>
+    <div id="loading">निविदा डेटा लोड होत आहे... (Loading tender data...)</div>
+    <div id="error" class="error" style="display:none;"></div>
+    <div id="info" class="info" style="display:none;"></div>
+    <!-- TABLE -->
+    <div class="table-container" id="tableContainer" style="display:none;">
+        <table id="tenderTable">
+            <thead>
+                <tr id="tableHeaders"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <!-- CHARTS SECTION -->
+    <div id="chartsSection" style="display:none;"></div>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        console.log('Starting fetch...');
+        fetch("/api/method/sicsangli.tender2.get_tender_json")
+            .then(res => {
+                if (!res.ok) return res.text().then(t => { throw new Error(`HTTP ${res.status}: ${t.substring(0, 200)}...`); });
+                return res.json();
+            })
+            .then(apiResponse => {
+                const sheetData = apiResponse.message || apiResponse;
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const infoDiv = document.getElementById('info');
+                const summaryDiv = document.getElementById('summary');
+                const tableContainer = document.getElementById('tableContainer');
+                const chartsSection = document.getElementById('chartsSection');
+                loading.style.display = 'none';
+                errorDiv.style.display = 'none';
+                infoDiv.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+                chartsSection.style.display = 'none';
+                chartsSection.innerHTML = '';
+                if (!sheetData.success) {
+                    errorDiv.textContent = "Error: " + (sheetData.error || "Unknown");
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                /* -------------------------------------------------
+                                                                                                           1. BUILD TABLE
+                                                                                                        ------------------------------------------------- */
+                const headerRow = document.getElementById('tableHeaders');
+                headerRow.innerHTML = '';
+                sheetData.headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    headerRow.appendChild(th);
+                });
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                const dataRows = sheetData.rows;
+                if (dataRows.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = 'No data available.';
+                    td.colSpan = sheetData.headers.length;
+                    td.style.textAlign = 'center';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                } else {
+                    dataRows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        sheetData.headers.forEach((_, i) => {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                    infoDiv.textContent = `एकूण ${dataRows.length} रांगा, ${sheetData.headers.length} कॉलम्स.`;
+                    infoDiv.style.display = 'block';
+                    summaryDiv.textContent = `कॉलम्स: ${sheetData.headers.length} | रांगा: ${dataRows.length} | तारीख: ${new Date().toLocaleDateString('mr-IN')}`;
+                    summaryDiv.style.display = 'block';
+                }
+                tableContainer.style.display = 'block';
+                /* -------------------------------------------------
+                                                                                                           2. CHART COLUMNS INDICES
+                                                                                                        ------------------------------------------------- */
+                const colIndices = {};
+                sheetData.headers.forEach((h, i) => {
+                    colIndices[h.trim()] = i;
+                });
+                const workNameIdx = colIndices['कामाचे नाव'] || -1;
+                const agencyNameIdx = colIndices['अभिकरणाचे नाव'] || -1;
+                const tenderNoIdx = colIndices['निविदा क्र.'] || -1;
+                const techApprovalIdx = colIndices['तांत्रिक मान्यता किंमत (रु. लाख)'] || -1;
+                const tenderAmountIdx = colIndices['निविदा किंमत'] || -1;
+                const approvedAmountIdx = colIndices['स्वीकृत निविदा किंमत (रु. लाख)'] || -1;
+                const updatedAmountIdx = colIndices['अद्यावत निविदा किंमत (रु. लाख)'] || -1;
+                const workExpIdx = colIndices['कामाप्रित्यर्थ खर्च'] || -1;
+                const priceIncIdx = colIndices['भाववाढ'] || -1;
+                const gstIdx = colIndices['G.S.T.'] || -1;
+                const totalIdx = colIndices['एकुण'] || -1;
+                const remainingIdx = colIndices['उर्वरीत शिल्लक रक्कम (रु. लाख) – कामाप्रित्यर्थ / देखभाल दुरुस्ती खर्च'] || -1;
+                const reasonsIdx = colIndices['काम बंद असल्यास त्याची कारणे'] || -1;
+                const fundReqIdx = colIndices['मार्च 2025 अखेर लागणारा निधी'] || -1;
+                /* -------------------------------------------------
+                                                                                                           3. HELPER FUNCTIONS
+                                                                                                        ------------------------------------------------- */
+                const isNumeric = v => {
+                    if (v === null || v === undefined) return false;
+                    const str = String(v).trim();
+                    return str !== '' && !isNaN(str);
+                };
+                const parseNum = v => isNumeric(v) ? parseFloat(String(v).trim()) : 0;
+                const getRandomWorks = (n = 7) => {
+                    if (workNameIdx === -1) return dataRows.slice(0, n);
+                    return dataRows.sort(() => Math.random() - 0.5).slice(0, n);
+                };
+                const getRandomAgencySums = (colIdx, n = 7) => {
+                    const sums = {};
+                    dataRows.forEach(row => {
+                        const agency = (row[agencyNameIdx] || '').trim();
+                        if (agency) {
+                            sums[agency] = (sums[agency] || 0) + parseNum(row[colIdx]);
+                        }
+                    });
+                    return Object.entries(sums)
+                        .map(([agency, sum]) => ({ agency, sum }))
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, n);
+                };
+                const getTopReasonCounts = (n = 5) => {
+                    const counts = {};
+                    dataRows.forEach(row => {
+                        const reason = (row[reasonsIdx] || '').trim();
+                        if (reason) {
+                            counts[reason] = (counts[reason] || 0) + 1;
+                        }
+                    });
+                    return Object.entries(counts)
+                        .map(([reason, count]) => ({ reason, count }))
+                        .sort((a, b) => b.count - a.count)
+                        .slice(0, n);
+                };
+                const wrapLabel = (label, maxLength = 8) => { // Reduced maxLength to create 5-6 lines for long labels
+                    label = label.trim(); // Strip whitespace
+                    if (!label) return '';
+                    if (label.length <= maxLength) return label;
+                    const words = label.split(/\s+/);
+                    const lines = [];
+                    let current = '';
+                    words.forEach(word => {
+                        if (current.length + word.length + (current ? 1 : 0) > maxLength) {
+                            if (current) lines.push(current.trim());
+                            current = word;
+                        } else {
+                            current += (current ? ' ' : '') + word;
+                        }
+                    });
+                    if (current) lines.push(current.trim());
+                    return lines.join('\n');
+                };
+                const colors = [
+                    '#FFD700', // yellow/gold
+                    '#FF4500', // red/orange
+                    '#FF69B4', // pink
+                    '#32CD32', // green/lime
+                    '#4169E1', // blue/royal
+                    '#000000', // black
+                    '#FFFF00', // bright yellow
+                    '#DC143C', // crimson red
+                    '#FFB6C1', // light pink
+                    '#228B22', // forest green
+                    '#0000FF', // pure blue
+                    '#2F4F4F', // dark slate gray
+                    '#FFA500', // orange
+                    '#FF1493', // deep pink
+                    '#008000' // dark green
+                ];
+                /* -------------------------------------------------
+                                                                                                           4. CREATE CHARTS (7 Horizontal Bar Charts)
+                                                                                                        ------------------------------------------------- */
+                const createChartDiv = (title, canvasId) => {
+                    const div = document.createElement('div');
+                    div.className = 'chart-container';
+                    div.innerHTML = `<h3 class="chart-title">${title}</h3><div class="chart-wrapper"><canvas id="${canvasId}"></canvas></div>`;
+                    chartsSection.appendChild(div);
+                };
+                const barTicksOptions = {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        padding: 20,
+                        font: {
+                            size: 12, // Increased font size for better readability
+                            family: "'Noto Sans Devanagari', sans-serif"
+                        },
+                        lineHeight: 1.5, // Increased lineHeight for better multi-line spacing
+                        align: 'center',
+                        color: '#666'
+                    }
+                };
+                const commonLayoutPadding = {
+                    layout: {
+                        padding: {
+                            left: 120 // Reduced padding for horizontal bars with multi-line y-labels
+                        }
+                    }
+                };
+                const randomWorks = getRandomWorks(7);
+                // Chart 1: Tender Price Comparison - Horizontal Clustered Bar
+                if (workNameIdx > -1 && [techApprovalIdx, tenderAmountIdx, approvedAmountIdx, updatedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निविदा किंमत तुलना (Tender Price Comparison)', 'chart1');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 1 labels:', wrappedLabels);
+                    const ctx1 = document.getElementById('chart1').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'तांत्रिक मान्यता किंमत',
+                            data: randomWorks.map(r => parseNum(r[techApprovalIdx])),
+                            backgroundColor: colors[0] + '80',
+                            borderColor: colors[0],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[tenderAmountIdx])),
+                            backgroundColor: colors[1] + '80',
+                            borderColor: colors[1],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'स्वीकृत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[approvedAmountIdx])),
+                            backgroundColor: colors[2] + '80',
+                            borderColor: colors[2],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'अद्यावत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[updatedAmountIdx])),
+                            backgroundColor: colors[3] + '80',
+                            borderColor: colors[3],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx1, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 2: Contractor/Department-wise Approved Value - Horizontal Bar
+                if (agencyNameIdx > -1 && approvedAmountIdx > -1) {
+                    createChartDiv('अभिकरणानुसार स्वीकृत मूल्य (Contractor/Department-wise Approved Value)', 'chart2');
+                    const randomAgencies = getRandomAgencySums(approvedAmountIdx, 7);
+                    const wrappedLabels = randomAgencies.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgencies.map(d => d.agency || '');
+                    console.log('Chart 2 labels:', wrappedLabels);
+                    const data = randomAgencies.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx2 = document.getElementById('chart2').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'स्वीकृत निविदा किंमत',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 3: Remaining Cost per Tender - Horizontal Bar
+                if (workNameIdx > -1 && remainingIdx > -1) {
+                    createChartDiv('प्रति निविदा उर्वरीत शिल्लक (Remaining Cost per Tender)', 'chart3');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 3 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[remainingIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx3 = document.getElementById('chart3').getContext('2d');
+                    new Chart(ctx3, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'उर्वरीत शिल्लक',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 4: Total Cost Breakdown - Horizontal Stacked Bar
+                if (workNameIdx > -1 && [workExpIdx, priceIncIdx, gstIdx, totalIdx].every(idx => idx > -1)) {
+                    createChartDiv('एकूण खर्च विभागणी (Total Cost Breakdown)', 'chart4');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 4 labels:', wrappedLabels);
+                    const ctx4 = document.getElementById('chart4').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'कामाप्रित्यर्थ खर्च',
+                            data: randomWorks.map(r => parseNum(r[workExpIdx])),
+                            backgroundColor: colors[6] + '80',
+                            borderColor: colors[6],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'भाववाढ',
+                            data: randomWorks.map(r => parseNum(r[priceIncIdx])),
+                            backgroundColor: colors[7] + '80',
+                            borderColor: colors[7],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'G.S.T.',
+                            data: randomWorks.map(r => parseNum(r[gstIdx])),
+                            backgroundColor: colors[8] + '80',
+                            borderColor: colors[8],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'एकूण',
+                            data: randomWorks.map(r => parseNum(r[totalIdx])),
+                            backgroundColor: colors[9] + '80',
+                            borderColor: colors[9],
+                            borderWidth: 2,
+                            stack: 'stack1',
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx4, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, stacked: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    stacked: true,
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 5: Fund Requirement vs Allocation - Horizontal Bar
+                if (workNameIdx > -1 && [fundReqIdx, approvedAmountIdx].every(idx => idx > -1)) {
+                    createChartDiv('निधी आवश्यकता विरुद्ध वाटप (Fund Requirement vs Allocation)', 'chart5');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 5 labels:', wrappedLabels);
+                    const ctx5 = document.getElementById('chart5').getContext('2d');
+                    const datasets = [
+                        {
+                            label: 'मार्च 2025 अखेर लागणारा निधी',
+                            data: randomWorks.map(r => parseNum(r[fundReqIdx])),
+                            backgroundColor: colors[10] + '80',
+                            borderColor: colors[10],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'स्वीकृत निविदा किंमत',
+                            data: randomWorks.map(r => parseNum(r[approvedAmountIdx])),
+                            backgroundColor: colors[11] + '80',
+                            borderColor: colors[11],
+                            borderWidth: 2,
+                            borderRadius: 0,
+                            borderSkipped: false
+                        }
+                    ];
+                    new Chart(ctx5, {
+                        type: 'bar',
+                        data: { labels: wrappedLabels, datasets },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { position: 'top', labels: { font: { size: 14 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 6: Top Works by Tender Amount - Horizontal Bar
+                if (workNameIdx > -1 && tenderAmountIdx > -1) {
+                    createChartDiv('निविदा रकमेनुसार टॉप कामे (Top Works by Tender Amount)', 'chart6');
+                    const wrappedLabels = randomWorks.map(r => wrapLabel(r[workNameIdx]));
+                    const originalLabels = randomWorks.map(r => r[workNameIdx] || '');
+                    console.log('Chart 6 labels:', wrappedLabels);
+                    const data = randomWorks.map(r => parseNum(r[tenderAmountIdx]));
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx6 = document.getElementById('chart6').getContext('2d');
+                    new Chart(ctx6, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'निविदा किंमत',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'कामाचे नाव', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                // Chart 7: Top Agencies by Total Cost - Horizontal Bar
+                if (agencyNameIdx > -1 && totalIdx > -1) {
+                    createChartDiv('एकूण खर्चानुसार टॉप अभिकरणे (Top Agencies by Total Cost)', 'chart7');
+                    const randomAgenciesTotal = getRandomAgencySums(totalIdx, 7);
+                    const wrappedLabels = randomAgenciesTotal.map(d => wrapLabel(d.agency));
+                    const originalLabels = randomAgenciesTotal.map(d => d.agency || '');
+                    console.log('Chart 7 labels:', wrappedLabels);
+                    const data = randomAgenciesTotal.map(d => d.sum);
+                    const bgColors = colors.slice(0, wrappedLabels.length).map(c => c + '80');
+                    const borderColors = colors.slice(0, wrappedLabels.length);
+                    const ctx7 = document.getElementById('chart7').getContext('2d');
+                    new Chart(ctx7, {
+                        type: 'bar',
+                        data: {
+                            labels: wrappedLabels, datasets: [{
+                                label: 'एकूण खर्च',
+                                data,
+                                backgroundColor: bgColors,
+                                borderColor: borderColors,
+                                borderWidth: 2,
+                                borderRadius: 0,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            ...commonLayoutPadding,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 1000, easing: 'easeInOutQuart' },
+                            plugins: {
+                                title: { display: false },
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function (context) {
+                                            return originalLabels[context[0].dataIndex];
+                                        },
+                                        label: function (context) {
+                                            return context.dataset.label + ': ' + context.parsed.x.toFixed(2);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: { beginAtZero: true, title: { display: true, text: 'रु. लाख', font: { size: 16 } } },
+                                y: {
+                                    title: { display: true, text: 'अभिकरण', font: { size: 16 } },
+                                    categoryPercentage: 0.8,
+                                    barPercentage: 0.9,
+                                    grid: { display: false },
+                                    ...barTicksOptions
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    });
+                }
+                if (chartsSection.children.length > 0) {
+                    chartsSection.style.display = 'block';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading').style.display = 'none';
+                const e = document.getElementById('error');
+                e.textContent = "Error: " + err.message;
+                e.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>

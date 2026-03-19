@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow-y: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Pani Vapar Specific Styles */
+.title-heading {
+    text-align: center;
+    color: rgb(14, 10, 10);
+    font-weight: bold;
+    font-size: 1.8em;
+    margin: 40px 0 20px 0;
+}
+.subtitle-heading {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 15px 0;
+}
+
+/* Perfectly Centered Content Wrapper */
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Responsive Table */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: white;
+}
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    vertical-align: top;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+th {
+    background-color: #6baceb;
+    color: rgb(255 252 252);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    font-size: 0.95em;
+    
+}
+td {
+    font-size: 0.85em;
+    background-color: #ffffff;
+}
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+tr:hover td {
+    background-color: #f0f8ff;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px;
+        font-size: 0.8em;
+    }
+    .content-wrapper {
+        padding: 0 10px;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+    color: #666;
+    font-size: 1.1em;
+}
+.error {
+    color: red;
+    text-align: center;
+    padding: 30px;
+    font-weight: bold;
+    background: #ffebee;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+.last-updated {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin: 20px 0;
+    font-size: 0.9em;
+}
+button#refresh-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 30px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button#refresh-btn:hover {
+    background: #0056b3;
+}
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 20px 0;
+}
