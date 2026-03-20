@@ -35,10 +35,10 @@
 .stickymenu-on {
     background: #1d669a !important;
     backdrop-filter: blur(12px) !important;
-    position: fixed !important;
+    position: sticky !important;
     top: 0 !important;
     width: 100% !important;
-    z-index: 999 !important;
+    z-index: 9999 !important;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
 }
@@ -119,10 +119,10 @@
 }
 
 .site-main-menu .main_navigation li a {
-    font-size: 14.5px !important;
+    font-size: 13.5px !important;
     font-weight: 600 !important;
     color: #ffffff !important;
-    padding: 8px 14px !important;
+    padding: 6px 10px !important;
     border-radius: 8px !important;
     text-decoration: none !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -157,11 +157,9 @@
 #main-nav {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 6px 15px !important;
+    gap: 6px 10px !important;
     justify-content: center !important;
     align-items: center !important;
-    width: 100% !important;
-    max-width: 1100px !important;
 }
 
 .dropdown {
@@ -189,7 +187,7 @@
     left: 50% !important;
     transform: translateX(-50%) translateY(10px) !important;
     min-width: 220px !important;
-    background: #ffffff !important;
+    background: #0889b1 !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-radius: 12px !important;
     flex-direction: column !important;
@@ -240,23 +238,25 @@
 
 .hamburger span {
     height: 3px !important;
-    width: 25px !important;
-    background: #222 !important;
-    transition: all 0.3s ease !important;
+    width: 28px !important;
+    background: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 4px !important;
 }
 
 .hamburger.open span:nth-child(1) {
-    background: #0071b4 !important;
-    transform: rotate(45deg) translate(5px, 5px) !important;
+    background: #ffcc00 !important;
+    transform: rotate(45deg) translate(5px, 6px) !important;
 }
 
 .hamburger.open span:nth-child(2) {
     opacity: 0 !important;
+    transform: translateX(10px) !important;
 }
 
 .hamburger.open span:nth-child(3) {
-    background: #0071b4 !important;
-    transform: rotate(-45deg) translate(6px, -6px) !important;
+    background: #ffcc00 !important;
+    transform: rotate(-45deg) translate(5px, -6px) !important;
 }
 
 .dropdown-arrow {
@@ -273,45 +273,7 @@
     /* ▲ */
 }
 
-/* Tablet & Small Desktop Wrap Fixes */
-@media (min-width: 993px) and (max-width: 1400px) {
-    .site-main-menu {
-        flex-wrap: nowrap !important;
-        padding: 5px 10px !important;
-        gap: 15px !important;
-        background: #1d669a !important;
-    }
-    .emblem-container {
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 5px !important;
-    }
-    .dept-text {
-        text-align: center !important;
-    }
-    .dept-text strong {
-        font-size: 15px !important;
-    }
-    .dept-text small {
-        font-size: 9px !important;
-    }
-    .main_navigation {
-        flex: 1 1 auto !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        border-top: none !important;
-    }
-    #main-nav {
-        gap: 4px 6px !important;
-    }
-    .site-main-menu .main_navigation li a {
-        padding: 5px 8px !important;
-        font-size: 13px !important;
-    }
-}
-
-@media (max-width: 992px) {
+@media (max-width: 1150px) {
 
 
     /* Show only .dropdown-arrow on mobile */
@@ -330,9 +292,9 @@
         right: auto !important;
         left: 0 !important;
         width: 100% !important;
-        background:#0889b1 !important ;
+        background: rgba(0,0,0,0.15) !important;
         border-left: none !important;
-        border-top: 1px solid #e2dddd !important;
+        border-top: none !important;
         flex-direction: column !important;
         padding: 0 !important;
         z-index: 9999 !important;
@@ -342,8 +304,12 @@
         transform: none !important;
     }
 
-    .dropdown.active>.dropdown-menu1 {
+    .dropdown.active>.dropdown-menu1,
+    .dropdown:hover>.dropdown-menu1 {
         display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        width: 100% !important;
     }
 
     #nav-menu {
@@ -383,10 +349,12 @@
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 12px 15px !important;
-        font-size: 14px !important;
+        padding: 14px 20px !important;
+        font-size: 14.5px !important;
         font-weight: 600 !important;
-        color: #222 !important;
+        color: #ffffff !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+        border-radius: 0 !important;
     }
 
     .dropdown-menu1 li {
@@ -395,73 +363,95 @@
     }
 
     .dropdown-menu1 li a {
-        padding: 8px 15px !important;
-        font-size: 13px !important;
-        color: #0073e6 !important;
-        border-bottom: 1px solid #130d0d !important;
+        padding: 12px 20px 12px 35px !important;
+        font-size: 13.5px !important;
+        color: #cfe1ff !important;
+        border-bottom: 1px solid rgba(255,255,255,0.03) !important;
         white-space: nowrap !important;
-        transition: none !important;
+        transition: background 0.2s ease !important;
+        border-radius: 0 !important;
     }
 
     .dropdown-menu1 li a:hover {
-        background: #c4c9ca !important;
-        color: #004a99 !important;
-        padding-left: 15px !important;
+        background: rgba(255,255,255,0.1) !important;
+        color: #ffffff !important;
+        padding-left: 35px !important;
     }
 
     .dropdown-menu1 .dropdown-menu1 {
         top: 0 !important;
         left: 100% !important;
-        border-left: 1px solid #ccc !important;
     }
 }
 
-@media (max-width: 990px) {
+/* Squeeze slightly to prevent 3rd row drop before hamburger triggers! */
+@media (max-width: 1350px) and (min-width: 1151px) {
+    .site-main-menu {
+        padding: 8px 15px !important;
+        gap: 10px !important;
+    }
+    #main-nav {
+        gap: 4px 6px !important;
+    }
+    .site-main-menu .main_navigation li a {
+        padding: 5px 8px !important;
+        font-size: 13px !important;
+    }
+    .dept-text strong {
+        font-size: 16px !important;
+    }
+    .maharashtra-logo {
+        max-width: 55px !important;
+    }
+}
+
+@media (max-width: 1150px) {
     .site-main-menu {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: space-between !important;
         align-items: center !important;
         flex-wrap: nowrap !important;
-        padding: 5px 5px !important;
+        padding: 8px 20px !important;
         width: 100% !important;
-        gap: 5px !important;
+        gap: 15px !important;
     }
 
-    .m-brand-logo img,
-    .emblem-container img,
+    .emblem-container img {
+        max-width: 55px !important;
+    }
+
     .right-logo img {
-        max-width: 30px !important;
-        max-height: 30px !important;
+        max-width: 40px !important;
         object-fit: contain !important;
     }
 
-    .m-brand-logo,
-    .emblem-container,
     .right-logo {
+        margin-left: auto !important; /* Forces the India logo and Hamburger perfectly to the right */
         display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
-        flex: 0 0 auto !important;
     }
 
     .hamburger {
         display: flex !important;
         position: relative !important;
         z-index: 10001 !important;
+        margin-left: 20px !important;
+        top: 0 !important;
+        right: 0 !important;
     }
 
     #nav-menu {
-        top: 45px !important;
+        top: 66px !important;
         left: 0 !important;
         width: 100% !important;
-        max-height: calc(100vh - 45px) !important;
+        max-height: calc(100vh - 66px) !important;
         overflow-y: auto !important;
-        background: #faefef !important;
+        background: #1b5379 !important;
         flex-direction: column !important;
         display: none !important;
-        padding: 10px 0 !important;
+        padding: 0 !important;
         gap: 0 !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
     }
 
     #nav-menu.active {

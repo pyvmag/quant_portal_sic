@@ -134,7 +134,7 @@
 	<div id="header-placeholder"></div>
 
 	<!-- NEWS TICKER -->
-	<div class="news-ticker-container" style="margin-top: 110px; background: #fb1d04; color: #fff; padding: 8px 15px; font-weight: 600; font-size: 15px; display: flex; align-items: center; border-bottom: 2px solid #000000; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+	<div class="news-ticker-container" style="background: #fb1d04; color: #fff; padding: 8px 15px; font-weight: 600; font-size: 15px; display: flex; align-items: center; border-bottom: 2px solid #000000; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 		<div style="background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; margin-right: 15px; white-space: nowrap; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 5;">नवीन अपडेट्स</div>
 		<div class="ticker-wrap">
 			<div class="ticker-inner">
@@ -143,6 +143,9 @@
 				<span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू आहे.</span>
 				<span class="ticker-item">|</span>
 				<span class="ticker-item" style="padding-right: 20vw;">पाणी वापर संस्थांच्या नवीन अटी व शर्तींसाठी कृपया 'पाणी वापर संस्था' टॅबला भेट द्या.</span>
+                <span class="ticker-item">|</span>
+                <span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू आहे.</span>
+				
 			</div>
 		</div>
 	</div>
@@ -269,7 +272,7 @@
 				});
 				document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
 					arrow.addEventListener('click', e => {
-						if (window.innerWidth <= 992) {
+						if (window.innerWidth <= 1150) {
 							e.preventDefault();
 							e.stopPropagation();
 							const parentLi = arrow.closest('.dropdown');
@@ -279,7 +282,7 @@
 				});
                 document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
                     link.addEventListener('click', e => {
-                        if (window.innerWidth <= 992) {
+                        if (window.innerWidth <= 1150) {
                             e.preventDefault();
                         }
                     });
@@ -289,7 +292,7 @@
                         if (e.target.closest('.dropdown-arrow')) {
                             return;
                         }
-                        if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                        if (navMenu.classList.contains('active') && window.innerWidth <= 1150) {
                             navMenu.classList.remove('active');
                             hamburger.classList.remove('open');
                             document.body.classList.remove('no-scroll');
@@ -298,7 +301,7 @@
                     });
                 });
 				window.addEventListener('resize', () => {
-					if (window.innerWidth > 992) {
+					if (window.innerWidth > 1150) {
 						navMenu.classList.remove('active');
 						hamburger.classList.remove('open');
 						document.body.classList.remove('no-scroll');
