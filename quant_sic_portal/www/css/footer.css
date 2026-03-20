@@ -1,0 +1,108 @@
+.footer-content {
+  color: white !important;
+  font-family: sans-serif;
+  padding: 20px 15px;
+  /* Add a background color if your footer tag doesn't already have one */
+  background-color: #000000;
+
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-left {
+  flex: 2;
+  text-align: left;
+}
+.footer-center {
+  flex: 1;
+  text-align: left;
+}
+.footer-right {
+  flex: 1.5;
+}
+
+.footer-left ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.footer-left li:not(:last-child) {
+  border-right: 1px solid #ffffff;
+  padding-right: 15px;
+  margin-right: 15px;
+}
+
+.footer-left p {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-left a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-center p {
+  margin: 0;
+  padding-left: 15px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.footer-right ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* This is a new rule to make the copyright section look nice */
+.footer-copyright-text {
+  background-color: #000000;
+  color: #bdc3c7;
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.footer-copyright-text a {
+  color: white;
+  text-decoration: none;
+}
+
+
+@media (max-width: 992px) {
+  .footer-row {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .footer-left,
+  .footer-center {
+      text-align: center;
+  }
+  
+  .footer-center p {
+      padding-left: 0;
+  }
+
+  .footer-left p {
+    white-space: normal;
+  }
+
+  .footer-left ul,
+  .footer-right ul {
+    justify-content: center;
+  }
+}

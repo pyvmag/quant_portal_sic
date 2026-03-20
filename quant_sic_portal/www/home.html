@@ -1,110 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Counter with Footer</title>
-
-    <!-- CSS Links -->
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/footer.css">
-    <link rel="stylesheet" href="/assets/css/header2.css">
-
+	<meta charset="UTF-8">
+	<title>मुखपृष्ठ | जलसंपदा विभाग</title>
+	<link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/fontawesome-all.css">
+	<link rel="stylesheet" href="/css/simple-line-icons.css">
+	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="/css/flaticon.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/video.min.css">
+	<link rel="stylesheet" href="/css/lightbox.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="stylesheet" href="/css/header2.css?v=2">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+        .ticker-wrap {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
         }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 1rem;
+        .ticker-inner {
+            display: inline-block;
+            white-space: nowrap;
+            animation: tickerSlide 40s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .ticker-wrap:hover .ticker-inner {
+            animation-play-state: paused;
+        }
+        @keyframes tickerSlide {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .hero-section {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #111;
+        }
+        .hero-img-bg {
+            position: absolute;
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 31, 63, 0.4); /* Re-add the gorgeous blue glass layer so the text is readable */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .projects-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .project-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            background-color: #1d669a; /* Fallback */
+        }
+        .project-info {
+            padding: 25px;
             text-align: center;
         }
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .project-info h3 {
+            color: #1d669a;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
-        .content {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .btn-custom {
+            background: #1d669a;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background 0.3s;
         }
-        .website-counter {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        #logs {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            white-space: pre-wrap;
+        .btn-custom:hover {
+            background: #154e76;
+            color: #fff;
         }
     </style>
 </head>
-<body>
+<body class="page-home d-flex flex-column" style="min-height: 100vh;">
+	<div id="preloader"></div>
+	<div class="up">
+		<a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+	</div>
 
-    <header id="header-placeholder"></header>
+	<!-- HEADER -->
+	<div id="header-placeholder"></div>
 
-    <main>
-        <section class="content">
-            <h2>Main Page Content</h2>
-            <p>This is the main page. The footer below will be loaded dynamically using <code>fetch</code>.</p>
-            <div>Website visit count:</div>
-            <div class="website-counter"></div>
-            <div id="logs"></div>
+	<!-- NEWS TICKER -->
+	<div class="news-ticker-container" style="margin-top: 110px; background: #fb1d04; color: #fff; padding: 8px 15px; font-weight: 600; font-size: 15px; display: flex; align-items: center; border-bottom: 2px solid #000000; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+		<div style="background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; margin-right: 15px; white-space: nowrap; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 5;">नवीन अपडेट्स</div>
+		<div class="ticker-wrap">
+			<div class="ticker-inner">
+				<span class="ticker-item" style="display:inline-block; padding-left: 100vw;">जलसंपदा विभाग, महाराष्ट्र शासन - आपले हार्दिक स्वागत करीत आहे!</span>
+				<span class="ticker-item">|</span>
+				<span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू आहे.</span>
+				<span class="ticker-item">|</span>
+				<span class="ticker-item" style="padding-right: 20vw;">पाणी वापर संस्थांच्या नवीन अटी व शर्तींसाठी कृपया 'पाणी वापर संस्था' टॅबला भेट द्या.</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- MAIN CONTENT -->
+	<main class="flex-grow-1">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <img class="hero-img-bg" src="/img/sangli_irrigation.jpg" alt="Sangli Irrigation">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container wow fadeInUp" data-wow-delay="0.2s">
+                <h1>जलसंपदा विभाग</h1>
+                <p>महाराष्ट्र शासन</p>
+                <div class="hero-btns mt-4">
+                    <a href="about.html" class="btn btn-custom mx-2">अधिक माहिती</a>
+                    <a href="tender.html" class="btn btn-outline-light mx-2" style="border-radius: 25px; padding: 10px 25px; font-weight: 600;">निविदा व्यवस्थापन</a>
+                </div>
+            </div>
         </section>
-    </main>
 
-    <div id="footer-placeholder"></div>
+        <!-- Key Projects Section -->
+        <section class="projects-section">
+            <div class="container">
+                <div class="section-title text-center mb-5">
+                    <h2 style="font-weight: 700; color: #333;">प्रमुख उपसा सिंचन योजना</h2>
+                    <div style="width: 60px; height: 3px; background: #fb1d04; margin: 15px auto;"></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="project-card wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="project-img" style="background-image: url('/img/takari/22.jpg');"></div>
+                            <div class="project-info">
+                                <h3>ताकारी उपसा सिंचन</h3>
+                                <p class="text-muted">कृष्णा नदीवर ताकारी गावाजवळून ९.३४ अघफु पाणी उचलून सांगली जिल्ह्यातील २७४३० हे. क्षेत्रास सिंचनाचा लाभ.</p>
+                                <a href="takari.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+                            </div>
+                        </div>
+                    </div>
 
-    <script>
-        // ==========================
-        // Visitor Counter
-        // ==========================
-        const counterContainer = document.querySelector(".website-counter");
-        let visitCount = localStorage.getItem("page_view");
-        if (visitCount) {
-            visitCount = Number(visitCount) + 1;
-            localStorage.setItem("page_view", visitCount);
-        } else {
-            visitCount = 1;
-            localStorage.setItem("page_view", 1);
-        }
-        counterContainer.textContent = visitCount;
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="project-card wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="project-img" style="background-image: url('/img/takari/23.jpg');"></div>
+                            <div class="project-info">
+                                <h3>म्हैसाळ उपसा सिंचन</h3>
+                                <p class="text-muted">कृष्णा नदीवरून १७.४४ अघफु पाणी उचलून सांगली व सोलापूर जिल्ह्यातील ८१६९७ हे. क्षेत्रास सिंचन.</p>
+                                <a href="mhaishal.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+                            </div>
+                        </div>
+                    </div>
 
-        // ==========================
-        // Fetch Header
-        // ==========================
-        fetch('/header2.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error("Header load error:", err));
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="project-card wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="project-img" style="background-image: url('/img/takari/24.jpg');"></div>
+                            <div class="project-info">
+                                <h3>टेंभू उपसा सिंचन</h3>
+                                <p class="text-muted">बृहद प्रकल्पांतर्गत सातारा, सांगली, सोलापूर जिल्ह्यातील दुष्काळी भागाला सिंचनाचा लाभ देणारी महत्त्वाकांक्षी योजना.</p>
+                                <a href="tembhu.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats / Quick Info Section -->
+        <section style="padding: 60px 0; background: #0b2545; color: white;">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.1s">
+                        <i class="fas fa-water fa-3x mb-3" style="color: #a1c4fd;"></i>
+                        <h3 class="counter">३२</h3>
+                        <p>उपलब्ध पाणीसाठा (अघफु)</p>
+                    </div>
+                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                        <i class="fas fa-leaf fa-3x mb-3" style="color: #a1c4fd;"></i>
+                        <h3 class="counter">१३५६२७</h3>
+                        <p>सिंचित क्षेत्र (हेक्टर)</p>
+                    </div>
+                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.3s">
+                        <i class="fas fa-users fa-3x mb-3" style="color: #a1c4fd;"></i>
+                        <h3 class="counter">२५००००</h3>
+                        <p>लाभार्थी शेतकरी</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+	</main>
 
-        // ==========================
-        // Fetch Footer
-        // ==========================
-        fetch('/footer.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error("Footer load error:", err));
-    </script>
+	<!-- FOOTER -->
+	<div id="footer-placeholder"></div>
+
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jarallax.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/appear.js"></script>
+	<script src="/js/isotope.pkgd.min.js"></script>
+	<script src="/js/masonry.pkgd.min.js"></script>
+	<script src="/js/imagesloaded.pkgd.min.js"></script>
+	<script src="/js/lightbox.js"></script>
+	<script src="/js/waypoints.min.js"></script>
+	<script src="/js/jquery.counterup.min.js"></script>
+	<script src="/js/tilt.jquery.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/script.js"></script>
+
+	<!-- Header and Footer Loader identical to other pages -->
+	<script>
+		fetch('/header2.html?v=' + new Date().getTime())
+			.then(res => res.text())
+			.then(data => {
+				document.getElementById('header-placeholder').innerHTML = data;
+				const hamburger = document.querySelector('.hamburger');
+				const navMenu = document.getElementById('nav-menu');
+				if (!hamburger || !navMenu) return;
+				hamburger.addEventListener('click', () => {
+					hamburger.classList.toggle('open');
+					navMenu.classList.toggle('active');
+					document.body.classList.toggle('no-scroll');
+				});
+				document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+					arrow.addEventListener('click', e => {
+						if (window.innerWidth <= 992) {
+							e.preventDefault();
+							e.stopPropagation();
+							const parentLi = arrow.closest('.dropdown');
+							parentLi.classList.toggle('active');
+						}
+					});
+				});
+                document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
+                    link.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                        }
+                    });
+                });
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (e.target.closest('.dropdown-arrow')) {
+                            return;
+                        }
+                        if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('open');
+                            document.body.classList.remove('no-scroll');
+                            document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                        }
+                    });
+                });
+				window.addEventListener('resize', () => {
+					if (window.innerWidth > 992) {
+						navMenu.classList.remove('active');
+						hamburger.classList.remove('open');
+						document.body.classList.remove('no-scroll');
+						document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+					}
+				});
+			})
+			.catch(err => console.error("Header load error:", err));
+
+		(function loadFooter() {
+			fetch('/footer.html')
+				.then(res => res.text())
+				.then(data => {
+					document.getElementById('footer-placeholder').innerHTML = data;
+				})
+				.catch(err => console.error('Footer load error:', err));
+		})();
+
+        // Try initializing WOW and counter if they loaded properly
+        $(document).ready(function() {
+            setTimeout(function() {
+                if(typeof $.fn.counterUp === 'function') {
+                    try {
+                        $('.counter').counterUp({
+                            delay: 10,
+                            time: 2000
+                        });
+                    } catch(e) {}
+                }
+                if(typeof WOW === 'function') {
+                    try {
+                        new WOW().init();
+                    } catch(e) {}
+                }
+            }, 500);
+        });
+	</script>
 </body>
 </html>
