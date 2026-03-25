@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="mr">
+
 <head>
-	<meta charset="UTF-8">
-	<title>मुखपृष्ठ | जलसंपदा विभाग</title>
-	<link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/css/owl.carousel.css">
-	<link rel="stylesheet" href="/css/fontawesome-all.css">
-	<link rel="stylesheet" href="/css/simple-line-icons.css">
-	<link rel="stylesheet" href="/css/animate.css">
-	<link rel="stylesheet" href="/css/flaticon.css">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/video.min.css">
-	<link rel="stylesheet" href="/css/lightbox.css">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/footer.css">
-	<link rel="stylesheet" href="/css/header2.css?v=2">
+    <meta charset="UTF-8">
+    <title>मुखपृष्ठ | जलसंपदा विभाग</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/video.min.css">
+    <link rel="stylesheet" href="/css/lightbox.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header2.css?v=2">
     <style>
         .ticker-wrap {
             flex: 1;
@@ -23,23 +24,33 @@
             white-space: nowrap;
             position: relative;
         }
+
         .ticker-inner {
             display: inline-block;
             white-space: nowrap;
             animation: tickerSlide 40s linear infinite;
         }
+
         .ticker-item {
             display: inline-block;
             padding: 0 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
+
         .ticker-wrap:hover .ticker-inner {
-            animation-play-state: paused;
+            animation-play-state:paused;
         }
+
         @keyframes tickerSlide {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-100%, 0, 0);
+            }
         }
+
         .hero-section {
             height: 80vh;
             display: flex;
@@ -49,65 +60,109 @@
             overflow: hidden;
             background: #111;
         }
-        .hero-img-bg {
+
+        .hero-slideshow {
             position: absolute;
-            top: 0; left: 0; 
-            width: 100%; height: 100%;
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
         }
+
+        .hero-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: slideshow 30s infinite;
+        }
+
+        .hero-slideshow img:nth-child(1) { animation-delay: 0s; }
+        .hero-slideshow img:nth-child(2) { animation-delay: 5s; }
+        .hero-slideshow img:nth-child(3) { animation-delay: 10s; }
+        .hero-slideshow img:nth-child(4) { animation-delay: 15s; }
+        .hero-slideshow img:nth-child(5) { animation-delay: 20s; }
+        .hero-slideshow img:nth-child(6) { animation-delay: 25s; }
+
+        @keyframes slideshow {
+            0% { opacity: 0; transform: scale(1); }
+            8.33% { opacity: 1; }
+            16.66% { opacity: 1; }
+            25% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
+        }
+
         .hero-overlay {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 31, 63, 0.4); /* Re-add the gorgeous blue glass layer so the text is readable */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 31, 63, 0.4);
+            /* Re-add the gorgeous blue glass layer so the text is readable */
             z-index: 1;
         }
+
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
             color: #fff;
         }
+
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+
         .hero-content p {
             font-size: 1.5rem;
             margin-bottom: 30px;
         }
+
         .projects-section {
             padding: 80px 0;
             background: #f8f9fa;
         }
+
         .project-card {
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
             height: 100%;
         }
+
         .project-card:hover {
             transform: translateY(-10px);
         }
+
         .project-img {
             height: 220px;
             background-size: cover;
             background-position: center;
-            background-color: #1d669a; /* Fallback */
+            background-color: #1d669a;
+            /* Fallback */
         }
+
         .project-info {
             padding: 25px;
             text-align: center;
         }
+
         .project-info h3 {
             color: #1d669a;
             font-weight: 700;
             margin-bottom: 15px;
         }
+
         .btn-custom {
             background: #1d669a;
             color: #fff;
@@ -118,168 +173,385 @@
             letter-spacing: 1px;
             transition: background 0.3s;
         }
+
         .btn-custom:hover {
             background: #154e76;
             color: #fff;
         }
+
+        /* SERVICES SECTION CSS */
+        .services-section {
+            background: #0b2545;
+            border-top: 3px solid #1d669a;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .services-bg {
+            position: absolute;
+            left: -150px;
+            top: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(29, 102, 154, 0.15) 0%, rgba(29, 102, 154, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .services-container {
+            display: flex;               /* Changed from grid to flex */
+            flex-wrap: wrap;             /* Allows items to drop to the next line */
+            justify-content: center;     /* This is the magic line that centers everything! */
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+        .service-card-wrapper {
+            display: flex;
+            width: 100%;                 /* Ensures it shrinks on very small mobile screens */
+            max-width: 320px;            /* Keeps your cards uniform, mimicking your old minmax */
+        }
+
+        .service-card-link {
+            text-decoration: none !important;
+            display: block;
+            width: 100%;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(29, 102, 154, 0.15);
+            border-color: rgba(29, 102, 154, 0.3);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: #1d669a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 10px rgba(29, 102, 154, 0.3);
+        }
+
+        .service-icon svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .service-description {
+            font-size: 13.5px;
+            color: #777;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 400;
+        }
+
+
     </style>
 </head>
+
 <body class="page-home d-flex flex-column" style="min-height: 100vh;">
-	<div id="preloader"></div>
-	<div class="up">
-		<a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
-	</div>
+    <div id="preloader"></div>
+    <div class="up">
+        <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+    </div>
 
-	<!-- HEADER -->
-	<div id="header-placeholder"></div>
+    <!-- HEADER -->
+    <div id="header-placeholder"></div>
 
-	<!-- NEWS TICKER -->
-	<div class="news-ticker-container" style="background: #fb1d04; color: #fff; padding: 8px 15px; font-weight: 600; font-size: 15px; display: flex; align-items: center; border-bottom: 2px solid #000000; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-		<div style="background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; margin-right: 15px; white-space: nowrap; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 5;">नवीन अपडेट्स</div>
-		<div class="ticker-wrap">
-			<div class="ticker-inner">
-				<span class="ticker-item" style="display:inline-block; padding-left: 100vw;">जलसंपदा विभाग, महाराष्ट्र शासन - आपले हार्दिक स्वागत करीत आहे!</span>
-				<span class="ticker-item">|</span>
-				<span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू आहे.</span>
-				<span class="ticker-item">|</span>
-				<span class="ticker-item" style="padding-right: 20vw;">पाणी वापर संस्थांच्या नवीन अटी व शर्तींसाठी कृपया 'पाणी वापर संस्था' टॅबला भेट द्या.</span>
+    <!-- NEWS TICKER -->
+    <div class="news-ticker-container"
+        style="background: #fb1d04; color: #fff; padding: 8px 15px; font-weight: 600; font-size: 15px; display: flex; align-items: center; border-bottom: 2px solid #000000; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div
+            style="background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; margin-right: 15px; white-space: nowrap; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 5;">
+            नवीन अपडेट्स</div>
+        <div class="ticker-wrap">
+            <div class="ticker-inner">
+                <span class="ticker-item" style="display:inline-block; padding-left: 100vw;">जलसंपदा विभाग, महाराष्ट्र
+                    शासन - आपले हार्दिक स्वागत करीत आहे!</span>
                 <span class="ticker-item">|</span>
-                <span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू आहे.</span>
-				
-			</div>
-		</div>
-	</div>
+                <span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू
+                    आहे.</span>
+                <span class="ticker-item">|</span>
+                <span class="ticker-item" style="padding-right: 20vw;">पाणी वापर संस्थांच्या नवीन अटी व शर्तींसाठी कृपया
+                    'पाणी वापर संस्था' टॅबला भेट द्या.</span>
+                <span class="ticker-item">|</span>
+                <span class="ticker-item">म्हैसाळ, ताकारी व टेंभू उपसा सिंचन योजनेचे आवर्तन यशस्वीरित्या सुरू
+                    आहे.</span>
 
-	<!-- MAIN CONTENT -->
-	<main class="flex-grow-1">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1">
         <!-- Hero Section -->
         <section class="hero-section">
-            <img class="hero-img-bg" src="/img/sangli_irrigation.jpg" alt="Sangli Irrigation">
+            <div class="hero-slideshow">
+                <img src="/img/slider/slider7.jpg" alt="Slide 1">
+                <img src="/img/slider/slider3.avif" alt="Slide 2">
+                <img src="/img/sangli_irrigation.jpg" alt="Slide 3">
+                <img src="/img/slider/slider8.jpg" alt="Slide 4">
+                <img src="/img/slider/slider4.jpg" alt="Slide 5">
+                <img src="/img/slider/Sangli-Irrigation-Circle.jpg" alt="Slide 6">
+            </div>
             <div class="hero-overlay"></div>
             <div class="hero-content container wow fadeInUp" data-wow-delay="0.2s">
-                <h1>जलसंपदा विभाग</h1>
+                <h1 style="color: #FFD700;">जलसंपदा विभाग</h1>
                 <p>महाराष्ट्र शासन</p>
                 <div class="hero-btns mt-4">
                     <a href="about.html" class="btn btn-custom mx-2">अधिक माहिती</a>
-                    <a href="tender.html" class="btn btn-outline-light mx-2" style="border-radius: 25px; padding: 10px 25px; font-weight: 600;">निविदा व्यवस्थापन</a>
+                    <a href="tender.html" class="btn btn-outline-light mx-2"
+                        style="border-radius: 25px; padding: 10px 25px; font-weight: 600;">निविदा व्यवस्थापन</a>
                 </div>
             </div>
         </section>
 
-        <!-- Key Projects Section -->
-        <section class="projects-section">
-            <div class="container">
-                <div class="section-title text-center mb-5">
-                    <h2 style="font-weight: 700; color: #333;">प्रमुख उपसा सिंचन योजना</h2>
-                    <div style="width: 60px; height: 3px; background: #fb1d04; margin: 15px auto;"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="project-card wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="project-img" style="background-image: url('/img/takari/22.jpg');"></div>
-                            <div class="project-info">
-                                <h3>ताकारी उपसा सिंचन</h3>
-                                <p class="text-muted">कृष्णा नदीवर ताकारी गावाजवळून ९.३४ अघफु पाणी उचलून सांगली जिल्ह्यातील २७४३० हे. क्षेत्रास सिंचनाचा लाभ.</p>
-                                <a href="takari.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+        <!-- NEW SERVICES SECTION -->
+        <section class="services-section">
+            <div class="services-bg"></div>
+            <div class="container mx-auto">
+                <!-- Services Container -->
+                <div class="services-container" id="services-container">
+                    <!-- Service Cards -->
+                    <div class="service-card-wrapper" data-tags="organizational,chart">
+                        <a href="sanghtan-takta.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>संघटना तक्ता</span></h5>
+                                <p class="service-description"><span>विभागाची संगठनात्मक रचना आणि माहिती.</span></p>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="project-card wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="project-img" style="background-image: url('/img/takari/23.jpg');"></div>
-                            <div class="project-info">
-                                <h3>म्हैसाळ उपसा सिंचन</h3>
-                                <p class="text-muted">कृष्णा नदीवरून १७.४४ अघफु पाणी उचलून सांगली व सोलापूर जिल्ह्यातील ८१६९७ हे. क्षेत्रास सिंचन.</p>
-                                <a href="mhaishal.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+                    <div class="service-card-wrapper" data-tags="farmer,complaint">
+                        <a href="about.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>शेतकरी तक्रार</span></h5>
+                                <p class="service-description"><span>शेतकऱ्यांसाठी तक्रार निवारण सेवा.</span></p>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="project-card wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="project-img" style="background-image: url('/img/takari/24.jpg');"></div>
-                            <div class="project-info">
-                                <h3>टेंभू उपसा सिंचन</h3>
-                                <p class="text-muted">बृहद प्रकल्पांतर्गत सातारा, सांगली, सोलापूर जिल्ह्यातील दुष्काळी भागाला सिंचनाचा लाभ देणारी महत्त्वाकांक्षी योजना.</p>
-                                <a href="tembhu.html" class="btn btn-custom mt-3" style="color: #ffffff;">सविस्तर माहिती</a>
+                    <div class="service-card-wrapper" data-tags="water,user,association">
+                        <a href="Pani_vapar.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 20a6 6 0 01-6-6c0-3.31 6-10 6-10s6 6.69 6 10a6 6 0 01-6 6z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>पाणी वापर संस्था</span></h5>
+                                <p class="service-description"><span>पाणी वापर संस्थांविषयी माहिती आणि सेवा.</span></p>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="land,acquisition">
+                        <a href="https://www.sicsangli.com/" target="_blank" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>भूसंपादन</span></h5>
+                                <p class="service-description"><span>भूसंपादन प्रक्रिया आणि संबंधित माहिती.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="pump,house,operation">
+                        <a href="https://www.sicsangli.com/" target="_blank" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>पंपगृह परिचलन</span></h5>
+                                <p class="service-description"><span>पंपगृह परिचलन आणि व्यवस्थापनाची माहिती.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="satellite,irrigation,measurement">
+                        <a href="https://sic9.arekar.com/" target="_blank" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h9v6h-9z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>सॅटेलाईट सिंचन मोजणी</span></h5>
+                                <p class="service-description"><span>उपग्रहाद्वारे सिंचन मोजणी प्रणाली.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="rotation,status">
+                        <a href="https://aniket-backend.vercel.app/" target="_blank" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2v4c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8H2c0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 8.01L7.14 14.86c-.51.51-1.35.51-1.87 0-.51-.51-.51-1.34 0-1.85l5.8-5.79c.51-.51 1.35-.51 1.87 0l5.8 5.79c.51.51.51 1.34 0 1.85-.51.51-1.35.51-1.87 0L12 10.01z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>आवर्तन सद्यस्थिती</span></h5>
+                                <p class="service-description"><span>आवर्तनाची सद्यस्थिती आणि अद्ययावत माहिती.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="tender,management">
+                        <a href="tender.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>निविदा</span></h5>
+                                <p class="service-description"><span>नवीन निविदा आणि संबंधित प्रक्रियांची माहिती.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="water,level,project">
+                        <a href="water-level.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>प्रकल्प पाणीसाठा</span></h5>
+                                <p class="service-description"><span>विविध प्रकल्पांमधील पाणीसाठ्याची अद्ययावत माहिती.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="yearly,expenses">
+                        <a href="about.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>वर्षनिहाय खर्च</span></h5>
+                                <p class="service-description"><span>विभागाचा वर्षनिहाय खर्च आणि अर्थसंकल्प.</span></p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="service-card-wrapper" data-tags="knowledge,center">
+                        <a href="knowledge-center.html" class="service-card-link">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="service-title"><span>ज्ञानकेंद्र</span></h5>
+                                <p class="service-description"><span>माहिती आणि संसाधनांसाठी ज्ञानकेंद्र.</span></p>
+                            </div>
+                        </a>
                     </div>
                 </div>
+
+
             </div>
         </section>
-        
         <!-- Stats / Quick Info Section -->
-        <section style="padding: 60px 0; background: #0b2545; color: white;">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.1s">
-                        <i class="fas fa-water fa-3x mb-3" style="color: #a1c4fd;"></i>
-                        <h3 class="counter">३२</h3>
-                        <p>उपलब्ध पाणीसाठा (अघफु)</p>
-                    </div>
-                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.2s">
-                        <i class="fas fa-leaf fa-3x mb-3" style="color: #a1c4fd;"></i>
-                        <h3 class="counter">१३५६२७</h3>
-                        <p>सिंचित क्षेत्र (हेक्टर)</p>
-                    </div>
-                    <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.3s">
-                        <i class="fas fa-users fa-3x mb-3" style="color: #a1c4fd;"></i>
-                        <h3 class="counter">२५००००</h3>
-                        <p>लाभार्थी शेतकरी</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-	</main>
 
-	<!-- FOOTER -->
-	<div id="footer-placeholder"></div>
+    </main>
 
-	<!-- Scripts -->
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/popper.min.js"></script>
-	<script src="/js/owl.carousel.min.js"></script>
-	<script src="/js/jarallax.js"></script>
-	<script src="/js/jquery.magnific-popup.min.js"></script>
-	<script src="/js/appear.js"></script>
-	<script src="/js/isotope.pkgd.min.js"></script>
-	<script src="/js/masonry.pkgd.min.js"></script>
-	<script src="/js/imagesloaded.pkgd.min.js"></script>
-	<script src="/js/lightbox.js"></script>
-	<script src="/js/waypoints.min.js"></script>
-	<script src="/js/jquery.counterup.min.js"></script>
-	<script src="/js/tilt.jquery.min.js"></script>
-	<script src="/js/wow.min.js"></script>
-	<script src="/js/script.js"></script>
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
 
-	<!-- Header and Footer Loader identical to other pages -->
-	<script>
-		fetch('/header2.html?v=' + new Date().getTime())
-			.then(res => res.text())
-			.then(data => {
-				document.getElementById('header-placeholder').innerHTML = data;
-				const hamburger = document.querySelector('.hamburger');
-				const navMenu = document.getElementById('nav-menu');
-				if (!hamburger || !navMenu) return;
-				hamburger.addEventListener('click', () => {
-					hamburger.classList.toggle('open');
-					navMenu.classList.toggle('active');
-					document.body.classList.toggle('no-scroll');
-				});
-				document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
-					arrow.addEventListener('click', e => {
-						if (window.innerWidth <= 1150) {
-							e.preventDefault();
-							e.stopPropagation();
-							const parentLi = arrow.closest('.dropdown');
-							parentLi.classList.toggle('active');
-						}
-					});
-				});
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jarallax.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/appear.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/tilt.jquery.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <!-- Header and Footer Loader identical to other pages -->
+    <script>
+        fetch('/header2.html?v=' + new Date().getTime())
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 1150) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const parentLi = arrow.closest('.dropdown');
+                            parentLi.classList.toggle('active');
+                        }
+                    });
+                });
                 document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
                     link.addEventListener('click', e => {
                         if (window.innerWidth <= 1150) {
@@ -300,44 +572,45 @@
                         }
                     });
                 });
-				window.addEventListener('resize', () => {
-					if (window.innerWidth > 1150) {
-						navMenu.classList.remove('active');
-						hamburger.classList.remove('open');
-						document.body.classList.remove('no-scroll');
-						document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
-					}
-				});
-			})
-			.catch(err => console.error("Header load error:", err));
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 1150) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                    }
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
 
-		(function loadFooter() {
-			fetch('/footer.html')
-				.then(res => res.text())
-				.then(data => {
-					document.getElementById('footer-placeholder').innerHTML = data;
-				})
-				.catch(err => console.error('Footer load error:', err));
-		})();
+        (function loadFooter() {
+            fetch('/footer.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error('Footer load error:', err));
+        })();
 
         // Try initializing WOW and counter if they loaded properly
-        $(document).ready(function() {
-            setTimeout(function() {
-                if(typeof $.fn.counterUp === 'function') {
+        $(document).ready(function () {
+            setTimeout(function () {
+                if (typeof $.fn.counterUp === 'function') {
                     try {
                         $('.counter').counterUp({
                             delay: 10,
                             time: 2000
                         });
-                    } catch(e) {}
+                    } catch (e) { }
                 }
-                if(typeof WOW === 'function') {
+                if (typeof WOW === 'function') {
                     try {
                         new WOW().init();
-                    } catch(e) {}
+                    } catch (e) { }
                 }
             }, 500);
         });
-	</script>
+    </script>
 </body>
+
 </html>
