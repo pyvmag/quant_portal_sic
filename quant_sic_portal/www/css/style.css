@@ -4959,7 +4959,11 @@ select:visited {
 
 /* *********************************************************************8 */
 .page-mhaishal .breadcrumb-section .background_overlay {
-  background-image: url(../img/mhaishal/14.jpg);
+  background-image: url(../img/background/mhaishal_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.75);
 }
 
 .page-koyna .breadcrumb-section .background_overlay {
@@ -4967,7 +4971,10 @@ select:visited {
 }
 
 .page-tembhu .breadcrumb-section .background_overlay {
-  background-image: url(../img/tembhu/tembu_bg.webp);
+  background-image: url(../img/background/tembhu-hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
 }
 
 .page-pani-vapar .breadcrumb-section .background_overlay {

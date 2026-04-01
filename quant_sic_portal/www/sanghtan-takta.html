@@ -25,477 +25,233 @@
 
     <link rel="stylesheet" href="/css/header2.css">
     <link rel="stylesheet" href="/css/sanghtan.css">
-
-    <style>
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <div id="header-placeholder"></div>
-    <div class="horizontal-line"></div>
 
     <div class="centered">
         <h3>सांगली पाटबंधारे मंडळ, सांगली</h3>
-        <h4><strong>कार्यभार दर्शवणारा तक्ता</strong></h4>
+        <h4>कार्यभार दर्शवणारा तक्ता</h4>
     </div>
 
-
     <div class="tree-chart">
-
-        <div class="group">
-            <div class="leaf yellow">
-                <img src="/img/adhikari_images/chandrashekhar_patole.jpg" alt="चं.हि.पाटोळे"
-                    class="profile-photo">
-                <div class="title">(चं.हि.पाटोळे )</div>
-                <div class="desc">अधीक्षक अभियंता</div>
-                <div class="extra">सांगली पाटबंधारे मंडळ, सांगली</div>
-
-            </div>
-        </div>
-        <div class="arrow-img">
-            <img src="/img/sanghtan-takta/bgg.jpg" alt="Down Arrow">
-        </div>
-         <div class="group">
-            <div class="leaf yellow">
-                <div class="title">(अ.प्र.सूर्यवंशी )</div>
-                <div class="desc">उप-अधीक्षक अभियंता</div>
-                <div class="extra">सांगली पाटबंधारे मंडळ,
-                    सांगली</div>
-            </div>
-        </div>
-        <div class="arrow-img">
-            <img src="/img/sanghtan-takta/bgg.jpg" alt="Down Arrow">
-        </div>
-
-        <div class="group">
-            <div class="leaf yellow">
-                <div class="title">(नि.ब.रानमाळे )</div>
-                <div class="desc">सहा.अधीक्षक अभियंता</div>
-                <div class="extra">सांगली पाटबंधारे मंडळ,
-                    सांगली</div>
+        <!-- Level 1 -->
+        <div class="group animate-card" style="--delay: 0.1s;">
+            <div class="leaf rank-superintendent">
+                <div class="avatar-container">
+                    <img src="/img/adhikari_images/chandrashekhar_patole.jpg" alt="चं.हि.पाटोळे" class="avatar">
+                </div>
+                <div class="content">
+                    <h5 class="official-name">(चं.हि.पाटोळे )</h5>
+                    <p class="designation">अधीक्षक अभियंता</p>
+                    <div class="location-badge">सांगली पाटबंधारे मंडळ, सांगली</div>
+                </div>
             </div>
         </div>
 
-        <div class="arrow-img">
-            <img src="/img/sanghtan-takta/bgg.jpg" alt="Down Arrow">
+        <div class="flow-line"></div>
+
+        <!-- Level 2 & 3 (Side by Side) -->
+        <div class="superintendent-row-container">
+            <div class="horizontal-bar small-bar"></div>
+        </div>
+
+        <div class="superintendent-row">
+            <div class="column animate-card" style="--delay: 0.2s;">
+                <div class="leaf rank-deputy">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/user.png" alt="अ.प्र.सूर्यवंशी" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(अ.प्र.सूर्यवंशी )</h5>
+                        <p class="designation">उप-अधीक्षक अभियंता</p>
+                        <div class="location-badge">सांगली पाटबंधारे मंडळ, सांगली</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column animate-card" style="--delay: 0.3s;">
+                <div class="leaf rank-assistant">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/user.png" alt="नि.ब.रानमाळे" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(नि.ब.रानमाळे )</h5>
+                        <p class="designation">सहा.अधीक्षक अभियंता</p>
+                        <div class="location-badge">सांगली पाटबंधारे मंडळ, सांगली</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="superintendent-row-container bottom-merge">
+            <div class="horizontal-bar small-bar"></div>
+        </div>
+
+        <div class="flow-line"></div>
+
+        <!-- Branch Line (Horizontal) -->
+        <div class="horizontal-link-container animate-card" style="--delay: 0.4s;">
+            <div class="horizontal-bar"></div>
         </div>
 
         <div class="horizontal-branches">
-            <!-- Repeat this column 7 times -->
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/jyoti_devkar.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(ज्योती अरविंद देवकर)</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">सांगली पाटबंधारे विभाग, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(नि.ने.भोजकर)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
-
-                    <div class="extra">सांगली पाटबंधारे विभाग, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(दया.भि.बगली)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-
-                    <div class="extra">पाटबंधारे उपविभाग, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(चंदकांत.भि.यादव )</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-
-                    <div class="extra">पाटबंधारे उपविभाग, मिरज</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(योगिता.बा.थेारात)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-
-                    <div class="extra">पाटबंधारे उपविभाग, आष्टा</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(चंदकांत.भि.यादव ) (अति)</div>
-                    <div class="desc">उप विभागीय अभियता,</div>
-
-                    <div class="extra">पाटबंधारे उपविभाग, इस्लामपूर</div>
+            <!-- Executive Engineers -->
+            <div class="column animate-card" style="--delay: 0.5s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/jyoti_devkar.jpg" alt="ज्योती अरविंद देवकर" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(ज्योती अरविंद देवकर)</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">सांगली पाटबंधारे विभाग</div>
+                    </div>
                 </div>
             </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/abhinandan_harugade.jpg" alt="चं.हि.पाटोळे"
-                        class="profile-photo">
-                    <div class="title">(अभिनंदन वि.हरूगडे )</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">लघु पाटबंधारे विभाग, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(नुतन चौगुले)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
-                    <div class="extra">लघु पाटबंधारे विभाग, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(सुशिलकुमार.बा.गायकवाड)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">ल.पा.बांधकाम उपविभाग, जत</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(विजयकुमार.रा.आजेटराव )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">मध्यम प्रकल्प उपविभाग क्र.5, तासगांव</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(गणेश बाबूराव खरमाटे )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">ल.पा.उपविभाग क्र.1, विटा</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">रिक्त</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">ल.पा.बांधकाम उपविभाग, आटपाडी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(राकेश.अ.बन्ने)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">मध्यम प्रकल्प उपविभाग क्र.7, जुनोनी</div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/harshad_yadav.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(हर्षद गजानन यादव)</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प विभाग क्र.1,सागली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(श्रेणीक सुकुमार दुधगांवे)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
 
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प विभाग
-                        क्र.1,सागली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( उमेश संभाजी सांळुखे )</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग क्र.6,
-                        माहु ली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( अभिमन्यू शिवाजी व्हनमाने )</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.9,खानापूर</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(मनोज बाळासाहेब कर्नाळे )</div>
-                    <div class="desc">सहा.कार्यकारी अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.17,कुची</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(विनायक.कृ.खरात)</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.3,कडेगांव विटा (सुळेवाडी)</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(दिपालीं इंद्रजित पाटील )</div>
-                    <div class="desc">सहा.अभि.श्रेणी.1</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.11,विटा</div>
+            <div class="column animate-card" style="--delay: 0.6s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/abhinandan_harugade.jpg" alt="अभिनंदन वि.हरूगडे" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(अभिनंदन वि.हरूगडे )</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">लघु पाटबंधारे विभाग</div>
+                    </div>
                 </div>
             </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/rajan_davari.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(राजन पां. डवरी)</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन व्यवस्थापन विभाग,ओगलेवाडी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(श्रीकांत परशराम पाटील)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन व्यवस्थापन विभाग,
-                        ओगलेवाडी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(सचिन.कृष्णा नाईक)</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">टेंभू उपसा सिंचन व्यवस्थापन उपविभाग,
-                        कडेपूर</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(अनिल आ. पवार )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">पाटबंधारे उपविभाग, ओगलेवाडी बां.
-                        (येवती म्हासोळी)</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(उदय किसनराव नांगरे)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">कृष्णा कालवा उपविभाग, कराड</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(संजय भिमराव यादव)</div>
-                    <div class="desc">उपविभागीय अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.2,ओगलेवाडी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(प्रज्वल.प्र.महाजन)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प व्यवस्थापन
-                        उपविभाग तासगांव</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(दिग्वीजय सं. सोनवलकर )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">टेंभू उपसा सिंचन प्रकल्प उपविभाग
-                        क्र.5,कडेपूर</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(राकेशकुमार ना.नाझरे)</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">आरफळ कालवे उपविभाग क्र.6, करवडी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(कृष्णात भागवत कदम )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">कण्हेर कालवे उपविभाग क्र.10, कडेपूर</div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/kashinath_masal.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(काशिनाथ लालासो मासाळ )</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">म्हैसाळ पंपगृह विभाग क्र.2, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(मो.रा.गळंगे)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
 
-                    <div class="extra">म्हैसाळ पंपगृह विभाग क्र.2, सांगली</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(गिरीष तानाजी बनसोडे )</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">उजनी कालवा उपविभाग क्र.33, कुची</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(संतोष तुकाराम भोसले)</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">म्हैसाळ उर्ध्वगामी नलिका उपविभाग, जत</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(अजिंक्य भारत जाधव,)</div>
-                    <div class="desc">सहा.कार्य अभियंता</div>
-                    <div class="extra">म्हैसाळ प्रवेश कालवा उपविभाग, जत</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">रिक्त</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">म्हैसाळ भांडार उपविभाग, जत</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">संजय.द.गडदे</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">्हैसाळ योजना नियोजन उपविभाग, जत</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(मयुर यशवंत नलवडे)</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">म्हैसाळ कालवा उपविभाग क्र.1 सांगोला</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(स्वप्नील अनिल गोसावी)</div>
-                    <div class="desc">उपविभागीय अभियंता</div>
-                    <div class="extra">म्हैसाळ कालवा उपविभाग क्र.2 सांगोला</div>
+            <div class="column animate-card" style="--delay: 0.7s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/harshad_yadav.jpg" alt="हर्षद गजानन यादव" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(हर्षद गजानन यादव)</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">टेंभू प्रकल्प विभाग क्र.1</div>
+                    </div>
                 </div>
             </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/pradnya_patil.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(प्रज्ञा अरुण पाटील )</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">ताकारी पंपगृह विभाग क्र.1, देवराष्ट्रे</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(सचिन सुभाष सुतार )</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
-                    <div class="extra">ताकारी पंपगृह विभाग क्र.1, देवराष्ट्रे</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">रिक्त</div>
-                    <div class="desc">उप विभागीय अधिकारी,</div>
-                    <div class="extra">ताकारी पंपगृह उपविभाग क्र.1, ताकारी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">रिक्त</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">ताकारी योजना व नियोजन उपविभाग,
-                        तासगांव</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(दि.द.परळे )</div>
-                    <div class="desc">उपविभागीय अभियंता</div>
-                    <div class="extra">ताकारी वसाहत व भांडार उपविभाग,
-                        ताकारी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( उदयसिंग जयसिंग सावत )</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">ताकारी भूविकास उपविभाग क्र.1,
-                        कडेपूर</div>
+
+            <div class="column animate-card" style="--delay: 0.8s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/rajan_davari.jpg" alt="राजन पां. डवरी" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(राजन पां. डवरी)</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">टेंभू व्यवस्थापन विभाग</div>
+                    </div>
                 </div>
             </div>
-            <div class="column">
-                <div class="leaf red">
-                    <img src="/img/adhikari_images/rohit_kore.jpg" alt="चं.हि.पाटोळे" class="profile-photo">
-                    <div class="title">(रोहीत रावसाहेब कोरे)</div>
-                    <div class="desc">कार्यकारी अभियंता,</div>
-                    <div class="extra">ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन विभाग, सांगली</div>
+
+            <div class="column animate-card" style="--delay: 0.9s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/kashinath_masal.jpg" alt="काशिनाथ लालासो मासाळ" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(काशिनाथ लालासो मासाळ )</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">म्हेसाळ पंपगृह विभाग क्र.2</div>
+                    </div>
                 </div>
-                <div class="leaf green">
-                    <div class="title">(स्मिता म.बडीगेर)</div>
-                    <div class="desc">उप कार्यकारी अभियंता,</div>
-                    <div class="extra">ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन
-                        विभाग, सांगली</div>
+            </div>
+
+            <div class="column animate-card" style="--delay: 1.0s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/pradnya_patil.jpg" alt="प्रज्ञा अरुण पाटील" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(प्रज्ञा अरुण पाटील )</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">ताकारी पंपगृह विभाग क्र.1</div>
+                    </div>
                 </div>
-                <div class="leaf green">
-                    <div class="title">( अमित वि.डवरी )</div>
-                    <div class="desc">सहाय्यक अभियंता श्रेणी - 1,</div>
-                    <div class="extra">म्हैसाळ उपसा सिंचन व्यवस्थापन उपविभाग
-                        क्र.3, आरग</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( राहुल मधूकर व्हनखंडे )</div>
-                    <div class="desc">उप विभागीय अभियंता,</div>
-                    <div class="extra">म्हैसाळ उपसा सिंचन व्यवस्थापन उपविभाग
-                        क्र.2, बेळंकी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(तृप्ती सुभाष मुकुरणे )</div>
-                    <div class="desc">सहा. अभि.श्रेणी.1</div>
-                    <div class="extra">ताकारी उपसा सिंचन व्यवस्थापन उपविभाग
-                        क्र.3, तासगांव</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(दा.बा.नरवाडे)</div>
-                    <div class="desc">उपविभागीय अधिकारी</div>
-                    <div class="extra">ताकारी उपसा सिंचन व्यवस्थापन उपविभाग क्र.1, वांगी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( बाबासो विष्णू पाटील)</div>
-                    <div class="desc">उपविभागीय अधिकारी</div>
-                    <div class="extra">म्हैसाळ पंपगृह उपविभाग क्र.1, म्हैसाळ</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( भारती दिलीप थोरात)</div>
-                    <div class="desc">उपविभागीय अधिकारी</div>
-                    <div class="extra">म्हैसाळ पंपगृह उपविभाग क्र.2, म्हैसाळ</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(अश्विनकुमार बा.कर्नाळे )</div>
-                    <div class="desc">उपविभागीय अभियंता</div>
-                    <div class="extra">म्हैसाळ भूविकास उपविभाग क्र.2, म्हैसाळ</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">(अमोल तुकाराम सुर्य वंशी)</div>
-                    <div class="desc">उपविभागीय अधिकारी</div>
-                    <div class="extra">म्हैसाळ पंपगृह उपविभाग क्र.5, खंडेराजूरी</div>
-                </div>
-                <div class="leaf green">
-                    <div class="title">( रविंद्र ज्ञा. माळी)</div>
-                    <div class="desc">उपविभागीय अधिकारी</div>
-                    <div class="extra">म्हैसाळ कालवा सर्वेक्षण उपविभाग क्र.1,सलगरे</div>
+            </div>
+
+            <div class="column animate-card" style="--delay: 1.1s;">
+                <div class="leaf rank-executive">
+                    <div class="avatar-container">
+                        <img src="/img/adhikari_images/rohit_kore.jpg" alt="रोहीत रावसाहेब कोरे" class="avatar">
+                    </div>
+                    <div class="content">
+                        <h5 class="official-name">(रोहीत रावसाहेब कोरे)</h5>
+                        <p class="designation">कार्यकारी अभियंता,</p>
+                        <div class="location-badge">ताकारी म्हैसाळ विभाग</div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-        <script>
+    <script>
+        fetch('header2.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
 
-            fetch('header2.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
 
-                    const hamburger = document.querySelector('.hamburger');
-                    const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
 
-                    if (!hamburger || !navMenu) return;
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
 
-                    // Hamburger toggle
-                    hamburger.addEventListener('click', () => {
-                        hamburger.classList.toggle('open');
-                        navMenu.classList.toggle('active');
-                        document.body.classList.toggle('no-scroll');
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 992) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const parentLi = arrow.closest('.dropdown');
+                            parentLi.classList.toggle('active');
+                        }
                     });
+                });
 
-                    // Toggle dropdown when arrow is clicked
-                    document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
-                        arrow.addEventListener('click', e => {
-                            if (window.innerWidth <= 992) {
-                                e.preventDefault();
-                                e.stopPropagation();
-
-                                const parentLi = arrow.closest('.dropdown');
-                                parentLi.classList.toggle('active');
-                            }
-                        });
-                    });
-
-                    // Prevent main link from toggling submenu on mobile
-                    document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
-                        link.addEventListener('click', e => {
-                            if (window.innerWidth <= 992) {
-                                e.preventDefault();
-                            }
-                        });
-                    });
-
-                    // ✅ FIXED: Close menu on link click EXCEPT when clicking on arrow
-                    navMenu.querySelectorAll('a').forEach(link => {
-                        link.addEventListener('click', (e) => {
-                            // Don't close the menu if the arrow was clicked
-                            if (e.target.closest('.dropdown-arrow')) {
-                                return;
-                            }
-
-                            if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
-                                navMenu.classList.remove('active');
-                                hamburger.classList.remove('open');
-                                document.body.classList.remove('no-scroll');
-
-                                // Close all open dropdowns
-                                document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
-                            }
-                        });
-                    });
-
-                    // Reset menu and dropdowns on window resize
-                    window.addEventListener('resize', () => {
-                        if (window.innerWidth > 992) {
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (e.target.closest('.dropdown-arrow')) return;
+                        if (navMenu.classList.contains('active') && window.innerWidth <= 992) {
                             navMenu.classList.remove('active');
                             hamburger.classList.remove('open');
                             document.body.classList.remove('no-scroll');
                             document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
                         }
                     });
-                })
-                .catch(err => console.error("Header load error:", err));
-            fetch('footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error("Footer load error:", err));
-        </script>
+                });
 
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                        document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+                    }
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
 
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+    </script>
 </body>
 
 </html>

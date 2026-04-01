@@ -1,240 +1,323 @@
 :root {
-    --card-w: 140px;
-    --gap: 20px;
+    --card-w: 190px;
+    --primary: #004aad;
+    --primary-dark: #002f6c;
+    --accent-gold: #ffb800;
+    --accent-red: #ee4b2b;
+    --text-main: #2c3e50;
+    --text-muted: #7f8c8d;
+    --bg-light: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
 }
 
 * {
     box-sizing: border-box;
 }
 
-body, html {
+body {
+    background-image: linear-gradient(rgba(240, 248, 255, 0.88), rgba(255, 255, 255, 0.95)), url('/img/slider/Koyna-Dam.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #f6f8ff;
     margin: 0;
     padding: 0;
+    font-family: 'Outfit', sans-serif;
+    color: #2c3e50;
     overflow-x: hidden;
-    width: 100%;
 }
 
-body {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    background: #faf7f749;
-    margin: 0;
-    color: #111;
+/* ─── Page Title ─── */
+.centered {
+    padding: 40px 20px 20px;
 }
 
-.tree-chart {
-    max-width: 100%;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
+.centered h3 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
 }
 
-.group {
+.centered h4 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #7f8c8d;
+    text-align: center;
+}
+
+/* ─── Tree Chart Container ─── */
+.tree-chart {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 40px 20px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
+/* ─── Cards (Leaf) ─── */
 .leaf {
-    width: 100%;
-    max-width: var(--card-w);
-    min-width: 0;
-    border: 2px solid #0c0b0b;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 12px 0;
-    background: #fff;
+    width: var(--card-w);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 24px 16px;
     text-align: center;
-    word-wrap: break-word;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 5;
 }
 
-.leaf .title {
-    font-weight: 800;
-    font-size: 13px;
-    padding: 8px 10px;
-    line-height: 1.3;
+.leaf:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.95);
 }
 
-.desc {
-    font-weight: bold;
-}
-
-.leaf .desc,
-.leaf .extra {
-    font-size: 12px;
-    padding: 6px 10px;
-    color: #222;
-    line-height: 1.4;
-}
-
-.leaf .extra {
-    background: #f9f9f9;
-    color: #333;
-    font-size: 11.5px;
-}
-
-/* Color themes */
-.leaf.yellow .title {
-    background: #f0dd39;
-    color: #7a5900;
-}
-
-.leaf.red .title {
-    background: #e63946;
-    color: white;
-}
-
-.leaf.green .title {
-    background: #2a9d8f;
-    color: white;
-}
-
-/* Arrows & lines */
-.arrow-img {
-    width: 48px;
-    height: auto;
-    margin: 12px auto;
-    display: block;
-}
-
-.horizontal-line {
-    width: 100%;
+/* Rank Accents */
+.leaf::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
     height: 4px;
-    background: linear-gradient(to right, #0e161b, #0e1312, #0e0c06);
-    border-radius: 2px;
-    margin: 25px 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
 }
 
-.centered {
-    text-align: center;
-    margin: 25px 0;
+.rank-superintendent::before { background: var(--accent-gold); }
+.rank-deputy::before { background: var(--accent-gold); opacity: 0.7; }
+.rank-assistant::before { background: var(--accent-gold); opacity: 0.4; }
+.rank-executive::before { background: var(--accent-red); }
+
+/* Avatar */
+.avatar-container {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    padding: 4px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
 }
 
-.centered h3,
-.centered h4 {
-    margin: 6px 0;
-}
-
-/* ─── Main horizontal branches ─── */
-.horizontal-branches {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: clamp(16px, 2.5vw, 40px);
-    justify-content: center;
+.avatar {
     width: 100%;
-    max-width: 1450px;
-    margin: 35px auto;
-    padding: 0 15px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Text Content */
+.official-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--primary-dark);
+}
+
+.designation {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0 0 10px 0;
+}
+
+.location-badge {
+    font-size: 11px;
+    background: rgba(0, 74, 173, 0.08);
+    color: var(--primary);
+    padding: 4px 8px;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+/* ─── Connections ─── */
+.flow-line {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+    margin: 4px 0;
+    opacity: 0.5;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Data Flow Pulse Animation */
+.flow-line::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, #fff, transparent);
+    animation: flowPulse 2.5s infinite linear;
+}
+
+/* Anchor Point */
+.flow-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 5px rgba(0, 74, 173, 0.2);
+    z-index: 10;
+}
+
+.horizontal-link-container {
+    width: 100%;
+    max-width: 1600px;
+    position: relative;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.horizontal-bar {
+    width: calc(100% - var(--card-w) - 30px);
+    height: 2px;
+    background: linear-gradient(to right, rgba(0,74,173,0), var(--primary), rgba(0,74,173,0));
+    position: absolute;
+    top: 50%;
+    border-radius: 4px;
+    opacity: 0.5;
+}
+
+.horizontal-bar::before, .horizontal-bar::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    width: 2px;
+    height: 25px;
+    background: var(--primary);
+}
+
+.horizontal-bar::before { transform: translateX(-50%); }
+
+/* ─── Superintendent Row ─── */
+.superintendent-row {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.superintendent-row-container {
+    width: 100%;
+    position: relative;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-bar {
+    width: calc(var(--card-w) + 60px); /* 1 card width + gap */
+}
+
+.superintendent-row .column::after {
+    content: '';
+    position: absolute;
+    bottom: -34px;
+    width: 2px;
+    height: 30px;
+    background: var(--primary);
+    opacity: 0.5;
+}
+
+.bottom-merge .horizontal-bar::before {
+    top: auto;
+    bottom: -25px;
+}
+
+/* ─── Branches ─── */
+.horizontal-branches {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 1700px;
+    padding: 40px 10px;
+    margin: 0 auto;
 }
 
 .column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    position: relative;
 }
 
-/* ─── ONLY RED LEAVES on the same horizontal line ─── */
-.horizontal-branches .column .leaf.red {
-    margin-top: 0 !important;
-    margin-bottom: 60px !important;     /* ← bigger space after red card */
-    flex-shrink: 0;                     /* prevents compression */
-    order: -1;   
-    height: 300px;                 /* FIXED height */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;                       /* helps in most browsers */
+.column::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    width: 2px;
+    height: 25px;
+    background: var(--primary);
+    opacity: 0.5;
 }
 
-/* Normal flow for green cards */
-.horizontal-branches .column .leaf.green {
-    margin: 12px 0;
-    margin-top: 0 !important;
-    margin-bottom: 60px !important;     /* ← bigger space after red card */
-    flex-shrink: 0;                     /* prevents compression */
-    order: -1;   
-    height: 180px;                 /* FIXED height */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-}
-
-/* Top yellow cards stay centered and natural */
-.group > .leaf.yellow {
-    max-width: var(--card-w);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1200px) {
-    :root {
-        --card-w: 130px;
-        --gap: 18px;
+/* ─── Animations ─── */
+@keyframes slideUpReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
+@keyframes flowPulse {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+.animate-card {
+    opacity: 0;
+    animation: slideUpReveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 992px) {
-    :root {
-        --card-w: 120px;
-    }
     .horizontal-branches {
-        grid-template-columns: repeat(4, 1fr);
-        gap: clamp(20px, 3vw, 40px);
+        flex-direction: column;
+        gap: 40px;
     }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --card-w: 110px;
+    .horizontal-bar, .horizontal-bar::before, .horizontal-bar::after, .column::before {
+        display: none;
     }
-    .horizontal-branches {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-    .arrow-img {
-        width: 40px;
-    }
-    .horizontal-branches .column .leaf.red {
-        margin-bottom: 50px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --card-w: 145px;
-    }
-    .horizontal-branches {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    .leaf .title {
-        font-size: 12px;
-        padding: 7px 8px;
-    }
-    .leaf .desc,
-    .leaf .extra {
-        font-size: 11px;
-        padding: 5px 8px;
-    }
-    .arrow-img {
-        width: 36px;
-    }
-    .horizontal-branches .column .leaf.red {
-        margin-bottom: 40px !important;
-    }
-}
-
-/* Large screens */
-@media (min-width: 1600px) {
-    :root {
-        --card-w: 160px;
-    }
-    .horizontal-branches {
-        gap: clamp(32px, 3.5vw, 60px);
-        max-width: 1650px;
+    .flow-line {
+        height: 20px;
     }
 }

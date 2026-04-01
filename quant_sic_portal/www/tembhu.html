@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>टेंभू  सिंचन योजना</title>
+	<title>टेंभू सिंचन योजना</title>
 	<link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
 	<meta name="author" content="Templines">
 	<meta name="description" content="जलसंपदा विभाग">
@@ -30,12 +30,11 @@
 		<a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
 	</div>
 
-	
+
 	<div id="header-placeholder"></div>
 
-	
-	<section id="breadcrumb" class="breadcrumb-section position-relative"
-		data-background="/img/background/bcbg.jpg">
+
+	<section id="breadcrumb" class="breadcrumb-section position-relative">
 		<div class="background_overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-content headline">
@@ -49,84 +48,320 @@
 			</div>
 		</div>
 	</section>
-	
-	<section id="about" class="about-section about-page-about">
-		<div class="container">
-			<div class="about-content">
-				<div class="row">
-					<div class="col-lg-6 col-md-12">
-						<div class="about-text">
-							<div class="section-title-left">
-								<span class="title-tag"><img src="/icon/icon5.svg" alt=""></span>
-								<h2>टेंभू उपसा सिंचन योजना</h2>
-							</div>
-							<!-- title -->
-							<div class="about-content pera-content">
-								<div class="about-text1">
-									<p>
-										अ) मुळ प्रशासकीय मान्यता:-
-										टेंभू उपसा सिंचन योजनेच्या रू. १४१६.५१ कोटी रक्कमेच्या मुळ प्रकल्प अहवालास शासन
-										निर्णय क्र. टेंभू १०९५/१४२७/(३६१/९५) जलसं दि. १९/२/१९९६ अन्वये प्रशासकीय मान्यता
-										प्राप्त झाली आहे. या अहवालानुसार सातारा, सांगली व सोलापूर जिल्हयातील कराड,
-										खानापूर, तासगांव, आटपाडी कडेगांव व सांगोला या सहा तालुक्यातील १७३ गावातील एकूण
-										६१,८०० हेक्टर क्षेत्रा सिंचनाचा लाभ देण्याचे प्रस्तावित होते.
-									</p>
-								</div>
-								<div class="about-text2">
-									<p>
-										ब) प्रथम सुधारीत प्रशासकीय मान्यता:-
-										या सुधारीत प्रकल्पाची किंमत २,१७६.०९ कोटी असून महामंडळाने निर्णय क्र.
-										मसुप्रकिंमं/मंत्र-६/(३८३/२००२)/७९८ दि. २२/१/२००४ अन्वये सुधारीत प्रशासकीय
-										मान्यता प्रदान केली आहे.
-									</p>
-								</div>
 
-								<div class="about-text1">
-									<p>
-										क) केंद्रीय जल आयोगाची मान्यता घेणे बाबतची सद्यःस्थिती:-
-										टेंभू प्रकल्पाचे अंदाजपत्रक रू. ३,४५०.३४ कोटी किंमतीचे (दरसुची सन २००९-१०)
-										केंद्रीय जल आयोगाच्या दि. १४/३/२०११ च्या १४ व्या मिटिंगमध्ये पत्र दि. १/६/२०११
-										अन्वये मान्यता देण्यात आलेली आहे.
-									</p>
-								</div>
-								<div class="about-text2">
-									<p>
-										ड) पर्यावरण मान्यता:-
-										टेंभू उपसा सिंचन प्रकल्पास पर्यावरणाची मान्यता पत्र. क्र. १२०११/४३/२००३- IAI दि.
-										१७/८/२००७ अन्वये प्राप्त झाली आहे
-									</p>
-								</div>
-								<div class="about-btn text-uppercase">
-									<a href="/pdf/temb.pdf" target=" ">
-										<i class="fa fa-file-pdf" style="color: #fb1d04;"></i></i>
-										<span>टेंभू उपसा सिंचन योजना PDF</span>
-									</a>
-								</div>
-							</div>
-						</div>
+	<style>
+		.tembhu-editorial-section {
+			background: linear-gradient(180deg, #dbeafe 0%, #fafbfc 350px);
+			padding: 70px 0 220px;
+			font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		/* Classic Water SVG Transition */
+		.ocean {
+			height: 180px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			background: transparent;
+			z-index: 0;
+			overflow: hidden;
+			pointer-events: none;
+		}
+
+		.wave {
+			background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23dbeafe" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x;
+			position: absolute;
+			top: 0;
+			width: 6400px;
+			height: 100%;
+			animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+			transform: translate3d(0, 0, 0);
+		}
+
+		.wave:nth-of-type(2) {
+			top: -10px;
+			animation: wave-reverse 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+			opacity: 0.5;
+		}
+
+		@keyframes wave {
+			0% { margin-left: 0; }
+			100% { margin-left: -1600px; }
+		}
+
+		@keyframes wave-reverse {
+			0% { margin-left: -1600px; }
+			100% { margin-left: 0; }
+		}
+
+		@keyframes swell {
+			0%, 100% { transform: translate3d(0, -10px, 0); }
+			50% { transform: translate3d(0, 5px, 0); }
+		}
+
+		/* Floating Clouds Background */
+		.cloud-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 350px;
+			z-index: 1; 
+			overflow: hidden;
+			pointer-events: none;
+		}
+		.cloud {
+			position: absolute;
+			background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"%3E%3Cpath fill="%23ffffff" opacity="0.8" d="M405.3 227.1c-6-63.5-59.5-113.8-125-113.8-54.8 0-101.4 35.5-119 84.8-5.3-1.6-11-2.4-16.7-2.4-32.9 0-59.6 26.7-59.6 59.6 0 5.4.8 10.7 2.2 15.8-31 7.2-54.2 35-54.2 68.3 0 38.6 31.4 70 70 70h299.7c47.1 0 85.3-38.2 85.3-85.3 0-42.6-31.2-78.2-72.7-84.5z" /%3E%3C/svg%3E') no-repeat center;
+			background-size: contain;
+			filter: drop-shadow(0 10px 15px rgba(0,0,0,0.02));
+			animation: drift 40s linear infinite;
+		}
+
+		.cloud-1 {
+			width: 180px; height: 90px;
+			top: 30px; left: -200px;
+			animation-duration: 45s; animation-delay: -10s;
+		}
+		.cloud-2 {
+			width: 140px; height: 70px;
+			top: 80px; left: -200px;
+			animation-duration: 65s; animation-delay: -35s; opacity: 0.6;
+		}
+		.cloud-3 {
+			width: 280px; height: 140px;
+			top: -10px; left: -300px;
+			animation-duration: 50s; animation-delay: -2s; opacity: 0.8;
+		}
+		.cloud-4 {
+			width: 160px; height: 80px;
+			top: -15px; left: -200px;
+			animation-duration: 55s; animation-delay: -20s; opacity: 0.5;
+		}
+
+		@keyframes drift {
+			to { transform: translateX(calc(100vw + 600px)); }
+		}
+
+		.tembhu-editorial-section .section-title {
+			text-align: center;
+			margin-bottom: 50px;
+			position: relative;
+			z-index: 2;
+		}
+		.tembhu-editorial-section .section-title h2 {
+			font-size: 2.8rem;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 15px;
+		}
+		.tembhu-editorial-section .section-title .separator {
+			width: 60px;
+			height: 4px;
+			background: #2563eb;
+			margin: 0 auto;
+			border-radius: 2px;
+		}
+
+		/* Colored bordered background for the text wrapper */
+		.tembhu-info-box {
+			background: #ffffff; /* crisp white for contrast against background blobs */
+			border: 3px solid #bfdbfe; /* crisp bordered background */
+			border-radius: 16px;
+			padding: 40px 50px;
+			box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05);
+			margin: 0 auto;
+			width: 100%;
+			max-width: 1500px; /* Expands to fill most of the screen gracefully */
+			position: relative;
+			z-index: 2;
+		}
+
+		.tembhu-milestone {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 30px;
+			padding-bottom: 30px;
+			border-bottom: 1px solid #dbeafe;
+		}
+		.tembhu-milestone:last-child {
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+		
+		.tembhu-milestone .arrow-marker {
+			font-size: 1.5rem;
+			color: #ef4444; /* bold red arrow */
+			margin-right: 20px;
+			margin-top: 2px;
+			flex-shrink: 0;
+		}
+
+		.tembhu-milestone-content h3 {
+			font-size: 1.45rem;
+			font-weight: 800;
+			color: #1e3a8a;
+			margin-bottom: 10px;
+		}
+
+		.tembhu-milestone-content p {
+			font-size: 1.15rem;
+			line-height: 1.8;
+			color: #374151;
+			margin: 0;
+		}
+
+		.tembhu-milestone-content .tm-hl {
+			display: inline-block;
+			font-weight: 800;
+			color: #0f172a;
+			background: #fef08a; /* Base light yellow */
+			border-bottom: 3px solid #facc15; /* darker yellow border bottom */
+			padding: 0 4px;
+			border-radius: 3px;
+			margin: 0 2px;
+		}
+
+		.pdf-download-area {
+			margin-top: 40px;
+			text-align: center;
+		}
+		.pdf-download-area .btn-download {
+			display: inline-flex;
+			align-items: center;
+			padding: 14px 40px;
+			background: #1e3a8a;
+			color: #ffffff !important;
+			border-radius: 50px;
+			font-weight: 600;
+			font-size: 1.15rem;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			box-shadow: 0 8px 15px rgba(30, 58, 138, 0.2);
+		}
+		.pdf-download-area .btn-download:hover {
+			background: #1e40af;
+			transform: translateY(-3px);
+			box-shadow: 0 12px 20px rgba(30, 58, 138, 0.3);
+		}
+		.pdf-download-area .btn-download i {
+			margin-right: 12px;
+			font-size: 1.3rem;
+		}
+		
+		@media (max-width: 768px) {
+			.tembhu-info-box {
+				padding: 25px 20px;
+			}
+			.tembhu-milestone .arrow-marker {
+				margin-right: 15px;
+			}
+		}
+	</style>
+
+	<section id="about" class="about-section tembhu-editorial-section">
+		<div class="ocean">
+			<div class="wave"></div>
+			<div class="wave"></div>
+		</div>
+		
+		<div class="cloud-bg">
+			<div class="cloud cloud-1"></div>
+			<div class="cloud cloud-2"></div>
+			<div class="cloud cloud-3"></div>
+			<div class="cloud cloud-4"></div>
+		</div>
+
+		<div class="container-fluid px-4 px-lg-5">
+			<div class="section-title wow fadeInDown">
+				<h2>टेंभू उपसा सिंचन योजना</h2>
+				<div class="separator"></div>
+			</div>
+
+			<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.1s">
+				
+				<div class="tembhu-milestone">
+					<div class="arrow-marker">
+						<i class="fas fa-chevron-circle-right"></i>
 					</div>
-					<div class="col-lg-6 col-md-12">
-						<div class="about-img clearfix">
-							<div class="abt-img-set" data-tilt data-tilt-max="10">
-								<img src="/img/tembhu/tembhu_pump1.jpg"
-									style="width: 700px; height: 450px" alt="">
-							</div>
-
-						</div>
+					<div class="tembhu-milestone-content">
+						<h3>मुळ प्रशासकीय मान्यता</h3>
+						<p>
+							टेंभू उपसा सिंचन योजनेच्या रू. <span class="tm-hl">१४१६.५१ कोटी</span> रक्कमेच्या मुळ प्रकल्प अहवालास शासन
+							निर्णय क्र. टेंभू १०९५/१४२७/(३६१/९५) जलसं दि. <span class="tm-hl">१९/२/१९९६</span> अन्वये प्रशासकीय मान्यता
+							प्राप्त झाली आहे. या अहवालानुसार सातारा, सांगली व सोलापूर जिल्हयातील कराड,
+							खानापूर, तासगांव, आटपाडी कडेगांव व सांगोला या सहा तालुक्यातील १७३ गावातील एकूण
+							<span class="tm-hl">६१,८००</span> हेक्टर क्षेत्रा सिंचनाचा लाभ देण्याचे प्रस्तावित होते.
+						</p>
 					</div>
 				</div>
+
+				<div class="tembhu-milestone">
+					<div class="arrow-marker">
+						<i class="fas fa-chevron-circle-right"></i>
+					</div>
+					<div class="tembhu-milestone-content">
+						<h3>प्रथम सुधारीत प्रशासकीय मान्यता</h3>
+						<p>
+							या सुधारीत प्रकल्पाची किंमत <span class="tm-hl">२,१७६.०९ कोटी</span> असून महामंडळाने निर्णय क्र.
+							मसुप्रकिंमं/मंत्र-६/(३८३/२००२)/७९८ दि. <span class="tm-hl">२२/१/२००४</span> अन्वये सुधारीत प्रशासकीय
+							मान्यता प्रदान केली आहे.
+						</p>
+					</div>
+				</div>
+
+				<div class="tembhu-milestone">
+					<div class="arrow-marker">
+						<i class="fas fa-chevron-circle-right"></i>
+					</div>
+					<div class="tembhu-milestone-content">
+						<h3>केंद्रीय जल आयोगाची मान्यता</h3>
+						<p>
+							टेंभू प्रकल्पाचे अंदाजपत्रक रू. <span class="tm-hl">३,४५०.३४ कोटी</span> किंमतीचे (दरसुची सन २००९-१०)
+							केंद्रीय जल आयोगाच्या दि. <span class="tm-hl">१४/३/२०११</span> च्या १४ व्या मिटिंगमध्ये पत्र दि. <span class="tm-hl">१/६/२०११</span>
+							अन्वये मान्यता देण्यात आलेली आहे.
+						</p>
+					</div>
+				</div>
+
+				<div class="tembhu-milestone">
+					<div class="arrow-marker">
+						<i class="fas fa-chevron-circle-right"></i>
+					</div>
+					<div class="tembhu-milestone-content">
+						<h3>पर्यावरण मान्यता</h3>
+						<p>
+							टेंभू उपसा सिंचन प्रकल्पास पर्यावरणाची मान्यता पत्र. क्र. १२०११/४३/२००३- IAI दि.
+							<span class="tm-hl">१७/८/२००७</span> अन्वये प्राप्त झाली आहे.
+						</p>
+					</div>
+				</div>
+
 			</div>
+
+			<div class="pdf-download-area wow fadeIn" data-wow-delay="0.3s">
+				<a href="/pdf/temb.pdf" target="_blank" class="btn-download">
+					<i class="far fa-file-pdf"></i>
+					<span>योजना PDF डाउनलोड करा</span>
+				</a>
+			</div>
+			
 		</div>
 	</section>
-	
+
 	<section id="project" class="project-section project-section-two" style="padding-top: 0px !important;">
 		<div class="container">
 			<div class="project-text-content">
 				<div class="row">
 					<div class="col-lg-5 col-md-12">
-						
+
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="grid project-filtering zoom-gallery clearfix row"
@@ -136,22 +371,22 @@
 					data-category="branding fashion graphic">
 					<div class="projecct-img relative-position">
 						<img src="/img/tembhu/05.jpg" alt="">
-						
+
 					</div>
 				</div>
 				<div class="grid-item grid-item-width2 graphic" data-category="graphic">
 					<div class="projecct-img relative-position">
 						<img src="/img/tembhu/07.jpg" alt="">
-						
+
 					</div>
 				</div>
 
 			</div>
 	</section>
-	
+
 
 	<div id="footer-placeholder"></div>
-	
+
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/popper.min.js"></script>
