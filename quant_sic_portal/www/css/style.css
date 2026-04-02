@@ -4992,9 +4992,23 @@ select:visited {
   background-position: bottom;
 }
 
+.page-rti .breadcrumb-section .background_overlay {
+  background-image: url(../img/background/rti_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.page-court-case .breadcrumb-section .background_overlay {
+  background-image: url(../img/background/court_case_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 
 .page-krishna-kalva .breadcrumb-section .background_overlay {
-  background-image: url(../img/water-level/krishna_kalva.jpg);
+  background-image: url(../img/slider/slider4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   /* optional, but common */
