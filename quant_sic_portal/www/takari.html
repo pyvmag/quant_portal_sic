@@ -44,8 +44,7 @@
 		<a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
 	</div>
 	<div id="header-placeholder"></div>
-	<section id="breadcrumb" class="breadcrumb-section position-relative"
-		data-background="/img/background/bcbg.jpg">
+	<section id="breadcrumb" class="breadcrumb-section position-relative" data-background="/img/background/bcbg.jpg">
 		<div class="background_overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-content headline">
@@ -99,18 +98,35 @@
 		}
 
 		@keyframes wave {
-			0% { margin-left: 0; }
-			100% { margin-left: -1600px; }
+			0% {
+				margin-left: 0;
+			}
+
+			100% {
+				margin-left: -1600px;
+			}
 		}
 
 		@keyframes wave-reverse {
-			0% { margin-left: -1600px; }
-			100% { margin-left: 0; }
+			0% {
+				margin-left: -1600px;
+			}
+
+			100% {
+				margin-left: 0;
+			}
 		}
 
 		@keyframes swell {
-			0%, 100% { transform: translate3d(0, -10px, 0); }
-			50% { transform: translate3d(0, 5px, 0); }
+
+			0%,
+			100% {
+				transform: translate3d(0, -10px, 0);
+			}
+
+			50% {
+				transform: translate3d(0, 5px, 0);
+			}
 		}
 
 		/* Floating Clouds Background */
@@ -120,41 +136,62 @@
 			left: 0;
 			width: 100%;
 			height: 350px;
-			z-index: 1; 
+			z-index: 1;
 			overflow: hidden;
 			pointer-events: none;
 		}
+
 		.cloud {
 			position: absolute;
 			background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"%3E%3Cpath fill="%23ffffff" opacity="0.8" d="M405.3 227.1c-6-63.5-59.5-113.8-125-113.8-54.8 0-101.4 35.5-119 84.8-5.3-1.6-11-2.4-16.7-2.4-32.9 0-59.6 26.7-59.6 59.6 0 5.4.8 10.7 2.2 15.8-31 7.2-54.2 35-54.2 68.3 0 38.6 31.4 70 70 70h299.7c47.1 0 85.3-38.2 85.3-85.3 0-42.6-31.2-78.2-72.7-84.5z" /%3E%3C/svg%3E') no-repeat center;
 			background-size: contain;
-			filter: drop-shadow(0 10px 15px rgba(0,0,0,0.02));
+			filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.02));
 			animation: drift 40s linear infinite;
 		}
 
 		.cloud-1 {
-			width: 180px; height: 90px;
-			top: 30px; left: -200px;
-			animation-duration: 45s; animation-delay: -10s;
+			width: 180px;
+			height: 90px;
+			top: 30px;
+			left: -200px;
+			animation-duration: 45s;
+			animation-delay: -10s;
 		}
+
 		.cloud-2 {
-			width: 140px; height: 70px;
-			top: 80px; left: -200px;
-			animation-duration: 65s; animation-delay: -35s; opacity: 0.6;
+			width: 140px;
+			height: 70px;
+			top: 80px;
+			left: -200px;
+			animation-duration: 65s;
+			animation-delay: -35s;
+			opacity: 0.6;
 		}
+
 		.cloud-3 {
-			width: 280px; height: 140px;
-			top: -10px; left: -300px;
-			animation-duration: 50s; animation-delay: -2s; opacity: 0.8;
+			width: 280px;
+			height: 140px;
+			top: -10px;
+			left: -300px;
+			animation-duration: 50s;
+			animation-delay: -2s;
+			opacity: 0.8;
 		}
+
 		.cloud-4 {
-			width: 160px; height: 80px;
-			top: -15px; left: -200px;
-			animation-duration: 55s; animation-delay: -20s; opacity: 0.5;
+			width: 160px;
+			height: 80px;
+			top: -15px;
+			left: -200px;
+			animation-duration: 55s;
+			animation-delay: -20s;
+			opacity: 0.5;
 		}
 
 		@keyframes drift {
-			to { transform: translateX(calc(100vw + 600px)); }
+			to {
+				transform: translateX(calc(100vw + 600px));
+			}
 		}
 
 		.tembhu-editorial-section .section-title {
@@ -163,12 +200,14 @@
 			position: relative;
 			z-index: 2;
 		}
+
 		.tembhu-editorial-section .section-title h2 {
 			font-size: 2.8rem;
 			font-weight: 800;
 			color: #111827;
 			margin-bottom: 15px;
 		}
+
 		.tembhu-editorial-section .section-title .separator {
 			width: 60px;
 			height: 4px;
@@ -179,14 +218,17 @@
 
 		/* Colored bordered background for the text wrapper */
 		.tembhu-info-box {
-			background: #ffffff; /* crisp white for contrast against background blobs */
-			border: 3px solid #bfdbfe; /* crisp bordered background */
+			background: #ffffff;
+			/* crisp white for contrast against background blobs */
+			border: 3px solid #bfdbfe;
+			/* crisp bordered background */
 			border-radius: 16px;
 			padding: 40px 50px;
-			box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05);
+			box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.05);
 			margin: 0 auto;
 			width: 100%;
-			max-width: 1500px; /* Expands to fill most of the screen gracefully */
+			max-width: 1500px;
+			/* Expands to fill most of the screen gracefully */
 			position: relative;
 			z-index: 2;
 		}
@@ -198,15 +240,17 @@
 			padding-bottom: 30px;
 			border-bottom: 1px solid #dbeafe;
 		}
+
 		.tembhu-milestone:last-child {
 			margin-bottom: 0;
 			padding-bottom: 0;
 			border-bottom: none;
 		}
-		
+
 		.tembhu-milestone .arrow-marker {
 			font-size: 1.5rem;
-			color: #ef4444; /* bold red arrow */
+			color: #ef4444;
+			/* bold red arrow */
 			margin-right: 20px;
 			margin-top: 2px;
 			flex-shrink: 0;
@@ -230,8 +274,10 @@
 			display: inline-block;
 			font-weight: 800;
 			color: #0f172a;
-			background: #fef08a; /* Base light yellow */
-			border-bottom: 3px solid #facc15; /* darker yellow border bottom */
+			background: #fef08a;
+			/* Base light yellow */
+			border-bottom: 3px solid #facc15;
+			/* darker yellow border bottom */
 			padding: 0 4px;
 			border-radius: 3px;
 			margin: 0 2px;
@@ -241,6 +287,7 @@
 			margin-top: 40px;
 			text-align: center;
 		}
+
 		.pdf-download-area .btn-download {
 			display: inline-flex;
 			align-items: center;
@@ -254,20 +301,23 @@
 			transition: all 0.3s ease;
 			box-shadow: 0 8px 15px rgba(30, 58, 138, 0.2);
 		}
+
 		.pdf-download-area .btn-download:hover {
 			background: #1e40af;
 			transform: translateY(-3px);
 			box-shadow: 0 12px 20px rgba(30, 58, 138, 0.3);
 		}
+
 		.pdf-download-area .btn-download i {
 			margin-right: 12px;
 			font-size: 1.3rem;
 		}
-		
+
 		@media (max-width: 768px) {
 			.tembhu-info-box {
 				padding: 25px 20px;
 			}
+
 			.tembhu-milestone .arrow-marker {
 				margin-right: 15px;
 			}
@@ -279,7 +329,7 @@
 			<div class="wave"></div>
 			<div class="wave"></div>
 		</div>
-		
+
 		<div class="cloud-bg">
 			<div class="cloud cloud-1"></div>
 			<div class="cloud cloud-2"></div>
@@ -294,12 +344,15 @@
 			</div>
 
 			<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.1s">
-				
+
 				<div class="tembhu-milestone">
 					<div class="arrow-marker"><i class="fas fa-chevron-circle-right"></i></div>
 					<div class="tembhu-milestone-content">
 						<h3>प्रकल्पाचे नियोजन</h3>
-						<p>कृष्णा कोयना उपसा सिंचन प्रकल्पासाठी कोयना धरणातून १९.०७ अ.घ.फु., कृष्णा नदीतून ७.७१ अ.घ.फु. व वारणा प्रकल्पाच्या मंजुर बिगर सिंचन तरतुदीतील विनावापर ६.० अ.घ.फु. असा एकूण <span class="tm-hl">३२.७८ अ.घ.फु.</span> इतका पाणी वापर नियोजित आहे. त्याचा योजनानिहाय तपशिल खालीलप्रमाणे आहे.</p>
+						<p>कृष्णा कोयना उपसा सिंचन प्रकल्पासाठी कोयना धरणातून १९.०७ अ.घ.फु., कृष्णा नदीतून ७.७१ अ.घ.फु.
+							व वारणा प्रकल्पाच्या मंजुर बिगर सिंचन तरतुदीतील विनावापर ६.० अ.घ.फु. असा एकूण <span
+								class="tm-hl">३२.७८ अ.घ.फु.</span> इतका पाणी वापर नियोजित आहे. त्याचा योजनानिहाय तपशिल
+							खालीलप्रमाणे आहे.</p>
 					</div>
 				</div>
 
@@ -307,7 +360,8 @@
 					<div class="arrow-marker"><i class="fas fa-chevron-circle-right"></i></div>
 					<div class="tembhu-milestone-content">
 						<h3>प्रकल्पाची रचना</h3>
-						<p>कृष्णा कोयना उपसा सिंचन प्रकल्पांतर्गत <span class="tm-hl">ताकारी</span> व <span class="tm-hl">म्हैसाळ</span> अशा दोन स्वतंत्र उपसा सिंचन योजना आहेत.</p>
+						<p>कृष्णा कोयना उपसा सिंचन प्रकल्पांतर्गत <span class="tm-hl">ताकारी</span> व <span
+								class="tm-hl">म्हैसाळ</span> अशा दोन स्वतंत्र उपसा सिंचन योजना आहेत.</p>
 					</div>
 				</div>
 
@@ -315,7 +369,14 @@
 					<div class="arrow-marker"><i class="fas fa-chevron-circle-right"></i></div>
 					<div class="tembhu-milestone-content">
 						<h3>सिंचनाचा लाभ</h3>
-						<p>ताकारी उपसा सिंचन योजनेचा उदभव कृष्णा नदीवर ताकारी गावाजवळ असून या योजनेव्दारे एकूण ४ टप्प्यामध्ये (स्थिर उंची - २१९ मी.) ९.३४ अघफु पाणी उचलून त्याव्दारे सांगली जिल्ह्यातील खानापूर, तासगांव, मिरज, पलूस, कडेगांव व वाळवा या तालुक्यातील <span class="tm-hl">२७४३० हे.</span> (ICA) क्षेत्रास सिंचनाचा लाभ देण्याचे नियोजित आहे. तसेच म्हैसाळ उपसा सिंचन योजनेचा उदभव कृष्णा नदीवर म्हैसाळ गावाजवळ असून या योजनेव्दारे एकूण ६ टप्प्यामध्ये (स्थिर उंची - २६१ मी.) १७.४४ अघफु पाणी उचलून त्याव्दारे सांगली जिल्ह्यातील मिरज, कवठेमहांकाळ, तासगांव, जत व सोलापूर जिल्ह्यातील सांगोला व मंगळवेढा या तालुक्यातील <span class="tm-hl">८१६९७ हे.</span> (ICA) क्षेत्रास सिंचनाचा लाभ देण्याचे प्रस्तावित आहे.</p>
+						<p>ताकारी उपसा सिंचन योजनेचा उदभव कृष्णा नदीवर ताकारी गावाजवळ असून या योजनेव्दारे एकूण ४
+							टप्प्यामध्ये (स्थिर उंची - २१९ मी.) ९.३४ अघफु पाणी उचलून त्याव्दारे सांगली जिल्ह्यातील
+							खानापूर, तासगांव, मिरज, पलूस, कडेगांव व वाळवा या तालुक्यातील <span class="tm-hl">२७४३०
+								हे.</span> (ICA) क्षेत्रास सिंचनाचा लाभ देण्याचे नियोजित आहे. तसेच म्हैसाळ उपसा सिंचन
+							योजनेचा उदभव कृष्णा नदीवर म्हैसाळ गावाजवळ असून या योजनेव्दारे एकूण ६ टप्प्यामध्ये (स्थिर
+							उंची - २६१ मी.) १७.४४ अघफु पाणी उचलून त्याव्दारे सांगली जिल्ह्यातील मिरज, कवठेमहांकाळ,
+							तासगांव, जत व सोलापूर जिल्ह्यातील सांगोला व मंगळवेढा या तालुक्यातील <span
+								class="tm-hl">८१६९७ हे.</span> (ICA) क्षेत्रास सिंचनाचा लाभ देण्याचे प्रस्तावित आहे.</p>
 					</div>
 				</div>
 
@@ -323,7 +384,9 @@
 					<div class="arrow-marker"><i class="fas fa-chevron-circle-right"></i></div>
 					<div class="tembhu-milestone-content">
 						<h3>प्रशासकीय मान्यता</h3>
-						<p>कृष्णा कोयना उपसा सिंचन योजना प्रकल्पास १,३५,६२७ हे. सिंचन क्षेत्र व ३२.७८ अघफु पाणी वापर गृहीत धरुन रु. <span class="tm-hl">८२७२.३६ कोटी</span> इतक्या रक्कमेस दि. २९/१२/२०२४ रोजी पाचवी सुधारित प्रशासकीय मान्यता प्राप्त करणेत आली आहे.</p>
+						<p>कृष्णा कोयना उपसा सिंचन योजना प्रकल्पास १,३५,६२७ हे. सिंचन क्षेत्र व ३२.७८ अघफु पाणी वापर
+							गृहीत धरुन रु. <span class="tm-hl">८२७२.३६ कोटी</span> इतक्या रक्कमेस दि. २९/१२/२०२४ रोजी
+							पाचवी सुधारित प्रशासकीय मान्यता प्राप्त करणेत आली आहे.</p>
 					</div>
 				</div>
 

@@ -4978,19 +4978,30 @@ select:visited {
 }
 
 .page-pani-vapar .breadcrumb-section .background_overlay {
-    background-image: url(../img/water-level/water_use.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;      /* optional, but common */
-    background-position: center; /* optional */
+  background-image: url(../img/background/pani_vapar_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* optional, but common */
+  background-position: center;
+  /* optional */
+}
+
+.page-knowledge-center .breadcrumb-section .background_overlay {
+  background-image: url(../img/background/knowledge_center_bg.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 
 .page-krishna-kalva .breadcrumb-section .background_overlay {
-    background-image: url(../img/water-level/krishna_kalva.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;      /* optional, but common */
-    background-position: center; /* optional */
+  background-image: url(../img/water-level/krishna_kalva.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* optional, but common */
+  background-position: center;
+  /* optional */
 }
+
 /* .page-sangli-patbandhare .breadcrumb-section .background_overlay {
     background-image: url(../img/water-level/krishna_kalva.jpg);
     background-repeat: no-repeat;
@@ -4998,14 +5009,19 @@ select:visited {
     background-position: center; 
 } */
 .page-arfal .breadcrumb-section .background_overlay {
-    background-image: url(../img/water-level/Arfal.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;      /* optional, but common */
-    background-position: center; /* optional */
+  background-image: url(../img/water-level/Arfal.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* optional, but common */
+  background-position: center;
+  /* optional */
 }
+
 .page-arfal .breadcrumb-section .background_overlay {
-    background-image: url(../img/water-level/Arfal.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;      /* optional, but common */
-    background-position: center; /* optional */
+  background-image: url(../img/water-level/Arfal.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* optional, but common */
+  background-position: center;
+  /* optional */
 }
