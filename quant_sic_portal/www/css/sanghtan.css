@@ -17,7 +17,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(240, 248, 255, 0.88), rgba(255, 255, 255, 0.95)), url('/img/slider/Koyna-Dam.jpg');
+    background-image: linear-gradient(rgba(240, 248, 255, 0.88), rgb(4, 192, 255)), url('/img/slider/slider4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

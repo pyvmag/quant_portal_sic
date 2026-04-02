@@ -37,6 +37,11 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
+        .ticker-inner a:hover .ticker-item {
+            text-decoration: underline !important;
+            cursor: pointer;
+        }
+
         .ticker-wrap:hover .ticker-inner {
             animation-play-state:paused;
         }
@@ -357,10 +362,19 @@
             <div class="ticker-inner">
                 <span class="ticker-item" style="display:inline-block; padding-left: 100vw;">जलसंपदा विभाग, महाराष्ट्र शासन - आपले हार्दिक स्वागत करीत आहे!</span>
                 <span class="ticker-item">|</span>
-                {% set ticker_news = frappe.get_all("News Ticker", fields=["news_text"]) %}
+                {% set ticker_news = frappe.get_all("News Ticker", filters={"enabled": 1}, fields=["news_text", "attach"]) %}
                 {% if ticker_news %}
                     {% for item in ticker_news %}
-                        <span class="ticker-item">{{ item.news_text }}</span>
+                        {% if item.attach %}
+                            <a href="{{ item.attach }}" target="_blank" style="color: inherit; text-decoration: none;">
+                                <span class="ticker-item">
+                                    <i class="fas fa-paperclip" style="margin-right: 8px; font-size: 14px; opacity: 0.9;"></i>
+                                    {{ item.news_text }}
+                                </span>
+                            </a>
+                        {% else %}
+                            <span class="ticker-item">{{ item.news_text }}</span>
+                        {% endif %}
                         <span class="ticker-item">|</span>
                     {% endfor %}
                 {% else %}

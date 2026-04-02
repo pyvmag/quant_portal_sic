@@ -5016,6 +5016,13 @@ select:visited {
   /* optional */
 }
 
+.page-flood-safety .breadcrumb-section .background_overlay {
+  background-image: url(../img/background/flood_safety_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 /* .page-sangli-patbandhare .breadcrumb-section .background_overlay {
     background-image: url(../img/water-level/krishna_kalva.jpg);
     background-repeat: no-repeat;
@@ -5023,7 +5030,7 @@ select:visited {
     background-position: center; 
 } */
 .page-arfal .breadcrumb-section .background_overlay {
-  background-image: url(../img/water-level/Arfal.jpg);
+  background-image: url(../img/background/arfal_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   /* optional, but common */
@@ -5031,11 +5038,3 @@ select:visited {
   /* optional */
 }
 
-.page-arfal .breadcrumb-section .background_overlay {
-  background-image: url(../img/water-level/Arfal.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* optional, but common */
-  background-position: center;
-  /* optional */
-}
