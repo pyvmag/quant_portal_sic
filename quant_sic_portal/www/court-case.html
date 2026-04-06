@@ -26,138 +26,115 @@
         <style>
                 /* Court Case Page Enhanced Styles */
                 .court-hero-section {
-                    background: linear-gradient(180deg, #34495e 0%, #2c3e50 50%, #ecf0f1 100%);
-                    padding: 60px 0 100px;
+                    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+                    padding: 100px 0;
                     position: relative;
                     overflow: hidden;
-                    margin-top: -1px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    min-height: 350px;
                 }
                 
                 .court-hero-section::before {
                     content: '';
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,50 C250,100 750,0 1000,50 L1000,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1056,320C960,320,864,320,768,320C672,320,576,320,480,320C384,320,288,320,192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') no-repeat bottom;
                     background-size: cover;
-                    opacity: 0.2;
-                }
-                
-                .court-hero-section::after {
-                    content: '';
-                    position: absolute;
-                    bottom: -2px;
-                    left: 0;
-                    right: 0;
-                    height: 80px;
-                    background: linear-gradient(180deg, transparent 0%, #ecf0f1 100%);
-                    z-index: 1;
+                    pointer-events: none;
                 }
                 
                 .court-hero-content {
                     position: relative;
                     z-index: 2;
-                    text-align: center;
+                    width: 100%;
+                    max-width: 900px;
+                    margin: 0 auto;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                     align-items: center;
-                    min-height: 200px;
+                    justify-content: center;
                 }
                 
                 .court-hero-content h1 {
-                    color: white;
+                    color: #ffffff;
                     font-size: 3.5rem;
-                    font-weight: 700;
+                    font-weight: 800;
                     margin-bottom: 20px;
-                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-                    text-align: center;
+                    letter-spacing: -0.02em;
                 }
                 
                 .court-hero-content p {
-                    color: rgba(255,255,255,0.9);
-                    font-size: 1.2rem;
-                    max-width: 600px;
-                    margin: 0 auto;
-                    text-align: center;
+                    color: rgba(255,255,255,0.85);
+                    font-size: 1.25rem;
+                    line-height: 1.6;
                 }
                 
                 .court-info-section {
-                    background: linear-gradient(180deg, #ecf0f1 0%, #bdc3c7 100%);
-                    padding: 60px 0;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                
-                .court-info-section .container {
-                    max-width: 1400px;
-                    width: 100%;
-                    padding: 0 20px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: stretch;
-                }
-                
-                .court-info-section .row {
-                    width: 100%;
-                    justify-content: center;
-                    align-items: stretch;
+                    background: #ffffff;
+                    padding: 80px 0;
                 }
                 
                 .court-card {
-                    background: white;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
                     border-radius: 16px;
-                    padding: 30px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    padding: 35px;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
                     margin-bottom: 30px;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
-                    border-left: 4px solid #34495e;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     height: 100%;
                     display: flex;
                     flex-direction: column;
+                    text-align: center;
+                    align-items: center;
                 }
                 
                 .court-card:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-                }
-                
-                .court-card h3 {
-                    color: #2c3e50;
-                    margin-bottom: 15px;
-                    font-size: 1.5rem;
-                }
-                
-                .court-card p {
-                    color: #555;
-                    line-height: 1.6;
-                    flex-grow: 1;
+                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                    border-color: #3b82f6;
                 }
                 
                 .court-card .icon {
-                    width: 60px;
-                    height: 60px;
-                    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-                    border-radius: 50%;
+                    width: 64px;
+                    height: 64px;
+                    background: #eff6ff;
+                    color: #2563eb;
+                    border-radius: 12px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-bottom: 20px;
-                    color: white;
-                    font-size: 24px;
+                    margin-bottom: 24px;
+                    font-size: 28px;
+                    transition: all 0.3s ease;
+                }
+                
+                .court-card:hover .icon {
+                    background: #2563eb;
+                    color: #ffffff;
+                }
+                
+                .court-card h3 {
+                    color: #1e293b;
+                    margin-bottom: 16px;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+                
+                .court-card p {
+                    color: #64748b;
+                    line-height: 1.6;
+                    margin: 0;
+                    font-size: 1.05rem;
                 }
                 
                 #court-dashboard {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 60vh;
-                    background: linear-gradient(180deg, #bdc3c7 0%, #ecf0f1 100%);
-                    padding: 40px 0;
+                    background: #f8fafc;
+                    padding: 60px 0 100px;
+                    min-height: auto;
                 }
                 
                 #court-dashboard .container {
@@ -265,15 +242,14 @@
                 }
 
                 .kpi-item {
-                        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                        background: #ffffff;
                         padding: 20px;
                         border-radius: 12px;
                         text-align: center;
-                        box-shadow: 0 8px 25px rgba(52, 73, 94, 0.15);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         margin: 0 auto 15px;
-                        border: 2px solid transparent;
-                        border-left: 4px solid #34495e;
+                        border: 1px solid #e2e8f0;
                         opacity: 0;
                         transform: scale(0.9) translateY(20px);
                         animation: bounceInUp 0.6s ease-out forwards;
@@ -281,26 +257,11 @@
                         overflow: hidden;
                 }
                 
-                .kpi-item::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(90deg, transparent, rgba(52, 73, 94, 0.1), transparent);
-                    transition: left 0.6s ease;
-                }
-                
-                .kpi-item:hover::before {
-                    left: 100%;
-                }
-
                 .kpi-item:hover {
-                        transform: translateY(-8px) scale(1.03);
-                        box-shadow: 0 15px 40px rgba(52, 73, 94, 0.25);
-                        border-color: #34495e;
-                        background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+                        transform: translateY(-5px);
+                        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+                        border-color: #3b82f6;
+                        background: #ffffff;
                 }
 
                 .kpi-item:nth-child(1) {
@@ -378,7 +339,7 @@
                     transform: translateX(-50%);
                     width: 50px;
                     height: 3px;
-                    background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%);
+                    background: #34495e;
                     border-radius: 2px;
                 }
 
@@ -390,10 +351,10 @@
                         max-width: 1000px;
                         border-radius: 16px;
                         overflow: hidden;
-                        box-shadow: 0 15px 35px rgba(52, 73, 94, 0.2);
+                        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
                         min-height: 450px;
-                        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
-                        border: 2px solid #34495e;
+                        background: #ffffff;
+                        border: 1px solid #e2e8f0;
                         opacity: 0;
                         transform: translateY(30px);
                         animation: fadeInUp 1s ease-out forwards;
@@ -774,7 +735,7 @@
         <!-- Court Case Info Section -->
         <section class="court-info-section">
             <div class="container">
-                <div class="row">
+                <div class="row g-4 justify-content-center">
                     <div class="col-lg-4 col-md-6">
                         <div class="court-card">
                             <div class="icon">
@@ -790,53 +751,25 @@
                                 <i class="fas fa-balance-scale"></i>
                             </div>
                             <h3>न्यायिक प्रक्रिया</h3>
-                            <p>चालू खटल्यांची स्थिती, पुढील ऐकीजी तारखा आणि न्यायिक प्रक्रियेची तपशील</p>
+                            <p>चालू खटल्यांची स्थिती, पुढील तारखा आणि न्यायिक प्रक्रियेची तपशील</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="court-card">
                             <div class="icon">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="fas fa-file-pdf"></i>
                             </div>
-                            <h3>दस्तऐवज</h3>
-                            <p>सर्व आवश्यक कायदेशीर दस्तऐवज, अर्ज, आणि निकालांची प्रतिमा</p>
+                            <h3>कोर्ट केस PDF</h3>
+                            <p>कोर्ट केस संदर्भातील सर्व महत्वाचे अहवाल PDF स्वरूपात उपलब्ध</p>
+                            <a href="/pdf/temb.pdf" target="_blank" class="btn btn-outline-primary mt-3 w-100">डाउनलोड करा</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <div class="main-content">
-                <section id="about" class="about-section about-page-about">
-                        <div class="container">
-                                <div class="about-content">
-                                        <div class="row">
-                                                <div class="col-lg-6 col-md-12">
-                                                        <div class="about-text">
-                                                                <div class="section-title-left">
-                                                                        <span class="title-tag"><img
-                                                                                        src="/icon/icon5.svg"
-                                                                                        alt=""></span>
-                                                                        <h2>कोर्ट केस</h2>
-                                                                </div>
-                                                                <!-- title -->
-                                                                <div class="about-content pera-content">
-                                                                        <div class="about-btn text-uppercase">
-                                                                                <a href="/pdf/temb.pdf"
-                                                                                        target="_blank">
-                                                                                        <i class="fa fa-file-pdf"
-                                                                                                style="color: #fb1d04;"></i>
-                                                                                        <span>कोर्ट केस PDF</span>
-                                                                                </a>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </section>
-                <section id="court-dashboard" class="project-section project-section-two" style="padding-top: 0px !important;">
+        <div class="main-content p-0">
+                <section id="court-dashboard" class="project-section p-0">
                         <div class="container">
                                 <div class="row justify-content-center dashboard-row">
                                         <div class="col-12 mx-auto">
@@ -1049,7 +982,7 @@
                                         const tableTitle = table.sheet_name || table.title || `Table ${tIndex + 1}`;
                                         if (kpis.length > 0) {
                                                 hasContent = true;
-                                                html += `<div class="table-section"><h3>${tableTitle} - केपीआय</h3><div class="d-flex justify-content-center"><div class="kpi-wrapper"><div class="row kpi-grid justify-content-center">`; // Updated to use class="kpi-wrapper" instead of inline style
+                                                 html += `<div class="table-section border-0 shadow-none"><h3 class="border-0 mb-4">${tableTitle} - केपीआय</h3><div class="kpi-wrapper"><div class="row g-4 justify-content-center">`;
                                                 kpis.forEach(kpi => {
                                                         const label = kpi.label || 'Unknown';
                                                         const value = kpi.value !== undefined ? kpi.value : (kpi.data ? kpi.data[0] || 0 : 0); // Fallback to first data point or 0

@@ -268,6 +268,21 @@ body {
     margin: 0 auto;
 }
 
+/* Mobile Override for Horizontal Branches */
+@media (max-width: 425px) {
+    .horizontal-branches {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        padding: 10px 1px !important;
+    }
+    
+    .horizontal-branches .column {
+        flex: 0 0 calc(33.333% - 4px) !important;
+        max-width: calc(33.333% - 4px) !important;
+        width: calc(33.333% - 4px) !important;
+    }
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -309,15 +324,741 @@ body {
 }
 
 /* ─── Responsive ─── */
-@media (max-width: 992px) {
+/* Ultra Large Screens (1400px+) */
+@media (min-width: 1401px) {
+    :root {
+        --card-w: 220px;
+    }
+    
+    .centered {
+        padding: 60px 20px 40px;
+    }
+    
+    .centered h3 {
+        font-size: 42px;
+    }
+    
+    .centered h4 {
+        font-size: 22px;
+    }
+    
+    .tree-chart {
+        padding: 60px 20px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 30px 20px;
+    }
+    
+    .avatar-container {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .official-name {
+        font-size: 18px;
+    }
+    
+    .designation {
+        font-size: 15px;
+    }
+    
+    .location-badge {
+        font-size: 13px;
+    }
+    
+    .horizontal-branches {
+        max-width: 2000px;
+        gap: 35px;
+    }
+}
+
+/* Large Screens (1200px - 1400px) */
+@media (max-width: 1400px) and (min-width: 1201px) {
+    :root {
+        --card-w: 200px;
+    }
+    
+    .centered {
+        padding: 50px 20px 35px;
+    }
+    
+    .centered h3 {
+        font-size: 38px;
+    }
+    
+    .centered h4 {
+        font-size: 20px;
+    }
+    
+    .tree-chart {
+        padding: 50px 20px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 28px 18px;
+    }
+    
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .official-name {
+        font-size: 17px;
+    }
+    
+    .designation {
+        font-size: 14px;
+    }
+    
+    .location-badge {
+        font-size: 12px;
+    }
+    
+    .horizontal-branches {
+        max-width: 1800px;
+        gap: 30px;
+    }
+}
+
+/* Medium Large Screens (992px - 1200px) */
+@media (max-width: 1200px) and (min-width: 993px) {
+    :root {
+        --card-w: 180px;
+    }
+    
+    .centered {
+        padding: 40px 15px 30px;
+    }
+    
+    .centered h3 {
+        font-size: 34px;
+    }
+    
+    .centered h4 {
+        font-size: 18px;
+    }
+    
+    .tree-chart {
+        padding: 40px 15px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 24px 16px;
+    }
+    
+    .avatar-container {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .official-name {
+        font-size: 16px;
+    }
+    
+    .designation {
+        font-size: 13px;
+    }
+    
+    .location-badge {
+        font-size: 11px;
+    }
+    
+    .horizontal-branches {
+        max-width: 1600px;
+        gap: 25px;
+    }
+}
+
+/* Tablets (768px - 992px) */
+@media (max-width: 992px) and (min-width: 769px) {
+    :root {
+        --card-w: 160px;
+    }
+    
+    .centered {
+        padding: 30px 15px 25px;
+    }
+    
+    .centered h3 {
+        font-size: 30px;
+    }
+    
+    .centered h4 {
+        font-size: 16px;
+    }
+    
+    .tree-chart {
+        padding: 30px 15px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 20px 14px;
+    }
+    
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 12px;
+    }
+    
+    .official-name {
+        font-size: 14px;
+    }
+    
+    .designation {
+        font-size: 12px;
+    }
+    
+    .location-badge {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+    
     .horizontal-branches {
         flex-direction: column;
+        gap: 20px;
+        max-width: none;
+        padding: 30px 10px;
+    }
+    
+    .superintendent-row {
         gap: 40px;
     }
-    .horizontal-bar, .horizontal-bar::before, .horizontal-bar::after, .column::before {
-        display: none;
+}
+
+/* Large Mobile (576px - 768px) */
+@media (max-width: 768px) and (min-width: 577px) {
+    :root {
+        --card-w: 140px;
     }
+    
+    .centered {
+        padding: 25px 10px 20px;
+    }
+    
+    .centered h3 {
+        font-size: 26px;
+    }
+    
+    .centered h4 {
+        font-size: 14px;
+    }
+    
+    .tree-chart {
+        padding: 25px 10px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 16px 12px;
+    }
+    
+    .avatar-container {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 10px;
+    }
+    
+    .official-name {
+        font-size: 13px;
+    }
+    
+    .designation {
+        font-size: 11px;
+    }
+    
+    .location-badge {
+        font-size: 9px;
+        padding: 2px 5px;
+    }
+    
+    .horizontal-branches {
+        gap: 15px;
+        padding: 25px 8px;
+    }
+    
+    .superintendent-row {
+        gap: 30px;
+    }
+    
+    .flow-line {
+        height: 30px;
+    }
+}
+
+/* Medium Mobile (480px - 576px) */
+@media (max-width: 576px) and (min-width: 481px) {
+    :root {
+        --card-w: 120px;
+    }
+    
+    .centered {
+        padding: 20px 8px 15px;
+    }
+    
+    .centered h3 {
+        font-size: 22px;
+    }
+    
+    .centered h4 {
+        font-size: 12px;
+    }
+    
+    .tree-chart {
+        padding: 20px 8px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 12px 10px;
+    }
+    
+    .avatar-container {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 8px;
+    }
+    
+    .official-name {
+        font-size: 12px;
+    }
+    
+    .designation {
+        font-size: 10px;
+    }
+    
+    .location-badge {
+        font-size: 8px;
+        padding: 2px 4px;
+    }
+    
+    .horizontal-branches {
+        gap: 12px;
+        padding: 20px 5px;
+    }
+    
+    .superintendent-row {
+        gap: 20px;
+    }
+    
+    .flow-line {
+        height: 25px;
+    }
+}
+
+/* Small Mobile (380px - 480px) */
+@media (max-width: 480px) and (min-width: 381px) {
+    :root {
+        --card-w: 100px;
+    }
+    
+    .centered {
+        padding: 15px 5px 12px;
+    }
+    
+    .centered h3 {
+        font-size: 18px;
+    }
+    
+    .centered h4 {
+        font-size: 11px;
+    }
+    
+    .tree-chart {
+        padding: 15px 5px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 10px 8px;
+    }
+    
+    .avatar-container {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 6px;
+    }
+    
+    .official-name {
+        font-size: 11px;
+    }
+    
+    .designation {
+        font-size: 9px;
+    }
+    
+    .location-badge {
+        font-size: 7px;
+        padding: 1px 3px;
+    }
+    
+    .horizontal-branches {
+        gap: 10px;
+        padding: 15px 3px;
+    }
+    
+    .superintendent-row {
+        gap: 15px;
+    }
+    
     .flow-line {
         height: 20px;
+    }
+}
+
+/* Ultra Small Mobile (≤380px) */
+@media (max-width: 380px) {
+    :root {
+        --card-w: 90px;
+    }
+    
+    .centered {
+        padding: 12px 3px 10px;
+    }
+    
+    .centered h3 {
+        font-size: 16px;
+    }
+    
+    .centered h4 {
+        font-size: 10px;
+    }
+    
+    .tree-chart {
+        padding: 12px 3px;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 8px 6px;
+    }
+    
+    .avatar-container {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto 5px;
+    }
+    
+    .official-name {
+        font-size: 10px;
+    }
+    
+    .designation {
+        font-size: 8px;
+    }
+    
+    .location-badge {
+        font-size: 6px;
+        padding: 1px 2px;
+    }
+    
+    .horizontal-branches {
+        gap: 8px;
+        padding: 12px 2px;
+    }
+    
+    .superintendent-row {
+        gap: 12px;
+    }
+    
+    .flow-line {
+        height: 15px;
+    }
+}
+
+/* Special Breakpoint for 425x655 (Small Mobile Portrait) */
+@media (max-width: 425px) and (min-width: 421px) {
+    :root {
+        --card-w: 85px;
+    }
+    
+    .centered {
+        padding: 10px 2px 8px;
+    }
+    
+    .centered h3 {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    
+    .centered h4 {
+        font-size: 9px;
+        line-height: 1.1;
+    }
+    
+    .tree-chart {
+        padding: 10px 2px;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 6px 4px;
+        min-height: 120px;
+    }
+    
+    .avatar-container {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 4px;
+    }
+    
+    .official-name {
+        font-size: 9px;
+        line-height: 1.1;
+        margin: 0 0 2px 0;
+    }
+    
+    .designation {
+        font-size: 7px;
+        line-height: 1.0;
+        margin: 0 0 6px 0;
+    }
+    
+    .location-badge {
+        font-size: 5px;
+        padding: 1px 2px;
+        line-height: 1.0;
+    }
+    
+    .horizontal-branches {
+        gap: 6px !important;
+        padding: 10px 1px !important;
+        overflow-x: hidden !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        max-width: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+    }
+    
+    .horizontal-branches .column {
+        flex: 0 0 calc(33.333% - 4px) !important;
+        max-width: calc(33.333% - 4px) !important;
+        width: calc(33.333% - 4px) !important;
+    }
+    
+    .superintendent-row {
+        gap: 8px !important;
+        padding: 5px 0 !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        display: flex !important;
+        flex-direction: row !important;
+    }
+    
+    .superintendent-row .column {
+        flex: 0 0 calc(50% - 4px) !important;
+        max-width: calc(50% - 4px) !important;
+        width: calc(50% - 4px) !important;
+    }
+    
+    .flow-line {
+        height: 12px;
+    }
+    
+    .rank-superintendent::before,
+    .rank-deputy::before,
+    .rank-assistant::before,
+    .rank-executive::before {
+        width: 30px;
+        height: 3px;
+    }
+}
+
+/* Extra Small Mobile (≤420px) */
+@media (max-width: 420px) and (min-width: 401px) {
+    :root {
+        --card-w: 80px;
+    }
+    
+    .centered {
+        padding: 8px 2px 6px;
+    }
+    
+    .centered h3 {
+        font-size: 13px;
+        line-height: 1.1;
+    }
+    
+    .centered h4 {
+        font-size: 8px;
+        line-height: 1.0;
+    }
+    
+    .tree-chart {
+        padding: 8px 2px;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 5px 3px;
+        min-height: 110px;
+    }
+    
+    .avatar-container {
+        width: 35px;
+        height: 35px;
+        margin: 0 auto 3px;
+    }
+    
+    .official-name {
+        font-size: 8px;
+        line-height: 1.0;
+        margin: 0 0 1px 0;
+    }
+    
+    .designation {
+        font-size: 6px;
+        line-height: 1.0;
+        margin: 0 0 4px 0;
+    }
+    
+    .location-badge {
+        font-size: 4px;
+        padding: 1px 1px;
+        line-height: 1.0;
+    }
+    
+    .horizontal-branches {
+        gap: 5px;
+        padding: 8px 1px;
+        overflow-x: hidden;
+        flex-wrap: wrap !important;
+        justify-content: center;
+        max-width: none;
+    }
+    
+    .horizontal-branches .column {
+        flex: 0 0 calc(33.333% - 3px);
+        max-width: calc(33.333% - 3px);
+    }
+    
+    .superintendent-row {
+        gap: 6px;
+        padding: 4px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .superintendent-row .column {
+        flex: 0 0 calc(50% - 3px);
+        max-width: calc(50% - 3px);
+    }
+    
+    .flow-line {
+        height: 10px;
+    }
+    
+    .rank-superintendent::before,
+    .rank-deputy::before,
+    .rank-assistant::before,
+    .rank-executive::before {
+        width: 25px;
+        height: 2px;
+    }
+}
+
+/* Tiny Mobile (≤400px) */
+@media (max-width: 400px) {
+    :root {
+        --card-w: 75px;
+    }
+    
+    .centered {
+        padding: 6px 1px 5px;
+    }
+    
+    .centered h3 {
+        font-size: 12px;
+        line-height: 1.0;
+    }
+    
+    .centered h4 {
+        font-size: 7px;
+        line-height: 1.0;
+    }
+    
+    .tree-chart {
+        padding: 6px 1px;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .leaf {
+        width: var(--card-w);
+        padding: 4px 2px;
+        min-height: 100px;
+    }
+    
+    .avatar-container {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto 2px;
+    }
+    
+    .official-name {
+        font-size: 7px;
+        line-height: 1.0;
+        margin: 0 0 1px 0;
+    }
+    
+    .designation {
+        font-size: 5px;
+        line-height: 1.0;
+        margin: 0 0 3px 0;
+    }
+    
+    .location-badge {
+        font-size: 3px;
+        padding: 1px 1px;
+        line-height: 1.0;
+    }
+    
+    .horizontal-branches {
+        gap: 4px;
+        padding: 6px 0;
+        overflow-x: hidden;
+        flex-wrap: wrap !important;
+        justify-content: center;
+        max-width: none;
+    }
+    
+    .horizontal-branches .column {
+        flex: 0 0 calc(33.333% - 2px);
+        max-width: calc(33.333% - 2px);
+    }
+    
+    .superintendent-row {
+        gap: 5px;
+        padding: 3px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .superintendent-row .column {
+        flex: 0 0 calc(50% - 2px);
+        max-width: calc(50% - 2px);
+    }
+    
+    .flow-line {
+        height: 8px;
+    }
+    
+    .rank-superintendent::before,
+    .rank-deputy::before,
+    .rank-assistant::before,
+    .rank-executive::before {
+        width: 20px;
+        height: 2px;
     }
 }

@@ -106,3 +106,151 @@
     justify-content: center;
   }
 }
+
+/* Large Mobile (768px - 992px) */
+@media (max-width: 768px) and (min-width: 577px) {
+  .footer-content {
+    padding: 15px 12px;
+  }
+  
+  .footer-row {
+    gap: 25px;
+  }
+  
+  .footer-left ul {
+    gap: 10px;
+  }
+  
+  .footer-left li:not(:last-child) {
+    padding-right: 10px;
+    margin-right: 10px;
+  }
+  
+  .footer-right ul {
+    gap: 6px;
+  }
+  
+  .footer-copyright-text {
+    padding: 8px;
+    font-size: 0.85em;
+  }
+}
+
+/* Medium Mobile (576px - 768px) */
+@media (max-width: 576px) and (min-width: 481px) {
+  .footer-content {
+    padding: 12px 10px;
+  }
+  
+  .footer-row {
+    gap: 20px;
+  }
+  
+  .footer-left ul {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .footer-left li:not(:last-child) {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  
+  .footer-left p {
+    font-size: 0.9em;
+  }
+  
+  .footer-center p {
+    font-size: 0.85em;
+  }
+  
+  .footer-right ul {
+    gap: 5px;
+  }
+  
+  .footer-right ul li img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .footer-copyright-text {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+}
+
+/* Small Mobile (480px - 576px) */
+@media (max-width: 480px) and (min-width: 381px) {
+  .footer-content {
+    padding: 10px 8px;
+  }
+  
+  .footer-row {
+    gap: 15px;
+  }
+  
+  .footer-left ul {
+    gap: 6px;
+  }
+  
+  .footer-left p {
+    font-size: 0.85em;
+  }
+  
+  .footer-center p {
+    font-size: 0.8em;
+  }
+  
+  .footer-right ul {
+    gap: 4px;
+  }
+  
+  .footer-right ul li img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .footer-copyright-text {
+    padding: 5px;
+    font-size: 0.75em;
+  }
+}
+
+/* Ultra Small Mobile (≤380px) */
+@media (max-width: 380px) {
+  .footer-content {
+    padding: 8px 6px;
+  }
+  
+  .footer-row {
+    gap: 12px;
+  }
+  
+  .footer-left ul {
+    gap: 4px;
+  }
+  
+  .footer-left p {
+    font-size: 0.8em;
+  }
+  
+  .footer-center p {
+    font-size: 0.75em;
+  }
+  
+  .footer-right ul {
+    gap: 3px;
+  }
+  
+  .footer-right ul li img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  .footer-copyright-text {
+    padding: 4px;
+    font-size: 0.7em;
+  }
+}

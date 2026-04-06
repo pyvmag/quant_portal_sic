@@ -245,6 +245,298 @@
             color: #2e7d32;
             text-align: center;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .main-content {
+                padding: 10px 5px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+            
+            /* Tab Responsive */
+            .tab button {
+                padding: 10px 8px;
+                font-size: 12px;
+                float: none;
+                display: inline-block;
+                width: calc(50% - 4px);
+                margin: 2px;
+                box-sizing: border-box;
+            }
+            
+            .tab {
+                text-align: center;
+                overflow: visible;
+                white-space: normal;
+            }
+            
+            .tabcontent {
+                padding: 10px;
+                margin-top: 10px;
+            }
+            
+            /* Table Responsive */
+            .table-container {
+                min-height: 400px;
+                margin-top: 10px;
+                border-radius: 6px;
+            }
+            
+            .table-responsive {
+                overflow-x: scroll !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            table {
+                min-width: 800px !important;
+                table-layout: fixed !important;
+            }
+            
+            th, td {
+                padding: 6px 4px;
+                font-size: 11px;
+                min-width: 80px;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                max-width: 150px;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            th {
+                font-size: 10px;
+                line-height: 1.2;
+                padding: 8px 4px;
+            }
+            
+            /* Chart Responsive */
+            .chart-container {
+                padding: 10px;
+                margin-top: 20px;
+                border-radius: 6px;
+            }
+            
+            .chart-wrapper {
+                height: 300px !important;
+            }
+            
+            .chart-title {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .group-chart h3 {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                font-size: 13px;
+            }
+            
+            .main-content {
+                padding: 5px 2px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+            
+            /* Tab Responsive - Small Mobile */
+            .tab button {
+                padding: 8px 6px;
+                font-size: 11px;
+                width: 100%;
+                margin: 1px 0;
+            }
+            
+            .tab {
+                margin-bottom: 5px;
+            }
+            
+            .tabcontent {
+                padding: 8px;
+                margin-top: 5px;
+            }
+            
+            /* Table Responsive - Small Mobile */
+            .table-container {
+                min-height: 350px;
+                margin-top: 5px;
+                border-radius: 4px;
+            }
+            
+            table {
+                min-width: 1000px !important;
+            }
+            
+            th, td {
+                padding: 4px 2px;
+                font-size: 10px;
+                min-width: 70px;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                max-width: 120px;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            th {
+                font-size: 9px;
+                padding: 6px 2px;
+            }
+            
+            /* Chart Responsive - Small Mobile */
+            .chart-container {
+                padding: 8px;
+                margin-top: 15px;
+                border-radius: 4px;
+            }
+            
+            .chart-wrapper {
+                height: 250px !important;
+            }
+            
+            .chart-title {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            
+            .group-chart h3 {
+                font-size: 12px;
+            }
+            
+            /* Summary and Info Responsive */
+            .summary, .info, .error {
+                padding: 8px;
+                font-size: 11px;
+                margin: 5px 0;
+            }
+        }
+        
+        @media (max-width: 425px) {
+            body {
+                font-size: 12px;
+            }
+            
+            h1 {
+                font-size: 1.2em;
+            }
+            
+            /* Table Responsive - Ultra Small Mobile */
+            .table-container {
+                min-height: 300px;
+            }
+            
+            table {
+                min-width: 1200px !important;
+            }
+            
+            th, td {
+                padding: 3px 1px;
+                font-size: 9px;
+                min-width: 60px;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                max-width: 100px;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            th {
+                font-size: 8px;
+                padding: 4px 1px;
+            }
+            
+            /* Chart Responsive - Ultra Small Mobile */
+            .chart-wrapper {
+                height: 200px !important;
+            }
+            
+            .chart-title {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+            
+            .group-chart h3 {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            /* Chart Responsive - Tiny Mobile */
+            .chart-wrapper {
+                height: 180px !important;
+            }
+            
+            .chart-title {
+                font-size: 10px;
+                margin-bottom: 6px;
+            }
+            
+            .group-chart h3 {
+                font-size: 10px;
+            }
+            
+            th, td {
+                font-size: 8px;
+                min-width: 50px;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                max-width: 80px;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+        }
+        
+        /* Scrollbar Styling for Mobile Tables */
+        .table-container::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 3px;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #5a67d8;
+        }
+        
+        /* Mobile Chart Container Scrolling */
+        @media (max-width: 768px) {
+            .chart-section {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .chart-section > div {
+                min-width: 300px !important;
+                display: inline-block !important;
+                vertical-align: top !important;
+                margin-right: 10px !important;
+            }
+        }
         /* Chart Styles */
         .chart-container {
             margin-top: 40px;

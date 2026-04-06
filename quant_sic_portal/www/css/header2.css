@@ -467,3 +467,228 @@
         content: none !important;
     }
 }
+
+/* Large Mobile (768px - 1150px) */
+@media (max-width: 768px) and (min-width: 577px) {
+    .header_top {
+        padding: 8px 20px !important;
+        font-size: 12px !important;
+    }
+    
+    .header_top_contact,
+    .top_info_menu {
+        gap: 15px !important;
+    }
+    
+    .site-main-menu {
+        padding: 8px 15px !important;
+    }
+    
+    .emblem-container img {
+        max-width: 45px !important;
+    }
+    
+    .right-logo img {
+        max-width: 35px !important;
+    }
+    
+    .dept-text {
+        font-size: 14px !important;
+    }
+    
+    .dept-text strong {
+        font-size: 15px !important;
+    }
+    
+    .hamburger {
+        margin-left: 15px !important;
+    }
+    
+    .hamburger span {
+        width: 24px !important;
+        height: 2px !important;
+    }
+    
+    #nav-menu {
+        top: 60px !important;
+        max-height: calc(100vh - 60px) !important;
+    }
+    
+    #main-nav li a {
+        font-size: 9px !important;
+        padding: 6px 8px !important;
+    }
+}
+
+/* Medium Mobile (576px - 768px) */
+@media (max-width: 576px) and (min-width: 481px) {
+    .header_top {
+        padding: 6px 15px !important;
+        font-size: 11px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .header_top_contact,
+    .top_info_menu {
+        gap: 12px !important;
+        font-size: 10px !important;
+    }
+    
+    .site-main-menu {
+        padding: 6px 12px !important;
+    }
+    
+    .emblem-container img {
+        max-width: 40px !important;
+    }
+    
+    .right-logo img {
+        max-width: 30px !important;
+    }
+    
+    .dept-text {
+        font-size: 12px !important;
+    }
+    
+    .dept-text strong {
+        font-size: 13px !important;
+    }
+    
+    .hamburger {
+        margin-left: 12px !important;
+    }
+    
+    .hamburger span {
+        width: 22px !important;
+        height: 2px !important;
+    }
+    
+    #nav-menu {
+        top: 55px !important;
+        max-height: calc(100vh - 55px) !important;
+    }
+    
+    #main-nav li a {
+        font-size: 8px !important;
+        padding: 5px 6px !important;
+    }
+}
+
+/* Small Mobile (480px - 576px) */
+@media (max-width: 480px) and (min-width: 381px) {
+    .header_top {
+        padding: 5px 10px !important;
+        font-size: 10px !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    
+    .header_top_contact,
+    .top_info_menu {
+        gap: 10px !important;
+        font-size: 9px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .site-main-menu {
+        padding: 5px 10px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .emblem-container img {
+        max-width: 35px !important;
+    }
+    
+    .right-logo img {
+        max-width: 25px !important;
+    }
+    
+    .dept-text {
+        font-size: 10px !important;
+    }
+    
+    .dept-text strong {
+        font-size: 11px !important;
+    }
+    
+    .hamburger {
+        margin-left: 10px !important;
+    }
+    
+    .hamburger span {
+        width: 20px !important;
+        height: 2px !important;
+    }
+    
+    #nav-menu {
+        top: 50px !important;
+        max-height: calc(100vh - 50px) !important;
+    }
+    
+    #main-nav li a {
+        font-size: 7px !important;
+        padding: 4px 5px !important;
+    }
+}
+
+/* Ultra Small Mobile (≤380px) */
+@media (max-width: 380px) {
+    .header_top {
+        padding: 4px 8px !important;
+        font-size: 9px !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+    
+    .header_top_contact,
+    .top_info_menu {
+        gap: 8px !important;
+        font-size: 8px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .site-main-menu {
+        padding: 4px 8px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .emblem-container img {
+        max-width: 30px !important;
+    }
+    
+    .right-logo img {
+        max-width: 20px !important;
+    }
+    
+    .dept-text {
+        font-size: 9px !important;
+    }
+    
+    .dept-text strong {
+        font-size: 10px !important;
+    }
+    
+    .hamburger {
+        margin-left: 8px !important;
+    }
+    
+    .hamburger span {
+        width: 18px !important;
+        height: 1.5px !important;
+    }
+    
+    #nav-menu {
+        top: 45px !important;
+        max-height: calc(100vh - 45px) !important;
+    }
+    
+    #main-nav li a {
+        font-size: 6px !important;
+        padding: 3px 4px !important;
+    }
+}

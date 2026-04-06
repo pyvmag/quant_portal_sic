@@ -72,55 +72,173 @@
             padding: 0 20px;
         }
         
+        .rti-info-section .row {
+            gap: 0;
+            margin: 0 -15px;
+        }
+        
+        @media (max-width: 1199px) {
+            .rti-info-section .row {
+                gap: 20px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .rti-info-section .row {
+                gap: 25px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .rti-info-section .row {
+                gap: 20px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .rti-info-section .row {
+                gap: 15px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rti-info-section .row {
+                gap: 12px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .rti-info-section .row {
+                gap: 10px;
+                margin: 0;
+            }
+        }
+        
         .rti-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(102, 126, 234, 0.1);
             margin-bottom: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid #667eea;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 5px solid #667eea;
             height: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rti-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .rti-card:hover::before {
+            opacity: 1;
         }
         
         .rti-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(102, 126, 234, 0.2);
+            border-left-color: #764ba2;
         }
         
         .rti-card h3 {
-            color: #667eea;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .rti-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .rti-card:hover h3::after {
+            width: 100px;
         }
         
         .rti-card p {
             color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 25px;
             flex-grow: 1;
+            font-size: 1rem;
+            font-weight: 400;
         }
         
         .rti-btn {
             display: inline-flex;
             align-items: center;
-            padding: 12px 30px;
+            justify-content: center;
+            padding: 14px 32px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rti-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .rti-btn:hover::before {
+            left: 100%;
         }
         
         .rti-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .rti-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .rti-btn:hover i {
+            transform: translateX(3px);
         }
         
         /* Ultra Responsive Design */
@@ -135,6 +253,22 @@
             
             .rti-card {
                 padding: 25px;
+                border-radius: 18px;
+            }
+            
+            .rti-card h3 {
+                font-size: 1.4rem;
+                margin-bottom: 18px;
+            }
+            
+            .rti-card p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            .rti-btn {
+                padding: 12px 28px;
+                font-size: 0.9rem;
             }
         }
         
@@ -203,26 +337,28 @@
             }
             
             .rti-card {
-                padding: 15px;
+                padding: 18px;
                 margin-bottom: 20px;
-                border-radius: 12px;
+                border-radius: 14px;
             }
             
             .rti-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 10px;
+                font-size: 1.2rem;
+                margin-bottom: 12px;
             }
             
             .rti-card p {
-                font-size: 0.9rem;
-                line-height: 1.5;
+                font-size: 0.88rem;
+                line-height: 1.4;
                 margin-bottom: 15px;
             }
             
             .rti-btn {
-                padding: 8px 18px;
+                padding: 9px 22px;
                 font-size: 0.8rem;
                 border-radius: 25px;
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -240,26 +376,26 @@
             }
             
             .rti-card {
-                padding: 12px;
-                margin-bottom: 15px;
-                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 18px;
+                border-radius: 12px;
             }
             
             .rti-card h3 {
-                font-size: 1rem;
-                margin-bottom: 8px;
+                font-size: 1.1rem;
+                margin-bottom: 10px;
             }
             
             .rti-card p {
                 font-size: 0.85rem;
                 line-height: 1.4;
-                margin-bottom: 12px;
+                margin-bottom: 14px;
             }
             
             .rti-btn {
-                padding: 6px 15px;
+                padding: 8px 20px;
                 font-size: 0.75rem;
-                border-radius: 20px;
+                border-radius: 22px;
                 width: 100%;
                 justify-content: center;
             }
@@ -275,21 +411,28 @@
             }
             
             .rti-card {
-                padding: 10px;
-                margin-bottom: 12px;
+                padding: 12px;
+                margin-bottom: 15px;
+                border-radius: 10px;
             }
             
             .rti-card h3 {
-                font-size: 0.95rem;
+                font-size: 1rem;
+                margin-bottom: 8px;
             }
             
             .rti-card p {
-                font-size: 0.8rem;
+                font-size: 0.82rem;
+                line-height: 1.3;
+                margin-bottom: 12px;
             }
             
             .rti-btn {
-                padding: 5px 12px;
+                padding: 7px 18px;
                 font-size: 0.7rem;
+                border-radius: 20px;
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -307,16 +450,28 @@
             }
             
             .rti-card {
-                padding: 8px;
-                margin-bottom: 10px;
+                padding: 10px;
+                margin-bottom: 12px;
+                border-radius: 8px;
             }
             
             .rti-card h3 {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
+                margin-bottom: 6px;
             }
             
             .rti-card p {
-                font-size: 0.75rem;
+                font-size: 0.78rem;
+                line-height: 1.3;
+                margin-bottom: 10px;
+            }
+            
+            .rti-btn {
+                padding: 6px 16px;
+                font-size: 0.65rem;
+                border-radius: 18px;
+                width: 100%;
+                justify-content: center;
             }
             
             .rti-btn {
