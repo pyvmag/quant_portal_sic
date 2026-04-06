@@ -264,6 +264,64 @@
 				margin-right: 15px;
 			}
 		}
+
+		/* Auto-sliding horizontal gallery */
+		.auto-slider-gallery {
+			overflow: hidden;
+			white-space: nowrap;
+			padding: 10px 0;
+			position: relative;
+			width: 100%;
+			max-height: 250px;
+		}
+
+		.auto-slider-gallery .grid {
+			display: flex !important;
+			flex-direction: row !important;
+			animation: slideLeft 20s linear infinite;
+			gap: 15px;
+			padding: 0 15px;
+			width: max-content !important;
+			height: 220px;
+		}
+
+		.auto-slider-gallery .grid-item {
+			flex: 0 0 auto !important;
+			width: 280px !important;
+			height: 220px !important;
+			white-space: normal;
+			display: inline-block !important;
+			position: relative !important;
+			left: auto !important;
+			top: auto !important;
+			transform: none !important;
+		}
+
+		.auto-slider-gallery .grid-item img {
+			width: 100%;
+			height: 220px;
+			object-fit: cover;
+			border-radius: 8px;
+			transition: transform 0.3s ease;
+		}
+
+		.auto-slider-gallery .grid-item:hover img {
+			transform: scale(1.05);
+		}
+
+		@keyframes slideLeft {
+			0% {
+				transform: translateX(0);
+			}
+			100% {
+				transform: translateX(-50%);
+			}
+		}
+
+		/* Pause animation on hover */
+		.auto-slider-gallery:hover .grid {
+			animation-play-state: paused;
+		}
 	</style>
 
 	<section id="about" class="about-section tembhu-editorial-section">
@@ -331,7 +389,7 @@
 	</section>
 
 	<section id="project" class="project-section project-section-two" style="padding-top: 0px !important;">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="project-text-content">
 				<div class="row">
 					<div class="col-lg-5 col-md-12">
@@ -340,36 +398,64 @@
 
 				</div>
 			</div>
-			<div class="grid project-filtering zoom-gallery clearfix row"
-				data-isotope="{ &quot;masonry&quot;: { &quot;columnWidth&quot;: 0 } }">
-				<div class="grid-sizer"></div>
-				<div class="grid-item grid-item-width2 branding fashion graphic"
-					data-category="branding fashion graphic">
-					<div class="projecct-img relative-position">
-						<img src="/img/mhaishal/15.jpg" alt="">
+			<div class="auto-slider-gallery">
+				<div class="grid project-filtering zoom-gallery clearfix row"
+					data-isotope="{ &quot;masonry&quot;: { &quot;columnWidth&quot;: 0 } }">
+					<div class="grid-sizer"></div>
+					<div class="grid-item grid-item-width2 branding fashion graphic"
+						data-category="branding fashion graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/15.jpg" alt="">
 
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/16.jpg" alt="">
+
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/14.jpg" alt="">
+
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/18.jpg" alt="">
+
+						</div>
+					</div>
+					<!-- Duplicate images for seamless loop -->
+					<div class="grid-item grid-item-width2 branding fashion graphic"
+						data-category="branding fashion graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/15.jpg" alt="">
+
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/16.jpg" alt="">
+
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/14.jpg" alt="">
+
+						</div>
+					</div>
+					<div class="grid-item grid-item-width2 graphic" data-category="graphic">
+						<div class="projecct-img relative-position">
+							<img src="/img/mhaishal/18.jpg" alt="">
+
+						</div>
 					</div>
 				</div>
-				<div class="grid-item grid-item-width2 graphic" data-category="graphic">
-					<div class="projecct-img relative-position">
-						<img src="/img/mhaishal/16.jpg" alt="">
-
-					</div>
-				</div>
-				<div class="grid-item grid-item-width2 graphic" data-category="graphic">
-					<div class="projecct-img relative-position">
-						<img src="/img/mhaishal/14.jpg" alt="">
-
-					</div>
-				</div>
-				<div class="grid-item grid-item-width2 graphic" data-category="graphic">
-					<div class="projecct-img relative-position">
-						<img src="/img/mhaishal/18.jpg" alt="">
-
-					</div>
-				</div>
-
 			</div>
+		</div>
 	</section>
 
 	<div id="footer-placeholder"></div>

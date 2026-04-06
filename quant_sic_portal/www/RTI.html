@@ -24,6 +24,599 @@
     <link rel="stylesheet" href="/css/tembhu.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header2.css">
+    
+    <style>
+        /* RTI Page Enhanced Styles */
+        .rti-hero-section {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f8fafc 100%), url('apps/quant_sic_portal/quant_sic_portal/www/img/background/rti2.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+            margin-top: -1px;
+        }
+        
+        .rti-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.15" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') no-repeat bottom;
+            background-size: cover;
+        }
+        
+        .rti-hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent 0%, #f8fafc 100%);
+            z-index: 1;
+        }
+        
+        .rti-info-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 60px 0;
+            width: 100%;
+        }
+        
+        .rti-info-section .container {
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .rti-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .rti-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .rti-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .rti-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .rti-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .rti-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        
+        /* Ultra Responsive Design */
+        @media (max-width: 1399px) {
+            .rti-hero-section {
+                padding: 70px 0 100px;
+            }
+            
+            .rti-info-section {
+                padding: 50px 0;
+            }
+            
+            .rti-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 1199px) {
+            .rti-hero-section {
+                padding: 60px 0 90px;
+            }
+            
+            .rti-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .rti-card {
+                padding: 20px;
+            }
+            
+            .rti-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .rti-hero-section {
+                padding: 50px 0 80px;
+            }
+            
+            .rti-info-section {
+                padding: 40px 0;
+            }
+            
+            .rti-info-section .container {
+                padding: 0 15px;
+            }
+            
+            .rti-card {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+            
+            .rti-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .rti-card p {
+                font-size: 0.95rem;
+            }
+            
+            .rti-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .rti-hero-section {
+                padding: 40px 0 60px;
+            }
+            
+            .rti-info-section {
+                padding: 30px 0;
+            }
+            
+            .rti-info-section .container {
+                padding: 0 10px;
+            }
+            
+            .rti-card {
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 12px;
+            }
+            
+            .rti-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+            
+            .rti-card p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 15px;
+            }
+            
+            .rti-btn {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+                border-radius: 25px;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .rti-hero-section {
+                padding: 30px 0 50px;
+            }
+            
+            .rti-info-section {
+                padding: 25px 0;
+            }
+            
+            .rti-info-section .container {
+                padding: 0 8px;
+            }
+            
+            .rti-card {
+                padding: 12px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+            
+            .rti-card h3 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .rti-card p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 12px;
+            }
+            
+            .rti-btn {
+                padding: 6px 15px;
+                font-size: 0.75rem;
+                border-radius: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rti-hero-section {
+                padding: 25px 0 40px;
+            }
+            
+            .rti-info-section {
+                padding: 20px 0;
+            }
+            
+            .rti-card {
+                padding: 10px;
+                margin-bottom: 12px;
+            }
+            
+            .rti-card h3 {
+                font-size: 0.95rem;
+            }
+            
+            .rti-card p {
+                font-size: 0.8rem;
+            }
+            
+            .rti-btn {
+                padding: 5px 12px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .rti-hero-section {
+                padding: 20px 0 35px;
+            }
+            
+            .rti-info-section {
+                padding: 15px 0;
+            }
+            
+            .rti-info-section .container {
+                padding: 0 5px;
+            }
+            
+            .rti-card {
+                padding: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .rti-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .rti-card p {
+                font-size: 0.75rem;
+            }
+            
+            .rti-btn {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+            }
+        }
+        
+        .rti-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .rti-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .rti-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+            transform: translateX(-50%);
+        }
+        
+        .rti-timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .rti-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #667eea;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .rti-timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: calc(50% - 30px);
+        }
+        
+        .rti-timeline-item:nth-child(odd) .rti-timeline-content {
+            margin-left: auto;
+        }
+        
+        /* Timeline Responsive Design */
+        @media (max-width: 991px) {
+            .rti-timeline::before {
+                left: 30px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 30px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .rti-timeline {
+                padding: 15px 0;
+            }
+            
+            .rti-timeline::before {
+                left: 20px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 20px;
+                width: 12px;
+                height: 12px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
+                padding: 15px;
+            }
+            
+            .rti-timeline-item {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .rti-timeline {
+                padding: 10px 0;
+            }
+            
+            .rti-timeline::before {
+                left: 15px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 15px;
+                width: 10px;
+                height: 10px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 30px);
+                margin-left: 30px !important;
+                padding: 12px;
+            }
+            
+            .rti-timeline-item {
+                margin-bottom: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rti-timeline::before {
+                left: 12px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 12px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 25px);
+                margin-left: 25px !important;
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .rti-timeline::before {
+                left: 10px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 10px;
+                width: 6px;
+                height: 6px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 20px);
+                margin-left: 20px !important;
+                padding: 8px;
+            }
+        }
+        
+        .rti-timeline-item:nth-child(even) .rti-timeline-content {
+            margin-right: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .rti-timeline::before {
+                left: 20px;
+            }
+            
+            .rti-timeline-item::before {
+                left: 20px;
+            }
+            
+            .rti-timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+            }
+        }
+        
+        #rti-process {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        #rti-process .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        #rti-downloads {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        #rti-downloads .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        /* Process & Downloads Responsive Design */
+        @media (max-width: 1199px) {
+            #rti-process {
+                min-height: 80vh;
+            }
+            
+            #rti-downloads {
+                min-height: 50vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            #rti-process {
+                min-height: 70vh;
+            }
+            
+            #rti-downloads {
+                min-height: 45vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 12px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            #rti-process {
+                min-height: 60vh;
+            }
+            
+            #rti-downloads {
+                min-height: 40vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 10px;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            #rti-process {
+                min-height: 50vh;
+            }
+            
+            #rti-downloads {
+                min-height: 35vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #rti-process {
+                min-height: 40vh;
+            }
+            
+            #rti-downloads {
+                min-height: 30vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 5px;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            #rti-process {
+                min-height: 35vh;
+            }
+            
+            #rti-downloads {
+                min-height: 25vh;
+            }
+            
+            #rti-process .container,
+            #rti-downloads .container {
+                padding: 0 3px;
+            }
+        }
+    </style>
 </head>
 
 <body class="page-rti">
@@ -34,7 +627,7 @@
 
     <div id="header-placeholder"></div>
 
-    <section id="breadcrumb" class="breadcrumb-section position-relative" data-background="/img/background/rti_bg.png">
+    <section id="breadcrumb" class="breadcrumb-section position-relative" data-background="apps/quant_sic_portal/quant_sic_portal/www/img/background/rti2.png">
         <div class="background_overlay"></div>
         <div class="container">
             <div class="breadcrumb-content headline">
@@ -49,53 +642,177 @@
         </div>
     </section>
 
-    <section id="about" class="about-section about-page-about">
+    <section id="rti-hero" class="rti-hero-section">
         <div class="container">
-            <div class="about-content">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="about-text">
-                            <div class="section-title-left">
-                                <span class="title-tag"><img src="/icon/icon5.svg" alt=""></span>
-                                <h2>माहिती अधिकार</h2>
-                            </div>
-                            <div class="about-content pera-content">
-                                <div class="about-btn text-uppercase">
-                                    <a href="/pdf/rti-act-2005-section-4-1-b.pdf" target="_blank">
-                                        <i class="fa fa-file-pdf" style="color: #fb1d04;"></i>
-                                        <span>माहिती अधिकार PDF</span>
-                                    </a>
-                                </div>
-                            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="rti-hero-content text-white">
+                        <h1 class="display-4 font-weight-bold mb-4">माहिती अधिकार</h1>
+                        <p class="lead mb-4">माहितीचा अधिकार हा भारतीय नागरिकांना दिलेला एक मूलभूत अधिकार आहे. याद्वारे तुम्ही सरकारी कार्यालयांकडून माहिती मागवू शकता.</p>
+                        <div class="rti-hero-buttons">
+                            <a href="/pdf/rti-act-2005-section-4-1-b.pdf" target="_blank" class="rti-btn me-3">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>माहिती अधिकार PDF</span>
+                            </a>
+                            <a href="#rti-process" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-info-circle me-2"></i>
+                                अधिक माहिती
+                            </a>
                         </div>
                     </div>
-
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="rti-hero-image text-center">
+                        <i class="fas fa-book-open" style="font-size: 200px; opacity: 0.3;"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="project" class="project-section project-section-two" style="padding-top: 0px !important;">
+    <section id="rti-info" class="rti-info-section">
         <div class="container">
-            <div class="project-text-content">
-                <div class="row">
-                    <div class="col-lg-5 col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <h2 class="display-5 font-weight-bold text-dark">माहिती अधिकार माहिती</h2>
+                        <p class="lead text-muted">जळगाव जिल्हा महाराष्ट्र औद्योगिक विकास महामंडळ</p>
                     </div>
                 </div>
             </div>
-            <div class="grid project-filtering zoom-gallery clearfix row"
-                data-isotope='{ "masonry": { "columnWidth": 0 } }'>
-                <div class="grid-sizer"></div>
-                <div class="grid-item grid-item-width2 branding fashion graphic"
-                    data-category="branding fashion graphic">
-                    <div class="projecct-img relative-position">
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="rti-card">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-user-tie fa-2x" style="color: #667eea;"></i>
+                        </div>
+                        <h3>सार्वजनिक माहिती अधिकारी</h3>
+                        <p>जळगाव जिल्हा महाराष्ट्र औद्योगिक विकास महामंडळाच्या सार्वजनिक माहिती अधिकारीची माहिती आणि संपर्क तपशील.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">अधिक माहिती <i class="fas fa-arrow-right ms-1"></i></a>
                     </div>
                 </div>
-                <div class="grid-item grid-item-width2 graphic" data-category="graphic">
-                    <div class="projecct-img relative-position">
+                
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="rti-card">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-gavel fa-2x" style="color: #764ba2;"></i>
+                        </div>
+                        <h3>प्रथम अपील प्राधिकरण</h3>
+                        <p>माहिती अधिकार कायदा २००५ अंतर्गत प्रथम अपील प्राधिकरणाची माहिती आणि कार्यपद्धती.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">अधिक माहिती <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="rti-card">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-balance-scale fa-2x" style="color: #667eea;"></i>
+                        </div>
+                        <h3>माहिती आयोग</h3>
+                        <p>महाराष्ट्र राज्य माहिती आयोगाची माहिती, कार्यक्षेत्र आणि संपर्क तपशील.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">अधिक माहिती <i class="fas fa-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="rti-process" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <h2 class="display-5 font-weight-bold text-dark">RTI अर्ज कसा भरावा?</h2>
+                        <p class="lead text-muted">फक्त काही सोपे पायऱ्यांमध्ये तुम्ही RTI अर्ज भरू शकता</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rti-timeline">
+                <div class="rti-timeline-item">
+                    <div class="rti-timeline-content">
+                        <h4><i class="fas fa-edit me-2" style="color: #667eea;"></i>अर्ज भरा</h4>
+                        <p>अधिकृत RTI अर्जाचे फॉर्म डाउनलोड करून योग्य माहिती भरा.</p>
+                    </div>
+                </div>
+                
+                <div class="rti-timeline-item">
+                    <div class="rti-timeline-content">
+                        <h4><i class="fas fa-rupee-sign me-2" style="color: #764ba2;"></i>फी भरा</h4>
+                        <p>निर्धारित शुल्क (₹१०) भरून रसीद प्राप्त करा.</p>
+                    </div>
+                </div>
+                
+                <div class="rti-timeline-item">
+                    <div class="rti-timeline-content">
+                        <h4><i class="fas fa-paper-plane me-2" style="color: #667eea;"></i>अर्ज सादर करा</h4>
+                        <p>अर्ज संबंधित विभागाच्या सार्वजनिक माहिती अधिकारींकडे सादर करा.</p>
+                    </div>
+                </div>
+                
+                <div class="rti-timeline-item">
+                    <div class="rti-timeline-content">
+                        <h4><i class="fas fa-clock me-2" style="color: #764ba2;"></i>३० दिवसांत उत्तर</h4>
+                        <p>कायद्यानुसार ३० दिवसांत तुम्हाला माहिती मिळेल.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rti-downloads" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <h2 class="display-5 font-weight-bold text-dark">डाउनलोड विभाग</h2>
+                        <p class="lead text-muted">आवश्यक फॉर्म आणि माहिती डाउनलोड करा</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">RTI अर्ज फॉर्म</h5>
+                            <p class="card-text">मराठीमध्ये RTI अर्ज भरण्यासाठी फॉर्म</p>
+                            <a href="/pdf/rti-form-marathi.pdf" target="_blank" class="btn btn-danger">
+                                <i class="fas fa-download me-2"></i>डाउनलोड करा
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">माहिती अधिकार कायदा</h5>
+                            <p class="card-text">माहिती अधिकार कायदा २००५ ची माहिती</p>
+                            <a href="/pdf/rti-act-2005-section-4-1-b.pdf" target="_blank" class="btn btn-danger">
+                                <i class="fas fa-download me-2"></i>डाउनलोड करा
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">नियमावली</h5>
+                            <p class="card-text">RTI नियमावली आणि मार्गदर्शक तत्त्वे</p>
+                            <a href="/pdf/rti-rules.pdf" target="_blank" class="btn btn-danger">
+                                <i class="fas fa-download me-2"></i>डाउनलोड करा
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div id="footer-placeholder"></div>

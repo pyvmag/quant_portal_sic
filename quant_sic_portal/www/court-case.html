@@ -24,6 +24,158 @@
         <link rel="stylesheet" href="/css/header2.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
+                /* Court Case Page Enhanced Styles */
+                .court-hero-section {
+                    background: linear-gradient(180deg, #34495e 0%, #2c3e50 50%, #ecf0f1 100%);
+                    padding: 60px 0 100px;
+                    position: relative;
+                    overflow: hidden;
+                    margin-top: -1px;
+                }
+                
+                .court-hero-section::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,50 C250,100 750,0 1000,50 L1000,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
+                    background-size: cover;
+                    opacity: 0.2;
+                }
+                
+                .court-hero-section::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    right: 0;
+                    height: 80px;
+                    background: linear-gradient(180deg, transparent 0%, #ecf0f1 100%);
+                    z-index: 1;
+                }
+                
+                .court-hero-content {
+                    position: relative;
+                    z-index: 2;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 200px;
+                }
+                
+                .court-hero-content h1 {
+                    color: white;
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                    text-align: center;
+                }
+                
+                .court-hero-content p {
+                    color: rgba(255,255,255,0.9);
+                    font-size: 1.2rem;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+                
+                .court-info-section {
+                    background: linear-gradient(180deg, #ecf0f1 0%, #bdc3c7 100%);
+                    padding: 60px 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                .court-info-section .container {
+                    max-width: 1400px;
+                    width: 100%;
+                    padding: 0 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: stretch;
+                }
+                
+                .court-info-section .row {
+                    width: 100%;
+                    justify-content: center;
+                    align-items: stretch;
+                }
+                
+                .court-card {
+                    background: white;
+                    border-radius: 16px;
+                    padding: 30px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    margin-bottom: 30px;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    border-left: 4px solid #34495e;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .court-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+                }
+                
+                .court-card h3 {
+                    color: #2c3e50;
+                    margin-bottom: 15px;
+                    font-size: 1.5rem;
+                }
+                
+                .court-card p {
+                    color: #555;
+                    line-height: 1.6;
+                    flex-grow: 1;
+                }
+                
+                .court-card .icon {
+                    width: 60px;
+                    height: 60px;
+                    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                    color: white;
+                    font-size: 24px;
+                }
+                
+                #court-dashboard {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 60vh;
+                    background: linear-gradient(180deg, #bdc3c7 0%, #ecf0f1 100%);
+                    padding: 40px 0;
+                }
+                
+                #court-dashboard .container {
+                    max-width: 1400px;
+                    width: 100%;
+                    padding: 0 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                #court-dashboard .row {
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                /* Enhanced existing styles */
                 body {
                         font-family: Arial, sans-serif;
                         margin: 0;
@@ -113,17 +265,42 @@
                 }
 
                 .kpi-item {
-                        background: #a5bfd2ab;
-                        padding: 15px;
-                        border-radius: 8px;
+                        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                        padding: 20px;
+                        border-radius: 12px;
                         text-align: center;
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        margin: 0 auto;
-                        /* Center the KPI item */
+                        box-shadow: 0 8px 25px rgba(52, 73, 94, 0.15);
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        margin: 0 auto 15px;
+                        border: 2px solid transparent;
+                        border-left: 4px solid #34495e;
                         opacity: 0;
                         transform: scale(0.9) translateY(20px);
                         animation: bounceInUp 0.6s ease-out forwards;
+                        position: relative;
+                        overflow: hidden;
+                }
+                
+                .kpi-item::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(52, 73, 94, 0.1), transparent);
+                    transition: left 0.6s ease;
+                }
+                
+                .kpi-item:hover::before {
+                    left: 100%;
+                }
+
+                .kpi-item:hover {
+                        transform: translateY(-8px) scale(1.03);
+                        box-shadow: 0 15px 40px rgba(52, 73, 94, 0.25);
+                        border-color: #34495e;
+                        background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
                 }
 
                 .kpi-item:nth-child(1) {
@@ -177,42 +354,67 @@
 
                 .kpi-item strong {
                         display: block;
-                        color: #1976d2;
-                        font-size: 0.9em;
-                        margin-bottom: 5px;
+                        color: #2c3e50;
+                        font-size: 1rem;
+                        margin-bottom: 8px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
                 }
 
                 .kpi-item .value {
-                        font-size: 1.8em;
-                        color: #d32f2f;
-                        font-weight: bold;
+                        font-size: 2.2rem;
+                        color: #34495e;
+                        font-weight: 700;
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+                        position: relative;
+                }
+                
+                .kpi-item .value::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 50px;
+                    height: 3px;
+                    background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%);
+                    border-radius: 2px;
                 }
 
                 .chart-container {
                         position: relative;
                         height: 550px;
-                        /* Increased height for multi-line labels */
                         margin: 10px auto;
-                        /* Center the chart container */
-                        width: 90%;
-                        /* Slightly less than 100% for better centering on small screens */
-                        max-width: 800px;
-                        /* Limit max width for better centering on large screens */
-                        border-radius: 12px;
+                        width: 95%;
+                        max-width: 1000px;
+                        border-radius: 16px;
                         overflow: hidden;
-                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+                        box-shadow: 0 15px 35px rgba(52, 73, 94, 0.2);
                         min-height: 450px;
-                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-                        /* Attractive gradient background */
+                        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+                        border: 2px solid #34495e;
                         opacity: 0;
                         transform: translateY(30px);
                         animation: fadeInUp 1s ease-out forwards;
-                        transition: all 0.3s ease;
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 }
 
                 .chart-container:hover {
-                        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-                        transform: translateY(-2px);
+                        box-shadow: 0 20px 50px rgba(52, 73, 94, 0.3);
+                        transform: translateY(-8px) scale(1.02);
+                        border-color: #2c3e50;
+                }
+                
+                .chart-container::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    background: linear-gradient(90deg, #34495e 0%, #2c3e50 50%, #34495e 100%);
+                    z-index: 1;
                 }
 
                 .chart-container canvas {
@@ -541,22 +743,70 @@
                 <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
         </div>
         <div id="header-placeholder"></div>
-        <div class="main-content">
-                <section id="breadcrumb" class="breadcrumb-section position-relative"
-                        data-background="/img/background/court_case_bg.png">
-                        <div class="background_overlay"></div>
-                        <div class="container">
-                                <div class="breadcrumb-content headline">
-                                        <h2 class="breadcrumb-title"> कोर्ट केस</h2>
-                                        <div class="breadcrumb_item ul-li">
-                                                <ul class="breadcrumb">
-                                                        <li class="breadcrumb-item"><a href="#">मुख्य पान</a></li>
-                                                        <li class="breadcrumb-item active">कोर्ट केस</li>
-                                                </ul>
-                                        </div>
+        
+        <!-- Breadcrumb Section (Background Overlay) -->
+        <section id="breadcrumb" class="breadcrumb-section position-relative"
+                data-background="/img/background/court_case_bg.png">
+                <div class="background_overlay"></div>
+                <div class="container">
+                        <div class="breadcrumb-content headline">
+                                <h2 class="breadcrumb-title">कोर्ट केस</h2>
+                                <div class="breadcrumb_item ul-li">
+                                        <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="#">मुख्य पान</a></li>
+                                                <li class="breadcrumb-item active">कोर्ट केस</li>
+                                        </ul>
                                 </div>
                         </div>
-                </section>
+                </div>
+        </section>
+        
+        <!-- Court Case Hero Section -->
+        <section class="court-hero-section">
+            <div class="container">
+                <div class="court-hero-content">
+                    <h1>कोर्ट केस</h1>
+                    <p>जलसंपदा विभागाच्या कायदेशीर प्रकरणांची माहिती आणि देखावा</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Court Case Info Section -->
+        <section class="court-info-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="court-card">
+                            <div class="icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h3>कायदेशीर प्रकरणे</h3>
+                            <p>विभागाशी संबंधित सर्व कायदेशीर प्रकरणांची संपूर्ण माहिती आणि दस्तऐवज</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="court-card">
+                            <div class="icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>न्यायिक प्रक्रिया</h3>
+                            <p>चालू खटल्यांची स्थिती, पुढील ऐकीजी तारखा आणि न्यायिक प्रक्रियेची तपशील</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="court-card">
+                            <div class="icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>दस्तऐवज</h3>
+                            <p>सर्व आवश्यक कायदेशीर दस्तऐवज, अर्ज, आणि निकालांची प्रतिमा</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="main-content">
                 <section id="about" class="about-section about-page-about">
                         <div class="container">
                                 <div class="about-content">
@@ -586,18 +836,10 @@
                                 </div>
                         </div>
                 </section>
-                <section id="project" class="project-section project-section-two" style="padding-top: 0px !important;">
+                <section id="court-dashboard" class="project-section project-section-two" style="padding-top: 0px !important;">
                         <div class="container">
-                                <div class="project-text-content">
-                                        <div class="row">
-                                                <div class="col-lg-5 col-md-12">
-                                                </div>
-                                        </div>
-                                </div>
                                 <div class="row justify-content-center dashboard-row">
-                                        <!-- Added justify-content-center for centering and dashboard-row class -->
                                         <div class="col-12 mx-auto">
-                                                <!-- <h1>Dashboard: Extracted Tables from Google Sheet</h1> -->
                                                 <div id="output"></div>
                                         </div>
                                 </div>
