@@ -35,6 +35,9 @@
                     justify-content: center;
                     text-align: center;
                     min-height: 350px;
+                    background-attachment: fixed;
+                    background-size: cover;
+                    background-position: center;
                 }
                 
                 .court-hero-section::before {
@@ -43,6 +46,7 @@
                     top: 0; left: 0; right: 0; bottom: 0;
                     background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1056,320C960,320,864,320,768,320C672,320,576,320,480,320C384,320,288,320,192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') no-repeat bottom;
                     background-size: cover;
+                    background-attachment: scroll;
                     pointer-events: none;
                 }
                 
@@ -56,6 +60,7 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    padding: 0 20px;
                 }
                 
                 .court-hero-content h1 {
@@ -150,6 +155,289 @@
                     width: 100%;
                     justify-content: center;
                     align-items: center;
+                }
+                
+                /* Enhanced Mobile Responsive Design */
+                @media (max-width: 1399px) {
+                    .court-hero-section {
+                        padding: 90px 0;
+                        min-height: 320px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 3.2rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 1.2rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 70px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 30px;
+                    }
+                }
+                
+                @media (max-width: 1199px) {
+                    .court-hero-section {
+                        padding: 80px 0;
+                        min-height: 300px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 2.8rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 1.1rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 60px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 25px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 1.4rem;
+                    }
+                }
+                
+                @media (max-width: 991px) {
+                    .court-hero-section {
+                        padding: 70px 0;
+                        min-height: 280px;
+                    }
+                    
+                    .court-hero-content {
+                        padding: 0 15px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 2.5rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 1rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 50px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 20px;
+                        margin-bottom: 25px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 1.3rem;
+                    }
+                    
+                    .court-card p {
+                        font-size: 1rem;
+                    }
+                    
+                    #court-dashboard {
+                        padding: 50px 0 80px;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .court-hero-section {
+                        padding: 60px 0;
+                        min-height: 250px;
+                    }
+                    
+                    .court-hero-content {
+                        padding: 0 10px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 2.2rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 0.95rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 40px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 18px;
+                        margin-bottom: 20px;
+                        border-radius: 14px;
+                    }
+                    
+                    .court-card .icon {
+                        width: 56px;
+                        height: 56px;
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 1.2rem;
+                        margin-bottom: 12px;
+                    }
+                    
+                    .court-card p {
+                        font-size: 0.95rem;
+                    }
+                    
+                    #court-dashboard {
+                        padding: 40px 0 60px;
+                    }
+                }
+                
+                @media (max-width: 575px) {
+                    .court-hero-section {
+                        padding: 50px 0;
+                        min-height: 220px;
+                    }
+                    
+                    .court-hero-content {
+                        padding: 0 8px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 1.8rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 0.9rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 30px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 15px;
+                        margin-bottom: 18px;
+                        border-radius: 12px;
+                    }
+                    
+                    .court-card .icon {
+                        width: 48px;
+                        height: 48px;
+                        font-size: 20px;
+                        margin-bottom: 16px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 1.1rem;
+                        margin-bottom: 10px;
+                    }
+                    
+                    .court-card p {
+                        font-size: 0.9rem;
+                    }
+                    
+                    #court-dashboard {
+                        padding: 30px 0 50px;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    .court-hero-section {
+                        padding: 40px 0;
+                        min-height: 200px;
+                    }
+                    
+                    .court-hero-content {
+                        padding: 0 5px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 1.6rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 0.85rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 25px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 12px;
+                        margin-bottom: 15px;
+                        border-radius: 10px;
+                    }
+                    
+                    .court-card .icon {
+                        width: 44px;
+                        height: 44px;
+                        font-size: 18px;
+                        margin-bottom: 14px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 1rem;
+                        margin-bottom: 8px;
+                    }
+                    
+                    .court-card p {
+                        font-size: 0.85rem;
+                    }
+                    
+                    #court-dashboard {
+                        padding: 25px 0 40px;
+                    }
+                }
+                
+                @media (max-width: 380px) {
+                    .court-hero-section {
+                        padding: 35px 0;
+                        min-height: 180px;
+                    }
+                    
+                    .court-hero-content h1 {
+                        font-size: 1.4rem;
+                    }
+                    
+                    .court-hero-content p {
+                        font-size: 0.8rem;
+                    }
+                    
+                    .court-info-section {
+                        padding: 20px 0;
+                    }
+                    
+                    .court-card {
+                        padding: 10px;
+                        margin-bottom: 12px;
+                        border-radius: 8px;
+                    }
+                    
+                    .court-card .icon {
+                        width: 40px;
+                        height: 40px;
+                        font-size: 16px;
+                        margin-bottom: 12px;
+                    }
+                    
+                    .court-card h3 {
+                        font-size: 0.95rem;
+                        margin-bottom: 6px;
+                    }
+                    
+                    .court-card p {
+                        font-size: 0.8rem;
+                    }
+                    
+                    #court-dashboard {
+                        padding: 20px 0 35px;
+                    }
                 }
                 
                 /* Enhanced existing styles */
@@ -472,11 +760,124 @@
                         overflow-y: auto;
                 }
 
-                /* Responsive adjustments */
-                @media (max-width: 768px) {
-                        .main-content {
-                                padding: 10px;
-                        }
+                /* Chart Mobile Responsive Enhancements */
+                @media (max-width: 1399px) {
+                    .chart-container {
+                        height: 500px;
+                        width: 90%;
+                    }
+                }
+                
+                @media (max-width: 1199px) {
+                    .chart-container {
+                        height: 450px;
+                        width: 85%;
+                    }
+                }
+                
+                @media (max-width: 991px) {
+                    .chart-container {
+                        height: 400px;
+                        width: 95%;
+                    }
+                    
+                    .chart-container canvas {
+                        max-width: 100%;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .chart-container {
+                        height: 350px;
+                        width: 100%;
+                        margin: 15px auto;
+                    }
+                    
+                    .chart-container canvas {
+                        max-width: 100%;
+                        height: 100% !important;
+                    }
+                    
+                    .table-section {
+                        margin-bottom: 15px;
+                        padding: 8px;
+                    }
+                }
+                
+                @media (max-width: 575px) {
+                    .chart-container {
+                        height: 300px;
+                        width: 100%;
+                        margin: 10px auto;
+                        border-radius: 8px;
+                    }
+                    
+                    .chart-container canvas {
+                        max-width: 100%;
+                        height: 100% !important;
+                    }
+                    
+                    .table-section {
+                        margin-bottom: 12px;
+                        padding: 6px;
+                        border-radius: 6px;
+                    }
+                    
+                    .table-section h3 {
+                        font-size: 1rem;
+                        margin-bottom: 8px;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    .chart-container {
+                        height: 280px;
+                        width: 100%;
+                        margin: 8px auto;
+                        border-radius: 6px;
+                    }
+                    
+                    .chart-container canvas {
+                        max-width: 100%;
+                        height: 100% !important;
+                    }
+                    
+                    .table-section {
+                        margin-bottom: 10px;
+                        padding: 5px;
+                        border-radius: 4px;
+                    }
+                    
+                    .table-section h3 {
+                        font-size: 0.9rem;
+                        margin-bottom: 6px;
+                    }
+                }
+                
+                @media (max-width: 380px) {
+                    .chart-container {
+                        height: 250px;
+                        width: 100%;
+                        margin: 5px auto;
+                        border-radius: 4px;
+                    }
+                    
+                    .chart-container canvas {
+                        max-width: 100%;
+                        height: 100% !important;
+                    }
+                    
+                    .table-section {
+                        margin-bottom: 8px;
+                        padding: 4px;
+                        border-radius: 3px;
+                    }
+                    
+                    .table-section h3 {
+                        font-size: 0.85rem;
+                        margin-bottom: 5px;
+                    }
+                }
 
                         .kpi-item {
                                 padding: 12px;
@@ -515,7 +916,7 @@
                                 width: 100%;
                                 max-width: none;
                         }
-                }
+                
 
                 @media (max-width: 480px) {
                         .main-content {

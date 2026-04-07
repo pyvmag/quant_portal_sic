@@ -3,9 +3,9 @@ import json
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
-SPREADSHEET_ID = "1uZMDUujtlQr_G5E720P0upyQJ2Pfwiu_m8DIorZZyvA"
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
-SERVICE_ACCOUNT_FILE = "/home/erpadmin/bench-jalsampada-portal/sites/credentials/google_sheets.json"
+SPREADSHEET_ID = "1jo9m4WLQ2k7AdqISUAzwpm0fer5gqvbmvVAob7pamRk"
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+SERVICE_ACCOUNT_FILE = "/home/erpadmin/bench-jalsampada-portal/sites/credentials/google_sheets_new.json"
 
 
 def clean_display(s):
@@ -96,12 +96,25 @@ def fetch_sheet_raw_data(sheet_name="Sheet2"):
     try:
         creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
         service = build('sheets', 'v4', credentials=creds)
+        # We use spreadsheets().get with includeGridData=True to get formatting (colors, bold)
+        # which is required by is_title_row and is_yellow_row_with_total logic.
         sheet = service.spreadsheets().get(
             spreadsheetId=SPREADSHEET_ID,
-            ranges=[sheet_name],
+            ranges=[f"{sheet_name}!A1:Z100"],
             includeGridData=True
         ).execute()
-        return sheet['sheets'][0]['data'][0]['rowData']
+
+        # Extract the row data which contains formatting information
+        data = sheet['sheets'][0]['data'][0].get('rowData', [])
+        
+        # Debug: Print the raw data around row 46 for verification
+        for i, row in enumerate(data):
+            if i >= 44 and i <= 47:  # Rows 45-48
+                cells = row.get('values', [])
+                first_cell = cells[0].get('formattedValue', '') if cells else ''
+                print(f"DEBUG Row {i+1}: {first_cell}")
+                    
+        return data
     except Exception as api_err:
         frappe.log_error(f"Google Sheets API error: {api_err}", "Water Level Fetch")
         # Do not raise; return empty to allow graceful fail
@@ -199,16 +212,13 @@ def compute_group_kpis(table_rows, config, group_type='district'):
             # For district2, dynamically find the numeric value in the row
             if group_type == 'district2':
                 val = 0.0
-                for i in range(1, len(row)):
+                # For district2, specifically use index 2 (column C) for the count value
+                if len(row) > 2:
                     try:
-                        val_str = clean_numeric(row[i])
-                        test_val = float(val_str) if val_str else None
-                        if test_val is not None and test_val >= 0:
-                            val = test_val
-                            frappe.log(f"{group_type} KPIs - Found numeric value {val} at index {i} for row {idx}")
-                            break
+                        val_str = clean_numeric(row[2])
+                        val = float(val_str) if val_str else 0.0
                     except ValueError:
-                        continue
+                        val = 0.0
                 # Match row to districtCols keywords
                 for col in config['districtCols']:
                     if clean_display(col) in row_str:
@@ -453,6 +463,10 @@ def extract_tables(sheet_data):
             {'title': 'Table 1 (Fallback)', 'rows': raw_rows[:mid_point]},
             {'title': 'Table 2 (Fallback)', 'rows': raw_rows[mid_point:]}
         ]
+    # Add title to check if using fallback
+    for table in tables:
+        if 'Fallback' in table['title']:
+            print(f"DEBUG: Using fallback table: {table['title']}")
     return tables
 
 @frappe.whitelist(allow_guest=True)

@@ -714,7 +714,7 @@
             overlay.style.display = 'flex';
             // Pass config to API as GET query param to avoid JSON body parsing issues
             const configStr = JSON.stringify(config);
-            const url = `/api/method/sicsangli.api.run_test_py?config=${encodeURIComponent(configStr)}`;
+            const url = `/api/method/quant_sic_portal.api.run_test_py?config=${encodeURIComponent(configStr)}`;
             fetch(url, {
                 method: 'GET',
                 headers: {
