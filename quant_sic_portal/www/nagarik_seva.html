@@ -72,25 +72,53 @@
             position: relative; z-index: 2;
         }
 
-        .service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; }
+        .service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; margin-top: 20px; }
         
         .service-item {
-            padding: 25px; border-radius: 12px; background: #f8fbff; border: 1px solid #dbeafe;
-            transition: all 0.3s ease; display: flex; align-items: center; text-decoration: none;
+            padding: 24px; border-radius: 16px; background: #f8fbff; border: 1px solid #dbeafe;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; text-decoration: none;
+            height: 100%;
         }
-        .service-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: #2563eb; }
+        .service-item:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1); 
+            border-color: #2563eb; 
+            background: #ffffff;
+        }
         
         .service-icon {
-            width: 60px; height: 60px; background: #2563eb; color: #fff; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-right: 20px; flex-shrink: 0;
+            width: 80px; height: 80px; background: #eff6ff; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; margin-right: 25px; flex-shrink: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            padding: 12px;
+        }
+
+        .service-item:hover .service-icon {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .service-icon img {
+            filter: brightness(0) invert(1);
         }
         
-        .service-content h3 { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; margin-bottom: 5px; }
-        .service-content p { font-size: 1rem; color: #4b5563; margin: 0; }
+        .service-content h3 { font-size: 1.35rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px; transition: color 0.3s; }
+        .service-item:hover .service-content h3 { color: #2563eb; }
+        .service-content p { font-size: 1rem; color: #64748b; margin: 0; line-height: 1.5; }
 
         @media (max-width: 768px) {
-            .info-box { padding: 25px; }
+            .info-box { padding: 30px 20px; }
             .service-list { grid-template-columns: 1fr; }
+            .service-item { padding: 20px; }
+            .service-icon { width: 70px; height: 70px; margin-right: 15px; }
         }
     </style>
 </head>
@@ -143,7 +171,9 @@
 
                     <div class="service-list">
                         <a href="RTI.html" class="service-item">
-                            <div class="service-icon"><i class="fas fa-info-circle"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/loog sheet.png" alt="RTI Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>माहिती अधिकार (RTI)</h3>
                                 <p>माहितीचा अधिकार अधिनियम २००५ अंतर्गत अर्ज करा.</p>
@@ -151,7 +181,9 @@
                         </a>
 
                         <a href="tender.html" class="service-item">
-                            <div class="service-icon"><i class="fas fa-file-contract"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/tender.png" alt="Tender Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>निविदा माहिती</h3>
                                 <p>विविध प्रकल्पांच्या निविदा आणि कंत्राट तपशील पाहा.</p>
@@ -159,7 +191,9 @@
                         </a>
 
                         <a href="#" class="service-item">
-                            <div class="service-icon"><i class="fas fa-tint"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/expenses.png" alt="Payment Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>पाणी पट्टी भरणा</h3>
                                 <p>शेती आणि औद्योगिक पाणी वापराचे शुल्क ऑनलाईन भरा.</p>
@@ -167,7 +201,9 @@
                         </a>
 
                         <a href="Pani_vapar.html" class="service-item">
-                            <div class="service-icon"><i class="fas fa-users"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/pump.png" alt="WUA Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>पाणी वापर संस्था</h3>
                                 <p>सहकारी पाणी वापर संस्था नोंदणी आणि व्यवस्थापन.</p>
@@ -175,7 +211,9 @@
                         </a>
 
                         <a href="#" class="service-item">
-                            <div class="service-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/Farmer Complaints.png" alt="Farmer Complaint Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>शेतकरी तक्रार निवारण</h3>
                                 <p>तुमच्या सिंचनाशी संबंधित तक्रारी नोंदवा.</p>
@@ -183,7 +221,9 @@
                         </a>
 
                         <a href="knowledge-center.html" class="service-item">
-                            <div class="service-icon"><i class="fas fa-book-reader"></i></div>
+                            <div class="service-icon">
+                                <img src="/img/home/knoweldge Center.png" alt="Knowledge Center Icon">
+                            </div>
                             <div class="service-content">
                                 <h3>ज्ञानकेंद्र</h3>
                                 <p>विभागाशी संबंधित प्रकाशने आणि अहवाल उपलब्ध.</p>

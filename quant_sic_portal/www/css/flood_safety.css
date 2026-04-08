@@ -2580,10 +2580,8 @@ select:visited {
   position: relative;
   z-index: 1; }
   .breadcrumb-section .background_overlay {
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center center;
-background-image: url(../img/flood_saftey/background.jpg); }
+    display: none;
+  }
   .breadcrumb-section .breadcrumb-content {
     padding-left: 45px; }
   .breadcrumb-section .breadcrumb-title {

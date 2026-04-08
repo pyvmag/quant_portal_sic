@@ -32,24 +32,252 @@
     <div id="header-placeholder"></div>
 
     <div class="main-content">
-        <section id="breadcrumb" class="breadcrumb-section position-relative"
-                 data-background="/img/water-level/krishna_kalva.jpg">
-            <div class="background_overlay"></div>
+    <style>
+        .breadcrumb-section {
+            background: url('/img/divas_karykram_hero.png') no-repeat center center;
+            background-size: cover;
+            padding: 140px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breadcrumb-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
+            z-index: 0;
+        }
+
+        .editorial-section {
+            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 100px 0 160px;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Water SVG Animation */
+        .ocean {
+            height: 150px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .wave {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23bae6fd" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x;
+            position: absolute;
+            top: 0;
+            width: 6400px;
+            height: 100%;
+            animation: wave 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+        }
+
+        .wave:nth-of-type(2) {
+            top: -15px;
+            animation: wave-reverse 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite;
+            opacity: 0.5;
+        }
+
+        /* Drifting Clouds Animation */
+        .cloud-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"%3E%3Cpath fill="%23ffffff" opacity="0.6" d="M405.3 227.1c-6-63.5-59.5-113.8-125-113.8-54.8 0-101.4 35.5-119 84.8-5.3-1.6-11-2.4-16.7-2.4-32.9 0-59.6 26.7-59.6 59.6 0 5.4.8 10.7 2.2 15.8-31 7.2-54.2 35-54.2 68.3 0 38.6 31.4 70 70 70h299.7c47.1 0 85.3-38.2 85.3-85.3 0-42.6-31.2-78.2-72.7-84.5z" /%3E%3C/svg%3E') no-repeat center;
+            background-size: contain;
+            animation: drift 60s linear infinite;
+        }
+
+        .cloud-1 { width: 250px; height: 120px; top: 10%; left: -300px; animation-duration: 50s; }
+        .cloud-2 { width: 180px; height: 90px; top: 40%; left: -250px; animation-duration: 70s; animation-delay: -20s; }
+        .cloud-3 { width: 300px; height: 150px; top: 60%; left: -350px; animation-duration: 60s; animation-delay: -40s; }
+
+        @keyframes drift { to { transform: translateX(calc(100vw + 600px)); } }
+
+        @keyframes wave { 0% { transform: translateX(0); } 100% { transform: translateX(-1600px); } }
+        @keyframes wave-reverse { 0% { transform: translateX(-1600px); } 100% { transform: translateX(0); } }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #0ea5e9;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-heading {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: #0c4a6e;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #334155;
+            margin-bottom: 40px;
+        }
+
+        .milestone-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+        }
+
+        .milestone-item:last-child { border-bottom: none; }
+
+        .milestone-icon {
+            font-size: 1.5rem;
+            color: #0ea5e9;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .milestone-text h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0369a1;
+            margin-bottom: 8px;
+        }
+
+        .milestone-text p {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .image-stack {
+            position: relative;
+            height: 500px;
+        }
+
+        .stack-img {
+            position: absolute;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            object-fit: cover;
+        }
+
+        .stack-img:hover {
+            transform: scale(1.05) translateY(-15px);
+            z-index: 10;
+        }
+
+        .img-top { width: 85%; height: 320px; top: 0; left: 0; z-index: 1; }
+        .img-mid { width: 65%; height: 260px; bottom: 50px; right: 0; z-index: 2; border: 8px solid #fff; }
+        .img-sub { width: 45%; height: 200px; top: 140px; right: 30px; z-index: 3; border: 6px solid #fff; }
+
+        @media (max-width: 991px) {
+            .main-heading { font-size: 2.5rem; }
+            .info-card { padding: 40px; }
+            .image-stack { height: 400px; margin-top: 50px; }
+        }
+    </style>
+
+    <div class="main-content">
+        <section id="breadcrumb" class="breadcrumb-section position-relative">
             <div class="container">
-                <div class="breadcrumb-content headline">
-                    <h2 class="breadcrumb-title">100 दिवस कार्यक्रम</h2>
+                <div class="breadcrumb-content headline wow fadeIn">
+                    <h2 class="breadcrumb-title">१०० दिवस कार्यक्रम</h2>
                     <div class="breadcrumb_item ul-li">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">मुख्य पान</a></li>
-                            <li class="breadcrumb-item active">निविदा माहिती</li>
+                            <li class="breadcrumb-item"><a href="wrd.html">मुख्य पान</a></li>
+                            <li class="breadcrumb-item active">१०० दिवस कार्यक्रम</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="content-wrapper py-5">
-        </div>
+        <section id="editorial" class="editorial-section">
+            <div class="ocean">
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            
+            <div class="cloud-bg">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+            </div>
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 wow fadeInLeft">
+                        <div class="info-card">
+                            <span class="section-tag">प्रशासकीय पुढाकार</span>
+                            <h2 class="main-heading">१०० दिवस कार्यक्रम <br>नियोजन व अंमलबजावणी</h2>
+                            <p class="description">
+                                सांगली पाटबंधारे मंडळामार्फत आगामी १०० दिवसांसाठी महत्त्वाकांक्षी विकास आराखडा तयार करण्यात आला आहे. या कार्यक्रमांतर्गत प्रलंबित कामे पूर्ण करणे आणि सिंचन व्यवस्थापनात सुधारणा करणे हे आमचे मुख्य उद्दिष्ट आहे.
+                            </p>
+
+                            <div class="milestone-item">
+                                <div class="milestone-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="milestone-text">
+                                    <h4>प्रलंबित प्रकल्पांची पूर्तता</h4>
+                                    <p>अर्धवट राहिलेली सिंचन कामे प्राधान्याने पूर्ण करून लाभधारकांना पाणी उपलब्ध करून देणे.</p>
+                                </div>
+                            </div>
+
+                            <div class="milestone-item">
+                                <div class="milestone-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="milestone-text">
+                                    <h4>डिजिटल पाणी व्यवस्थापन</h4>
+                                    <p>पाणी वाटप प्रक्रियेत पारदर्शकता आणण्यासाठी नवीन डिजिटल प्रणालींचा वापर करणे.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 wow fadeInRight">
+                        <div class="image-stack" data-tilt data-tilt-max="5">
+                            <img src="/img/takari/22.jpg" class="stack-img img-top" alt="Project 1">
+                            <img src="/img/takari/23.jpg" class="stack-img img-mid" alt="Project 2">
+                            <img src="/img/takari/24.jpg" class="stack-img img-sub" alt="Project 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <div id="footer-placeholder"></div>
