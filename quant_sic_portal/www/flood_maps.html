@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>पूर रेषा नकाशे | सांगली पाटबंधारे मंडळ</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/video.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header2.css">
+    <style>
+        .breadcrumb-section {
+            background: url('/img/maharashtra_flood_map_bg.png') no-repeat center center;
+            background-size: cover;
+            padding: 160px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breadcrumb-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 100%);
+            z-index: 0;
+        }
+
+        .breadcrumb-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .services-section {
+            background: url('/img/ORSJOA0.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .page-flood-maps .container {
+            margin-right: auto !important;
+            margin-left: auto !important;
+            max-width: 1200px;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .services-bg {
+            position: absolute;
+            left: -150px;
+            top: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        /* Responsive grid adjustments */
+        @media (max-width: 1200px) {
+            .services-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card-link {
+            text-decoration: none !important;
+            display: block;
+            width: 100%;
+        }
+
+        .service-card {
+            background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.98)), 
+                        url('/img/ORSJOA0.jpg') center center;
+            background-size: cover;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .service-icon {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 14px;
+            background: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: #3b82f6;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .service-icon i {
+            font-size: 32px;
+        }
+
+        .service-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .service-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .adhik-mahiti {
+            font-size: 13px;
+            font-weight: 700;
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .adhik-mahiti::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .adhik-mahiti::after {
+            transform: translateX(5px);
+        }
+
+        #nav-menu.no-scroll {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="page-flood-maps">
+    <div id="preloader"></div>
+    <div class="up">
+        <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <!-- HEADER -->
+    <div id="header-placeholder"></div>
+
+    <!-- BREADCRUMB SECTION -->
+    <section id="breadcrumb" class="breadcrumb-section position-relative">
+        <div class="container">
+            <div class="breadcrumb-content headline wow fadeIn">
+                <h2 class="breadcrumb-title" style="color: #fff; font-weight: 800;">पूर रेषा नकाशे</h2>
+                <div class="breadcrumb_item ul-li">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="wrd.html">मुख्य पृष्ठ</a></li>
+                        <li class="breadcrumb-item active">पूर रेषा नकाशे</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT SECTION -->
+    <section class="services-section">
+        <div class="services-bg"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-title headline text-center mb-5 wow fadeInUp">
+                <span class="title-tag">नकाशे डाऊनलोड करा</span>
+                <h2 style="font-weight: 800; color: #0f172a;">विविध भागांचे पूर रेषा नकाशे</h2>
+                <p style="color: #64748b; max-width: 700px; margin: 0 auto; margin-top: 15px;">
+                    नागरिकांच्या सुरक्षिततेसाठी आणि पुराचा धोका ओळखण्यासाठी विभागाद्वारे विविध भागांच्या पूर रेषांचे नकाशे येथे उपलब्ध करून देण्यात आले आहेत.
+                </p>
+            </div>
+
+            <div class="services-container">
+                <!-- Card 1: सांगली शहर भाग-1 -->
+                <div class="service-card-wrapper wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="/pdf/सांगली शहर पूर रेशा नकाशा भाग-1 सन 2018.pdf" target="_blank" class="service-card-link">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">सांगली शहर (भाग-१)</h5>
+                                <p class="service-description">सांगली शहर पूर रेषा नकाशा भाग-१ (सन २०१८).</p>
+                                <div class="adhik-mahiti">डाऊनलोड करा</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card 2: सांगली शहर भाग-2 -->
+                <div class="service-card-wrapper wow fadeInUp" data-wow-delay="0.2s">
+                    <a href="/pdf/सांगली शहर पूर रेषा नकाशा भाग-2 सन 2018.pdf" target="_blank" class="service-card-link">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">सांगली शहर (भाग-२)</h5>
+                                <p class="service-description">सांगली शहर पूर रेषा नकाशा भाग-२ (सन २०१८).</p>
+                                <div class="adhik-mahiti">डाऊनलोड करा</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card 3: वाळवा ते अंकलखोप -->
+                <div class="service-card-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="/pdf/वाळवा ते अंकलखोप पूर रेषा नकाशा सन 2018.pdf" target="_blank" class="service-card-link">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">वाळवा ते अंकलखोप</h5>
+                                <p class="service-description">वाळवा ते अंकलखोप पूर रेषा नकाशा (सन २०१८).</p>
+                                <div class="adhik-mahiti">डाऊनलोड करा</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card 4: कृष्णा नदी (कराड) -->
+                <div class="service-card-wrapper wow fadeInUp" data-wow-delay="0.4s">
+                    <a href="/pdf/कृष्णा नदी ८.५किमी कृष्णा कालवा उपविभाग कराड.pdf" target="_blank" class="service-card-link">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">कृष्णा नदी (कराड)</h5>
+                                <p class="service-description">कृष्णा नदी ८.५ किमी कृष्णा कालवा उपविभाग, कराड.</p>
+                                <div class="adhik-mahiti">डाऊनलोड करा</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- SCRIPTS -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jarallax.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/appear.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/tilt.jquery.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+        // Load Header
+        fetch('header2.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
+
+        // Load Footer
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+
+        // Initialize WOW
+        $(document).ready(function() {
+            new WOW().init();
+        });
+    </script>
+</body>
+
+</html>

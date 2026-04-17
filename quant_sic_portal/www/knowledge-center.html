@@ -168,88 +168,138 @@
 			border-radius: 2px;
 		}
 
+		.tembhu-section-intro {
+			max-width: 900px;
+			margin: -20px auto 50px auto;
+			text-align: center;
+			position: relative;
+			z-index: 2;
+		}
+
+		.tembhu-section-intro p {
+			font-size: 1.25rem;
+			line-height: 1.8;
+			color: #374151;
+			font-weight: 500;
+			background: rgba(255, 255, 255, 0.5);
+			padding: 20px 30px;
+			border-radius: 12px;
+			backdrop-filter: blur(8px);
+			border: 1px solid rgba(255, 255, 255, 0.8);
+			box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+		}
+
+		.tembhu-info-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 30px;
+			max-width: 1500px;
+			margin: 0 auto;
+			position: relative;
+			z-index: 2;
+		}
+
 		/* Colored bordered background for the text wrapper */
 		.tembhu-info-box {
 			background: #ffffff; /* crisp white for contrast against background blobs */
 			border: 3px solid #bfdbfe; /* crisp bordered background */
 			border-radius: 16px;
-			padding: 40px 50px;
+			padding: 30px 25px;
 			box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05);
-			margin: 0 auto;
 			width: 100%;
-			max-width: 1500px; /* Expands to fill most of the screen gracefully */
-			position: relative;
-			z-index: 2;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			transition: all 0.3s ease;
+		}
+
+		.tembhu-info-box:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+			border-color: #93c5fd;
 		}
 
 		.tembhu-milestone {
 			display: flex;
-			align-items: flex-start;
-			margin-bottom: 30px;
-			padding-bottom: 30px;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
 			border-bottom: 1px solid #dbeafe;
-		}
-		.tembhu-milestone:last-child {
-			margin-bottom: 0;
-			padding-bottom: 0;
-			border-bottom: none;
+			flex-grow: 1;
 		}
 		
 		.tembhu-milestone .arrow-marker {
-			font-size: 1.5rem;
-			color: #ef4444; /* bold red arrow */
-			margin-right: 20px;
-			margin-top: 2px;
+			font-size: 2.2rem;
+			color: #3b82f6; /* soothing blue icon */
+			margin-bottom: 15px;
 			flex-shrink: 0;
+			background: #eff6ff;
+			width: 65px;
+			height: 65px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
 		}
 
 		.tembhu-milestone-content h3 {
-			font-size: 1.45rem;
+			font-size: 1.3rem;
 			font-weight: 800;
 			color: #1e3a8a;
-			margin-bottom: 10px;
+			margin-bottom: 15px;
 		}
 
 		.tembhu-milestone-content p {
-			font-size: 1.15rem;
-			line-height: 1.8;
-			color: #374151;
+			font-size: 1rem;
+			line-height: 1.6;
+			color: #4b5563;
 			margin: 0;
 		}
 
 		.pdf-download-area {
-			margin-top: 40px;
+			margin-top: auto;
 			text-align: center;
+			width: 100%;
 		}
 		.pdf-download-area .btn-download {
 			display: inline-flex;
 			align-items: center;
-			padding: 14px 40px;
+			justify-content: center;
+			width: 100%;
+			padding: 12px 20px;
 			background: #1e3a8a;
 			color: #ffffff !important;
-			border-radius: 50px;
+			border-radius: 12px;
 			font-weight: 600;
-			font-size: 1.15rem;
+			font-size: 1rem;
 			text-decoration: none;
 			transition: all 0.3s ease;
-			box-shadow: 0 8px 15px rgba(30, 58, 138, 0.2);
+			box-shadow: 0 4px 6px rgba(30, 58, 138, 0.1);
 		}
 		.pdf-download-area .btn-download:hover {
 			background: #1e40af;
-			transform: translateY(-3px);
-			box-shadow: 0 12px 20px rgba(30, 58, 138, 0.3);
+			transform: translateY(-2px);
+			box-shadow: 0 8px 15px rgba(30, 58, 138, 0.2);
 		}
 		.pdf-download-area .btn-download i {
-			margin-right: 12px;
-			font-size: 1.3rem;
+			margin-right: 10px;
+			font-size: 1.2rem;
 		}
 		
+		@media (max-width: 1200px) {
+			.tembhu-info-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
 		@media (max-width: 768px) {
+			.tembhu-info-grid {
+				grid-template-columns: 1fr;
+			}
 			.tembhu-info-box {
 				padding: 25px 20px;
-			}
-			.tembhu-milestone .arrow-marker {
-				margin-right: 15px;
 			}
 		}
 	</style>
@@ -273,25 +323,91 @@
 				<div class="separator"></div>
 			</div>
 
-			<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.1s">
-				<div class="tembhu-milestone">
-					<div class="arrow-marker">
-						<i class="fas fa-chevron-circle-right"></i>
-					</div>
-					<div class="tembhu-milestone-content">
-						<h3>सांगली जिल्हा पुस्तिका</h3>
-						<p>
-							या विभागात सांगली जिल्ह्याची संपूर्ण माहिती देणारी अभ्यास पुस्तिका उपलब्ध आहे. ही पुस्तिका पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
-						</p>
-					</div>
-				</div>
+			<div class="tembhu-section-intro wow fadeInUp" data-wow-delay="0.15s">
+				<p>
+नंदकुमार वडनेरे समितीने सांगली आणि कोल्हापूरमधील २०१९ च्या महापुराचा अभ्यास करून, अतिवृष्टी आणि नद्यांवरील अतिक्रमणांमुळे पूरस्थिती निर्माण झाल्याचा निष्कर्ष काढला आहे. या अहवालात अलमट्टी धरणापेक्षा स्थानिक कारणांवर अधिक भर दिला गेला असून, पुराची तीव्रता कमी करण्यासाठी दीर्घकालीन उपाययोजना सुचवल्या आहेत, जो अहवाल मे २०२० मध्ये सादर झाला.				</p>
 			</div>
 
-			<div class="pdf-download-area wow fadeIn" data-wow-delay="0.3s">
-				<a href="/pdf/sangli_dist_book_final.pdf" target="_blank" class="btn-download">
-					<i class="far fa-file-pdf"></i>
-					<span>सांगली जिल्हा पुस्तिका PDF</span>
-				</a>
+			<div class="tembhu-info-grid">
+				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.1s">
+					<div class="tembhu-milestone">
+						<div class="arrow-marker">
+							<i class="fas fa-book-open"></i>
+						</div>
+						<div class="tembhu-milestone-content">
+							<h3>सांगली जिल्हा पुस्तिका</h3>
+							<p>
+								या विभागात सांगली जिल्ह्याची संपूर्ण माहिती देणारी अभ्यास पुस्तिका उपलब्ध आहे. ही पुस्तिका पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+							</p>
+						</div>
+					</div>
+					<div class="pdf-download-area">
+						<a href="pdf/sangli dist pdf.pdf" target="_blank" class="btn-download">
+							<i class="far fa-file-pdf"></i>
+							<span>सांगली जिल्हा पुस्तिका PDF</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.2s">
+					<div class="tembhu-milestone">
+						<div class="arrow-marker">
+							<i class="fas fa-book-open"></i>
+						</div>
+						<div class="tembhu-milestone-content">
+							<h3>Vol 1 Main Report</h3>
+							<p>
+								या विभागात 'Vol 1 Main Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+							</p>
+						</div>
+					</div>
+					<div class="pdf-download-area">
+						<a href="pdf/Vol 1 Main Report.pdf" target="_blank" class="btn-download">
+							<i class="far fa-file-pdf"></i>
+							<span>Vol 1 Main Report PDF</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.3s">
+					<div class="tembhu-milestone">
+						<div class="arrow-marker">
+							<i class="fas fa-book-open"></i>
+						</div>
+						<div class="tembhu-milestone-content">
+							<h3>Vol 2 Annxure Study Report</h3>
+							<p>
+								या विभागात 'Vol 2 Annxure Study Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+							</p>
+						</div>
+					</div>
+					<div class="pdf-download-area">
+						<a href="pdf/Vol 2 Annxure Study Report.pdf" target="_blank" class="btn-download">
+							<i class="far fa-file-pdf"></i>
+							<span>Vol 2 Annxure Study Report PDF</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.4s">
+					<div class="tembhu-milestone">
+						<div class="arrow-marker">
+							<i class="fas fa-book-open"></i>
+						</div>
+						<div class="tembhu-milestone-content">
+							<h3>Vol 3 Maps</h3>
+							<p>
+								या विभागात 'Vol 3 Maps' उपलब्ध आहेत. हे नकाशे पीडीएफ स्वरूपात उपलब्ध करून देण्यात आले असून खालील बटणावर क्लिक करून ते डाउनलोड करता येतील.
+							</p>
+						</div>
+					</div>
+					<div class="pdf-download-area">
+						<a href="pdf/Vol 3 Maps.pdf" target="_blank" class="btn-download">
+							<i class="far fa-file-pdf"></i>
+							<span>Vol 3 Maps PDF</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
