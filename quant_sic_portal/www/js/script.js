@@ -289,45 +289,4 @@ Last change:    00/00/00
 
 })();
 
-/* Polling Visitor Counter Logic */
-let footerCheckCount = 0;
-const checkFooterInterval = setInterval(() => {
-    let totalCounter = document.getElementById('total-visitors');
-    let todayCounter = document.getElementById('today-visitors');
-    
-    // Once both elements successfully inject from the footer.html fetch
-    if (totalCounter && todayCounter) {
-        clearInterval(checkFooterInterval);
-        
-        const todayStr = new Date().toISOString().split('T')[0].replace(/-/g, '_'); 
-        const hasVisitedToday = localStorage.getItem('visited_jalsampada_' + todayStr);
-
-        const totalFetchUrl = hasVisitedToday 
-            ? 'https://api.counterapi.dev/v1/jalsampada_live/total_visits/' 
-            : 'https://api.counterapi.dev/v1/jalsampada_live/total_visits/up';
-
-        const todayFetchUrl = hasVisitedToday 
-            ? 'https://api.counterapi.dev/v1/jalsampada_live/visits_' + todayStr + '/' 
-            : 'https://api.counterapi.dev/v1/jalsampada_live/visits_' + todayStr + '/up';
-
-        fetch(totalFetchUrl)
-            .then(response => response.json())
-            .then(data => {
-                totalCounter.innerText = 'एकूण दर्शक : ' + data.count;
-            }).catch(err => console.error(err));
-
-        fetch(todayFetchUrl)
-            .then(response => response.json())
-            .then(data => {
-                todayCounter.innerText = 'आजचे दर्शक : ' + data.count;
-                if (!hasVisitedToday) {
-                    localStorage.setItem('visited_jalsampada_' + todayStr, 'true');
-                }
-            }).catch(err => console.error(err));
-    }
-    
-    footerCheckCount++;
-    if(footerCheckCount > 20) { // Fallback clear after 10 seconds
-        clearInterval(checkFooterInterval);
-    }
-}, 500);
+/* script.js core functions continue... */

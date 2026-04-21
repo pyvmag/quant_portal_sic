@@ -198,26 +198,29 @@ body {
 }
 
 .horizontal-bar {
-    width: calc(100% - var(--card-w) - 30px);
+    width: 85%; /* Spans from center of 1st card to center of 7th card */
     height: 2px;
-    background: linear-gradient(to right, rgba(0,74,173,0), var(--primary), rgba(0,74,173,0));
+    background: var(--primary);
     position: absolute;
-    top: 50%;
+    top: 100%; /* Align with the bottom of the container */
     border-radius: 4px;
     opacity: 0.5;
 }
 
-.horizontal-bar::before, .horizontal-bar::after {
+.horizontal-bar::before {
     content: '';
     position: absolute;
-    top: -25px;
+    top: -50px;
     left: 50%;
     width: 2px;
-    height: 25px;
+    height: 50px;
     background: var(--primary);
+    transform: translateX(-50%);
 }
 
-.horizontal-bar::before { transform: translateX(-50%); }
+.horizontal-bar::after {
+    display: none; /* Removed redundant after */
+}
 
 /* ─── Superintendent Row ─── */
 .superintendent-row {
@@ -238,48 +241,88 @@ body {
 }
 
 .small-bar {
-    width: calc(var(--card-w) + 60px); /* 1 card width + gap */
+    width: calc(var(--card-w) + 60px); 
+    top: 50%; /* Center in container */
 }
 
 .superintendent-row .column::after {
     content: '';
     position: absolute;
-    bottom: -34px;
+    bottom: -35px;
     width: 2px;
-    height: 30px;
+    height: 35px;
     background: var(--primary);
     opacity: 0.5;
 }
 
 .bottom-merge .horizontal-bar::before {
     top: auto;
-    bottom: -25px;
+    bottom: -30px;
+    height: 30px;
 }
 
 /* ─── Branches ─── */
 .horizontal-branches {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 15px;
     flex-wrap: nowrap;
     width: 100%;
-    max-width: 1700px;
+    max-width: 100%;
     padding: 40px 10px;
     margin: 0 auto;
+}
+
+.horizontal-branches .column {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.horizontal-branches .leaf {
+    width: 100%;
+    max-width: 180px;
+    padding: 15px 8px;
+}
+
+.horizontal-branches .avatar-container {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 10px;
+}
+
+.horizontal-branches .official-name {
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.horizontal-branches .designation {
+    font-size: 10px;
+}
+
+.horizontal-branches .location-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 /* Mobile Override for Horizontal Branches */
 @media (max-width: 425px) {
     .horizontal-branches {
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-        padding: 10px 1px !important;
+        flex-wrap: nowrap !important;
+        gap: 15px !important;
+        padding: 30px 10px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start !important;
     }
     
     .horizontal-branches .column {
-        flex: 0 0 calc(33.333% - 4px) !important;
-        max-width: calc(33.333% - 4px) !important;
-        width: calc(33.333% - 4px) !important;
+        flex: 0 0 auto !important;
+        max-width: none !important;
+        width: auto !important;
     }
 }
 
@@ -293,9 +336,9 @@ body {
 .column::before {
     content: '';
     position: absolute;
-    top: -25px;
+    top: -40px;
     width: 2px;
-    height: 25px;
+    height: 40px;
     background: var(--primary);
     opacity: 0.5;
 }

@@ -1,0 +1,59 @@
+        # Extract chart data with config
+        chart_data = extract_chart_data(tables[0]['rows'], config, 1) if tables else {"categories": [], "values": {}}
+        chart_data2 = extract_chart_data(tables[1]['rows'], config, 2) if len(tables) >= 2 else {"categories": [], "values": {}}
+        return {
+            "status": "ok",
+            "message": {
+                "tables": tables,
+                "kpis": kpis,
+                "kpis_table1_districts": kpis_table1_districts,
+                "kpis_table2": kpis_table2,
+                "date": date,
+                "chart_data": chart_data,
+                "chart_data2": chart_data2,
+                "storage_pct": storage_pct
+            }
+        }
+    except Exception as e:
+        frappe.log(f"Error in run_test_py: {frappe.get_traceback()}", level="error")
+        return {"status": "fail", "message": str(e)}
+
+@frappe.whitelist(allow_guest=True)
+def get_visitor_stats(is_unique=False):
+    """
+    Returns visitor statistics. If is_unique is True, increments the counts.
+    Forces cache clearing to ensure all users see latest data.
+    """
+    today = nowdate()
+    
+    # Get current stats - bypass local cache where possible
+    total_visitors = frappe.db.get_default('total_visitors')
+    today_visitors = frappe.db.get_default('today_visitors')
+    last_visitor_date = frappe.db.get_default('last_visitor_date')
+    
+    total_visitors = int(total_visitors) if total_visitors else 0
+    today_visitors = int(today_visitors) if today_visitors else 0
+    
+    # Reset today's count if it's a new day
+    if last_visitor_date != today:
+        today_visitors = 0
+        frappe.db.set_default('last_visitor_date', today)
+        frappe.db.set_default('today_visitors', 0)
+        frappe.db.commit()
+    
+    if is_unique and is_unique != "false":
+        total_visitors += 1
+        today_visitors += 1
+        # Use set_default which is more standard and handles cache better
+        frappe.db.set_default('total_visitors', total_visitors)
+        frappe.db.set_default('today_visitors', today_visitors)
+        frappe.db.commit()
+        
+        # Clear specific cache for these defaults to ensure next read is fresh for all
+        frappe.clear_cache()
+    
+    return {
+        "total_visitors": total_visitors,
+        "today_visitors": today_visitors,
+        "review_date": today
+    }

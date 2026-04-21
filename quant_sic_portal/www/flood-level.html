@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>पूर पातळी | सांगली पाटबंधारे मंडळ</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/video.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header2.css?v=2">
+    <style>
+        .breadcrumb-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/img/flood_gauge_hero.png') no-repeat center center;
+            background-size: cover;
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .breadcrumb_item ul li {
+            color: #fff;
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .breadcrumb_item ul li a {
+            color: #fff;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .breadcrumb_item ul li a:hover {
+            opacity: 1;
+        }
+
+        .data-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+            background-image: url('/img/flood_icons_pattern.png');
+            background-repeat: repeat;
+            background-size: 300px;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .data-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 250, 252, 0.85);
+            z-index: 1;
+        }
+
+        .data-section .container-fluid {
+            position: relative;
+            z-index: 2;
+        }
+
+        .data-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            min-height: 400px;
+        }
+
+        .placeholder-box {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            text-align: center;
+            color: #888;
+        }
+
+        .placeholder-box i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #3b82f6;
+            opacity: 0.5;
+        }
+
+        .section-title h2 {
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .title-tag {
+            color: #3b82f6;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+
+        .data-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 95%;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .table-container {
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            background: #fff;
+        }
+
+        .table-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0;
+            padding: 25px 30px;
+            background: linear-gradient(to right, #f8fafc, #fff);
+            border-bottom: 2px solid #3b82f6;
+            text-align: center;
+        }
+
+        .table-responsive {
+            border: none;
+            overflow-x: auto;
+            cursor: grab;
+            user-select: none; /* Prevent text selection during drag */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-responsive:active {
+            cursor: grabbing;
+        }
+
+        .table {
+            margin-bottom: 0;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table thead th {
+            background: #126cff;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .table tbody td {
+            padding: 14px 20px;
+            vertical-align: middle;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+            border-right: 1px solid #f1f5f9;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .table tbody td:last-child {
+            border-right: none;
+        }
+
+        .table tbody tr:hover td {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Styling for grouped rows */
+        .station-row td {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: #1e293b !important;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .station-name {
+            color: #3b82f6;
+            font-size: 1.1rem;
+        }
+
+        .sub-header-cell {
+            font-weight: 600;
+            color: #64748b;
+            background: #f8fafc;
+            width: 120px;
+        }
+
+        .last-updated {
+            font-size: 1rem;
+            color: #ef4444;
+            font-weight: 700;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 20px;
+        }
+
+        .badge-value {
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+
+        /* Tab System Styling */
+        .tabs-header {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0;
+            width: 100%;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 15px 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #3b82f6;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #3b82f6;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .data-container {
+                padding: 20px;
+            }
+            .table-title {
+                font-size: 1.4rem;
+                padding: 15px 20px;
+            }
+            .tabs-header {
+                flex-direction: column;
+                gap: 0;
+            }
+            .tab-btn {
+                text-align: left;
+                padding: 12px 20px;
+                width: 100%;
+            }
+            .tab-btn.active::after {
+                left: 0;
+                bottom: 0;
+                width: 3px;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="page-flood-level">
+    <div id="preloader"></div>
+    <div class="up">
+        <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <!-- HEADER -->
+    <div id="header-placeholder"></div>
+    <div id="loadingOverlay">
+        <div style="text-align: center;">
+            <div class="spinner-border text-light mb-3" role="status"></div>
+            <div class="loading-text" style="font-size: 1.2rem; font-weight: 500;">माहिती लोड होत आहे...</div>
+        </div>
+    </div>
+
+    <!-- BREADCRUMB SECTION -->
+    <section id="breadcrumb" class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb-content headline wow fadeInUp">
+                <h2 class="breadcrumb-title" style="color: #fff; font-weight: 800; font-size: 3rem;">पूर पातळी माहिती</h2>
+                <div class="breadcrumb_item ul-li">
+                    <ul class="breadcrumb" style="background: transparent; padding: 0;">
+                        <li class="breadcrumb-item"><a href="home.html">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" style="color: #FFD700;">पूर पातळी</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT SECTION -->
+    <section class="data-section">
+        <div class="container-fluid">
+            <div class="section-title headline text-center mb-5 wow fadeInUp">
+                <span class="title-tag">अद्ययावत माहिती</span>
+                <h2>नदीची पूर पातळी व इशारा</h2>
+                <div id="last-updated-container" class="last-updated"></div>
+                <p style="color: #64748b; max-width: 700px; margin: 0 auto; margin-top: 10px;">
+                    कृष्णा आणि वारणा खोऱ्यातील विविध ठिकाणच्या पाणी पातळीची सद्यस्थिती खालीलप्रमाणे आहे.
+                </p>
+            </div>
+
+            <div class="data-container wow fadeInUp" data-wow-delay="0.2s">
+                <!-- Navigation Tabs -->
+                <div class="tabs-header">
+                    <button class="tab-btn" onclick="openTab(event, 'report-tab')">पूर नियंत्रण कक्ष अहवाल</button>
+                    <button class="tab-btn active" onclick="openTab(event, 'level-tab')">महत्तम पूर पातळी</button>
+                </div>
+
+                <!-- Tab Content: Report (Empty for now) -->
+                <div id="report-tab" class="tab-content">
+                    <div class="placeholder-box">
+                        <i class="fas fa-file-signature"></i>
+                        <h3>पूर नियंत्रण कक्ष अहवाल</h3>
+                        <p>या विभागातील माहिती लवकरच उपलब्ध होईल.</p>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Flood Level Table -->
+                <div id="level-tab" class="tab-content active">
+                    <div id="sheet-data-container">
+                        <div class="placeholder-box">
+                            <i class="fas fa-table"></i>
+                            <h3>माहिती लोड होत आहे...</h3>
+                            <p>येथे नवीन गुगल शीटमधील डेटा स्वयंचलितपणे प्रदर्शित केला जाईल.</p>
+                            <div class="spinner-border text-primary mt-3" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- SCRIPTS -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jarallax.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/appear.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/tilt.jquery.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+        // Load Header
+        fetch('/header2.html?v=' + new Date().getTime())
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('open');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('no-scroll');
+                    });
+                }
+            })
+            .catch(err => console.error("Header load error:", err));
+
+        // Load Footer
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error("Footer load error:", err));
+
+        // Initialize WOW.js for animations
+        $(document).ready(function () {
+            if (typeof WOW === 'function') {
+                new WOW().init();
+            }
+            loadData();
+        });
+
+        function openTab(evt, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabId).style.display = "block";
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+
+        function loadData() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+            
+            const url = "/api/method/quant_sic_portal.api.run_test_py?sheet_name=Flood Info";
+            
+            fetch(url)
+                .then(res => res.json())
+                .then(result => {
+                    if (result.message && result.message.status === 'ok') {
+                        const data = result.message.message;
+                        if (data.date && data.date !== 'N/A') {
+                            document.getElementById('last-updated-container').innerHTML = `<i class="far fa-clock"></i> शेवटचे अपडेट: ${data.date}`;
+                        }
+                        renderTables(data.tables);
+                    } else {
+                        showError("माहिती प्राप्त करण्यास अडचण आली.");
+                    }
+                })
+                .catch(err => {
+                    console.error("Fetch error:", err);
+                    showError("सर्व्हरशी संपर्क होऊ शकला नाही.");
+                })
+                .finally(() => overlay.style.display = 'none');
+        }
+
+        function renderTables(tables) {
+            const container = document.getElementById('sheet-data-container');
+            if (!tables || tables.length === 0) {
+                showError("कोणतीही माहिती उपलब्ध नाही.");
+                return;
+            }
+
+            container.innerHTML = ''; // Clear placeholder
+
+            tables.forEach(table => {
+                const tableWrap = document.createElement('div');
+                tableWrap.className = 'table-container wow fadeInUp';
+
+                let tableHtml = `<h3 class="table-title">${table.title || 'माहिती'}</h3>`;
+                tableHtml += `<div class="table-responsive"><table class="table hover">`;
+
+                if (table.rows && table.rows.length > 0) {
+                    const header = table.rows[0];
+                    tableHtml += `<thead><tr>${header.map(cell => `<th>${cell || ''}</th>`).join('')}</tr></thead>`;
+
+                    tableHtml += `<tbody>`;
+                    const rows = table.rows.slice(1);
+                    
+                    let lastStation = "";
+                    let lastNo = "";
+
+                    rows.forEach(row => {
+                        const srNo = (row[0] || '').trim();
+                        const stationName = (row[1] || '').trim();
+                        const isMainRow = srNo !== "" || stationName !== "";
+                        
+                        let rowClass = "";
+                        if (isMainRow) {
+                            rowClass = "station-row";
+                            lastStation = stationName;
+                            lastNo = srNo;
+                        }
+
+                        tableHtml += `<tr class="${rowClass}">`;
+                        row.forEach((cell, idx) => {
+                            let cellHtml = cell || '-';
+                            let cellClass = "";
+                            
+                            // Style sub-header column (usually index 2 like "Date", "Feet")
+                            if (!isMainRow && idx === 2) {
+                                cellClass = "sub-header-cell";
+                            }
+                            
+                            // Highlight numbers
+                            if (idx > 2 && cell && !isNaN(parseFloat(cell.replace(/'/g, '')))) {
+                                cellHtml = `<span class="badge-value">${cell}</span>`;
+                            }
+
+                            tableHtml += `<td class="${cellClass}">${cellHtml}</td>`;
+                        });
+                        tableHtml += `</tr>`;
+                    });
+                    tableHtml += `</tbody>`;
+                }
+
+                tableHtml += `</table></div>`;
+                tableWrap.innerHTML = tableHtml;
+                container.appendChild(tableWrap);
+                
+                // Add drag-to-scroll functionality
+                initDragScroll(tableWrap.querySelector('.table-responsive'));
+            });
+        }
+
+        function initDragScroll(slider) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+                slider.style.cursor = 'grabbing';
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        function showError(msg) {
+            document.getElementById('sheet-data-container').innerHTML = `
+                <div class="alert alert-warning text-center">
+                    <i class="fas fa-exclamation-triangle"></i> ${msg}
+                </div>
+            `;
+        }
+    </script>
+    <script src="/js/visitor-count.js?v=1.2"></script>
+</body>
+
+</html>

@@ -343,15 +343,51 @@
 			.tembhu-info-grid {
 				grid-template-columns: repeat(2, 1fr);
 			}
+			.featured-box {
+				grid-column: span 2;
+			}
 		}
 
 		@media (max-width: 768px) {
 			.tembhu-info-grid {
 				grid-template-columns: 1fr;
 			}
+			.featured-box {
+				grid-column: span 1;
+			}
 			.tembhu-info-box {
 				padding: 25px 20px;
 			}
+		}
+
+		/* New Subsection Styling */
+		.section-subtitle {
+			margin-top: 60px;
+		}
+		.section-subtitle h3 {
+			font-size: 2rem;
+			font-weight: 700;
+			color: #1e293b;
+			margin-bottom: 10px;
+		}
+		.separator-small {
+			width: 40px;
+			height: 3px;
+			background: #2563eb;
+			margin: 0 auto;
+			border-radius: 2px;
+		}
+		.featured-box {
+			grid-column: span 4;
+		}
+		.featured-box .tembhu-milestone {
+			padding: 40px;
+		}
+		.featured-box .tembhu-milestone-content h3 {
+			font-size: 1.6rem;
+		}
+		.featured-box .tembhu-milestone-content p {
+			font-size: 1.1rem;
 		}
 	</style>
 
@@ -379,27 +415,36 @@
 नंदकुमार वडनेरे समितीने सांगली आणि कोल्हापूरमधील २०१९ च्या महापुराचा अभ्यास करून, अतिवृष्टी आणि नद्यांवरील अतिक्रमणांमुळे पूरस्थिती निर्माण झाल्याचा निष्कर्ष काढला आहे. या अहवालात अलमट्टी धरणापेक्षा स्थानिक कारणांवर अधिक भर दिला गेला असून, पुराची तीव्रता कमी करण्यासाठी दीर्घकालीन उपाययोजना सुचवल्या आहेत, जो अहवाल मे २०२० मध्ये सादर झाला.				</p>
 			</div>
 
-			<div class="tembhu-info-grid">
-				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.1s">
+			<!-- Featured Section: Sangli District Book -->
+			<div class="tembhu-info-grid mb-5">
+				<div class="tembhu-info-box featured-box wow fadeInUp" data-wow-delay="0.1s">
 					<div class="tembhu-milestone">
 						<div class="arrow-marker">
-							<i class="fas fa-arrow-right"></i>
+							<i class="fas fa-star" style="color: #f59e0b;"></i>
 						</div>
 						<div class="tembhu-milestone-content">
 							<h3>सांगली जिल्हा पुस्तिका</h3>
 							<p>
-								या विभागात सांगली जिल्ह्याची संपूर्ण माहिती देणारी अभ्यास पुस्तिका उपलब्ध आहे. ही पुस्तिका पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+								या विभागात सांगली जिल्ह्याची संपूर्ण माहिती देणारी अभ्यास पुस्तिका उपलब्ध आहे. ही पुस्तिका पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल. यामध्ये जिल्ह्याचा भौगोलिक, सामाजिक आणि ऐतिहासिक परिचय दिलेला आहे.
 							</p>
 						</div>
 					</div>
 					<div class="pdf-download-area">
-						<a href="pdf/sangli_dist_book.pdf" target="_blank" class="btn-download">
+						<a href="files/SS.pdf" target="_blank" class="btn-download">
 							<i class="far fa-file-pdf"></i>
-							<span>सांगली जिल्हा पुस्तिका PDF</span>
+							<span>सांगली जिल्हा पुस्तिका PDF डाउनलोड करा</span>
 						</a>
 					</div>
 				</div>
+			</div>
 
+			<!-- Vadnere Committee Section Title -->
+			<div class="section-subtitle text-center mb-5 wow fadeInUp">
+				<h3>वडनेरे समिती अभ्यास अहवाल</h3>
+				<div class="separator-small"></div>
+			</div>
+
+			<div class="tembhu-info-grid" style="grid-template-columns: repeat(3, 1fr);">
 				<div class="tembhu-info-box wow fadeInUp" data-wow-delay="0.2s">
 					<div class="tembhu-milestone">
 						<div class="arrow-marker">
@@ -408,14 +453,14 @@
 						<div class="tembhu-milestone-content">
 							<h3>Vol 1 Main Report</h3>
 							<p>
-								या विभागात 'Vol 1 Main Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+								या विभागात 'Vol 1 Main Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली आहे.
 							</p>
 						</div>
 					</div>
 					<div class="pdf-download-area">
 						<a href="pdf/vol_1_main_report.pdf" target="_blank" class="btn-download">
 							<i class="far fa-file-pdf"></i>
-							<span>Vol 1 Main Report PDF</span>
+							<span>Vol 1 PDF</span>
 						</a>
 					</div>
 				</div>
@@ -428,14 +473,14 @@
 						<div class="tembhu-milestone-content">
 							<h3>Vol 2 Annxure Study Report</h3>
 							<p>
-								या विभागात 'Vol 2 Annxure Study Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली असून खालील बटणावर क्लिक करून ती डाउनलोड करता येईल.
+								या विभागात 'Vol 2 Annxure Study Report' उपलब्ध आहे. ही माहिती पीडीएफ स्वरूपात उपलब्ध करून देण्यात आली आहे.
 							</p>
 						</div>
 					</div>
 					<div class="pdf-download-area">
 						<a href="pdf/vol_2_annexure_study_report.pdf" target="_blank" class="btn-download">
 							<i class="far fa-file-pdf"></i>
-							<span>Vol 2 Annxure Study Report PDF</span>
+							<span>Vol 2 PDF</span>
 						</a>
 					</div>
 				</div>
@@ -448,14 +493,14 @@
 						<div class="tembhu-milestone-content">
 							<h3>Vol 3 Maps</h3>
 							<p>
-								या विभागात 'Vol 3 Maps' उपलब्ध आहेत. हे नकाशे पीडीएफ स्वरूपात उपलब्ध करून देण्यात आले असून खालील बटणावर क्लिक करून ते डाउनलोड करता येतील.
+								या विभागात 'Vol 3 Maps' उपलब्ध आहेत. हे नकाशे पीडीएफ स्वरूपात उपलब्ध करून देण्यात आले आहेत.
 							</p>
 						</div>
 					</div>
 					<div class="pdf-download-area">
 						<a href="pdf/vol_3_maps.pdf" target="_blank" class="btn-download">
 							<i class="far fa-file-pdf"></i>
-							<span>Vol 3 Maps PDF</span>
+							<span>Vol 3 PDF</span>
 						</a>
 					</div>
 				</div>
@@ -586,5 +631,6 @@
 			.catch(err => console.error("Footer load error:", err));
 </script>
 
+<script src="/js/visitor-count.js?v=1.2"></script>
 </body>
 </html>

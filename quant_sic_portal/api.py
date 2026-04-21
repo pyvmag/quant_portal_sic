@@ -2,6 +2,7 @@ import frappe
 import json
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+from frappe.utils import nowdate
 
 SPREADSHEET_ID = "1jo9m4WLQ2k7AdqISUAzwpm0fer5gqvbmvVAob7pamRk"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -92,6 +93,7 @@ def find_date_with_red_text(sheet_data):
                     return cell.get('formattedValue', '') or ''
     return 'N/A'
 
+@frappe.whitelist()
 def fetch_sheet_raw_data(sheet_name="Sheet2"):
     try:
         creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -469,8 +471,9 @@ def extract_tables(sheet_data):
             print(f"DEBUG: Using fallback table: {table['title']}")
     return tables
 
+
 @frappe.whitelist(allow_guest=True)
-def run_test_py(config=None):
+def run_test_py(config=None, sheet_name=None):
     try:
         # Parse config from request (default if none)
         default_config = {
@@ -490,7 +493,10 @@ def run_test_py(config=None):
             default_config.update(config or {})
         config = default_config
         frappe.log(f"Using config: {config}")
-        sheet_data = fetch_sheet_raw_data()
+        
+        # Determine which sheet to fetch from
+        target_sheet = sheet_name or "Sheet2"
+        sheet_data = fetch_sheet_raw_data(sheet_name=target_sheet)
         frappe.log(f"Sheet data rows: {len(sheet_data)}") # Debug: Log sheet rows
         tables = extract_tables(sheet_data)
         frappe.log(f"Extracted tables: {len(tables)}") # Debug log
@@ -522,3 +528,81 @@ def run_test_py(config=None):
     except Exception as e:
         frappe.log(f"Error in run_test_py: {frappe.get_traceback()}", level="error")
         return {"status": "fail", "message": str(e)}
+
+@frappe.whitelist(allow_guest=True)
+def get_general_sheet_data(sheet_name="Flood Info"):
+    """
+    Generic function to fetch and extract tables from any sheet tab.
+    Used for Flood Info and other dynamic pages.
+    """
+    try:
+        sheet_data = fetch_sheet_raw_data(sheet_name=sheet_name)
+        if not sheet_data:
+            return {"status": "fail", "message": f"No data found in sheet '{sheet_name}'"}
+            
+        tables = extract_tables(sheet_data)
+        date = find_date_with_red_text(sheet_data)
+        
+        return {
+            "status": "ok",
+            "message": {
+                "tables": tables,
+                "date": date,
+            }
+        }
+    except Exception as e:
+        frappe.log(f"Error in get_general_sheet_data: {frappe.get_traceback()}", level="error")
+        return {"status": "fail", "message": str(e)}
+
+@frappe.whitelist(allow_guest=True)
+def get_visitor_stats(is_unique=False):
+    """
+    Returns visitor statistics. If is_unique is True, increments the counts.
+    Uses direct SQL to bypass all Frappe caching mechanisms.
+    """
+    today = nowdate()
+    if isinstance(is_unique, str):
+        is_unique = is_unique.lower() == 'true'
+    
+    # helper to get global value via direct SQL
+    def get_val(key):
+        res = frappe.db.sql("SELECT defvalue FROM `tabDefaultValue` WHERE defkey=%s AND parent='__global' LIMIT 1", (key,))
+        return res[0][0] if res else None
+
+    # helper to set global value via direct SQL
+    def set_val(key, val):
+        if get_val(key) is not None:
+            frappe.db.sql("UPDATE `tabDefaultValue` SET defvalue=%s WHERE defkey=%s AND parent='__global'", (str(val), key))
+        else:
+            # Create if missing
+            from frappe.model.naming import make_autoname
+            name = make_autoname('DefaultValue', 'hash')
+            frappe.db.sql("""INSERT INTO `tabDefaultValue` (name, defkey, defvalue, parent, parenttype, parentfield) 
+                             VALUES (%s, %s, %s, '__global', 'Control Panel', 'system_defaults')""", (name, key, str(val)))
+
+    # Get values directly from DB
+    total_visitors = int(get_val('total_visitors') or 0)
+    today_visitors = int(get_val('today_visitors') or 0)
+    last_visitor_date = get_val('last_visitor_date')
+    
+    # Reset today's count if it's a new day
+    if last_visitor_date != today:
+        today_visitors = 0
+        set_val('last_visitor_date', today)
+        set_val('today_visitors', 0)
+        frappe.db.commit()
+    
+    if is_unique:
+        total_visitors += 1
+        today_visitors += 1
+        set_val('total_visitors', total_visitors)
+        set_val('today_visitors', today_visitors)
+        frappe.db.commit()
+        # Force clear the specific defaults cache as a safety measure
+        frappe.cache().delete_value("defaults")
+    
+    return {
+        "total_visitors": total_visitors,
+        "today_visitors": today_visitors,
+        "review_date": today
+    }
