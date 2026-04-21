@@ -107,20 +107,14 @@ def fetch_sheet_raw_data(sheet_name="Sheet2"):
         ).execute()
 
         # Extract the row data which contains formatting information
-        data = sheet['sheets'][0]['data'][0].get('rowData', [])
-        
-        # Debug: Print the raw data around row 46 for verification
-        for i, row in enumerate(data):
-            if i >= 44 and i <= 47:  # Rows 45-48
-                cells = row.get('values', [])
-                first_cell = cells[0].get('formattedValue', '') if cells else ''
-                print(f"DEBUG Row {i+1}: {first_cell}")
+        sheet_obj = sheet['sheets'][0]
+        data = sheet_obj['data'][0].get('rowData', [])
+        merges = sheet_obj.get('merges', [])
                     
-        return data
+        return {"rowData": data, "merges": merges}
     except Exception as api_err:
         frappe.log_error(f"Google Sheets API error: {api_err}", "Water Level Fetch")
-        # Do not raise; return empty to allow graceful fail
-        return []
+        return {"rowData": [], "merges": []}
 
 def compute_kpis_for_table(table_rows, config):
     if not table_rows or len(table_rows) < 2:
@@ -408,67 +402,126 @@ def extract_chart_data(table_rows, config, table_num=1):
         frappe.log(f"Sample second pct values (first 3): {values[second_key][:3]}")
     return {"categories": categories, "values": values}
 
-def extract_tables(sheet_data):
+def extract_tables(sheet_data_obj):
+    sheet_data = sheet_data_obj.get('rowData', [])
+    merges = sheet_data_obj.get('merges', [])
     tables = []
     i = 0
-    table_num = 1
-    while i < len(sheet_data) and table_num <= 2: # Limit to 2 tables
+    
+    # Strategy 1: Title Row Based (Black Bg, White Text)
+    while i < len(sheet_data):
         while i < len(sheet_data) and not is_title_row(sheet_data[i]):
             i += 1
         if i >= len(sheet_data):
             break
+            
         title_row = sheet_data[i]
         title = get_title_value(title_row)
-        frappe.log(f"Found title for Table {table_num} at row {i}: {title}")
-        i += 1 # Skip title row
+        i += 1
+        
         while i < len(sheet_data) and is_empty_row(sheet_data[i]):
             i += 1
-        # Find header as first non-empty row (more robust than bold)
+            
         header = None
-        while i < len(sheet_data) and header is None:
-            if not is_empty_row(sheet_data[i]):
-                header_row = sheet_data[i]
-                header = [cell.get('formattedValue', '') or '' for cell in header_row['values']]
-                frappe.log(f"Found header for Table {table_num} at row {i}: {header[:3]}...")
+        if i < len(sheet_data):
+            header_row = sheet_data[i]
+            header = [cell.get('formattedValue', '') or '' for cell in header_row.get('values', [])]
+            i += 1
+            
+        if header:
+            table_rows = [header]
+            table_start = i - 1 # i was advanced after header
+            while i < len(sheet_data):
+                row = sheet_data[i]
+                if is_title_row(row) or is_yellow_row_with_total(row):
+                    if is_yellow_row_with_total(row):
+                        table_rows.append([cell.get('formattedValue', '') or '' for cell in row.get('values', [])])
+                        i += 1
+                    break
+                row_data = [cell.get('formattedValue', '') or '' for cell in row.get('values', [])]
+                if any(row_data):
+                    table_rows.append(row_data)
                 i += 1
+            
+            # Trim trailing empties for Strategy 1
+            max_cols = 0
+            for r in table_rows:
+                for idx, val in enumerate(r):
+                    if str(val).strip(): max_cols = max(max_cols, idx + 1)
+            table_rows = [r[:max_cols] for r in table_rows]
+            
+            tables.append({'title': title, 'rows': table_rows, 'start_row_index': table_start})
+
+    # Strategy 2: If no tables found or some parts missed, try Content-Based (Sr. No.)
+    if not tables:
+        frappe.log("No formatting-based tables found. Trying content-based search (Sr. No.).")
+        i = 3 # Skip report title rows (1-3)
+        while i < len(sheet_data):
+            row_vals = [str(cell.get('formattedValue', '') or '').strip().lower().replace('\n', ' ') for cell in sheet_data[i].get('values', [])]
+            
+            # Look for Row containing "Sr. No." or "अ.क्र."
+            is_header = any(('sr.' in v and ('no.' in v or 'no' in v)) or ('अ' in v and 'क्र' in v) for v in row_vals)
+            
+            if is_header:
+                start_of_header = i
+                table_headers = []
+                
+                # Expand to find up to 3 rows of headers
+                header_i = i
+                while header_i < len(sheet_data) and header_i < i + 3:
+                    row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[header_i].get('values', [])]
+                    # Check if this row is already data (e.g. SR 1)
+                    if header_i > i:
+                        val0 = str(row_data[0]).strip()
+                        if val0 and val0.isdigit():
+                            break
+                    table_headers.append(row_data)
+                    header_i += 1
+                
+                i = header_i # Update data starting point
+                
+                table_rows = []
+                # Collect data until we hit a clear break (2+ empty rows or next header)
+                empty_count = 0
+                while i < len(sheet_data):
+                    row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[i].get('values', [])]
+                    if not any(row_data):
+                        empty_count += 1
+                        if empty_count >= 2: break
+                    else:
+                        empty_count = 0
+                        # Check if this row is another header
+                        if any('sr.' in str(v).lower() and ('no.' in str(v).lower()) for v in row_data):
+                            break
+                        table_rows.append(row_data)
+                    i += 1
+                
+                # Trim trailing empty columns from headers and rows
+                max_cols = 0
+                for r in table_headers:
+                    for idx, val in enumerate(r):
+                        if str(val).strip(): max_cols = max(max_cols, idx + 1)
+                for r in table_rows:
+                    for idx, val in enumerate(r):
+                        if str(val).strip(): max_cols = max(max_cols, idx + 1)
+                
+                table_headers = [r[:max_cols] for r in table_headers]
+                table_rows = [r[:max_cols] for r in table_rows]
+                
+                tables.append({
+                    'title': f"Table {len(tables)+1}", 
+                    'headers': table_headers, # Multi-level headers
+                    'rows': table_rows,
+                    'start_row_index': start_of_header # 0-based index in sheet
+                })
             else:
                 i += 1
-        if header is None:
-            frappe.log(f"No header found after title for Table {table_num}")
-            continue
-        # Collect data rows until yellow total
-        table_rows = [header] # Include header as first row
-        while i < len(sheet_data):
-            row = sheet_data[i]
-            if is_yellow_row_with_total(row):
-                total_row = [cell.get('formattedValue', '') or '' for cell in row['values']]
-                table_rows.append(total_row)
-                frappe.log(f"Found total row for Table {table_num} at row {i}, ending table")
-                break
-            row_data = [cell.get('formattedValue', '') or '' for cell in row['values']]
-            if any(row_data): # Add non-empty rows
-                table_rows.append(row_data)
-            i += 1
-        tables.append({
-            'title': title,
-            'rows': table_rows
-        })
-        frappe.log(f"Table {table_num}: {len(table_rows)} rows")
-        table_num += 1
-        i += 1 # Skip to next potential table
-    if len(tables) == 0:
-        frappe.log("No tables detected - falling back to raw rows split")
-        # Fallback: split raw rows into two dummy tables
+
+    if not tables:
+        frappe.log("Fallback to raw rows.")
         raw_rows = [[cell.get('formattedValue', '') or '' for cell in row['values']] for row in sheet_data if 'values' in row]
-        mid_point = len(raw_rows) // 2
-        tables = [
-            {'title': 'Table 1 (Fallback)', 'rows': raw_rows[:mid_point]},
-            {'title': 'Table 2 (Fallback)', 'rows': raw_rows[mid_point:]}
-        ]
-    # Add title to check if using fallback
-    for table in tables:
-        if 'Fallback' in table['title']:
-            print(f"DEBUG: Using fallback table: {table['title']}")
+        tables = [{'title': 'Raw Data', 'headers': [raw_rows[0]] if raw_rows else [], 'rows': raw_rows[1:] if len(raw_rows)>1 else []}]
+        
     return tables
 
 
@@ -496,22 +549,36 @@ def run_test_py(config=None, sheet_name=None):
         
         # Determine which sheet to fetch from
         target_sheet = sheet_name or "Sheet2"
-        sheet_data = fetch_sheet_raw_data(sheet_name=target_sheet)
+        sheet_data_obj = fetch_sheet_raw_data(sheet_name=target_sheet)
+        sheet_data = sheet_data_obj.get('rowData', [])
         frappe.log(f"Sheet data rows: {len(sheet_data)}") # Debug: Log sheet rows
-        tables = extract_tables(sheet_data)
+        tables = extract_tables(sheet_data_obj)
         frappe.log(f"Extracted tables: {len(tables)}") # Debug log
-        frappe.log(f"Table 1 rows sample: {tables[0]['rows'][:2] if tables else 'No tables'}") # Debug: Log Table 1 sample
-        frappe.log(f"Table 2 rows sample: {tables[1]['rows'][:2] if len(tables) >= 2 else 'No Table 2'}") # Debug: Log Table 2 sample
+        # Adjusting the sample logs to handle the new return structure
+        if tables:
+            first_table_rows = tables[0].get('rows', [])
+            frappe.log(f"Table 1 rows sample: {first_table_rows[:2] if first_table_rows else 'No rows'}")
+        
         date = find_date_with_red_text(sheet_data)
-        # Compute KPIs with config
-        kpis = compute_kpis_for_table(tables[0]['rows'], config) if tables else {"total_categories": 0}
-        kpis_table1_districts = compute_group_kpis(tables[0]['rows'], config, 'district1') if tables else {}
-        kpis_table2 = compute_group_kpis(tables[1]['rows'], config, 'district2') if len(tables) >= 2 else {}
-        frappe.log(f"kpis_table2 computed: {kpis_table2}") # Debug: Log final kpis_table2
-        storage_pct = compute_group_pcts(tables[1]['rows'], config) if len(tables) >= 2 else {}
+        # Compute KPIs with config. Note: Adjusting tables[0]['rows'] for Strategy 1 structure
+        table1_data = tables[0].get('rows', []) if tables else []
+        # If Strategy 1 was used, the header is inside 'rows'. If Strategy 2 was used, 'headers' is separate.
+        # To maintain compatibility for compute functions, we'll prefix headers if separate.
+        if tables and 'headers' in tables[0]:
+            table1_full = tables[0]['headers'] + tables[0]['rows']
+            table2_full = (tables[1]['headers'] + tables[1]['rows']) if len(tables) >= 2 else []
+        else:
+            table1_full = table1_data
+            table2_full = tables[1].get('rows', []) if len(tables) >= 2 else []
+
+        kpis = compute_kpis_for_table(table1_full, config) if tables else {"total_categories": 0}
+        kpis_table1_districts = compute_group_kpis(table1_full, config, 'district1') if tables else {}
+        kpis_table2 = compute_group_kpis(table2_full, config, 'district2') if len(tables) >= 2 else {}
+        
+        storage_pct = compute_group_pcts(table2_full, config) if len(tables) >= 2 else {}
         # Extract chart data with config
-        chart_data = extract_chart_data(tables[0]['rows'], config, 1) if tables else {"categories": [], "values": {}}
-        chart_data2 = extract_chart_data(tables[1]['rows'], config, 2) if len(tables) >= 2 else {"categories": [], "values": {}}
+        chart_data = extract_chart_data(table1_full, config, 1) if tables else {"categories": [], "values": {}}
+        chart_data2 = extract_chart_data(table2_full, config, 2) if len(tables) >= 2 else {"categories": [], "values": {}}
         return {
             "status": "ok",
             "message": {
@@ -536,11 +603,29 @@ def get_general_sheet_data(sheet_name="Flood Info"):
     Used for Flood Info and other dynamic pages.
     """
     try:
-        sheet_data = fetch_sheet_raw_data(sheet_name=sheet_name)
+        sheet_data_obj = fetch_sheet_raw_data(sheet_name=sheet_name)
+        sheet_data = sheet_data_obj.get('rowData', [])
         if not sheet_data:
             return {"status": "fail", "message": f"No data found in sheet '{sheet_name}'"}
             
-        tables = extract_tables(sheet_data)
+        tables = extract_tables(sheet_data_obj)
+        
+        # Extract report header (first few rows before any table)
+        report_header = []
+        if len(sheet_data) >= 4:
+            max_h_cols = 0
+            temp_rows = []
+            for i in range(4):
+                row_cells = [cell.get('formattedValue', '') or '' for cell in sheet_data[i].get('values', [])]
+                if any(row_cells):
+                    temp_rows.append(row_cells)
+                    for idx, val in enumerate(row_cells):
+                        if str(val).strip(): max_h_cols = max(max_h_cols, idx + 1)
+            
+            # Trim header rows to match data width or at least remove trailing blanks
+            for r in temp_rows:
+                report_header.append(r[:max_h_cols])
+        
         date = find_date_with_red_text(sheet_data)
         
         return {
@@ -548,6 +633,8 @@ def get_general_sheet_data(sheet_name="Flood Info"):
             "message": {
                 "tables": tables,
                 "date": date,
+                "report_header": report_header,
+                "merges": sheet_data_obj.get('merges', [])
             }
         }
     except Exception as e:

@@ -138,8 +138,8 @@
         }
 
         .table-container {
-            margin: 40px 0;
-            border-radius: 16px;
+            margin: 15px 0;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             background: #fff;
@@ -175,26 +175,28 @@
         }
 
         .table thead th {
-            background: #126cff;
-            color: #fff;
-            font-weight: 600;
+            background: #126cff !important;
+            color: #fff !important;
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            padding: 15px 20px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            padding: 10px 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
             z-index: 10;
+            text-align: center;
+            vertical-align: middle !important;
         }
 
         .table tbody td {
-            padding: 14px 20px;
+            padding: 8px 12px;
             vertical-align: middle;
             color: #475569;
             border-bottom: 1px solid #f1f5f9;
             border-right: 1px solid #f1f5f9;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
         }
 
@@ -205,6 +207,10 @@
         .table tbody tr:hover td {
             background-color: #f8fafc;
             color: #0f172a;
+        }
+
+        .table thead th.merged-cell, .table tbody td.merged-cell {
+            display: none !important;
         }
 
         /* Styling for grouped rows */
@@ -241,10 +247,10 @@
         }
 
         .badge-value {
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
             font-weight: 600;
+            font-size: 0.8rem;
         }
 
         /* Tab System Styling */
@@ -302,6 +308,47 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Report Header Styling */
+        .report-header-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .report-header-line1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .report-header-line2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .report-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px dashed #cbd5e1;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .report-title-main {
+            font-size: 1.1rem;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
@@ -376,21 +423,27 @@
             <div class="data-container wow fadeInUp" data-wow-delay="0.2s">
                 <!-- Navigation Tabs -->
                 <div class="tabs-header">
-                    <button class="tab-btn" onclick="openTab(event, 'report-tab')">पूर नियंत्रण कक्ष अहवाल</button>
-                    <button class="tab-btn active" onclick="openTab(event, 'level-tab')">महत्तम पूर पातळी</button>
+                    <button class="tab-btn active" onclick="openTab(event, 'report-tab')">पूर नियंत्रण कक्ष अहवाल</button>
+                    <button class="tab-btn" onclick="openTab(event, 'level-tab')">महत्तम पूर पातळी</button>
                 </div>
 
-                <!-- Tab Content: Report (Empty for now) -->
-                <div id="report-tab" class="tab-content">
-                    <div class="placeholder-box">
-                        <i class="fas fa-file-signature"></i>
-                        <h3>पूर नियंत्रण कक्ष अहवाल</h3>
-                        <p>या विभागातील माहिती लवकरच उपलब्ध होईल.</p>
+                <!-- Tab Content: Report -->
+                <div id="report-tab" class="tab-content active" style="display: block;">
+                    <div id="report-header-container"></div>
+                    <div id="report-data-container">
+                        <div class="placeholder-box">
+                            <i class="fas fa-file-signature"></i>
+                            <h3>माहिती लोड होत आहे...</h3>
+                            <p>येथे पूर नियंत्रण कक्ष अहवालाची माहिती प्रदर्शित केली जाईल.</p>
+                            <div class="spinner-border text-primary mt-3" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Tab Content: Flood Level Table -->
-                <div id="level-tab" class="tab-content active">
+                <div id="level-tab" class="tab-content">
                     <div id="sheet-data-container">
                         <div class="placeholder-box">
                             <i class="fas fa-table"></i>
@@ -481,9 +534,9 @@
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = 'flex';
             
-            const url = "/api/method/quant_sic_portal.api.run_test_py?sheet_name=Flood Info";
-            
-            fetch(url)
+            // Load Tab 2 Data (Flood Info - Mahattam Pur Patli)
+            const levelUrl = "/api/method/quant_sic_portal.api.run_test_py?sheet_name=Flood Info";
+            const levelFetch = fetch(levelUrl)
                 .then(res => res.json())
                 .then(result => {
                     if (result.message && result.message.status === 'ok') {
@@ -491,85 +544,239 @@
                         if (data.date && data.date !== 'N/A') {
                             document.getElementById('last-updated-container').innerHTML = `<i class="far fa-clock"></i> शेवटचे अपडेट: ${data.date}`;
                         }
-                        renderTables(data.tables);
+                        renderTables(data.tables, 'sheet-data-container', data.merges || []);
                     } else {
-                        showError("माहिती प्राप्त करण्यास अडचण आली.");
+                        showError("महत्तम पूर पातळी माहिती प्राप्त करण्यास अडचण आली.", 'sheet-data-container');
                     }
                 })
                 .catch(err => {
-                    console.error("Fetch error:", err);
-                    showError("सर्व्हरशी संपर्क होऊ शकला नाही.");
+                    console.error("Level Fetch error:", err);
+                    showError("सर्व्हरशी संपर्क होऊ शकला नाही.", 'sheet-data-container');
+                });
+
+            // Load Tab 1 Data - Part 1 (Flood Info 1)
+            const report1Url = "/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=Flood Info 1";
+            const report1Fetch = fetch(report1Url)
+                .then(res => res.json())
+                .then(result => {
+                    if (result.message && result.message.status === 'ok') {
+                        const data = result.message.message;
+                        const container = document.getElementById('report-data-container');
+                        container.innerHTML = ''; // Clear placeholder once
+                        
+                        if (data.report_header) {
+                            renderReportHeader(data.report_header, 'report-data-container');
+                        }
+                        renderTables(data.tables, 'report-data-container', data.merges || []);
+                        
+                        // After loading Info 1, load Info 2
+                        loadReportPart2();
+                    } else {
+                        showError("पूर नियंत्रण कक्ष अहवाल माहिती प्राप्त करण्यास अडचण आली.", 'report-data-container');
+                    }
                 })
-                .finally(() => overlay.style.display = 'none');
+                .catch(err => {
+                    console.error("Report Fetch error:", err);
+                    showError("सर्व्हरशी संपर्क होऊ शकला नाही.", 'report-data-container');
+                });
+
+            Promise.all([levelFetch, report1Fetch]).finally(() => overlay.style.display = 'none');
         }
 
-        function renderTables(tables) {
-            const container = document.getElementById('sheet-data-container');
+        function loadReportPart2() {
+            const report2Url = "/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=Flood Info 2";
+            fetch(report2Url)
+                .then(res => res.json())
+                .then(result => {
+                    if (result.message && result.message.status === 'ok') {
+                        const data = result.message.message;
+                        const container = document.getElementById('report-data-container');
+                        
+                        // Add a separator
+                        const sep = document.createElement('div');
+                        sep.className = 'section-separator wow fadeIn';
+                        sep.style.cssText = 'margin: 50px 0 30px; border-bottom: 2px solid #3b82f6; position: relative;';
+                        sep.innerHTML = '<span style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #fff; padding: 0 20px; color: #3b82f6; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">दैनिक मराठी अहवाल</span>';
+                        container.appendChild(sep);
+                        
+                        if (data.report_header) {
+                            renderReportHeader(data.report_header, 'report-data-container');
+                        }
+                        renderTables(data.tables, 'report-data-container', data.merges || [], true);
+                    }
+                })
+                .catch(err => console.error("Report 2 Fetch error:", err));
+        }
+
+        function renderReportHeader(headerData, targetContainer = 'report-header-container') {
+            if (!headerData || headerData.length < 1) return;
+            
+            const container = document.getElementById(targetContainer);
+            if (targetContainer === 'report-header-container') container.innerHTML = '';
+            
+            const headerBox = document.createElement('div');
+            headerBox.className = 'report-header-box animate__animated animate__fadeIn';
+            
+            // Collect all non-empty rows for logical assignment
+            const activeRows = headerData.filter(row => row.some(c => c.trim() !== ''));
+            if (activeRows.length === 0) return;
+
+            // 1. Organization Banner (First non-empty row)
+            const orgRow = activeRows[0].find(c => c.trim() !== '');
+            if (orgRow) {
+                const l1 = document.createElement('div');
+                l1.className = 'report-header-line1';
+                l1.innerText = orgRow;
+                headerBox.appendChild(l1);
+            }
+            
+            // 2. Metadata Bar (Row containing Date/Time/Report keywords)
+            const metaRow = activeRows.find(row => row.some(c => 
+                c.includes('Report') || c.includes('अहवाल') || c.includes('Date') || c.includes('दिनांक')
+            ));
+            
+            if (metaRow) {
+                const meta = document.createElement('div');
+                meta.className = 'report-header-meta';
+                const fullText = metaRow.join(' ').replace(/\s+/g, ' ');
+
+                const title = metaRow.find(c => c.includes('Report') || c.includes('अहवाल')) || 'Daily Water Report';
+                const dateMatch = fullText.match(/(Date|दिनांक)\s*([\d\s\/]+)/);
+                const timeMatch = fullText.match(/(Time|सकाळी|वेळ)\s*([\w\s\d:]+)/);
+                
+                const datePart = dateMatch ? dateMatch[0] : 'Date: -';
+                const timePart = timeMatch ? timeMatch[0] : 'Time: -';
+                
+                meta.innerHTML = `
+                    <div class="report-title-main">${title}</div>
+                    <div>${datePart}</div>
+                    <div>${timePart}</div>
+                `;
+                headerBox.appendChild(meta);
+            }
+            
+            // 3. Contact Info (Row containing contact keywords)
+            const contactRow = activeRows.find(row => row.some(c => 
+                c.includes('संपर्क') || c.includes('Tel') || c.includes('Ph') || c.includes('दुरध्वनी')
+            ));
+            
+            if (contactRow) {
+                const contactText = contactRow.find(c => c.includes('संपर्क') || c.includes('Tel') || c.includes('Ph') || c.includes('दुरध्वनी'));
+                const l4 = document.createElement('div');
+                l4.style.cssText = 'font-size: 0.85rem; color: #64748b; margin-top: 10px; font-style: italic;';
+                l4.innerText = contactText;
+                headerBox.appendChild(l4);
+            }
+            
+            container.appendChild(headerBox);
+        }
+
+        function renderTables(tables, containerId, merges = [], append = false) {
+            const container = document.getElementById(containerId);
             if (!tables || tables.length === 0) {
-                showError("कोणतीही माहिती उपलब्ध नाही.");
+                if (!append) showError("कोणतीही माहिती उपलब्ध नाही.", containerId);
                 return;
             }
 
-            container.innerHTML = ''; // Clear placeholder
+            if (!append) container.innerHTML = ''; 
 
             tables.forEach(table => {
                 const tableWrap = document.createElement('div');
                 tableWrap.className = 'table-container wow fadeInUp';
 
-                let tableHtml = `<h3 class="table-title">${table.title || 'माहिती'}</h3>`;
+                let tableHtml = '';
+                // Only show title if it's descriptive (not Table 1, Table 2, Raw Data, etc.)
+                if (table.title && !table.title.match(/^Table \d+$/) && table.title !== 'Raw Data') {
+                    tableHtml += `<h3 class="table-title">${table.title}</h3>`;
+                }
+                
                 tableHtml += `<div class="table-responsive"><table class="table hover">`;
 
-                if (table.rows && table.rows.length > 0) {
-                    const header = table.rows[0];
-                    tableHtml += `<thead><tr>${header.map(cell => `<th>${cell || ''}</th>`).join('')}</tr></thead>`;
-
-                    tableHtml += `<tbody>`;
-                    const rows = table.rows.slice(1);
-                    
-                    let lastStation = "";
-                    let lastNo = "";
-
-                    rows.forEach(row => {
-                        const srNo = (row[0] || '').trim();
-                        const stationName = (row[1] || '').trim();
-                        const isMainRow = srNo !== "" || stationName !== "";
+                const startRow = table.start_row_index || 0;
+                
+                // Handle Headers
+                tableHtml += `<thead>`;
+                const headers = table.headers || (table.rows ? [table.rows[0]] : []);
+                headers.forEach((headerRow, rIdx) => {
+                    tableHtml += `<tr>`;
+                    headerRow.forEach((cell, cIdx) => {
+                        const mergeInfo = checkMerge(startRow + rIdx, cIdx, merges);
+                        if (mergeInfo.skip) return;
                         
-                        let rowClass = "";
-                        if (isMainRow) {
-                            rowClass = "station-row";
-                            lastStation = stationName;
-                            lastNo = srNo;
+                        let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                        tableHtml += `<th ${attrs}>${cell || ''}</th>`;
+                    });
+                    tableHtml += `</tr>`;
+                });
+                tableHtml += `</thead>`;
+
+                // Handle Body
+                tableHtml += `<tbody>`;
+                const bodyRows = table.headers ? table.rows : table.rows.slice(1);
+                const bodyStartRow = startRow + (table.headers ? table.headers.length : 1);
+                
+                bodyRows.forEach((row, rIdx) => {
+                    const srNo = (row[0] || '').toString().trim();
+                    const col2 = (row[1] || '').toString().trim();
+                    const isMainRow = srNo !== "" || (col2 !== "" && isNaN(parseFloat(col2)));
+                        
+                    let rowClass = "";
+                    if (isMainRow && containerId === 'sheet-data-container') {
+                        rowClass = "station-row";
+                    }
+
+                    tableHtml += `<tr class="${rowClass}">`;
+                    row.forEach((cell, cIdx) => {
+                        const mergeInfo = checkMerge(bodyStartRow + rIdx, cIdx, merges);
+                        if (mergeInfo.skip) return;
+
+                        let cellHtml = cell || '-';
+                        let cellClass = "";
+                        let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                            
+                        // Style sub-header column
+                        if (!isMainRow && cIdx === 2 && containerId === 'sheet-data-container') {
+                            cellClass = "sub-header-cell";
+                        }
+                            
+                        // Highlight numbers
+                        if (cIdx > 0 && cell && !isNaN(parseFloat(cell.toString().replace(/'/g, '').replace(/,/g, '')))) {
+                            cellHtml = `<span class="badge-value">${cell}</span>`;
                         }
 
-                        tableHtml += `<tr class="${rowClass}">`;
-                        row.forEach((cell, idx) => {
-                            let cellHtml = cell || '-';
-                            let cellClass = "";
-                            
-                            // Style sub-header column (usually index 2 like "Date", "Feet")
-                            if (!isMainRow && idx === 2) {
-                                cellClass = "sub-header-cell";
-                            }
-                            
-                            // Highlight numbers
-                            if (idx > 2 && cell && !isNaN(parseFloat(cell.replace(/'/g, '')))) {
-                                cellHtml = `<span class="badge-value">${cell}</span>`;
-                            }
-
-                            tableHtml += `<td class="${cellClass}">${cellHtml}</td>`;
-                        });
-                        tableHtml += `</tr>`;
+                        tableHtml += `<td class="${cellClass}" ${attrs}>${cellHtml}</td>`;
                     });
-                    tableHtml += `</tbody>`;
-                }
+                    tableHtml += `</tr>`;
+                });
+                tableHtml += `</tbody>`;
 
                 tableHtml += `</table></div>`;
                 tableWrap.innerHTML = tableHtml;
                 container.appendChild(tableWrap);
                 
-                // Add drag-to-scroll functionality
                 initDragScroll(tableWrap.querySelector('.table-responsive'));
             });
+        }
+
+        function checkMerge(row, col, merges) {
+            if (!merges || merges.length === 0) return { skip: false, colspan: 1, rowspan: 1 };
+            
+            for (let m of merges) {
+                // If cell is the start of a merge
+                if (m.startRowIndex === row && m.startColumnIndex === col) {
+                    return {
+                        skip: false,
+                        colspan: m.endColumnIndex - m.startColumnIndex,
+                        rowspan: m.endRowIndex - m.startRowIndex
+                    };
+                }
+                // If cell is inside a merge but not the start
+                if (row >= m.startRowIndex && row < m.endRowIndex && 
+                    col >= m.startColumnIndex && col < m.endColumnIndex) {
+                    return { skip: true };
+                }
+            }
+            return { skip: false, colspan: 1, rowspan: 1 };
         }
 
         function initDragScroll(slider) {
@@ -604,8 +811,8 @@
             });
         }
 
-        function showError(msg) {
-            document.getElementById('sheet-data-container').innerHTML = `
+        function showError(msg, containerId) {
+            document.getElementById(containerId).innerHTML = `
                 <div class="alert alert-warning text-center">
                     <i class="fas fa-exclamation-triangle"></i> ${msg}
                 </div>
