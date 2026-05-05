@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+	<meta charset="UTF-8">
+	<title>पुरबाधित गावांची यादी</title>
+	<link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/fontawesome-all.css">
+	<link rel="stylesheet" href="/css/simple-line-icons.css">
+	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="/css/flaticon.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/video.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/lightbox.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="stylesheet" href="/css/header2.css">
+	<link rel="stylesheet" href="/css/tembhu.css">
+
+	<style>
+		.breadcrumb-section {
+			background: url('/img/flood_safety_landscape.png') no-repeat center center;
+			background-size: cover;
+			padding: 160px 0;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.breadcrumb-section::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+			z-index: 0;
+		}
+
+		.editorial-section {
+			background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+			padding: 80px 0 120px;
+			font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+			min-height: calc(100vh - 400px); /* Adjust based on header/footer */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* Grid Layout similar to Knowledge Center */
+		.info-grid {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 30px;
+			max-width: 1100px;
+			margin: 0 auto;
+			position: relative;
+			z-index: 2;
+		}
+
+		.info-box {
+			background: #ffffff;
+			border-radius: 20px;
+			padding: 0;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			overflow: hidden;
+			border: 1px solid #f1f5f9;
+			width: 340px; /* Fixed width for better centering */
+			height: auto;
+		}
+
+		.info-box:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+		}
+
+		.info-box::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 6px;
+			background: linear-gradient(to bottom, #2563eb, #60a5fa);
+			border-radius: 20px 0 0 20px;
+		}
+
+		.box-content {
+			display: flex;
+			padding: 30px;
+			gap: 20px;
+			flex-grow: 1;
+		}
+
+		.icon-marker {
+			font-size: 1.8rem;
+			color: #2563eb;
+			flex-shrink: 0;
+			margin-top: 5px;
+		}
+
+		.text-content h3 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0f172a;
+			margin-bottom: 12px;
+			line-height: 1.4;
+		}
+
+		.text-content p {
+			font-size: 0.95rem;
+			line-height: 1.6;
+			color: #64748b;
+			margin: 0;
+		}
+
+		.download-area {
+			padding: 20px 30px;
+			background: #f8fafc;
+			border-top: 1px solid #f1f5f9;
+		}
+
+		.btn-download {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			color: #2563eb !important;
+			font-weight: 700;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		.btn-download i {
+			font-size: 1.2rem;
+			background: rgba(37, 99, 235, 0.1);
+			width: 35px;
+			height: 35px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			transition: all 0.3s ease;
+		}
+
+		.btn-download:hover i {
+			background: #2563eb;
+			color: white;
+			transform: rotate(15deg);
+		}
+
+		@media (max-width: 1150px) {
+			.info-grid {
+				grid-template-columns: repeat(2, 1fr);
+				padding: 0 20px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.info-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		/* Water Animation */
+		.ocean {
+			height: 150px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 0;
+			overflow: hidden;
+			pointer-events: none;
+		}
+
+		.wave {
+			background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23bae6fd" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x;
+			position: absolute;
+			top: 0;
+			width: 6400px;
+			height: 100%;
+			animation: wave 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+		}
+
+		@keyframes wave {
+			0% { transform: translateX(0); }
+			100% { transform: translateX(-1600px); }
+		}
+	</style>
+</head>
+
+<body class="page-flood-affected-villages d-flex flex-column" style="min-height: 100vh;">
+	<div id="preloader"></div>
+	<div class="up">
+		<a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+	</div>
+
+	<!-- HEADER -->
+	<div id="header-placeholder"></div>
+
+	<!-- BREADCRUMB -->
+	<section id="breadcrumb" class="breadcrumb-section position-relative">
+		<div class="container">
+			<div class="breadcrumb-content headline wow fadeIn">
+				<h2 class="breadcrumb-title">पुरबाधित गावांची यादी</h2>
+				<div class="breadcrumb_item ul-li">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="home.html">मुख्य पृष्ठ</a></li>
+						<li class="breadcrumb-item active">पुरबाधित गावांची यादी</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- MAIN CONTENT -->
+	<section id="editorial" class="editorial-section flex-grow-1">
+		<div class="ocean">
+			<div class="wave"></div>
+			<div class="wave"></div>
+		</div>
+
+		<div class="container">
+			<!-- Intro Info -->
+			<div class="row justify-content-center mb-5">
+				<div class="col-lg-10 text-center wow fadeInUp">
+					<div class="section-title mb-4">
+						<h2 style="font-weight: 800; color: #0f172a;">सांगली जिल्हा पुरबाधित गावांची माहिती</h2>
+						<div style="width: 60px; height: 4px; background: #2563eb; margin: 15px auto; border-radius: 2px;"></div>
+					</div>
+					<p style="font-size: 1.2rem; color: #475569; line-height: 1.8; max-width: 900px; margin: 0 auto;">
+						सांगली जिल्ह्यातील कृष्णा आणि वारणा नद्यांच्या काठावरील पूरबाधित गावांची यादी येथे उपलब्ध आहे. २०१९ आणि २०२१ मधील महापुराच्या पार्श्वभूमीवर, या गावांचे सर्वेक्षण करून त्यांना सुरक्षिततेच्या दृष्टीने श्रेणीबद्ध करण्यात आले आहे. या माहितीचा उपयोग पूर नियंत्रण नियोजन, बचाव कार्य आणि नागरिक जनजागृतीसाठी केला जातो.
+					</p>
+					<p style="font-size: 1.1rem; color: #64748b; margin-top: 15px;">
+						खालीलपैकी कोणत्याही स्वरूपात (PDF किंवा Excel) आपण ही माहिती आपल्या संदर्भासाठी डाउनलोड करू शकता.
+					</p>
+				</div>
+			</div>
+
+			<div class="info-grid justify-content-center">
+				<!-- Box 1: Water Level Info -->
+				<div class="info-box wow fadeInUp" data-wow-delay="0.1s">
+					<div class="box-content">
+						<div class="icon-marker">
+							<i class="fas fa-file-pdf"></i>
+						</div>
+						<div class="text-content">
+							<h3>किती फुटास कोठे पाणी येते याची माहिती</h3>
+							<p>सांगली शहरातील विविध भागात पाणी येण्याच्या पातळीनुसार सविस्तर माहिती.</p>
+						</div>
+					</div>
+					<div class="download-area">
+						<a href="/pdf/किती फुटास कोठे पाणी येते याची माहिती.pdf" target="_blank" class="btn-download">
+							<span>PDF डाउनलोड करा</span>
+							<i class="fas fa-download"></i>
+						</a>
+					</div>
+				</div>
+
+				<!-- Box 2: Village List PDF -->
+				<div class="info-box wow fadeInUp" data-wow-delay="0.2s">
+					<div class="box-content">
+						<div class="icon-marker">
+							<i class="fas fa-file-pdf"></i>
+						</div>
+						<div class="text-content">
+							<h3>सांगली जिल्ह्यातील पुरबाधित गावांची यादी</h3>
+							<p>सांगली जिल्ह्यातील पुराचा धोका असलेल्या गावांची अधिकृत यादी पीडीएफ स्वरूपात.</p>
+						</div>
+					</div>
+					<div class="download-area">
+						<a href="/pdf/सांगली जिल्ह्यातील पुरबाधित गावांची यादी.pdf" target="_blank" class="btn-download">
+							<span>PDF डाउनलोड करा</span>
+							<i class="fas fa-download"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<div id="footer-placeholder"></div>
+
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jarallax.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/appear.js"></script>
+	<script src="/js/isotope.pkgd.min.js"></script>
+	<script src="/js/masonry.pkgd.min.js"></script>
+	<script src="/js/imagesloaded.pkgd.min.js"></script>
+	<script src="/js/lightbox.js"></script>
+	<script src="/js/waypoints.min.js"></script>
+	<script src="/js/jquery.counterup.min.js"></script>
+	<script src="/js/tilt.jquery.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/script.js"></script>
+
+	<script>
+		fetch('/header2.html?v=' + new Date().getTime())
+			.then(res => res.text())
+			.then(data => {
+				document.getElementById('header-placeholder').innerHTML = data;
+				const hamburger = document.querySelector('.hamburger');
+				const navMenu = document.getElementById('nav-menu');
+				if (!hamburger || !navMenu) return;
+				hamburger.addEventListener('click', () => {
+					hamburger.classList.toggle('open');
+					navMenu.classList.toggle('active');
+					document.body.classList.toggle('no-scroll');
+				});
+				document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+					arrow.addEventListener('click', e => {
+						if (window.innerWidth <= 1150) {
+							e.preventDefault();
+							e.stopPropagation();
+							const parentLi = arrow.closest('.dropdown');
+							parentLi.classList.toggle('active');
+						}
+					});
+				});
+				document.querySelectorAll('#nav-menu .dropdown > a').forEach(link => {
+					link.addEventListener('click', e => {
+						if (window.innerWidth <= 1150) {
+							e.preventDefault();
+						}
+					});
+				});
+				navMenu.querySelectorAll('a').forEach(link => {
+					link.addEventListener('click', (e) => {
+						if (e.target.closest('.dropdown-arrow')) {
+							return;
+						}
+						if (navMenu.classList.contains('active') && window.innerWidth <= 1150) {
+							navMenu.classList.remove('active');
+							hamburger.classList.remove('open');
+							document.body.classList.remove('no-scroll');
+							document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+						}
+					});
+				});
+				window.addEventListener('resize', () => {
+					if (window.innerWidth > 1150) {
+						navMenu.classList.remove('active');
+						hamburger.classList.remove('open');
+						document.body.classList.remove('no-scroll');
+						document.querySelectorAll('#nav-menu .dropdown').forEach(d => d.classList.remove('active'));
+					}
+				});
+			})
+			.catch(err => console.error("Header load error:", err));
+
+		fetch('/footer.html')
+			.then(res => res.text())
+			.then(data => {
+				document.getElementById('footer-placeholder').innerHTML = data;
+			})
+			.catch(err => console.error("Footer load error:", err));
+	</script>
+	<script src="/js/visitor-count.js?v=1.2"></script>
+</body>
+
+</html>

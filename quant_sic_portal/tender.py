@@ -80,3 +80,49 @@ def get_tender_json():
     }
 
     return data
+
+@frappe.whitelist(allow_guest=True)
+def get_ongoing_tender_json():
+    SPREADSHEET_ID_ONGOING = "1jo9m4WLQ2k7AdqISUAzwpm0fer5gqvbmvVAob7pamRk"
+    SERVICE_ACCOUNT_FILE_ONGOING = "/home/erpadmin/bench-jalsampada-portal/sites/credentials/google_sheets_new.json"
+    try:
+        creds = Credentials.from_service_account_file(
+            SERVICE_ACCOUNT_FILE_ONGOING,
+            scopes=SCOPES
+        )
+        service = build("sheets", "v4", credentials=creds, cache_discovery=False)
+        range_name = "'Ongoing Tender'!A1:Z100"
+        result = service.spreadsheets().values().get(
+            spreadsheetId=SPREADSHEET_ID_ONGOING,
+            range=range_name,
+            valueRenderOption="FORMATTED_VALUE"
+        ).execute()
+        values = result.get("values", [])
+        
+        header_row_idx = -1
+        for i, row in enumerate(values):
+            if row and any("अ. क्र." in str(cell) for cell in row):
+                header_row_idx = i
+                break
+        
+        if header_row_idx == -1:
+             for i, row in enumerate(values):
+                 if any(str(cell).strip() for cell in row):
+                     header_row_idx = i
+                     break
+        
+        if header_row_idx == -1:
+            return {"success": False, "error": "No data found"}
+            
+        headers = values[header_row_idx]
+        rows = [row for row in values[header_row_idx+1:] if any(str(cell).strip() for cell in row)]
+        
+        data = {
+            "success": True,
+            "headers": headers,
+            "rows": rows
+        }
+        frappe.response["data"] = data
+        return data
+    except Exception as e:
+        return {"success": False, "error": str(e)}

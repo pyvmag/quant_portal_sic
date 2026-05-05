@@ -71,6 +71,19 @@ def is_yellow_row_with_total(row):
     has_total = any('एकूण' in (cell.get('formattedValue', '') or '') for cell in row['values'])
     return yellow_bg and has_total
 
+def is_strategy2_header(row):
+    if 'values' not in row:
+        return False
+    row_vals = [str(cell.get('formattedValue', '') or '').strip().lower().replace('\n', ' ') for cell in row.get('values', [])]
+    is_header = any(('sr.' in v and ('no.' in v or 'no' in v)) or ('अ' in v and 'क्र' in v) for v in row_vals)
+    if not is_header:
+        has_pool_or_bandhara = any('पूल' in v or 'बंधारा' in v for v in row_vals)
+        has_levels = any('इशारा' in v or 'धोका' in v for v in row_vals)
+        has_third_section = any('मागील वर्षाची' in v for v in row_vals)
+        if (has_pool_or_bandhara or has_levels or has_third_section) and row_vals and not row_vals[0].isdigit():
+            is_header = True
+    return is_header
+
 def find_date_with_red_text(sheet_data):
     for row in sheet_data:
         if 'values' not in row:
@@ -102,7 +115,7 @@ def fetch_sheet_raw_data(sheet_name="Sheet2"):
         # which is required by is_title_row and is_yellow_row_with_total logic.
         sheet = service.spreadsheets().get(
             spreadsheetId=SPREADSHEET_ID,
-            ranges=[f"{sheet_name}!A1:Z100"],
+            ranges=[sheet_name],
             includeGridData=True
         ).execute()
 
@@ -408,114 +421,113 @@ def extract_tables(sheet_data_obj):
     tables = []
     i = 0
     
-    # Strategy 1: Title Row Based (Black Bg, White Text)
     while i < len(sheet_data):
-        while i < len(sheet_data) and not is_title_row(sheet_data[i]):
+        # Skip empty rows
+        if is_empty_row(sheet_data[i]):
             i += 1
-        if i >= len(sheet_data):
-            break
+            continue
             
-        title_row = sheet_data[i]
-        title = get_title_value(title_row)
-        i += 1
-        
-        while i < len(sheet_data) and is_empty_row(sheet_data[i]):
-            i += 1
-            
-        header = None
-        if i < len(sheet_data):
-            header_row = sheet_data[i]
-            header = [cell.get('formattedValue', '') or '' for cell in header_row.get('values', [])]
+        # Strategy 1: Title Row Based (Black Bg, White Text)
+        if is_title_row(sheet_data[i]):
+            title_row = sheet_data[i]
+            title = get_title_value(title_row)
             i += 1
             
-        if header:
-            table_rows = [header]
-            table_start = i - 1 # i was advanced after header
-            while i < len(sheet_data):
-                row = sheet_data[i]
-                if is_title_row(row) or is_yellow_row_with_total(row):
+            # Skip empty rows after title
+            while i < len(sheet_data) and is_empty_row(sheet_data[i]):
+                i += 1
+                
+            if i < len(sheet_data):
+                header_row = sheet_data[i]
+                header = [cell.get('formattedValue', '') or '' for cell in header_row.get('values', [])]
+                i += 1
+                
+                table_rows = [header]
+                table_start = i - 1
+                while i < len(sheet_data):
+                    row = sheet_data[i]
+                    # Stop if we hit a new title row or yellow total row
+                    if is_title_row(row) or is_strategy2_header(row):
+                        break
                     if is_yellow_row_with_total(row):
                         table_rows.append([cell.get('formattedValue', '') or '' for cell in row.get('values', [])])
                         i += 1
-                    break
-                row_data = [cell.get('formattedValue', '') or '' for cell in row.get('values', [])]
-                if any(row_data):
+                        break
+                    
+                    row_data = [cell.get('formattedValue', '') or '' for cell in row.get('values', [])]
                     table_rows.append(row_data)
-                i += 1
-            
-            # Trim trailing empties for Strategy 1
-            max_cols = 0
-            for r in table_rows:
-                for idx, val in enumerate(r):
-                    if str(val).strip(): max_cols = max(max_cols, idx + 1)
-            table_rows = [r[:max_cols] for r in table_rows]
-            
-            tables.append({'title': title, 'rows': table_rows, 'start_row_index': table_start})
-
-    # Strategy 2: If no tables found or some parts missed, try Content-Based (Sr. No.)
-    if not tables:
-        frappe.log("No formatting-based tables found. Trying content-based search (Sr. No.).")
-        i = 3 # Skip report title rows (1-3)
-        while i < len(sheet_data):
-            row_vals = [str(cell.get('formattedValue', '') or '').strip().lower().replace('\n', ' ') for cell in sheet_data[i].get('values', [])]
-            
-            # Look for Row containing "Sr. No." or "अ.क्र."
-            is_header = any(('sr.' in v and ('no.' in v or 'no' in v)) or ('अ' in v and 'क्र' in v) for v in row_vals)
-            
-            if is_header:
-                start_of_header = i
-                table_headers = []
-                
-                # Expand to find up to 3 rows of headers
-                header_i = i
-                while header_i < len(sheet_data) and header_i < i + 3:
-                    row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[header_i].get('values', [])]
-                    # Check if this row is already data (e.g. SR 1)
-                    if header_i > i:
-                        val0 = str(row_data[0]).strip()
-                        if val0 and val0.isdigit():
-                            break
-                    table_headers.append(row_data)
-                    header_i += 1
-                
-                i = header_i # Update data starting point
-                
-                table_rows = []
-                # Collect data until we hit a clear break (2+ empty rows or next header)
-                empty_count = 0
-                while i < len(sheet_data):
-                    row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[i].get('values', [])]
-                    if not any(row_data):
-                        empty_count += 1
-                        if empty_count >= 2: break
-                    else:
-                        empty_count = 0
-                        # Check if this row is another header
-                        if any('sr.' in str(v).lower() and ('no.' in str(v).lower()) for v in row_data):
-                            break
-                        table_rows.append(row_data)
                     i += 1
                 
-                # Trim trailing empty columns from headers and rows
+                while table_rows and not any(table_rows[-1]):
+                    table_rows.pop()
+                
+                # Trim columns
                 max_cols = 0
-                for r in table_headers:
-                    for idx, val in enumerate(r):
-                        if str(val).strip(): max_cols = max(max_cols, idx + 1)
                 for r in table_rows:
                     for idx, val in enumerate(r):
                         if str(val).strip(): max_cols = max(max_cols, idx + 1)
-                
-                table_headers = [r[:max_cols] for r in table_headers]
                 table_rows = [r[:max_cols] for r in table_rows]
                 
-                tables.append({
-                    'title': f"Table {len(tables)+1}", 
-                    'headers': table_headers, # Multi-level headers
-                    'rows': table_rows,
-                    'start_row_index': start_of_header # 0-based index in sheet
-                })
-            else:
+                tables.append({'title': title, 'rows': table_rows, 'start_row_index': table_start})
+            continue
+
+        # Strategy 2: Content-Based (Sr. No. or similar header)
+        is_header = is_strategy2_header(sheet_data[i])
+        
+        if is_header:
+            start_of_header = i
+            table_headers = []
+            
+            # Expand to find up to 3 rows of headers
+            header_i = i
+            while header_i < len(sheet_data) and header_i < i + 3:
+                row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[header_i].get('values', [])]
+                if header_i > i:
+                    val0 = str(row_data[0]).strip()
+                    has_data_keywords = any('पातळी' in str(v) or 'साठा' in str(v) for v in row_data)
+                    if has_data_keywords or (val0 and val0.isdigit()):
+                        break
+                table_headers.append(row_data)
+                header_i += 1
+            
+            i = header_i
+            table_rows = []
+            empty_count = 0
+            while i < len(sheet_data):
+                if is_title_row(sheet_data[i]): # Title row starts a new table
+                    break
+                    
+                row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[i].get('values', [])]
+                if is_strategy2_header(sheet_data[i]):
+                    break
+                
+                table_rows.append(row_data)
                 i += 1
+                
+            while table_rows and not any(table_rows[-1]):
+                table_rows.pop()
+            
+            # Trim columns
+            max_cols = 0
+            for r in table_headers:
+                for idx, val in enumerate(r):
+                    if str(val).strip(): max_cols = max(max_cols, idx + 1)
+            for r in table_rows:
+                for idx, val in enumerate(r):
+                    if str(val).strip(): max_cols = max(max_cols, idx + 1)
+            
+            table_headers = [r[:max_cols] for r in table_headers]
+            table_rows = [r[:max_cols] for r in table_rows]
+            
+            tables.append({
+                'title': f"Table {len(tables)+1}", 
+                'headers': table_headers,
+                'rows': table_rows,
+                'start_row_index': start_of_header
+            })
+            continue
+            
+        i += 1
 
     if not tables:
         frappe.log("Fallback to raw rows.")

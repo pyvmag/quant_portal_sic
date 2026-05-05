@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>वर्षनिहाय खर्च - सांगली पाटबंधारे मंडळ</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/header2.css">
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/video.min.css">
+    <link rel="stylesheet" href="/css/lightbox.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .report-header h1 { font-size: 24px; color: #1e3a8a; margin-bottom: 5px; }
+        .report-header h2 { font-size: 18px; color: #374151; margin-bottom: 5px; }
+        .report-header .annexure { font-weight: bold; color: #b91c1c; }
+        .report-header .unit { font-style: italic; color: #6b7280; margin-top: 10px; }
+
+        .table-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px 5px;
+            text-align: center;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #1e3a8a;
+            white-space: nowrap;
+        }
+        tr:nth-child(even) { background-color: #f9fafb; }
+        tr:hover { background-color: #eff6ff; }
+        
+        .total-row {
+            font-weight: bold;
+            background-color: #fee2e2 !important;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #667eea;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            th, td { padding: 5px 3px; font-size: 11px; }
+            .report-header h1 { font-size: 20px; }
+            .report-header h2 { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"></div>
+    <div class="up">
+        <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <div id="header-placeholder"></div>
+
+
+    <div class="main-content">
+        <div id="loading">डेटा लोड होत आहे... (Loading Data...)</div>
+        
+        <div id="report-container" style="display:none;">
+            <div class="report-header">
+                <h1 id="report-title"></h1>
+                <div class="annexure" id="report-annexure"></div>
+                <h2 id="report-subtitle"></h2>
+                <div class="unit" id="report-unit"></div>
+            </div>
+
+            <div class="table-container">
+                <table id="expenditure-table">
+                    <thead>
+                        <tr id="header-row-1">
+                            <th rowspan="3">.अ. क्र.</th>
+                            <th rowspan="3">वर्ष</th>
+                            <th colspan="3">प्रकल्पासाठी एकूण</th>
+                            <th colspan="9">झालेल्या खर्चचा तपशिल ताकारी भाग</th>
+                            <th colspan="9">म्हैसाळ भाग</th>
+                        </tr>
+                        <tr id="header-row-2">
+                            <th rowspan="2">मागितलेले तरतुद</th>
+                            <th rowspan="2">मंजूर आर्थिक तरतूद</th>
+                            <th rowspan="2">झालेला एकूण खर्च</th>
+                            <!-- Takari -->
+                            <th rowspan="2">शिर्षकामे</th>
+                            <th rowspan="2">कालवे</th>
+                            <th rowspan="2">वितरिका</th>
+                            <th rowspan="2">इमारती</th>
+                            <th rowspan="2">भूसंपादन</th>
+                            <th rowspan="2">पुनर्वसन</th>
+                            <th rowspan="2">आस्थापना/ हत्यारे</th>
+                            <th rowspan="2">रोजगार हमी</th>
+                            <th rowspan="2">एकूण</th>
+                            <!-- Mhaishal -->
+                            <th rowspan="2">शिर्षकामे</th>
+                            <th rowspan="2">कालवे</th>
+                            <th rowspan="2">वितरिका</th>
+                            <th rowspan="2">इमारती</th>
+                            <th rowspan="2">भूसंपादन</th>
+                            <th rowspan="2">पुनर्वसन</th>
+                            <th rowspan="2">आस्थापना/ हत्यारे</th>
+                            <th rowspan="2">रोजगार हमी</th>
+                            <th rowspan="2">एकूण</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jarallax.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/appear.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/tilt.jquery.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+        async function loadHeader() {
+            try {
+                const res = await fetch('header2.html?v=' + new Date().getTime());
+                const data = await res.text();
+                document.getElementById('header-placeholder').innerHTML = data;
+                
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('open');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('no-scroll');
+                    });
+                }
+
+                // Dropdown logic for mobile
+                document.querySelectorAll('#nav-menu .dropdown > a > .dropdown-arrow').forEach(arrow => {
+                    arrow.addEventListener('click', e => {
+                        if (window.innerWidth <= 1150) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const parentLi = arrow.closest('.dropdown');
+                            parentLi.classList.toggle('active');
+                        }
+                    });
+                });
+            } catch (err) { console.error("Header load error:", err); }
+        }
+
+        async function loadFooter() {
+            try {
+                const res = await fetch('footer.html');
+                const data = await res.text();
+                document.getElementById('footer-placeholder').innerHTML = data;
+            } catch (err) { console.error("Footer load error:", err); }
+        }
+
+
+        async function loadData() {
+            try {
+                const res = await fetch('data/annual_expenditure.json');
+                const data = await res.json();
+                
+                document.getElementById('report-title').textContent = data.title;
+                document.getElementById('report-subtitle').textContent = data.subtitle;
+                document.getElementById('report-annexure').textContent = data.annexure;
+                document.getElementById('report-unit').textContent = "( " + data.unit + " )";
+
+                const tbody = document.getElementById('table-body');
+                data.rows.forEach(row => {
+                    const tr = document.createElement('tr');
+                    // Check if it's a total row (contains 'एकुण' or 'अखेर')
+                    if (row[0].includes('एकुण') || row[0].includes('अखेर') || row[0].includes('एकूण')) {
+                        tr.className = 'total-row';
+                    }
+                    
+                    row.forEach(cell => {
+                        const td = document.createElement('td');
+                        td.textContent = cell || '0';
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('report-container').style.display = 'block';
+            } catch (err) {
+                console.error("Data load error:", err);
+                document.getElementById('loading').textContent = "डेटा लोड करताना त्रुटी आली.";
+            }
+        }
+
+        loadHeader();
+        loadFooter();
+        loadData();
+    </script>
+    <script src="/js/visitor-count.js?v=1.2"></script>
+</body>
+
+</html>

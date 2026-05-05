@@ -179,9 +179,9 @@
             color: #fff !important;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.65rem; /* Smaller Font */
             letter-spacing: 0.5px;
-            padding: 10px 12px;
+            padding: 6px 8px; /* Compact Padding */
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
@@ -191,12 +191,13 @@
         }
 
         .table tbody td {
-            padding: 8px 12px;
+            padding: 6px 8px; /* Compact Padding */
+            text-align: center;
             vertical-align: middle;
             color: #475569;
             border-bottom: 1px solid #f1f5f9;
             border-right: 1px solid #f1f5f9;
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Smaller Font */
             transition: all 0.2s ease;
         }
 
@@ -375,6 +376,86 @@
                 height: 100%;
             }
         }
+
+        /* Modal Table Styling - Super Compact for Visibility */
+        #fullScreenModalBody .table {
+            background: #fff;
+            width: 100%;
+            font-size: 10px !important; /* Even smaller in modal */
+        }
+        #fullScreenModalBody .table-container {
+            box-shadow: none;
+            border: 1px solid #e2e8f0;
+            margin: 0;
+        }
+        #fullScreenModalBody .table-title {
+            font-size: 1.2rem;
+            padding: 10px;
+            background: #f1f5f9;
+        }
+        #fullScreenModalBody .table thead th {
+            padding: 3px 5px !important;
+            font-size: 9px !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        #fullScreenModalBody .table tbody td {
+            padding: 3px 5px !important;
+            text-align: center;
+            line-height: 1.1;
+        }
+        #fullScreenModalBody .badge-value {
+            font-size: 10px;
+            padding: 1px 4px;
+        }
+        #fullScreenModalBody .report-header-box {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        #fullScreenModalBody .report-header-line1 { font-size: 1.1rem; }
+        #fullScreenModalBody .report-header-line2 { font-size: 1rem; }
+        #fullScreenModalBody .report-header-meta { font-size: 0.8rem; padding-top: 8px; }
+
+        .btn-full-screen {
+            background: #fff;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-full-screen:hover {
+            background: #3b82f6;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Flood Level Warning Colors */
+        .level-warning {
+            background-color: #fef08a !important; /* Yellow-200 */
+            color: #854d0e !important; /* Amber-900 */
+            font-weight: 800 !important;
+            border: 1px solid #facc15 !important;
+        }
+
+        .level-danger {
+            background-color: #fee2e2 !important; /* Red-100 */
+            color: #991b1b !important; /* Red-800 */
+            font-weight: 800 !important;
+            border: 1px solid #f87171 !important;
+        }
+        
+        #fullScreenModalBody .level-warning, #fullScreenModalBody .level-danger {
+            padding: 3px 5px !important;
+        }
     </style>
 </head>
 
@@ -422,9 +503,14 @@
 
             <div class="data-container wow fadeInUp" data-wow-delay="0.2s">
                 <!-- Navigation Tabs -->
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="openTab(event, 'report-tab')">पूर नियंत्रण कक्ष अहवाल</button>
-                    <button class="tab-btn" onclick="openTab(event, 'level-tab')">महत्तम पूर पातळी</button>
+                <div class="tabs-header" style="flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; flex: 1; min-width: 300px;">
+                        <button class="tab-btn active" onclick="openTab(event, 'report-tab')" style="background-color:#fdfdfd">पूर नियंत्रण कक्ष अहवाल</button>
+                        <button class="tab-btn" onclick="openTab(event, 'level-tab')">महत्तम पूर पातळी</button>
+                    </div>
+                    <button id="btn-full-screen" class="btn-full-screen">
+                        <i class="fas fa-expand-arrows-alt"></i> पूर्ण स्क्रीनमध्ये पहा
+                    </button>
                 </div>
 
                 <!-- Tab Content: Report -->
@@ -461,6 +547,26 @@
 
     <!-- FOOTER -->
     <div id="footer-placeholder"></div>
+
+    <!-- FULL SCREEN MODAL -->
+    <div class="modal fade" id="fullScreenModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="max-width: 95vw;">
+            <div class="modal-content" style="border-radius: 20px; overflow: hidden; border: none; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                <div class="modal-header" style="background: #ffffff; color: #126cff; padding: 20px 30px; border-bottom: 1px solid #e2e8f0;">
+                    <h5 class="modal-title" id="modalTitle" style="font-weight: 800; letter-spacing: 1px; color: #126cff;">अहवाल माहिती</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #126cff; opacity: 1; font-size: 2rem; padding: 20px 30px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="fullScreenModalBody" style="overflow-x: auto; padding: 40px; background: #f8fafc; max-height: 85vh; overflow-y: auto;">
+                    <!-- Content will be cloned here -->
+                </div>
+                <div class="modal-footer" style="background: #f1f5f9; border: none; padding: 15px 30px;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 10px; font-weight: 700; padding: 8px 25px;">बंद करा</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- SCRIPTS -->
     <script src="/js/jquery.min.js"></script>
@@ -512,6 +618,43 @@
                 new WOW().init();
             }
             loadData();
+
+            // Full Screen Modal Logic
+            $('#btn-full-screen').on('click', function() {
+                const activeTab = $('.tab-btn.active');
+                const tabTitle = activeTab.text();
+                
+                // Determine active tab ID from onclick attribute
+                const onclickAttr = activeTab.attr('onclick');
+                const tabIdMatch = onclickAttr.match(/'([^']+)'/);
+                const tabId = tabIdMatch ? tabIdMatch[1] : 'report-tab';
+                
+                // Use clone to get the live state of the elements
+                const $source = $('#' + tabId);
+                const $clonedContent = $source.children().clone(true);
+                
+                // Remove WOW.js classes to ensure visibility in modal
+                $clonedContent.find('.wow').removeClass('wow fadeInUp fadeInRight fadeInLeft fadeIn');
+                $clonedContent.removeClass('wow fadeInUp fadeInRight fadeInLeft fadeIn');
+                $clonedContent.css('visibility', 'visible');
+                $clonedContent.find('*').css('visibility', 'visible');
+                
+                $('#modalTitle').text(tabTitle);
+                const $modalBody = $('#fullScreenModalBody');
+                $modalBody.empty().append($clonedContent);
+                
+                // Ensure placeholders are removed in modal if they were already removed in source
+                if ($source.find('.placeholder-box').length === 0) {
+                    $modalBody.find('.placeholder-box').remove();
+                }
+                
+                // Re-initialize drag scroll for cloned tables
+                $modalBody.find('.table-responsive').each(function() {
+                    initDragScroll(this);
+                });
+                
+                $('#fullScreenModal').modal('show');
+            });
         });
 
         function openTab(evt, tabId) {
@@ -671,6 +814,25 @@
             container.appendChild(headerBox);
         }
 
+        function parseLevelValue(val) {
+            if (!val || val === '--' || val === '*' || val === '-') return null;
+            val = val.toString().trim();
+            // Handle Feet format: 43'11'' or 43' 11''
+            if (val.includes("'")) {
+                const parts = val.split("'");
+                let feet = parseFloat(parts[0]) || 0;
+                let inches = 0;
+                if (parts.length > 1) {
+                    // Remove double quotes or single quotes from inches part
+                    let inchStr = parts[1].replace(/['"]/g, "").trim();
+                    inches = parseFloat(inchStr) || 0;
+                }
+                return feet + (inches / 12);
+            }
+            // Handle decimal or discharge format (remove commas)
+            return parseFloat(val.replace(/,/g, ''));
+        }
+
         function renderTables(tables, containerId, merges = [], append = false) {
             const container = document.getElementById(containerId);
             if (!tables || tables.length === 0) {
@@ -719,6 +881,17 @@
                     const srNo = (row[0] || '').toString().trim();
                     const col2 = (row[1] || '').toString().trim();
                     const isMainRow = srNo !== "" || (col2 !== "" && isNaN(parseFloat(col2)));
+                    
+                    // Identify ONLY the River Gauge Stn. table
+                    const isRiverGaugeTable = table.headers && table.headers.some(hRow => 
+                        hRow.some(cell => {
+                            if (!cell) return false;
+                            const c = cell.toString().toLowerCase();
+                            // Look for the specific "River Gauge" or "River Guage" term
+                            return (c.includes('river') && (c.includes('guage') || c.includes('gauge'))) ||
+                                   (c.includes('नदी') && c.includes('पातळी'));
+                        })
+                    );
                         
                     let rowClass = "";
                     if (isMainRow && containerId === 'sheet-data-container') {
@@ -738,9 +911,31 @@
                         if (!isMainRow && cIdx === 2 && containerId === 'sheet-data-container') {
                             cellClass = "sub-header-cell";
                         }
+                        
+                        // Apply Flood Warning/Danger levels (Strictly for the River Gauge Table)
+                        if (isRiverGaugeTable && isMainRow) {
+                            // Standard Column mapping: Alert (2,3,4) | Danger (5,6,7) | Today (8,9,10)
+                            if (cIdx >= 2 && cIdx <= 4) {
+                                cellClass = "level-warning"; 
+                            } else if (cIdx >= 5 && cIdx <= 7) {
+                                cellClass = "level-danger";
+                            } else if (cIdx >= 8 && cIdx <= 10) {
+                                const todayVal = parseLevelValue(row[cIdx]);
+                                const dangerVal = parseLevelValue(row[cIdx - 3]);
+                                const alertVal = parseLevelValue(row[cIdx - 6]);
+                                
+                                if (todayVal !== null) {
+                                    if (dangerVal !== null && todayVal >= dangerVal) {
+                                        cellClass = "level-danger";
+                                    } else if (alertVal !== null && todayVal >= alertVal) {
+                                        cellClass = "level-warning";
+                                    }
+                                }
+                            }
+                        }
                             
-                        // Highlight numbers
-                        if (cIdx > 0 && cell && !isNaN(parseFloat(cell.toString().replace(/'/g, '').replace(/,/g, '')))) {
+                        // Highlight numbers (if not already colored)
+                        if (cellClass === "" && cIdx > 0 && cell && !isNaN(parseFloat(cell.toString().replace(/'/g, '').replace(/,/g, '')))) {
                             cellHtml = `<span class="badge-value">${cell}</span>`;
                         }
 

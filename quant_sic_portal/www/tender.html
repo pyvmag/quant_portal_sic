@@ -721,11 +721,56 @@
             color: #666;
             font-style: italic;
         }
+        .header-numbers th {
+            background: #eee !important;
+            color: #333 !important;
+            font-size: 12px;
+            padding: 5px !important;
+            text-align: center !important;
+            text-shadow: none !important;
+        }
+
+        /* Sticky Header Fix for Sheet 6 */
+        #tenderTable6 {
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+        }
+        #tenderTable6 thead {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+        #tenderTable6 thead th {
+            position: sticky;
+            top: inherit; /* Allow thead to control stickiness */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 1px solid #ffffff44;
+            box-shadow: inset 0 0 0 1px #ffffff22;
+        }
+        /* Handle Row 1 */
+        #tenderTable6 thead tr:nth-child(1) th {
+            top: 0;
+        }
+        /* Handle Row 2 - non-rowspan cells */
+        #tenderTable6 thead tr:nth-child(2) th {
+            top: 45px; /* Height of the first row's title cells */
+        }
+        /* Handle Row 3 */
+        #tenderTable6 thead tr:nth-child(3) th {
+            top: 85px;
+        }
+        /* Handle Numbers Row */
+        #tenderTable6 thead tr.header-numbers th {
+            top: 115px;
+            background: #eee !important;
+            color: #333 !important;
+            z-index: 15;
+        }
     </style>
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content">
-        <div id="header-placeholder"></div>
         <div class="horizontal-line"></div>
         <!-- PDF section -->
         <div class="pdf-section">
@@ -746,6 +791,8 @@
             <button class="tablinks" onclick="openSheet(event, 'sheet4')">टेंभू उपसा सिंचन प्रकल्प विभाग
                 क्र.1,सांगली</button>
             <button class="tablinks" onclick="openSheet(event, 'sheet3')">निविदा पत्रिका तक्ता </button>
+            <button class="tablinks" onclick="openSheet(event, 'sheet5')">चालू निविदा (Ongoing Tender)</button>
+            <button class="tablinks" onclick="openSheet(event, 'sheet6')">KKLIS Ongoing Tender</button>
         </div>
         <!-- Sheet 1: Tender3 with charts -->
         <div id="sheet1" class="tabcontent">
@@ -825,14 +872,72 @@
             <!-- CHARTS SECTION -->
             <div class="chart-section" id="chartsSection3" style="display:none;"></div>
         </div>
-        <div id="footer-placeholder"></div>
+        <!-- Sheet 5: Ongoing Tender -->
+        <div id="sheet5" class="tabcontent">
+            <h2>चालू निविदा (Ongoing Tender)</h2>
+            <div class="summary" id="summary5" style="display:none;"></div>
+            <div id="loading5">डेटा लोड होत आहे... (Loading data...)</div>
+            <div id="error5" class="error" style="display:none;"></div>
+            <div class="table-container" id="tableContainer5" style="display:none;">
+                <table id="tenderTable5">
+                    <thead>
+                        <tr id="tableHeaders5"></tr>
+                    </thead>
+                    <tbody id="tableBody5"></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Sheet 6: KKLIS Ongoing Tender -->
+        <div id="sheet6" class="tabcontent">
+            <h2>KKLIS Ongoing Tender</h2>
+            <div id="loading6">डेटा लोड होत आहे... (Loading data...)</div>
+            <div id="error6" class="error" style="display:none;"></div>
+            <div class="table-container" id="tableContainer6" style="display:none;">
+                <table id="tenderTable6">
+                    <thead>
+                        <tr>
+                            <th rowspan="3">अनु.क्र.</th>
+                            <th rowspan="3">निविदा कामाचे नांव</th>
+                            <th rowspan="3">कंत्राटदाराचे नाव</th>
+                            <th rowspan="3">निविदा क्रमांक</th>
+                            <th rowspan="3">तांत्रिक मान्यता किंमत (रु. लक्ष)</th>
+                            <th rowspan="3">मंजूर निविदा किंमत (रु. लक्ष)</th>
+                            <th colspan="2">निविदा स्विकृती दर (%)</th>
+                            <th rowspan="3">स्विकृत निविदा किंमत (रु. लक्ष)</th>
+                            <th rowspan="3">अद्यावत निविदा किंमत (रु. लक्ष)</th>
+                            <th rowspan="3">कार्यारंभ आदेश दिनांक</th>
+                            <th colspan="3">31/12/2025 अखेर झालेला खर्च (रु. लक्ष)</th>
+                            <th rowspan="3">निविदेची उर्वरीत किमंत (रु. लक्ष) (10-12)</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">कमी</th>
+                            <th rowspan="2">जादा</th>
+                            <th>Work Portion</th>
+                            <th>P.E. + GST</th>
+                            <th>एकुण</th>
+                        </tr>
+                        <tr>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                        </tr>
+                        <tr class="header-numbers">
+                            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody6"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <div id="footer-placeholder"></div>
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         async function loadHeader() {
             try {
-                const res = await fetch('/apps/sicsangli/sicsangli/www/header2.html');
+                const res = await fetch('header2.html');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.text();
                 document.getElementById('header-placeholder').innerHTML = data;
@@ -895,7 +1000,7 @@
         }
         async function loadFooter() {
             try {
-                const res = await fetch('/apps/sicsangli/sicsangli/www/footer.html');
+                const res = await fetch('footer.html');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.text();
                 document.getElementById('footer-placeholder').innerHTML = data;
@@ -951,6 +1056,12 @@
             }
             if (sheetName === 'sheet3' && !document.getElementById('tableContainer3').dataset.loaded) {
                 await loadSheet3();
+            }
+            if (sheetName === 'sheet5' && !document.getElementById('tableContainer5').dataset.loaded) {
+                await loadSheet5();
+            }
+            if (sheetName === 'sheet6' && !document.getElementById('tableContainer6').dataset.loaded) {
+                await loadSheet6();
             }
             // Adjust heights after tab switch
             setTimeout(adjustTableHeights, 100);
@@ -2803,6 +2914,139 @@
                 const e = document.getElementById('error3');
                 e.textContent = "Error: " + err.message;
                 e.style.display = 'block';
+            }
+        }
+
+        async function loadSheet5() {
+            console.log('Starting fetch for Ongoing Tender (Sheet 5)...');
+            const loading = document.getElementById('loading5');
+            const errorDiv = document.getElementById('error5');
+            const summaryDiv = document.getElementById('summary5');
+            const tableContainer = document.getElementById('tableContainer5');
+            const tableHeaders = document.getElementById('tableHeaders5');
+            const tableBody = document.getElementById('tableBody5');
+
+            try {
+                loading.style.display = 'block';
+                errorDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+
+                // API call to fetch Ongoing Tender data
+                const res = await fetch("/api/method/sicsangli.tender.get_ongoing_tender_json");
+                const json = await res.json();
+                
+                const sheetData = json.message || json.data;
+                if (!sheetData || !sheetData.success) {
+                    throw new Error(sheetData ? (sheetData.error || "Unknown error") : "Failed to fetch data");
+                }
+
+                loading.style.display = 'none';
+
+                const headers = sheetData.headers;
+                const rows = sheetData.rows;
+
+                // Render Table Headers
+                tableHeaders.innerHTML = '';
+                headers.forEach(h => {
+                    const th = document.createElement('th');
+                    th.textContent = h || '';
+                    tableHeaders.appendChild(th);
+                });
+
+                // Render Table Body
+                tableBody.innerHTML = '';
+                rows.forEach(row => {
+                    const tr = document.createElement('tr');
+                    // Check if it's a total row
+                    if (row.some(cell => String(cell).includes('एकूण'))) {
+                        tr.className = 'total-row';
+                    }
+                    headers.forEach((_, i) => {
+                        const td = document.createElement('td');
+                        td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                        tr.appendChild(td);
+                    });
+                    tableBody.appendChild(tr);
+                });
+
+                tableContainer.style.display = 'block';
+                summaryDiv.textContent = `एकूण प्रकल्प: ${rows.filter(r => !r.some(c => String(c).includes('एकूण'))).length}`;
+                summaryDiv.style.display = 'block';
+                tableContainer.dataset.loaded = 'true';
+
+                adjustTableHeights();
+
+            } catch (err) {
+                console.error('Sheet 5 Error:', err);
+                loading.style.display = 'none';
+                errorDiv.textContent = "Error: " + (err.message || JSON.stringify(err));
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        async function loadSheet6() {
+            console.log('Starting fetch for KKLIS Ongoing Tender (Sheet 6)...');
+            const loading = document.getElementById('loading6');
+            const errorDiv = document.getElementById('error6');
+            const summaryDiv = document.getElementById('summary6');
+            const tableContainer = document.getElementById('tableContainer6');
+            const tableBody = document.getElementById('tableBody6');
+
+            try {
+                loading.style.display = 'block';
+                errorDiv.style.display = 'none';
+                tableContainer.style.display = 'none';
+
+                // Fetch data from local JSON
+                const res = await fetch("data/kklis_ongoing.json");
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                
+                if (!data.success) throw new Error(data.error || "Unknown error");
+
+                loading.style.display = 'none';
+
+                const headers = data.headers;
+                const rows = data.rows;
+
+
+
+                // Render Table Body
+                tableBody.innerHTML = '';
+                rows.forEach(row => {
+                    const tr = document.createElement('tr');
+                    // Check if it's a section header (title row)
+                    const isTitle = row.length < 5 || (row.length >= 1 && !row[0] && row[1] && row.slice(2).every(c => !c));
+                    
+                    if (isTitle) {
+                        tr.className = 'total-row'; // Use existing total-row styling for highlights
+                        const td = document.createElement('td');
+                        td.colSpan = 15;
+                        td.textContent = row.find(c => c && c.trim() !== '') || '';
+                        td.style.textAlign = 'left';
+                        td.style.paddingLeft = '20px';
+                        tr.appendChild(td);
+                    } else {
+                        // Regular data row
+                        for (let i = 0; i < 15; i++) {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] !== undefined ? String(row[i]) : '';
+                            tr.appendChild(td);
+                        }
+                    }
+                    tableBody.appendChild(tr);
+                });
+
+                tableContainer.style.display = 'block';
+                tableContainer.dataset.loaded = 'true';
+
+                adjustTableHeights();
+
+            } catch (err) {
+                console.error('Sheet 6 Error:', err);
+                loading.style.display = 'none';
+                errorDiv.textContent = "Error: " + (err.message || JSON.stringify(err));
+                errorDiv.style.display = 'block';
             }
         }
     </script>
