@@ -24,21 +24,21 @@ def is_kpi_color(cell):
     bg = cell.get('userEnteredFormat', {}).get('backgroundColor', {})
     red = bg.get('red', 0)
     green = bg.get('green', 0)
-    blue = bg.get('blue', 1)
+    blue = bg.get('blue', 0)
     return abs(red - 0.988) < 0.05 and abs(green - 0.898) < 0.05 and abs(blue - 0.804) < 0.05
 
 def is_chart_color(cell):
     bg = cell.get('userEnteredFormat', {}).get('backgroundColor', {})
     red = bg.get('red', 0)
     green = bg.get('green', 0)
-    blue = bg.get('blue', 1)
+    blue = bg.get('blue', 0)
     return abs(red - 0.788) < 0.05 and abs(green - 0.855) < 0.05 and abs(blue - 0.973) < 0.05
 
 def is_green_color(cell):
     bg = cell.get('userEnteredFormat', {}).get('backgroundColor', {})
     red = bg.get('red', 0)
     green = bg.get('green', 0)
-    blue = bg.get('blue', 1)
+    blue = bg.get('blue', 0)
     return abs(red - 0.576) < 0.05 and abs(green - 0.769) < 0.05 and abs(blue - 0.490) < 0.05
 
 def is_yellow_cell(cell):
@@ -47,7 +47,7 @@ def is_yellow_cell(cell):
     bg = cell.get('userEnteredFormat', {}).get('backgroundColor', {})
     red = bg.get('red', 0)
     green = bg.get('green', 0)
-    blue = bg.get('blue', 1)
+    blue = bg.get('blue', 0)
     return red > 0.9 and green > 0.9 and blue < 0.2
 
 def get_full_row_data(row):
@@ -105,7 +105,38 @@ def has_bold_row(row):
 def is_yellow_row(raw_row):
     if not raw_row.get('values'):
         return False
-    return any(is_yellow_cell(cell) for cell in raw_row['values'] if cell)
+    # Check for yellow color
+    if any(is_yellow_cell(cell) for cell in raw_row['values'] if cell):
+        return True
+    # Check for "एकूण" (Marathi for Total)
+    for cell in raw_row.get('values', []):
+        if cell and "एकूण" in cell.get('formattedValue', ''):
+            return True
+    return False
+
+def is_header_row(row):
+    if not has_bold_row(row):
+        return False
+    full_data = get_full_row_data(row)
+    if not full_data:
+        return False
+    
+    # If the row contains "एकूण" or "Total", it's a total row, not a header row
+    row_text = "".join([item['value'] for item in full_data]).lower()
+    if "एकूण" in row_text or "total" in row_text:
+        return False
+        
+    first_val = full_data[0]['value'].strip()
+    # If first cell is a number, it's likely a data row even if bold
+    try:
+        if first_val:
+            float(first_val)
+            return False
+    except ValueError:
+        pass
+    # Also check if it has enough columns (header rows usually have many columns)
+    headers = get_headers_with_type(row)
+    return len(headers) >= 3
 
 def fetch_sheet_raw_data(sheet_name=SHEET_NAME):
     creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -213,36 +244,50 @@ def run_test_py_demo():
         frappe.log(f"Total rows in sheet: {len(sheet_data)}")
         tables = []
         i = 0
+        i = 0
         while i < len(sheet_data):
-            while i < len(sheet_data) and not has_bold_row(sheet_data[i]):
+            # 1. Find Header Row
+            while i < len(sheet_data) and not is_header_row(sheet_data[i]):
                 i += 1
             if i >= len(sheet_data):
                 break
-            headers_with_type = get_headers_with_type(sheet_data[i])
+                
+            header_row = sheet_data[i]
+            headers_with_type = get_headers_with_type(header_row)
             headers = [h['name'] for h in headers_with_type]
             header_index = i
-            frappe.log(f"Header row at {i}: {headers}")
-            i = header_index + 1
+            frappe.log(f"Header row found at {i}: {headers}")
+            
+            # 2. Find Title (look backwards from header)
             title = 'Untitled Table'
             for j in range(header_index - 1, -1, -1):
                 if not is_empty_row(sheet_data[j]):
                     title = get_title(sheet_data[j])
                     frappe.log(f"Title found at row {j}: {title}")
                     break
+            
+            # 3. Collect ALL rows until next header or end
+            i += 1
+            raw_rows_in_table = []
+            while i < len(sheet_data) and not is_header_row(sheet_data[i]):
+                raw_rows_in_table.append(sheet_data[i])
+                i += 1
+            
+            # 4. Process collected rows, identifying totals
             data_rows = []
-            while i < len(sheet_data):
-                if has_bold_row(sheet_data[i]) or is_yellow_row(sheet_data[i]):
-                    break
-                full_row = get_full_row_data(sheet_data[i])
-                row_is_yellow = any(is_yellow_cell({'userEnteredFormat': {'backgroundColor': item['bg']}}) for item in full_row)
-                first_cell_empty = len(full_row) > 0 and not full_row[0]['value'].strip()
-                if not row_is_yellow and not first_cell_empty and any(item['value'].strip() for item in full_row):
-                    data_rows.append(full_row)
-                i += 1
             totals = None
-            if i < len(sheet_data) and is_yellow_row(sheet_data[i]):
-                totals = get_full_row_data(sheet_data[i])
-                i += 1
+            for raw_row in raw_rows_in_table:
+                full_row = get_full_row_data(raw_row)
+                if not any(item['value'].strip() for item in full_row):
+                    continue # Skip completely empty rows
+                    
+                # Identify total row by color or "एकूण" keyword
+                if is_yellow_row(raw_row) and totals is None:
+                    totals = full_row
+                else:
+                    data_rows.append(full_row)
+            
+            frappe.log(f"Table '{title}' processed: {len(data_rows)} data rows, Totals found: {totals is not None}")
             
             filtered_headers_with_type, filtered_data_rows = filter_empty_columns(headers_with_type, data_rows)
             filtered_headers = [h['name'] for h in filtered_headers_with_type]

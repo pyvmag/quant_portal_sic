@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>भूसंपादन | सांगली पाटबंधारे मंडळ</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/video.min.css">
+    <link rel="stylesheet" href="/css/lightbox.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header2.css?v=2">
+    <style>
+        :root {
+            --primary-color: #1d669a;
+            --secondary-color: #154e76;
+            --accent-color: #FFD700;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --overlay-color: rgba(0, 31, 63, 0.7);
+        }
+
+        .hero-section {
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: url('/img/sangli_irrigation.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--overlay-color) 0%, rgba(29, 102, 154, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .breadcrumb-container {
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-section {
+            padding: 80px 0;
+            background: #ffffff;
+            min-height: 400px;
+        }
+
+        .info-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-card h2 i {
+            font-size: 1.2em;
+        }
+
+        .custom-la-table {
+            font-size: 0.85rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 100%;
+        }
+        .custom-la-table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: rgba(255,255,255,0.1);
+            font-weight: 600;
+            white-space: nowrap;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        .custom-la-table tbody td {
+            vertical-align: middle;
+            color: #333;
+            padding: 10px 8px;
+        }
+        .custom-la-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .custom-la-table tbody tr:hover {
+            background-color: rgba(29, 102, 154, 0.08);
+        }
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .content-section { padding: 40px 0; }
+        }
+
+        .custom-la-table {
+            font-size: 0.95rem;
+            width: 100% !important;
+        }
+
+        .custom-la-table th {
+            white-space: nowrap;
+            background: #343a40 !important;
+            color: white !important;
+        }
+
+        .custom-la-table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column" style="min-height: 100vh;">
+    <div id="preloader"></div>
+
+    <!-- HEADER -->
+    <div id="header-placeholder"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container-fluid">
+                <h1>भूसंपादन</h1>
+                <p>Land Acquisition Department</p>
+            </div>
+        </section>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.html">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">भूसंपादन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div id="la-content-container" class="container-fluid">
+                            <div class="info-card wow fadeInUp">
+                                <h2><i class="fas fa-map-marked-alt"></i> भूसंपादन प्रक्रिया आणि माहिती <span id="update-date" style="font-size: 0.9rem; font-weight: normal; margin-left: auto;"></span></h2>
+                                <div class="placeholder-text text-center p-5">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p class="mt-3">माहिती लोड होत आहे, कृपया प्रतीक्षा करा...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jarallax.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/appear.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+        // Load Header
+        fetch('/header2.html?v=' + new Date().getTime())
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if (!hamburger || !navMenu) return;
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+            })
+            .catch(err => console.error("Header load error:", err));
+
+        // Load Footer
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error('Footer load error:', err));
+
+        // Fetch LA Data
+        async function loadLAData() {
+            try {
+                const response = await fetch('/api/method/sicsangli.api.get_general_sheet_data?sheet_name=LA');
+                const result = await response.json();
+                
+                if (result.message && (result.message.status === "ok" || result.status === "ok")) {
+                    const data = result.message.message || result.message;
+                    if (data.date) {
+                        document.getElementById('update-date').innerHTML = `(अद्यावत दिनांक: ${data.date})`;
+                    }
+                    renderLATables(data);
+                } else {
+                    throw new Error("Data fetch failed");
+                }
+            } catch (error) {
+                console.error("Error loading LA data:", error);
+                document.getElementById('la-content-container').innerHTML = `
+                    <div class="alert alert-danger">
+                        डेटा लोड करताना त्रुटी आली. कृपया नंतर प्रयत्न करा.
+                    </div>
+                `;
+            }
+        }
+
+        function renderLATables(data) {
+            const container = document.getElementById('la-content-container');
+            let html = '';
+            
+            if (data.tables && data.tables.length > 0) {
+                data.tables.forEach((table, index) => {
+                    html += `
+                        <div class="info-card mb-5 wow fadeInUp" data-wow-delay="${index * 0.1}s">
+                            <h2 class="mb-4"><i class="fas fa-table"></i> ${table.title.includes('Table') ? 'भूसंपादन आणि अतिक्रमण माहिती' : table.title}</h2>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered custom-la-table">
+                                    <thead class="thead-dark">
+                    `;
+                    
+                    if (table.headers && table.headers.length > 0) {
+                        table.headers.forEach(headerRow => {
+                            html += '<tr>';
+                            headerRow.forEach(cell => {
+                                html += `<th class="text-center align-middle">${cell || ''}</th>`;
+                            });
+                            html += '</tr>';
+                        });
+                        
+                        html += `
+                                        </thead>
+                                        <tbody>
+                        `;
+                        
+                        if (table.rows && table.rows.length > 0) {
+                            table.rows.forEach(row => {
+                                const isTotalRow = row.some(cell => cell && (cell.toString().includes('एकूण') || cell.toString().includes('Total')));
+                                html += `<tr class="${isTotalRow ? 'table-warning font-weight-bold' : ''}">`;
+                                row.forEach(cell => {
+                                    html += `<td class="${isTotalRow ? 'text-center' : ''}">${cell || ''}</td>`;
+                                });
+                                html += '</tr>';
+                            });
+                        }
+                    } else if (table.rows && table.rows.length > 0) {
+                        // Strategy 1 Fallback: Use first row as header
+                        const headerRow = table.rows[0];
+                        html += '<tr>';
+                        headerRow.forEach(cell => {
+                            html += `<th class="text-center align-middle">${cell || ''}</th>`;
+                        });
+                        html += '</tr>';
+                        
+                        html += `
+                                        </thead>
+                                        <tbody>
+                        `;
+                        
+                        for (let i = 1; i < table.rows.length; i++) {
+                            const row = table.rows[i];
+                            const isTotalRow = row.some(cell => cell && (cell.toString().includes('एकूण') || cell.toString().includes('Total')));
+                            html += `<tr class="${isTotalRow ? 'table-warning font-weight-bold' : ''}">`;
+                            row.forEach(cell => {
+                                html += `<td class="${isTotalRow ? 'text-center' : ''}">${cell || ''}</td>`;
+                            });
+                            html += '</tr>';
+                        }
+                    }
+                    
+                    html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html = '<div class="alert alert-info">कोणतीही माहिती उपलब्ध नाही.</div>';
+            }
+            
+            container.innerHTML = html;
+            
+            if (typeof WOW === 'function') {
+                new WOW().init();
+            }
+        }
+
+        $(document).ready(function() {
+            loadLAData();
+        });
+    </script>
+    <script src="/js/visitor-count.js?v=1.2"></script>
+</body>
+
+</html>

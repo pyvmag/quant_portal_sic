@@ -77,75 +77,18 @@
                     line-height: 1.6;
                 }
                 
-                .court-info-section {
-                    background: #ffffff;
-                    padding: 80px 0;
-                }
+
                 
-                .court-card {
-                    background: #ffffff;
-                    border: 1px solid #e2e8f0;
-                    border-radius: 16px;
-                    padding: 35px;
-                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-                    margin-bottom: 30px;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                    align-items: center;
-                }
-                
-                .court-card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-                    border-color: #3b82f6;
-                }
-                
-                .court-card .icon {
-                    width: 64px;
-                    height: 64px;
-                    background: #eff6ff;
-                    color: #2563eb;
-                    border-radius: 12px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin-bottom: 24px;
-                    font-size: 28px;
-                    transition: all 0.3s ease;
-                }
-                
-                .court-card:hover .icon {
-                    background: #2563eb;
-                    color: #ffffff;
-                }
-                
-                .court-card h3 {
-                    color: #1e293b;
-                    margin-bottom: 16px;
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                }
-                
-                .court-card p {
-                    color: #64748b;
-                    line-height: 1.6;
-                    margin: 0;
-                    font-size: 1.05rem;
-                }
-                
+
                 #court-dashboard {
                     background: #f8fafc;
                     padding: 60px 0 100px;
                     min-height: auto;
                 }
                 
-                #court-dashboard .container {
-                    max-width: 1400px;
+                #court-dashboard .container-fluid {
                     width: 100%;
-                    padding: 0 20px;
+                    padding: 0 30px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -156,290 +99,37 @@
                     justify-content: center;
                     align-items: center;
                 }
-                
-                /* Enhanced Mobile Responsive Design */
-                @media (max-width: 1399px) {
-                    .court-hero-section {
-                        padding: 90px 0;
-                        min-height: 320px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 3.2rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 1.2rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 70px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 30px;
-                    }
-                }
-                
-                @media (max-width: 1199px) {
-                    .court-hero-section {
-                        padding: 80px 0;
-                        min-height: 300px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 2.8rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 1.1rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 60px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 25px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 1.4rem;
-                    }
-                }
-                
+
                 @media (max-width: 991px) {
-                    .court-hero-section {
-                        padding: 70px 0;
-                        min-height: 280px;
-                    }
-                    
-                    .court-hero-content {
-                        padding: 0 15px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 2.5rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 1rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 50px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 20px;
-                        margin-bottom: 25px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 1.3rem;
-                    }
-                    
-                    .court-card p {
-                        font-size: 1rem;
-                    }
-                    
                     #court-dashboard {
                         padding: 50px 0 80px;
                     }
                 }
                 
                 @media (max-width: 767px) {
-                    .court-hero-section {
-                        padding: 60px 0;
-                        min-height: 250px;
-                    }
-                    
-                    .court-hero-content {
-                        padding: 0 10px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 2.2rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 0.95rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 40px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 18px;
-                        margin-bottom: 20px;
-                        border-radius: 14px;
-                    }
-                    
-                    .court-card .icon {
-                        width: 56px;
-                        height: 56px;
-                        font-size: 24px;
-                        margin-bottom: 20px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 1.2rem;
-                        margin-bottom: 12px;
-                    }
-                    
-                    .court-card p {
-                        font-size: 0.95rem;
-                    }
-                    
                     #court-dashboard {
                         padding: 40px 0 60px;
                     }
                 }
                 
                 @media (max-width: 575px) {
-                    .court-hero-section {
-                        padding: 50px 0;
-                        min-height: 220px;
-                    }
-                    
-                    .court-hero-content {
-                        padding: 0 8px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 1.8rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 0.9rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 30px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 15px;
-                        margin-bottom: 18px;
-                        border-radius: 12px;
-                    }
-                    
-                    .court-card .icon {
-                        width: 48px;
-                        height: 48px;
-                        font-size: 20px;
-                        margin-bottom: 16px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 1.1rem;
-                        margin-bottom: 10px;
-                    }
-                    
-                    .court-card p {
-                        font-size: 0.9rem;
-                    }
-                    
                     #court-dashboard {
                         padding: 30px 0 50px;
                     }
                 }
                 
                 @media (max-width: 480px) {
-                    .court-hero-section {
-                        padding: 40px 0;
-                        min-height: 200px;
-                    }
-                    
-                    .court-hero-content {
-                        padding: 0 5px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 1.6rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 0.85rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 25px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 12px;
-                        margin-bottom: 15px;
-                        border-radius: 10px;
-                    }
-                    
-                    .court-card .icon {
-                        width: 44px;
-                        height: 44px;
-                        font-size: 18px;
-                        margin-bottom: 14px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 1rem;
-                        margin-bottom: 8px;
-                    }
-                    
-                    .court-card p {
-                        font-size: 0.85rem;
-                    }
-                    
                     #court-dashboard {
                         padding: 25px 0 40px;
                     }
                 }
                 
                 @media (max-width: 380px) {
-                    .court-hero-section {
-                        padding: 35px 0;
-                        min-height: 180px;
-                    }
-                    
-                    .court-hero-content h1 {
-                        font-size: 1.4rem;
-                    }
-                    
-                    .court-hero-content p {
-                        font-size: 0.8rem;
-                    }
-                    
-                    .court-info-section {
-                        padding: 20px 0;
-                    }
-                    
-                    .court-card {
-                        padding: 10px;
-                        margin-bottom: 12px;
-                        border-radius: 8px;
-                    }
-                    
-                    .court-card .icon {
-                        width: 40px;
-                        height: 40px;
-                        font-size: 16px;
-                        margin-bottom: 12px;
-                    }
-                    
-                    .court-card h3 {
-                        font-size: 0.95rem;
-                        margin-bottom: 6px;
-                    }
-                    
-                    .court-card p {
-                        font-size: 0.8rem;
-                    }
-                    
                     #court-dashboard {
                         padding: 20px 0 35px;
                     }
                 }
-                
+
                 /* Enhanced existing styles */
                 body {
                         font-family: Arial, sans-serif;
@@ -501,6 +191,106 @@
                                 opacity: 1;
                                 transform: translateY(0);
                         }
+                }
+
+                /* Court Case Summary Section */
+                .summary-section {
+                    background: #f8fafc;
+                    padding: 40px 15px; /* Added horizontal padding */
+                    margin-top: -30px;
+                    position: relative;
+                    z-index: 10;
+                }
+                
+                .summary-card {
+                    background: #ffffff;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                    padding: 30px;
+                    border: 1px solid #e2e8f0;
+                    transition: transform 0.3s ease;
+                    width: 100%; /* Ensure full width */
+                    margin: 0 auto;
+                }
+                
+                .summary-card:hover {
+                    transform: translateY(-5px);
+                }
+                
+                .summary-header {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    margin-bottom: 25px;
+                    border-bottom: 2px solid #eff6ff;
+                    padding-bottom: 15px;
+                }
+                
+                .summary-header i {
+                    font-size: 1.5rem;
+                    color: #2563eb;
+                    background: #eff6ff;
+                    width: 45px;
+                    height: 45px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 12px;
+                }
+                
+                .summary-header h2 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: #1e3a8a;
+                    margin: 0;
+                }
+                
+                .summary-table-wrapper {
+                    overflow-x: auto;
+                    border-radius: 12px;
+                    border: 1px solid #e2e8f0;
+                }
+                
+                .summary-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 0;
+                }
+                
+                .summary-table th {
+                    background: #f1f5f9;
+                    color: #475569;
+                    font-weight: 600;
+                    text-align: center;
+                    padding: 15px;
+                    border: 1px solid #e2e8f0;
+                    font-size: 0.95rem;
+                }
+                
+                .summary-table td {
+                    padding: 12px 15px;
+                    text-align: center;
+                    border: 1px solid #e2e8f0;
+                    font-weight: 500;
+                    color: #1e293b;
+                    font-size: 0.95rem;
+                }
+                
+                .summary-table .dept-name {
+                    text-align: left;
+                    background: #f8fafc;
+                    font-weight: 600;
+                    color: #334155;
+                }
+                
+                .summary-table .totals-row {
+                    background: #f1f5f9;
+                    font-weight: 700;
+                    color: #1e3a8a;
+                }
+
+                #summary-table-container {
+                    min-height: 100px;
                 }
 
                 h2 {
@@ -1133,45 +923,19 @@
             </div>
         </section>
         
-        <!-- Court Case Info Section -->
-        <section class="court-info-section">
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="court-card">
-                            <div class="icon">
-                                <i class="fas fa-gavel"></i>
-                            </div>
-                            <h3>कायदेशीर प्रकरणे</h3>
-                            <p>विभागाशी संबंधित सर्व कायदेशीर प्रकरणांची संपूर्ण माहिती आणि दस्तऐवज</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="court-card">
-                            <div class="icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h3>न्यायिक प्रक्रिया</h3>
-                            <p>चालू खटल्यांची स्थिती, पुढील तारखा आणि न्यायिक प्रक्रियेची तपशील</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="court-card">
-                            <div class="icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <h3>कोर्ट केस PDF</h3>
-                            <p>कोर्ट केस संदर्भातील सर्व महत्वाचे अहवाल PDF स्वरूपात उपलब्ध</p>
-                            <a href="/pdf/temb.pdf" target="_blank" class="btn btn-outline-primary mt-3 w-100">डाउनलोड करा</a>
-                        </div>
-                    </div>
+        <!-- Summary Section -->
+        <section id="summary-section" class="summary-section">
+            <div class="container-fluid"> <!-- Changed from container to container-fluid -->
+                <div id="summary-table-container">
+                    <!-- Summary table will be loaded here -->
                 </div>
             </div>
         </section>
         
+
         <div class="main-content p-0">
                 <section id="court-dashboard" class="project-section p-0">
-                        <div class="container">
+                        <div class="container-fluid">
                                 <div class="row justify-content-center dashboard-row">
                                         <div class="col-12 mx-auto">
                                                 <div id="output"></div>
@@ -1428,41 +1192,96 @@
                         // Process Tables
                         if (rawData && rawData.length > 0) {
                                 console.log("Processing Tables"); // Debug
+                                const summaryContainer = document.getElementById('summary-table-container');
+                                let dashboardHtml = '';
+                                
                                 rawData.forEach((table, tIndex) => {
                                         const rows = table.rows || [];
                                         const totals = table.totals || null;
                                         const headers = table.headers || [];
                                         const tableTitle = table.title || `Table ${tIndex + 1}`;
+                                        
+                                        // Check if this is the summary table
+                                        const isSummary = tableTitle.includes('गोषवारा') || tableTitle.includes('Summary');
+                                        
                                         if (rows.length > 0 && headers.length > 0) {
-                                                hasContent = true;
-                                                html += `<div class="table-section"><h3>${tableTitle}</h3>`;
-                                                html += `<div class="table-responsive"><table class="table table-striped table-bordered table-hover">`;
-                                                html += `<thead><tr><th>अ.क्र.</th><th>विभागाचे नाव</th>`; // Fixed typo: removed "Educ "
+                                            hasContent = true;
+                                            
+                                            let tableHtml = '';
+                                            if (isSummary) {
+                                                tableHtml += `
+                                                    <div class="summary-card">
+                                                        <div class="summary-header">
+                                                            <i class="fas fa-list-alt"></i>
+                                                            <h2>${tableTitle}</h2>
+                                                        </div>
+                                                        <div class="summary-table-wrapper">
+                                                            <table class="summary-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>अ.क्र.</th>
+                                                                        <th>विभागाचे नाव</th>`;
                                                 headers.forEach(header => {
-                                                        html += `<th>${header}</th>`;
+                                                    tableHtml += `<th>${header}</th>`;
                                                 });
-                                                html += `</tr></thead><tbody>`;
+                                                tableHtml += `</tr></thead><tbody>`;
                                                 rows.forEach(row => {
-                                                        html += `<tr>`;
-                                                        if (row.length > 0) html += `<td>${row[0]?.value || ''}</td>`;
-                                                        if (row.length > 1) html += `<td>${row[1]?.value || ''}</td>`;
-                                                        for (let c = 2; c < Math.max(row.length, headers.length + 2); c++) {
-                                                                html += `<td>${row[c]?.value || ''}</td>`;
-                                                        }
-                                                        html += `</tr>`;
+                                                    const isRowTotal = row.some(cell => cell?.value?.includes('एकूण'));
+                                                    tableHtml += `<tr class="${isRowTotal ? 'totals-row' : ''}">`;
+                                                    if (row.length > 0) tableHtml += `<td>${row[0]?.value || ''}</td>`;
+                                                    if (row.length > 1) tableHtml += `<td class="${isRowTotal ? '' : 'dept-name'}">${row[1]?.value || ''}</td>`;
+                                                    for (let c = 2; c < Math.max(row.length, headers.length + 2); c++) {
+                                                        tableHtml += `<td>${row[c]?.value || ''}</td>`;
+                                                    }
+                                                    tableHtml += `</tr>`;
                                                 });
-                                                html += `</tbody>`;
+                                                tableHtml += `</tbody>`;
                                                 if (totals && totals.length > 0) {
-                                                        html += `<tfoot><tr class="totals-row">`;
-                                                        if (totals.length > 0) html += `<td colspan="2"><strong>एकूण</strong></td>`;
-                                                        for (let c = 2; c < Math.max(totals.length, headers.length + 2); c++) {
-                                                                html += `<td><strong>${totals[c]?.value || ''}</strong></td>`;
-                                                        }
-                                                        html += `</tr></tfoot>`;
+                                                    tableHtml += `<tfoot><tr class="totals-row">`;
+                                                    if (totals.length > 0) tableHtml += `<td colspan="2"><strong>एकूण</strong></td>`;
+                                                    for (let c = 2; c < Math.max(totals.length, headers.length + 2); c++) {
+                                                        tableHtml += `<td><strong>${totals[c]?.value || ''}</strong></td>`;
+                                                    }
+                                                    tableHtml += `</tr></tfoot>`;
                                                 }
-                                                html += `</table></div></div>`;
+                                                tableHtml += `</table></div></div>`;
+                                                
+                                                if (summaryContainer) {
+                                                    summaryContainer.innerHTML = tableHtml;
+                                                }
+                                            } else {
+                                                tableHtml += `<div class="table-section"><h3>${tableTitle}</h3>`;
+                                                tableHtml += `<div class="table-responsive"><table class="table table-striped table-bordered table-hover">`;
+                                                tableHtml += `<thead><tr><th>अ.क्र.</th><th>विभागाचे नाव</th>`; 
+                                                headers.forEach(header => {
+                                                        tableHtml += `<th>${header}</th>`;
+                                                });
+                                                tableHtml += `</tr></thead><tbody>`;
+                                                rows.forEach(row => {
+                                                        const isRowTotal = row.some(cell => cell?.value?.includes('एकूण'));
+                                                        tableHtml += `<tr class="${isRowTotal ? 'totals-row' : ''}">`;
+                                                        if (row.length > 0) tableHtml += `<td>${row[0]?.value || ''}</td>`;
+                                                        if (row.length > 1) tableHtml += `<td>${row[1]?.value || ''}</td>`;
+                                                        for (let c = 2; c < Math.max(row.length, headers.length + 2); c++) {
+                                                                tableHtml += `<td>${row[c]?.value || ''}</td>`;
+                                                        }
+                                                        tableHtml += `</tr>`;
+                                                });
+                                                tableHtml += `</tbody>`;
+                                                if (totals && totals.length > 0) {
+                                                        tableHtml += `<tfoot><tr class="totals-row">`;
+                                                        if (totals.length > 0) tableHtml += `<td colspan="2"><strong>एकूण</strong></td>`;
+                                                        for (let c = 2; c < Math.max(totals.length, headers.length + 2); c++) {
+                                                                tableHtml += `<td><strong>${totals[c]?.value || ''}</strong></td>`;
+                                                        }
+                                                        tableHtml += `</tr></tfoot>`;
+                                                }
+                                                tableHtml += `</table></div></div>`;
+                                                dashboardHtml += tableHtml;
+                                            }
                                         }
                                 });
+                                html += dashboardHtml;
                         }
                         if (!hasContent) {
                                 console.log("No content, adding error and debug"); // Debug

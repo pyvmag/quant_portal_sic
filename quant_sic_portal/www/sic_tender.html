@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="mr" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>निविदा पत्रिका तक्ता (Tender Sheet Table)</title>
+    <link rel="shortcut icon" href="/img/logo/maharashtra.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/header2.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 15px;
+            width: 100%;
+        }
+
+        /* Clean Header */
+        .page-title-area {
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .page-title-area h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        /* Simplified Tabs */
+        .nav-tabs-custom {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+            padding: 10px 10px 0 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-color);
+            background: #f8fafc;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: #eff6ff;
+        }
+
+        /* Content Card Placeholder */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 50px 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+            text-align: center;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs-custom { overflow-x: auto; white-space: nowrap; }
+            .tab-btn { padding: 10px 15px; font-size: 0.9rem; }
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            cursor: grab;
+            background: white;
+            position: relative;
+        }
+        .table-container:active {
+            cursor: grabbing;
+        }
+        table {
+            width: auto;
+            min-width: 100%;
+            border-collapse: collapse;
+            background: white;
+            table-layout: fixed; /* Enforce fixed column widths */
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-word; /* Allow words to break to maintain width */
+            width: 180px;      /* Fixed width for all columns */
+            min-width: 180px;  /* Ensure consistency */
+        }
+        th {
+            background: #ffffff;
+            font-weight: 700;
+            color: #0f172a;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #cbd5e1;
+        }
+        tr:hover {
+            background-color: #f8fafc;
+        }
+        .total-row {
+            font-weight: bold !important;
+            background-color: #fee2e2 !important;
+            color: #b91c1c !important;
+        }
+        .loading-text {
+            padding: 40px;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .error-text {
+            padding: 20px;
+            text-align: center;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        /* Sub-tab Navigation */
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding: 5px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            width: fit-content;
+        }
+        .sub-tab-btn {
+            padding: 8px 18px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: all 0.2s;
+        }
+        .sub-tab-btn:hover {
+            color: var(--primary-color);
+        }
+        .sub-tab-btn.active {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Major Selection Cards */
+        .major-selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 0px;
+        }
+        .major-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .major-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .major-card::after {
+            content: 'निवडा →';
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 0;
+            font-weight: 600;
+            transition: bottom 0.3s;
+        }
+        .major-card:hover::after {
+            bottom: 0;
+        }
+        .major-card i {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            background: #eff6ff;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            margin-bottom: 10px;
+        }
+        .major-card h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0;
+            color: var(--text-main);
+        }
+        .major-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 300px;
+        }
+
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: white;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .back-nav:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .detail-view {
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .major-selection-grid { grid-template-columns: 1fr; }
+            .major-card { padding: 30px; }
+            .major-card h2 { font-size: 1.3rem; }
+        }
+        /* Overview Summary Styling */
+        .overview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .overview-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .overview-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #eff6ff;
+            padding-bottom: 10px;
+        }
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .overview-table th {
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .overview-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .overview-table .summary-label {
+            text-align: left;
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--text-muted);
+            width: 40%;
+        }
+
+        @media (max-width: 768px) {
+            .overview-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="main-content">
+        <div class="page-title-area">
+            <h1>निविदा पत्रिका</h1>
+        </div>
+
+        <div id="mainSelectionArea">
+            <div class="major-selection-grid">
+                <!-- Option 1: Tembhu -->
+                <div class="major-card" onclick="showDetailView('tembhuView')">
+                    <i class="fas fa-water"></i>
+                    <h2>टेंभू उपसा सिंचन प्रकल्प</h2>
+                    <p>टेंभू प्रकल्पाशी संबंधित सर्व निविदा आणि विभागांची माहिती</p>
+                </div>
+                <!-- Option 2: Krushna Koyna -->
+                <div class="major-card" onclick="showDetailView('krushnaView')">
+                    <i class="fas fa-stream"></i>
+                    <h2>कृष्णा कोयना उपसा सिंचन प्रकल्प</h2>
+                    <p>कृष्णा कोयना प्रकल्पाशी संबंधित सर्व निविदा और विभागांची माहिती</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail View: Tembhu -->
+        <div id="tembhuView" class="detail-view" style="display:none;">
+            <div class="back-nav" onclick="showMainSelection()">
+                <i class="fas fa-arrow-left"></i> मुख्य निवडीकडे परत जा (Back to Main Selection)
+            </div>
+            
+            <!-- Tembhu Goshvara -->
+            <div class="overview-container" style="margin-top: 20px;">
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-pie"></i> टेंभू प्रकल्प सारांश </h3>
+                    <table class="overview-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">विभागाचे नाव (Department Name)</th>
+                                <th>No. of Works</th>
+                                <th>Cost (किंमत)</th>
+                                <th>Expenditure (खर्च)</th>
+                                <th>Balance (शिल्लक)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="summary-label">टेंभू उपसा सिंचन प्रकल्प विभाग</td>
+                                <td id="tembhu_d1_works">-</td>
+                                <td id="tembhu_d1_cost">-</td>
+                                <td id="tembhu_d1_exp">-</td>
+                                <td id="tembhu_d1_bal">-</td>
+                            </tr>
+                            <tr>
+                                <td class="summary-label">टेंभू उपसा सिंचन प्रकल्प व्यवस्थापन विभाग</td>
+                                <td id="tembhu_d2_works">-</td>
+                                <td id="tembhu_d2_cost">-</td>
+                                <td id="tembhu_d2_exp">-</td>
+                                <td id="tembhu_d2_bal">-</td>
+                            </tr>
+                            <tr>
+                                <td class="summary-label">लघु पाटबंधारे विभाग, सांगली</td>
+                                <td id="tembhu_d3_works">-</td>
+                                <td id="tembhu_d3_cost">-</td>
+                                <td id="tembhu_d3_exp">-</td>
+                                <td id="tembhu_d3_bal">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="nav-tabs-custom">
+                <button class="tab-btn active" onclick="switchSubTab(event, 'tembhu1', 'टेंभू उपसा सिंचन प्रकल्प विभाग ')">टेंभू उपसा सिंचन प्रकल्प विभाग</button>
+                <button class="tab-btn" onclick="switchSubTab(event, 'tembhu2', 'टेंभु उपसा सिंचन प्रकल्प व्यवस्')">टेंभू उपसा सिंचन प्रकल्प व्यवस्थापन विभाग</button>
+                <button class="tab-btn" onclick="switchSubTab(event, 'tembhu3', 'लघु पाटबंधारे विभाग,सांगली')">लघु पाटबंधारे विभाग, सांगली</button>
+            </div>
+
+            <div class="content-card" style="padding: 20px;">
+                <div id="tembhu1" class="tab-pane active">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+                <div id="tembhu2" class="tab-pane">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+                <div id="tembhu3" class="tab-pane">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail View: Krushna Koyna -->
+        <div id="krushnaView" class="detail-view" style="display:none;">
+            <div class="back-nav" onclick="showMainSelection()">
+                <i class="fas fa-arrow-left"></i> मुख्य निवडीकडे परत जा (Back to Main Selection)
+            </div>
+
+            <!-- Krushna Koyna Goshvara -->
+            <div class="overview-container" style="margin-top: 20px;">
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-bar"></i> कृष्णा कोयना प्रकल्प सारांश </h3>
+                    <table class="overview-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">विभागाचे नाव (Department Name)</th>
+                                <th>No. of Works</th>
+                                <th>Cost (किंमत)</th>
+                                <th>Expenditure (खर्च)</th>
+                                <th>Balance (शिल्लक)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="summary-label">ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन विभाग</td>
+                                <td id="krushna_d1_works">-</td>
+                                <td id="krushna_d1_cost">-</td>
+                                <td id="krushna_d1_exp">-</td>
+                                <td id="krushna_d1_bal">-</td>
+                            </tr>
+                            <tr>
+                                <td class="summary-label">म्हैसाळ पंपगृह विभाग क्र.२, सांगली</td>
+                                <td id="krushna_d2_works">-</td>
+                                <td id="krushna_d2_cost">-</td>
+                                <td id="krushna_d2_exp">-</td>
+                                <td id="krushna_d2_bal">-</td>
+                            </tr>
+                            <tr>
+                                <td class="summary-label">ताकारी पंपगृह विभाग क्र.१, देवरून</td>
+                                <td id="krushna_d3_works">-</td>
+                                <td id="krushna_d3_cost">-</td>
+                                <td id="krushna_d3_exp">-</td>
+                                <td id="krushna_d3_bal">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="nav-tabs-custom">
+                <button class="tab-btn active" onclick="switchSubTab(event, 'krushna1', 'ताकारी म्हैसाळ उपसा सिंचन व्यवस')">ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन विभाग</button>
+                <button class="tab-btn" onclick="switchSubTab(event, 'krushna2', 'म्हैसाळ पंपगृह विभाग क्र.2 सांग')">म्हैसाळ पंपगृह विभाग क्र.२, सांगली</button>
+                <button class="tab-btn" onclick="switchSubTab(event, 'krushna3', 'ताकारी पंपगृह विभाग क्र.1, देवर')">ताकारी पंपगृह विभाग क्र.१, देवरून</button>
+            </div>
+
+            <div class="content-card" style="padding: 20px;">
+                <div id="krushna1" class="tab-pane active">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+                <div id="krushna2" class="tab-pane">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+                <div id="krushna3" class="tab-pane">
+                    <div class="loading-text">डेटा लोड होत आहे...</div>
+                    <div class="table-render-area"></div>
+                </div>
+            </div>
+        </div> <!-- Close krushnaView -->
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        function showDetailView(viewId) {
+            document.getElementById('mainSelectionArea').style.display = 'none';
+            document.getElementById('tembhuView').style.display = 'none';
+            document.getElementById('krushnaView').style.display = 'none';
+            
+            const view = document.getElementById(viewId);
+            view.style.display = 'block';
+
+            // Save state
+            sessionStorage.setItem('currentView', viewId);
+
+            // Auto-load the first active tab in the view if no specific tab is saved
+            const savedTabId = sessionStorage.getItem('currentTab_' + viewId);
+            if (savedTabId) {
+                const savedBtn = view.querySelector(`button[onclick*="'${savedTabId}'"]`);
+                if (savedBtn) {
+                    savedBtn.click();
+                } else {
+                    view.querySelector('.tab-btn.active').click();
+                }
+            } else {
+                const activeTab = view.querySelector('.tab-btn.active');
+                if (activeTab) {
+                    activeTab.click();
+                }
+            }
+        }
+
+        function showMainSelection() {
+            document.getElementById('mainSelectionArea').style.display = 'block';
+            document.getElementById('tembhuView').style.display = 'none';
+            document.getElementById('krushnaView').style.display = 'none';
+            
+            // Clear or update state
+            sessionStorage.removeItem('currentView');
+        }
+
+        async function switchSubTab(evt, tabId, sheetName) {
+            const container = evt.currentTarget.closest('.detail-view');
+            const viewId = container.id;
+
+            const panes = container.querySelectorAll('.tab-pane');
+            panes.forEach(p => p.classList.remove('active'));
+            
+            const btns = container.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            
+            const pane = document.getElementById(tabId);
+            pane.classList.add('active');
+            evt.currentTarget.classList.add('active');
+
+            // Save tab state for this view
+            sessionStorage.setItem('currentTab_' + viewId, tabId);
+
+            if (sheetName && !pane.dataset.loaded) {
+                await loadProjectData(tabId, sheetName);
+            }
+        }
+
+        async function loadProjectData(tabId, sheetName) {
+            const pane = document.getElementById(tabId);
+            const renderArea = pane.querySelector('.table-render-area');
+            const loading = pane.querySelector('.loading-text');
+
+            try {
+                loading.style.display = 'block';
+                renderArea.innerHTML = '';
+
+                const res = await fetch(`/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=${encodeURIComponent(sheetName)}`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                
+                const result = await res.json();
+                if (result.message && result.message.status === 'ok') {
+                    const data = result.message.message;
+                    renderTables(data.tables, renderArea, data.merges || []);
+                    pane.dataset.loaded = 'true';
+                    loading.style.display = 'none';
+                    
+                    // Update specific Goshvara row if we have the data
+                    updateSingleGoshvaraRow(sheetName, data.tables);
+                } else {
+                    throw new Error("डेटा प्राप्त करण्यास अडचण आली.");
+                }
+            } catch (err) {
+                console.error("Data load error:", err);
+                loading.style.display = 'none';
+                renderArea.innerHTML = `<div class="error-text">त्रुटी: ${err.message}</div>`;
+            }
+        }
+
+        // Mapping for Goshvara IDs
+        const summaryMap = {
+            'टेंभू उपसा सिंचन प्रकल्प विभाग ': 'tembhu_d1',
+            'टेंभु उपसा सिंचन प्रकल्प व्यवस्': 'tembhu_d2',
+            'लघु पाटबंधारे विभाग,सांगली': 'tembhu_d3',
+            'ताकारी म्हैसाळ उपसा सिंचन व्यवस': 'krushna_d1',
+            'म्हैसाळ पंपगृह विभाग क्र.2 सांग': 'krushna_d2',
+            'ताकारी पंपगृह विभाग क्र.1, देवर': 'krushna_d3'
+        };
+
+        function updateSingleGoshvaraRow(sheetName, tables) {
+            const prefix = summaryMap[sheetName];
+            if (!prefix || !tables || tables.length === 0) return;
+
+            let maxFound = 0;
+            let targetColIdx = -1;
+
+            // Priority 1: Search for an explicit Sr. No. header
+            for (const table of tables) {
+                const headers = table.headers || [];
+                for (const hRow of headers) {
+                    const idx = hRow.findIndex(h => {
+                        if (!h) return false;
+                        const cleanH = String(h).replace(/\s/g, '').toLowerCase();
+                        return cleanH.includes('अ.क्र') || cleanH.includes('अक्र') || 
+                               cleanH.includes('sr.no') || cleanH.includes('srno') || 
+                               cleanH.includes('s.n') || cleanH.includes('slno');
+                    });
+                    if (idx !== -1) {
+                        targetColIdx = idx;
+                        break;
+                    }
+                }
+                if (targetColIdx !== -1) break;
+            }
+
+            // Priority 2: If no header found, check first 3 columns for a sequence
+            if (targetColIdx === -1) {
+                for (let cIdx = 0; cIdx < 3; cIdx++) {
+                    let hasNum = false;
+                    for (const table of tables) {
+                        if (table.rows && table.rows[0] && table.rows[0][cIdx]) {
+                            if (/^\d+$/.test(String(table.rows[0][cIdx]).trim())) {
+                                hasNum = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (hasNum) {
+                        targetColIdx = cIdx;
+                        break;
+                    }
+                }
+            }
+
+            // Final Step: Scan ALL rows in ALL tables for the maximum digit in that column
+            tables.forEach(table => {
+                const rows = table.rows || [];
+                rows.forEach(row => {
+                    if (targetColIdx !== -1 && row[targetColIdx] !== undefined && row[targetColIdx] !== null) {
+                        const val = String(row[targetColIdx]).trim();
+                        // Match digit at the start or end, prioritize the number
+                        const match = val.match(/\d+/);
+                        if (match) {
+                            const num = parseInt(match[0]);
+                            // Ignore common reference rows (1, 2, 3... in a row that looks like a header)
+                            // Usually, the reference row is very short or is row 0/1.
+                            // We just take the absolute max we find across all data rows.
+                            if (num > maxFound && num < 1000) { // Safety cap to avoid Year columns
+                                maxFound = num;
+                            }
+                        }
+                    }
+                });
+            });
+
+            const worksEl = document.getElementById(prefix + '_works');
+            if (worksEl) worksEl.innerText = maxFound || '-';
+        }
+
+        async function initGoshvara() {
+            // Fetch all summary data in parallel for instant load
+            const sheets = Object.keys(summaryMap);
+            const fetchPromises = sheets.map(async (sName) => {
+                try {
+                    const res = await fetch(`/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=${encodeURIComponent(sName)}`);
+                    const result = await res.json();
+                    if (result.message && result.message.status === 'ok') {
+                        updateSingleGoshvaraRow(sName, result.message.message.tables);
+                    }
+                } catch (e) { console.error("Summary load fail for " + sName, e); }
+            });
+
+            await Promise.all(fetchPromises);
+        }
+
+        function renderTables(tables, container, merges = []) {
+            if (!tables || tables.length === 0) return;
+
+            // Wrap everything in a single table-container to have one scrollbar
+            const mainWrapper = document.createElement('div');
+            mainWrapper.className = 'table-container';
+            container.appendChild(mainWrapper);
+
+            tables.forEach(table => {
+                const tableEl = document.createElement('table');
+                tableEl.style.marginBottom = '0'; // Remove gap between tables
+                if (mainWrapper.children.length > 0) {
+                    tableEl.style.borderTop = 'none'; // Merge borders if sequential
+                }
+
+                let tableHtml = '';
+                if (table.title && !table.title.match(/^Table \d+$/)) {
+                    tableHtml += `<caption>${table.title}</caption>`;
+                }
+                
+                const startRow = table.start_row_index || 0;
+                
+                // Headers
+                if (table.headers && table.headers.length > 0) {
+                    tableHtml += `<thead>`;
+                    table.headers.forEach((headerRow, rIdx) => {
+                        tableHtml += `<tr>`;
+                        headerRow.forEach((cell, cIdx) => {
+                            const mergeInfo = checkMerge(startRow + rIdx, cIdx, merges);
+                            if (mergeInfo.skip) return;
+                            let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                            tableHtml += `<th ${attrs}>${cell || ''}</th>`;
+                        });
+                        tableHtml += `</tr>`;
+                    });
+                    tableHtml += `</thead>`;
+                }
+
+                // Body
+                tableHtml += `<tbody>`;
+                const bodyRows = table.rows || [];
+                const bodyStartRow = startRow + (table.headers ? table.headers.length : 0);
+                
+                bodyRows.forEach((row, rIdx) => {
+                    const rowText = row.join(' ');
+                    const isTotal = rowText.includes('एकूण') || rowText.includes('एकुण') || rowText.includes('Total') || rowText.includes('अखेर');
+                    
+                    tableHtml += `<tr class="${isTotal ? 'total-row' : ''}">`;
+                    row.forEach((cell, cIdx) => {
+                        const mergeInfo = checkMerge(bodyStartRow + rIdx, cIdx, merges);
+                        if (mergeInfo.skip) return;
+                        let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                        // If cell is empty, add a non-breaking space to ensure border renders
+                        const content = (cell !== undefined && cell !== null && String(cell).trim() !== '') ? cell : '&nbsp;';
+                        tableHtml += `<td ${attrs}>${content}</td>`;
+                    });
+                    tableHtml += `</tr>`;
+                });
+                tableHtml += `</tbody>`;
+                
+                tableEl.innerHTML = tableHtml;
+                mainWrapper.appendChild(tableEl);
+            });
+
+            // Initialize drag-to-scroll on the main wrapper
+            initDragScroll(mainWrapper);
+        }
+
+        function checkMerge(row, col, merges) {
+            if (!merges || merges.length === 0) return { skip: false, colspan: 1, rowspan: 1 };
+            for (let m of merges) {
+                if (m.startRowIndex === row && m.startColumnIndex === col) {
+                    return { skip: false, colspan: m.endColumnIndex - m.startColumnIndex, rowspan: m.endRowIndex - m.startRowIndex };
+                }
+                if (row >= m.startRowIndex && row < m.endRowIndex && col >= m.startColumnIndex && col < m.endColumnIndex) {
+                    return { skip: true };
+                }
+            }
+            return { skip: false, colspan: 1, rowspan: 1 };
+        }
+
+        function initDragScroll(slider) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        async function loadPartials() {
+            try {
+                const [h, f] = await Promise.all([fetch('header2.html'), fetch('footer.html')]);
+                if(h.ok) {
+                    document.getElementById('header-placeholder').innerHTML = await h.text();
+                    const ham = document.querySelector('.hamburger');
+                    const menu = document.getElementById('nav-menu');
+                    if(ham && menu) {
+                        ham.addEventListener('click', () => {
+                            ham.classList.toggle('open');
+                            menu.classList.toggle('active');
+                            document.body.classList.toggle('no-scroll');
+                        });
+                    }
+                }
+                if(f.ok) document.getElementById('footer-placeholder').innerHTML = await f.text();
+            } catch(e) { console.error(e); }
+        }
+
+        function restorePageState() {
+            const savedView = sessionStorage.getItem('currentView');
+            if (savedView) {
+                showDetailView(savedView);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            loadPartials();
+            restorePageState();
+            initGoshvara();
+        });
+    </script>
+    <script src="/js/visitor-count.js?v=1.2"></script>
+</body>
+</html>
