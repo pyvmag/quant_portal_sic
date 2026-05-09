@@ -681,20 +681,18 @@
                 }
             }
 
-            // Final Step: Scan ALL rows in ALL tables for the maximum digit in that column
+            // Final Step: Scan ALL rows and headers in ALL tables for the maximum digit in that column
             tables.forEach(table => {
-                const rows = table.rows || [];
-                rows.forEach(row => {
+                const allDataRows = [...(table.headers || []), ...(table.rows || [])];
+                allDataRows.forEach(row => {
                     if (targetColIdx !== -1 && row[targetColIdx] !== undefined && row[targetColIdx] !== null) {
                         const val = String(row[targetColIdx]).trim();
-                        // Match digit at the start or end, prioritize the number
-                        const match = val.match(/\d+/);
+                        // Match digit that is either the whole content or at the start
+                        // We use a stricter check to avoid picking up years or large numbers
+                        const match = val.match(/^(\d+)/);
                         if (match) {
-                            const num = parseInt(match[0]);
-                            // Ignore common reference rows (1, 2, 3... in a row that looks like a header)
-                            // Usually, the reference row is very short or is row 0/1.
-                            // We just take the absolute max we find across all data rows.
-                            if (num > maxFound && num < 1000) { // Safety cap to avoid Year columns
+                            const num = parseInt(match[1]);
+                            if (num > maxFound && num < 500) { // Works rarely exceed 500
                                 maxFound = num;
                             }
                         }
@@ -702,8 +700,50 @@
                 });
             });
 
+            // Find Cost, Expenditure, and Balance based on background color
+            let costVal = '-';
+            let expVal = '-';
+            let balVal = '-';
+            
+            tables.forEach(table => {
+                const rows = table.rows || [];
+                const colors = table.row_colors || [];
+                
+                rows.forEach((row, rIdx) => {
+                    const rowColors = colors[rIdx] || [];
+                    row.forEach((cellVal, cIdx) => {
+                        const cellColor = rowColors[cIdx] || {};
+                        const valStr = String(cellVal).trim();
+                        
+                        if (valStr !== '') {
+                            // Pink / Magenta (Cost): High Red, High Blue, Low Green
+                            if (cellColor.red > 0.9 && cellColor.blue > 0.9 && (cellColor.green || 0) < 0.5) {
+                                costVal = valStr;
+                            }
+                            // Pure Red (Expenditure): High Red, Low Blue, Low Green
+                            else if (cellColor.red > 0.9 && (cellColor.blue || 0) < 0.5 && (cellColor.green || 0) < 0.5) {
+                                expVal = valStr;
+                            }
+                            // Pure Blue (Balance): High Blue, Low Red, Low Green
+                            else if (cellColor.blue > 0.9 && (cellColor.red || 0) < 0.5 && (cellColor.green || 0) < 0.5) {
+                                balVal = valStr;
+                            }
+                        }
+                    });
+                });
+            });
+
             const worksEl = document.getElementById(prefix + '_works');
             if (worksEl) worksEl.innerText = maxFound || '-';
+            
+            const costEl = document.getElementById(prefix + '_cost');
+            if (costEl) costEl.innerText = costVal;
+
+            const expEl = document.getElementById(prefix + '_exp');
+            if (expEl) expEl.innerText = expVal;
+
+            const balEl = document.getElementById(prefix + '_bal');
+            if (balEl) balEl.innerText = balVal;
         }
 
         async function initGoshvara() {

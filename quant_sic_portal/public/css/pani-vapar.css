@@ -1,129 +1,191 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
     margin: 0;
-    overflow-y: auto;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 body.no-scroll {
     overflow: hidden;
 }
 
-/* Pani Vapar Specific Styles */
-.title-heading {
-    text-align: center;
-    color: rgb(14, 10, 10);
-    font-weight: bold;
-    font-size: 1.8em;
-    margin: 40px 0 20px 0;
-}
-.subtitle-heading {
-    text-align: center;
-    color: red;
-    font-weight: bold;
-    font-size: 1.4em;
-    margin: 15px 0;
+/* Header Spacer */
+.main-content {
+    min-height: calc(100vh - 300px);
 }
 
-/* Perfectly Centered Content Wrapper */
-.content-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 15px;
+/* Breadcrumb Section */
+.breadcrumb-section {
+    padding: 60px 0;
+    background-image: url('/img/sangli_irrigation.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-bottom: 30px;
 }
 
-/* Responsive Table */
-.table-responsive {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background: white;
-}
-#data-table {
+.background_overlay {
+    background: rgba(0, 31, 63, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin: 0;
+    height: 100%;
 }
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
+
+/* Content Wrapper */
+.content-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Report Header (Card style from annual-expenditure) */
+.report-header {
     text-align: center;
-    vertical-align: top;
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: normal;
+    margin-bottom: 30px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
-th {
-    background-color: #6baceb;
-    color: rgb(255 252 252);
+
+.report-header .title-heading {
+    font-size: 26px;
+    color: #1e3a8a;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.report-header .subtitle-heading {
+    font-size: 18px;
+    color: #374151;
+    margin: 5px 0;
+    font-weight: 500;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.report-header .annexure {
     font-weight: bold;
+    color: #16e95c;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Advanced Table Container */
+.table-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    margin-top: 20px;
+    cursor: grab;
+}
+
+.table-container:active {
+    cursor: grabbing;
+}
+
+table {
+    width: auto;
+    min-width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 13px;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 12px 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background: #f8f9fa !important;
+    font-weight: bold;
+    color: #1e3a8a !important;
+    white-space: nowrap;
     position: sticky;
     top: 0;
     z-index: 10;
-    font-size: 0.95em;
-    
 }
-td {
-    font-size: 0.85em;
-    background-color: #ffffff;
+
+tbody tr:nth-child(even) {
+    background-color: #f9fafb;
 }
-tr:nth-child(even) td {
-    background-color: #f9f9f9;
+
+tbody tr:hover {
+    background-color: #eff6ff;
+    transition: background-color 0.2s ease;
 }
-tr:hover td {
-    background-color: #f0f8ff;
+
+/* Row Highlight */
+.total-row {
+    font-weight: bold !important;
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+/* Loading & Error */
+.loading {
+    text-align: center;
+    padding: 100px 0;
+    color: #1e3a8a;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: #dc2626;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 40px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.last-updated {
+    text-align: right;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+}
+
+/* Refresh Button */
+button#refresh-btn {
+    float: right;
+    background: #c6d631;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button#refresh-btn:hover {
+    background: #08f143;
+    transform: translateY(-1px);
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
     th, td {
-        padding: 8px;
-        font-size: 0.8em;
+        padding: 8px 5px;
+        font-size: 11px;
     }
-    .content-wrapper {
-        padding: 0 10px;
+    .report-header .title-heading {
+        font-size: 20px;
     }
-}
-
-.loading {
-    text-align: center;
-    padding: 40px;
-    font-style: italic;
-    color: #666;
-    font-size: 1.1em;
-}
-.error {
-    color: red;
-    text-align: center;
-    padding: 30px;
-    font-weight: bold;
-    background: #ffebee;
-    border-radius: 8px;
-    margin: 20px auto;
-    max-width: 800px;
-}
-.last-updated {
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    margin: 20px 0;
-    font-size: 0.9em;
-}
-button#refresh-btn {
-    display: block;
-    margin: 30px auto;
-    padding: 12px 30px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
-button#refresh-btn:hover {
-    background: #0056b3;
-}
-.main-content {
-    min-height: calc(100vh - 200px);
-    padding: 20px 0;
 }

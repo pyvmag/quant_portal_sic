@@ -443,6 +443,7 @@ def extract_tables(sheet_data_obj):
                 i += 1
                 
                 table_rows = [header]
+                table_colors = [[cell.get('effectiveFormat', {}).get('backgroundColor', {}) for cell in sheet_data[i-1].get('values', [])]]
                 table_start = i - 1
                 while i < len(sheet_data):
                     row = sheet_data[i]
@@ -451,11 +452,14 @@ def extract_tables(sheet_data_obj):
                         break
                     if is_yellow_row_with_total(row):
                         table_rows.append([cell.get('formattedValue', '') or '' for cell in row.get('values', [])])
+                        table_colors.append([cell.get('effectiveFormat', {}).get('backgroundColor', {}) for cell in row.get('values', [])])
                         i += 1
                         break
                     
                     row_data = [cell.get('formattedValue', '') or '' for cell in row.get('values', [])]
+                    row_color_data = [cell.get('effectiveFormat', {}).get('backgroundColor', {}) for cell in row.get('values', [])]
                     table_rows.append(row_data)
+                    table_colors.append(row_color_data)
                     i += 1
                 
                 while table_rows and not any(table_rows[-1]):
@@ -467,8 +471,9 @@ def extract_tables(sheet_data_obj):
                     for idx, val in enumerate(r):
                         if str(val).strip(): max_cols = max(max_cols, idx + 1)
                 table_rows = [r[:max_cols] for r in table_rows]
+                table_colors = [r[:max_cols] for r in table_colors]
                 
-                tables.append({'title': title, 'rows': table_rows, 'start_row_index': table_start})
+                tables.append({'title': title, 'rows': table_rows, 'row_colors': table_colors, 'start_row_index': table_start})
             continue
 
         # Strategy 2: Content-Based (Sr. No. or similar header)
@@ -480,7 +485,7 @@ def extract_tables(sheet_data_obj):
             
             # Expand to find up to 3 rows of headers
             header_i = i
-            while header_i < len(sheet_data) and header_i < i + 3:
+            while header_i < len(sheet_data) and header_i < i + 5:
                 row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[header_i].get('values', [])]
                 if header_i > i:
                     val0 = str(row_data[0]).strip()
@@ -492,16 +497,19 @@ def extract_tables(sheet_data_obj):
             
             i = header_i
             table_rows = []
+            table_colors = []
             empty_count = 0
             while i < len(sheet_data):
                 if is_title_row(sheet_data[i]): # Title row starts a new table
                     break
                     
                 row_data = [cell.get('formattedValue', '') or '' for cell in sheet_data[i].get('values', [])]
+                row_color_data = [cell.get('effectiveFormat', {}).get('backgroundColor', {}) for cell in sheet_data[i].get('values', [])]
                 if is_strategy2_header(sheet_data[i]):
                     break
                 
                 table_rows.append(row_data)
+                table_colors.append(row_color_data)
                 i += 1
                 
             while table_rows and not any(table_rows[-1]):
@@ -518,11 +526,13 @@ def extract_tables(sheet_data_obj):
             
             table_headers = [r[:max_cols] for r in table_headers]
             table_rows = [r[:max_cols] for r in table_rows]
+            table_colors = [r[:max_cols] for r in table_colors]
             
             tables.append({
                 'title': f"Table {len(tables)+1}", 
                 'headers': table_headers,
                 'rows': table_rows,
+                'row_colors': table_colors,
                 'start_row_index': start_of_header
             })
             continue

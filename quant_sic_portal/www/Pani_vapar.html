@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>पाणी वापर संस्था</title>
@@ -19,8 +20,9 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header2.css">
 
-    <link rel="stylesheet" href="/css/pani-vapar.css?v=202504061243">
+    <link rel="stylesheet" href="/css/pani-vapar.css?v=202505091300">
 </head>
+
 <body class="page-pani-vapar">
     <div id="preloader"></div>
     <div class="up">
@@ -31,8 +33,7 @@
     <div id="header-placeholder"></div>
 
     <div class="main-content">
-        <section id="breadcrumb" class="breadcrumb-section position-relative"
-                 >
+        <section id="breadcrumb" class="breadcrumb-section position-relative">
             <div class="background_overlay"></div>
             <div class="container">
                 <div class="breadcrumb-content headline">
@@ -52,18 +53,14 @@
             <button id="refresh-btn">Refresh Data</button>
             <div id="last-updated" class="last-updated"></div>
 
-            <!-- Title from sheet -->
-            <div id="title-container"></div>
+            <!-- Report Header Card -->
+            <div id="title-container" class="report-header" style="display: none;"></div>
 
-            <div id="loading" class="loading">Loading data from Google Sheet...</div>
+            <div id="loading" class="loading">डेटा लोड होत आहे... (Loading Data...)</div>
             <div id="error" class="error" style="display: none;"></div>
 
-            <!-- Responsive Table -->
-            <div id="table-container" style="display: none; margin: 40px 0; position: relative;">
-                <div class="table-responsive mx-auto" style="max-width: 1400px;">
-                    <table id="data-table"></table>
-                </div>
-            </div>
+            <!-- Table Container Card -->
+            <div id="table-container" style="display: none;"></div>
         </div>
     </div>
 
@@ -156,125 +153,178 @@
         loadFooter();
 
         // Data Fetching
-        const API_ENDPOINT = '/api/method/sicsangli.pani_vapar.get_sheet_data';
-
-        function padRow(cells, totalColumns) {
-            const padded = cells ? [...cells] : [];
-            while (padded.length < totalColumns) padded.push('');
-            return padded.slice(0, totalColumns);
-        }
-
-        function setResponsiveColumnWidths(table, totalColumns) {
-            if (window.innerWidth > 992) {
-                const width = (100 / totalColumns).toFixed(4) + '%';
-                table.querySelectorAll('th, td').forEach(cell => {
-                    cell.style.width = width;
-                    cell.style.minWidth = width;
-                });
-            } else {
-                table.querySelectorAll('th, td').forEach(cell => {
-                    cell.style.width = '';
-                    cell.style.minWidth = '';
-                });
-            }
-        }
+        const API_ENDPOINT = '/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=SICF';
 
         async function fetchData() {
             const loadingEl = document.getElementById('loading');
             const errorEl = document.getElementById('error');
-            const titleContainer = document.getElementById('title-container');
             const tableContainer = document.getElementById('table-container');
             const lastUpdatedEl = document.getElementById('last-updated');
-            const table = document.getElementById('data-table');
+            const titleContainer = document.getElementById('title-container');
 
             loadingEl.style.display = 'block';
             errorEl.style.display = 'none';
-            titleContainer.innerHTML = '';
             tableContainer.style.display = 'none';
-            table.innerHTML = '';
-
-            let apiData = null;
+            tableContainer.innerHTML = '';
+            titleContainer.innerHTML = '';
 
             try {
-                const response = await fetch(API_ENDPOINT, { method: 'GET', headers: { 'Accept': 'application/json' } });
-                if (!response.ok) throw new Error(`Server error ${response.status}`);
+                const response = await fetch(API_ENDPOINT);
                 const result = await response.json();
-                apiData = result.message?.data || result.data;
-                if (!apiData || !apiData.headers) throw new Error("Invalid or empty data received.");
+
+                if (result.message && result.message.status === "ok") {
+                    const data = result.message.message || result.message;
+
+                    // Display Report Header (if any)
+                    if (data.report_header && data.report_header.length > 0) {
+                        data.report_header.forEach((row, idx) => {
+                            const text = row.filter(c => c && c.trim()).join(' ');
+                            if (text) {
+                                const div = document.createElement('div');
+                                if (idx === 0) div.className = 'title-heading';
+                                else if (text.includes('परिशिष्ट')) div.className = 'annexure';
+                                else div.className = 'subtitle-heading';
+                                
+                                div.textContent = text;
+                                titleContainer.appendChild(div);
+                            }
+                        });
+                        titleContainer.style.display = 'block';
+                    }
+
+                    if (data.date) {
+                        lastUpdatedEl.textContent = `शेवटचे अपडेट: ${data.date}`;
+                    }
+
+                    if (data.tables && data.tables.length > 0) {
+                        renderTables(data.tables, tableContainer, data.merges || []);
+                    }
+
+                    loadingEl.style.display = 'none';
+                    tableContainer.style.display = 'block';
+                } else {
+                    throw new Error(result.message?.message || "Failed to load data");
+                }
             } catch (err) {
                 loadingEl.style.display = 'none';
                 errorEl.innerHTML = `<strong>डेटा लोड करण्यात त्रुटी:</strong><br>${err.message}`;
                 errorEl.style.display = 'block';
                 console.error("Fetch error:", err);
-                return;
             }
+        }
 
-            const data = apiData;
+        function renderTables(tables, container, merges = []) {
+            if (!tables || tables.length === 0) return;
 
-            // Title Rows
-            if (data.title_rows && data.title_rows.length > 0) {
-                data.title_rows.forEach((row, index) => {
-                    const text = row.filter(cell => cell && cell.trim()).join(' ').trim();
-                    if (text) {
-                        const div = document.createElement('div');
-                        div.className = index === 0 ? 'title-heading' : 'subtitle-heading';
-                        div.textContent = text;
-                        titleContainer.appendChild(div);
-                    }
-                });
-            }
+            // Wrap everything in a single table-container to have one scrollbar
+            const mainWrapper = document.createElement('div');
+            mainWrapper.className = 'table-container';
+            container.appendChild(mainWrapper);
 
-            // Calculate columns
-            let totalColumns = Math.max(
-                data.headers?.length || 0,
-                ...(data.rows?.map(r => r.length) || [0])
-            ) || 11;
+            tables.forEach(table => {
+                const tableEl = document.createElement('table');
+                tableEl.style.marginBottom = '0';
+                if (mainWrapper.children.length > 0) {
+                    tableEl.style.borderTop = 'none';
+                }
 
-            // Build table
-            if (data.headers?.length > 0) {
-                const tr = document.createElement('tr');
-                padRow(data.headers, totalColumns).forEach(text => {
-                    const th = document.createElement('th');
-                    th.textContent = text || '';
-                    tr.appendChild(th);
-                });
-                table.appendChild(tr);
-            }
-
-            if (data.rows?.length > 0) {
-                data.rows.forEach(row => {
-                    const tr = document.createElement('tr');
-                    padRow(row, totalColumns).forEach(text => {
-                        const td = document.createElement('td');
-                        td.textContent = text || '';
-                        tr.appendChild(td);
+                let tableHtml = '';
+                if (table.title && !table.title.match(/^Table \d+$/)) {
+                    tableHtml += `<caption>${table.title}</caption>`;
+                }
+                
+                const startRow = table.start_row_index || 0;
+                
+                // Headers
+                if (table.headers && table.headers.length > 0) {
+                    tableHtml += `<thead>`;
+                    table.headers.forEach((headerRow, rIdx) => {
+                        tableHtml += `<tr>`;
+                        headerRow.forEach((cell, cIdx) => {
+                            const mergeInfo = checkMerge(startRow + rIdx, cIdx, merges);
+                            if (mergeInfo.skip) return;
+                            let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                            tableHtml += `<th ${attrs}>${cell || ''}</th>`;
+                        });
+                        tableHtml += `</tr>`;
                     });
-                    table.appendChild(tr);
+                    tableHtml += `</thead>`;
+                }
+
+                // Body
+                tableHtml += `<tbody>`;
+                const bodyRows = table.rows || [];
+                const bodyStartRow = startRow + (table.headers ? table.headers.length : 0);
+                
+                bodyRows.forEach((row, rIdx) => {
+                    const rowText = row.join(' ');
+                    const isTotal = rowText.includes('एकूण') || rowText.includes('एकुण') || rowText.includes('Total') || rowText.includes('अखेर');
+                    
+                    tableHtml += `<tr class="${isTotal ? 'total-row' : ''}">`;
+                    row.forEach((cell, cIdx) => {
+                        const mergeInfo = checkMerge(bodyStartRow + rIdx, cIdx, merges);
+                        if (mergeInfo.skip) return;
+                        let attrs = `colspan="${mergeInfo.colspan}" rowspan="${mergeInfo.rowspan}"`;
+                        const content = (cell !== undefined && cell !== null && String(cell).trim() !== '') ? cell : '&nbsp;';
+                        tableHtml += `<td ${attrs}>${content}</td>`;
+                    });
+                    tableHtml += `</tr>`;
                 });
-            } else {
-                const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.colSpan = totalColumns;
-                td.textContent = 'सध्या कोणतीही निविदा उपलब्ध नाही.';
-                td.style.textAlign = 'center';
-                td.style.fontStyle = 'italic';
-                tr.appendChild(td);
-                table.appendChild(tr);
+                tableHtml += `</tbody>`;
+                
+                tableEl.innerHTML = tableHtml;
+                mainWrapper.appendChild(tableEl);
+            });
+
+            initDragScroll(mainWrapper);
+        }
+
+        function checkMerge(row, col, merges) {
+            if (!merges || merges.length === 0) return { skip: false, colspan: 1, rowspan: 1 };
+            for (let m of merges) {
+                if (m.startRowIndex === row && m.startColumnIndex === col) {
+                    return { skip: false, colspan: m.endColumnIndex - m.startColumnIndex, rowspan: m.endRowIndex - m.startRowIndex };
+                }
+                if (row >= m.startRowIndex && row < m.endRowIndex && col >= m.startColumnIndex && col < m.endColumnIndex) {
+                    return { skip: true };
+                }
             }
+            return { skip: false, colspan: 1, rowspan: 1 };
+        }
 
-            setResponsiveColumnWidths(table, totalColumns);
-            window.addEventListener('resize', () => setResponsiveColumnWidths(table, totalColumns));
+        function initDragScroll(slider) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
 
-            loadingEl.style.display = 'none';
-            tableContainer.style.display = 'block';
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
 
-            const now = new Date();
-            lastUpdatedEl.textContent = `शेवटचे अपडेट: ${now.toLocaleDateString('mr-IN')} ${now.toLocaleTimeString('mr-IN')}`;
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
         }
 
         document.addEventListener('DOMContentLoaded', fetchData);
         document.getElementById('refresh-btn').addEventListener('click', fetchData);
     </script>
-<script src="/js/visitor-count.js?v=1.2"></script>
+    <script src="/js/visitor-count.js?v=1.2"></script>
 </body>
+
 </html>
