@@ -517,23 +517,7 @@
 				.catch(err => console.error('Footer load error:', err));
 		})();
 	</script>
-	<script>
-		if (!window.visitorCounted) { // prevents multiple triggers on same load
-			window.visitorCounted = true;
-			console.log('Sending global visitor count request...');
-			fetch('/api/method/sicsangli.visitor_counter.record_visit')
-				.then(res => {
-					console.log('Raw response status:', res.status, res.statusText);
-					return res.json();
-				})
-				.then(data => {
-					console.log('Global visitor count updated:', data);
-				})
-				.catch(err => {
-					console.error('Error updating visitor count:', err);
-				});
-		}
-	</script>
+
 <script src="/js/visitor-count.js?v=1.2"></script>
 </body>
 

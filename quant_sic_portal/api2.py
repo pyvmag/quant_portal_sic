@@ -5,7 +5,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 import copy
 
-SPREADSHEET_ID = "1uZMDUujtlQr_G5E720P0upyQJ2Pfwiu_m8DIorZZyvA"
+SPREADSHEET_ID = "1qdx0e8xrbv8tEfdJdAdFQKMBoUB7EVLdg9bokgSSHrQ"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 SERVICE_ACCOUNT_FILE = "/home/erpadmin/bench-jalsampada-portal/sites/credentials/google_sheets.json"
 
@@ -121,8 +121,8 @@ def is_header_row(row):
     if not full_data:
         return False
     
-    # If the row contains "एकूण" or "Total", it's a total row, not a header row
-    row_text = "".join([item['value'] for item in full_data]).lower()
+    # If the row contains "एकूण" or "Total" in the label/serial columns, it's a total row, not a header row
+    row_text = "".join([item['value'] for item in full_data[:2]]).lower()
     if "एकूण" in row_text or "total" in row_text:
         return False
         

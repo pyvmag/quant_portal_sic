@@ -219,8 +219,14 @@
 
         async function loadData() {
             try {
-                const res = await fetch('data/annual_expenditure.json');
-                const data = await res.json();
+                const res = await fetch('/api/method/quant_sic_portal.api.get_annual_expenditure_data');
+                const responseData = await res.json();
+                
+                if (!responseData.message || responseData.message.status === "fail") {
+                    throw new Error(responseData.message ? responseData.message.message : "No data returned");
+                }
+                
+                const data = responseData.message;
                 
                 document.getElementById('report-title').textContent = data.title;
                 document.getElementById('report-subtitle').textContent = data.subtitle;

@@ -250,6 +250,7 @@
     list-style: none !important;
 }
 
+.dropdown-submenu:hover .dropdown-submenu-menu,
 .dropdown-submenu.active .dropdown-submenu-menu {
     display: flex !important;
     opacity: 1 !important;
@@ -481,6 +482,7 @@
         list-style: none !important;
     }
 
+    .dropdown-submenu:hover .dropdown-submenu-menu,
     .dropdown-submenu.active .dropdown-submenu-menu {
         display: flex !important;
     }
@@ -498,6 +500,7 @@
         padding-left: 55px !important;
     }
 
+    .dropdown-submenu:hover > a > .submenu-arrow,
     .dropdown-submenu.active > a > .submenu-arrow {
         transform: rotate(90deg) !important;
     }

@@ -482,14 +482,7 @@
 			})
 			.catch(err => console.error("Footer load error:", err));
 	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			fetch("/api/method/sicsangli.visitor_counter.record_visit?page_name=" + encodeURIComponent(window.location.pathname))
-				.then(res => res.json())
-				.then(data => console.log("Visitor count updated:", data))
-				.catch(err => console.error("Error updating visitor count:", err));
-		});
-	</script>
+
 
 <script src="/js/visitor-count.js?v=1.2"></script>
 </body>

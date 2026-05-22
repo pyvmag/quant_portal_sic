@@ -133,6 +133,36 @@
             display: inline-block; font-weight: 800; color: #0f172a; background: #fef08a;
             border-bottom: 3px solid #facc15; padding: 0 4px; border-radius: 3px; margin: 0 2px;
         }
+
+        /* PDF Download Button */
+        .btn-download-pdf {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            background-color: #2563eb;
+            color: #ffffff !important;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none !important;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .btn-download-pdf:hover {
+            background-color: transparent;
+            color: #2563eb !important;
+            border-color: #2563eb;
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-download-pdf i {
+            margin-right: 8px;
+            font-size: 1.25rem;
+        }
     </style>
 </head>
 <body class="page-arfal">
@@ -183,9 +213,9 @@
                             <i class="fas fa-chevron-circle-right"></i>
                         </div>
                         <div class="milestone-content">
-                            <h3>प्रकल्पाचे स्वरूप</h3>
+                            <h3>१. प्रकल्पाचे स्वरूप व व्याप्ती (Project Nature & Scope)</h3>
                             <p>
-                                आरफळ कालवा हा कृष्णा खोऱ्यातील एक महत्त्वाचा सिंचन मार्ग आहे. या कालव्यामुळे सातारा आणि सांगली जिल्ह्यातील दुष्काळी भागाला संजीवनी मिळाली आहे. प्रवाही सिंचनाद्वारे पाण्याचे समन्यायी वाटप करणे हे या प्रकल्पाचे वैशिष्ट्य आहे.
+                                आरफळ कालवा हा कृष्णा खोऱ्यातील एक अत्यंत महत्त्वाचा सिंचन मार्ग असून त्याची एकूण लांबी <span class="hl">१९२ कि.मी.</span> आहे. हा कालवा कण्हेर धरणापासून निघणाऱ्या डाव्या कालव्याला कृष्णा नदी छेदते तेथून पुढे सुरू होतो. प्रवाही सिंचनाद्वारे सातारा आणि सांगली जिल्ह्यातील दुष्काळी भागाला संजीवनी प्रदान करणे हे या प्रकल्पाचे मूळ उद्दिष्ट आहे.
                             </p>
                         </div>
                     </div>
@@ -195,11 +225,42 @@
                             <i class="fas fa-chevron-circle-right"></i>
                         </div>
                         <div class="milestone-content">
-                            <h3>सिंचन क्षमता</h3>
+                            <h3>२. सिंचन व्यवस्थापन विभाग (Irrigation Management Divisions)</h3>
                             <p>
-                                हा कालवा <span class="hl">मोठ्या भूभागाला</span> सिंचनाखाली आणतो. शेतीसोबतच पिण्याच्या पाण्यासाठीही या कालव्याचा वापर केला जातो. आधुनिक जलव्यवस्थापन प्रणालीद्वारे कालव्याचे संचलन केले जाते.
+                                कालव्याचे व्यवस्थापन सुयोग्य व सुलभ संचलनासाठी ३ मुख्य टप्प्यांत विभागले आहे: सातारा येथील <strong>कृष्णा सिंचन विभाग (कि.मी. १ ते ८६)</strong>, <strong>आरफळ बोगदा (कि.मी. ८६ ते १०२)</strong>, आणि ओगलेवाडी येथील <strong>टेंभू उपसा सिंचन प्रकल्प व्यवस्थापन विभाग (कि.मी. १०२ ते १९२ व पलूस शाखा कालवा कि.मी. १ ते ३३)</strong>.
                             </p>
                         </div>
+                    </div>
+
+                    <div class="milestone">
+                        <div class="arrow-marker">
+                            <i class="fas fa-chevron-circle-right"></i>
+                        </div>
+                        <div class="milestone-content">
+                            <h3>३. प्रस्तावित पाणी वापर व तरतूद (Proposed Water Allocation & Provision)</h3>
+                            <p>
+                                कण्हेर व तारळी या प्रकल्पांतून सांगली जिल्ह्यासाठी एकूण <span class="hl">३.८३ टी.एम.सी.</span> पाणी वापर प्रस्तावित आहे. ज्यामध्ये खरीप हंगामासाठी <strong>०.८८६ टी.एम.सी.</strong>, रब्बी हंगामासाठी <strong>१.५०२ टी.एम.सी.</strong>, व उन्हाळी हंगामासाठी <strong>१.४४२ टी.एम.सी.</strong> अशी सुधारित हंगामावर आधारित पाणी वापराची तरतूद करण्यात आली आहे.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="milestone">
+                        <div class="arrow-marker">
+                            <i class="fas fa-chevron-circle-right"></i>
+                        </div>
+                        <div class="milestone-content">
+                            <h3>४. सिंचन क्षमता व लाभार्थी क्षेत्र (Irrigation Capacity & Beneficiary Area)</h3>
+                            <p>
+                                सांगली जिल्ह्यातील एकूण <strong>४ तालुक्यांमधील (खानापूर, पलूस, तासगाव, कडेगाव) ३७ गावांना</strong> या कालव्याचा थेट लाभ मिळतो. यामध्ये एकूण <span class="hl">१६,७५८ हेक्टर</span> संकल्पित क्षेत्रापैकी <span class="hl">१५,९८६ हेक्टर</span> सिंचन क्षेत्र प्रत्यक्ष निर्माण करण्यात यश आले आहे.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PDF Download Button -->
+                    <div class="text-center mt-4 pt-4" style="border-top: 1px solid #dbeafe;">
+                        <a href="/pdf/Arphal Note.20-05-2026.pdf" target="_blank" class="btn-download-pdf">
+                            <i class="fas fa-file-pdf"></i> आरफळ कालवा माहिती पत्रक डाउनलोड करा (PDF)
+                        </a>
                     </div>
                 </div>
             </div>

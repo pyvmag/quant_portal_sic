@@ -117,18 +117,95 @@
             z-index: 2;
             text-align: center;
             color: #fff;
+            padding: 20px;
+            width: 100%;
         }
 
-        .hero-content h1 {
+        .hero-gov {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .hero-emblem-wrapper {
+            margin-bottom: 10px;
+        }
+
+        .hero-emblem {
+            height: 85px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        .hero-slogan {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .hero-dept {
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .hero-corp {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .hero-subtext {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            color: #FFD700;
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
         }
 
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+        /* Hero Responsive Scaling */
+        @media (max-width: 992px) {
+            .hero-section {
+                height: auto;
+                min-height: 70vh;
+                padding: 60px 20px;
+            }
+            .hero-gov { font-size: 1.5rem; }
+            .hero-emblem { height: 75px; }
+            .hero-slogan { font-size: 1rem; margin-bottom: 20px; }
+            .hero-dept { font-size: 2rem; margin-bottom: 12px; }
+            .hero-corp { font-size: 1.5rem; margin-bottom: 12px; }
+            .hero-subtext { font-size: 1.1rem; margin-bottom: 12px; }
+            .hero-title { font-size: 2.8rem; margin-bottom: 15px; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: auto;
+                min-height: calc(100vh - 120px);
+                padding: 100px 15px 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hero-gov { font-size: 1.2rem; margin-bottom: 8px; }
+            .hero-emblem { height: 60px; }
+            .hero-slogan { font-size: 0.9rem; margin-bottom: 15px; }
+            .hero-dept { font-size: 1.5rem; margin-bottom: 10px; }
+            .hero-corp { font-size: 1.2rem; margin-bottom: 10px; }
+            .hero-subtext { font-size: 1rem; margin-bottom: 10px; }
+            .hero-title { font-size: 2rem; margin-bottom: 15px; }
         }
 
         .projects-section {
@@ -399,8 +476,15 @@
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content container wow fadeInUp" data-wow-delay="0.2s">
-                <h1 style="color: #FFD700;">सांगली पाटबंधारे मंडळ</h1>
-                <p>महाराष्ट्र शासन</p>
+                <p class="hero-gov">महाराष्ट्र शासन</p>
+                <div class="hero-emblem-wrapper">
+                    <img src="/img/national-emblem-india.png" alt="National Emblem of India" class="hero-emblem">
+                </div>
+                <p class="hero-slogan">सत्यमेव जयते</p>
+                <h2 class="hero-dept">जलसंपदा विभाग</h2>
+                <h3 class="hero-corp">महाराष्ट्र कृष्णा खोरे विकास महामंडळ, पुणे</h3>
+                <p class="hero-subtext">अंतर्गत</p>
+                <h1 class="hero-title">सांगली पाटबंधारे मंडळ, सांगली.</h1>
                 <!-- <div class="hero-btns mt-4">
                     <a href="about.html" class="btn btn-custom mx-2">अधिक माहिती</a>
                     <a href="tender.html" class="btn btn-outline-light mx-2"

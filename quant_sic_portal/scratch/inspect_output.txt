@@ -1,0 +1,98 @@
+Total rows fetched: 1000
+Row 20: is_header=False, text='न्यायालयीन प्रकरणे विभाग निहाय गोषवारा फेब्रुवारी 2026 अखेर)', headers_count=0
+  Cell 0: 'न्यायालयीन प्रकरणे विभाग निहाय गोषवारा फेब्रुवारी 2026 अखेर)', bold=True, bg={}
+Row 22: is_header=True, text='अ.क्र.विभागाचे नांवसर्वोच्च न्यायालयउच्च न्यायालयदिवाणी न्यायालयअवमान याचिकामॅटइतरएकूण', headers_count=7
+  Cell 0: 'अ.क्र.', bold=True, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'विभागाचे नांव', bold=True, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: 'सर्वोच्च न्यायालय', bold=True, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: 'उच्च न्यायालय', bold=True, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: 'दिवाणी न्यायालय', bold=True, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: 'अवमान याचिका', bold=True, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: 'मॅट', bold=True, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: 'इतर', bold=True, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: 'एकूण', bold=True, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 23: is_header=False, text='1कार्यकारी अभियंता, टेंभू उपसा सिंचन प्रकल्प विभाग क्र.1, सांगली.08301012', headers_count=7
+  Cell 0: '1', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, टेंभू उपसा सिंचन प्रकल्प विभाग क्र.1, सांगली.', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '8', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '3', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '1', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '0', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '12', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 24: is_header=False, text='2कार्यकारी अभियंता, टेंभू उपसा सिंचन प्रकल्प सिंचन व्यवस्थापन विभाग, ओगलेवाडी010800523', headers_count=7
+  Cell 0: '2', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, टेंभू उपसा सिंचन प्रकल्प सिंचन व्यवस्थापन विभाग, ओगलेवाडी', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '10', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '8', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '0', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '5', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '23', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 25: is_header=False, text='3कार्यकारी अभियंता, म्हैसाळ पंपगृह विभाग क्र.२, सांगली015.005.000.000.000.0020', headers_count=7
+  Cell 0: '3', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, म्हैसाळ पंपगृह विभाग क्र.२, सांगली', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '15.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '5.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '20', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 26: is_header=False, text='4कार्यकारी अभियंता, ताकारी पंपगृह विभाग क्र.१,देवराष्ट्रे05.005.000.001.000.0011', headers_count=7
+  Cell 0: '4', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, ताकारी पंपगृह विभाग क्र.१,देवराष्ट्रे', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '5.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '5.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '1.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '11', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 27: is_header=False, text='5कार्यकारी अभियंता, सांगली पाटबंधारे विभाग, सांगली05.004.000.003.000.0012', headers_count=7
+  Cell 0: '5', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, सांगली पाटबंधारे विभाग, सांगली', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '5.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '4.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '3.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '12', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 28: is_header=False, text='6कार्यकारी अभियंता, ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन विभाग, सांगली09.0027.000.001.005.0042', headers_count=7
+  Cell 0: '6', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, ताकारी म्हैसाळ उपसा सिंचन व्यवस्थापन विभाग, सांगली', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '0', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '9.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '27.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '1.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '5.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '42', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 29: is_header=False, text='7कार्यकारी अभियंता, लघु पाटबंधारे विभाग, सांगली.14.0069.000.000.000.0074', headers_count=7
+  Cell 0: '7', bold=False, bg={'red': 1, 'green': 1, 'blue': 1}
+  Cell 1: 'कार्यकारी अभियंता, लघु पाटबंधारे विभाग, सांगली.', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 2: '1', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 3: '4.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 4: '69.00', bold=False, bg={'red': 0.9882353, 'green': 0.8980392, 'blue': 0.8039216}
+  Cell 5: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 6: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 7: '0.00', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+  Cell 8: '74', bold=False, bg={'red': 0.7882353, 'green': 0.85490197, 'blue': 0.972549}
+Row 30: is_header=False, text='8एकूण156.00121.000.006.0010.00194', headers_count=7
+  Cell 0: '8', bold=False, bg={'red': 1, 'green': 1}
+  Cell 1: 'एकूण', bold=False, bg={'red': 1, 'green': 1}
+  Cell 2: '1', bold=False, bg={'red': 1, 'green': 1}
+  Cell 3: '56.00', bold=False, bg={'red': 1, 'green': 1}
+  Cell 4: '121.00', bold=False, bg={'red': 1, 'green': 1}
+  Cell 5: '0.00', bold=False, bg={'red': 1, 'green': 1}
+  Cell 6: '6.00', bold=False, bg={'red': 1, 'green': 1}
+  Cell 7: '10.00', bold=False, bg={'red': 1, 'green': 1}
+  Cell 8: '194', bold=False, bg={'red': 1, 'green': 1}
+Row 32: is_header=False, text='मा.अ.अ.यांची स्थळ प्रतीवर स्वाक्षरी असे.उप.अधीक्षक अभियंता,
+ सांगली पाटबंधारे मंडळ, सांगली', headers_count=1
+  Cell 1: 'मा.अ.अ.यांची स्थळ प्रतीवर स्वाक्षरी असे.', bold=True, bg={}
+  Cell 5: 'उप.अधीक्षक अभियंता,
+ सांगली पाटबंधारे मंडळ, सांगली', bold=False, bg={}

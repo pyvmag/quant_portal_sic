@@ -1077,7 +1077,7 @@
                         if (title) title.style.display = "block";
                         overlay.classList.add("show");
                         try {
-                                const resp = await fetch("/api/method/sicsangli.api2.run_test_py_demo");
+                                const resp = await fetch("/api/method/quant_sic_portal.api2.run_test_py_demo");
                                 
                                 console.log("API Response Status:", resp.status); // Additional logging
                                 if (!resp.ok) throw new Error(`HTTP error: ${resp.status}`);

@@ -8,6 +8,68 @@ SPREADSHEET_ID = "1jo9m4WLQ2k7AdqISUAzwpm0fer5gqvbmvVAob7pamRk"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SERVICE_ACCOUNT_FILE = "/home/erpadmin/bench-jalsampada-portal/sites/credentials/google_sheets_new.json"
 
+# Mapping of sheet/tab logical names to their respective separate Google Spreadsheet IDs and target tab names.
+# If a sheet name is not in this map, it defaults to the main SPREADSHEET_ID and uses sheet_name as the range.
+SPREADSHEET_MAPPING = {
+    "Aexp": {
+        "id": "1IVXEt61JQxAMtaYo7rZ0osftFnBaR_AumpyfJClQpgQ",
+        "tab": "Aexp"
+    },
+    "Sheet2": {
+        "id": "163dzxEEb_7xI9Tzgj7zhTilUwdwj8yQ835rIJ0EX47k",
+        "tab": "Sheet2"
+    },
+    "Flood Info": {
+        "id": "1u73q4NgoMGG3eSBrCHnu6f_dT3TIdyI1V3PzbdSnQ9U",
+        "tab": "Flood Info"
+    },
+    "Flood Info 1": {
+        "id": "1u73q4NgoMGG3eSBrCHnu6f_dT3TIdyI1V3PzbdSnQ9U",
+        "tab": "Flood Info 1"
+    },
+    "Flood Info 2": {
+        "id": "1u73q4NgoMGG3eSBrCHnu6f_dT3TIdyI1V3PzbdSnQ9U",
+        "tab": "Flood Info 2"
+    },
+    "SICF": {
+        "id": "17-XphoaGPB14-YGEvadOGXlOE0Xy9wA4N2I02JM89Ck",
+        "tab": "SICF"
+    },
+    "LA": {
+        "id": "159u1hbGEB5ZCNgsHzIGIsoyTbN2dqrJWdKbAt4793yg",
+        "tab": "LA"
+    },
+    "sheet3": {
+        "id": "1qdx0e8xrbv8tEfdJdAdFQKMBoUB7EVLdg9bokgSSHrQ",
+        "tab": "sheet3"
+    },
+    "टेंभू उपसा सिंचन प्रकल्प विभाग ": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "टेंभू उपसा सिंचन प्रकल्प विभाग "
+    },
+    "टेंभु उपसा सिंचन प्रकल्प व्यवस्": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "टेंभु उपसा सिंचन प्रकल्प व्यवस्"
+    },
+    "लघु पाटबंधारे विभाग,सांगली": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "लघु पाटबंधारे विभाग,सांगली"
+    },
+    "ताकारी म्हैसाळ उपसा सिंचन व्यवस": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "ताकारी म्हैसाळ उपसा सिंचन व्यवस"
+    },
+    "म्हैसाळ पंपगृह विभाग क्र.2 सांग": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "म्हैसाळ पंपगृह विभाग क्र.2 सांग"
+    },
+    "ताकारी पंपगृह विभाग क्र.1, देवर": {
+        "id": "14_y9SroFvY7GmGwh1UvsX2pmVpb9slwuXnGPl1FnozQ",
+        "tab": "ताकारी पंपगृह विभाग क्र.1, देवर"
+    }
+}
+
+
 
 def clean_display(s):
     return str(s).strip().replace('\u200B', '')
@@ -113,9 +175,13 @@ def fetch_sheet_raw_data(sheet_name="Sheet2"):
         service = build('sheets', 'v4', credentials=creds)
         # We use spreadsheets().get with includeGridData=True to get formatting (colors, bold)
         # which is required by is_title_row and is_yellow_row_with_total logic.
+        mapping = SPREADSHEET_MAPPING.get(sheet_name, {})
+        target_spreadsheet_id = mapping.get("id", SPREADSHEET_ID)
+        target_range = mapping.get("tab", sheet_name)
+
         sheet = service.spreadsheets().get(
-            spreadsheetId=SPREADSHEET_ID,
-            ranges=[sheet_name],
+            spreadsheetId=target_spreadsheet_id,
+            ranges=[target_range],
             includeGridData=True
         ).execute()
 
@@ -661,6 +727,72 @@ def get_general_sheet_data(sheet_name="Flood Info"):
         }
     except Exception as e:
         frappe.log(f"Error in get_general_sheet_data: {frappe.get_traceback()}", level="error")
+        return {"status": "fail", "message": str(e)}
+
+@frappe.whitelist(allow_guest=True)
+def get_annual_expenditure_data():
+    try:
+        sheet_data_obj = fetch_sheet_raw_data(sheet_name="Aexp")
+        sheet_data = sheet_data_obj.get('rowData', [])
+        if not sheet_data:
+            return {"status": "fail", "message": "No data found"}
+            
+        raw_rows = []
+        for row in sheet_data:
+            if 'values' in row:
+                row_cells = [cell.get('formattedValue', '') or '' for cell in row.get('values', [])]
+                raw_rows.append(row_cells)
+
+        if len(raw_rows) < 6:
+            return {"status": "fail", "message": "Insufficient data rows"}
+
+        # Extract metadata from top rows
+        title = "सांगली पाटबंधारे मंडळ, सांगली"
+        subtitle = "कृष्णा कोयना उपसा सिंचन प्रकल्पावर सन 1984-85 पासून ते मार्च-2026 अखेर पर्यंत झालेल्या खर्चाचा वर्षनिहाय तपशिल दर्शविणेारे विवरणपत्र"
+        annexure = "परिशिष्ट 'ब'"
+        unit = "रुपये लक्ष"
+
+        # Search row 0 for title and annexure
+        if len(raw_rows) > 0:
+            for cell in raw_rows[0]:
+                c_val = str(cell).strip()
+                if "पाटबंधारे" in c_val:
+                    title = c_val
+                elif "परिशिष्ट" in c_val:
+                    annexure = c_val
+
+        # Search row 1 for subtitle and unit
+        if len(raw_rows) > 1:
+            for cell in raw_rows[1]:
+                c_val = str(cell).strip()
+                if "कृष्णा" in c_val or "खर्चाचा" in c_val:
+                    subtitle = c_val
+                elif "रुपये" in c_val or "लक्ष" in c_val:
+                    unit = c_val.replace('(', '').replace(')', '').strip()
+
+        # The actual data rows start at row index 5 (which is 1984 - 1985)
+        # We only want to include valid data rows. 
+        # A valid row must have a serial number or a year in the first two columns.
+        data_rows = []
+        for r in raw_rows[5:]:
+            # Check if either of the first two columns has value
+            if len(r) > 1 and (str(r[0]).strip() or str(r[1]).strip()):
+                # Ensure the row has exactly 23 columns (headers length)
+                trimmed_row = r[:23]
+                if len(trimmed_row) < 23:
+                    trimmed_row += [''] * (23 - len(trimmed_row))
+                data_rows.append(trimmed_row)
+
+        return {
+            "status": "ok",
+            "title": title,
+            "subtitle": subtitle,
+            "annexure": annexure,
+            "unit": unit,
+            "rows": data_rows
+        }
+    except Exception as e:
+        frappe.log_error(f"Error in get_annual_expenditure_data: {frappe.get_traceback()}", "Annual Expenditure Fetch")
         return {"status": "fail", "message": str(e)}
 
 @frappe.whitelist(allow_guest=True)

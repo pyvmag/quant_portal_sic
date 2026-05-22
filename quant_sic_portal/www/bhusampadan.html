@@ -278,7 +278,7 @@
         // Fetch LA Data
         async function loadLAData() {
             try {
-                const response = await fetch('/api/method/sicsangli.api.get_general_sheet_data?sheet_name=LA');
+                const response = await fetch('/api/method/quant_sic_portal.api.get_general_sheet_data?sheet_name=LA');
                 const result = await response.json();
                 
                 if (result.message && (result.message.status === "ok" || result.status === "ok")) {
