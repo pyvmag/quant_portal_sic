@@ -193,7 +193,7 @@
     flex-direction: column !important;
     z-index: 9999 !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     opacity: 0 !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
@@ -223,6 +223,84 @@
     background: #1d669a !important;
     color: #ffffff !important;
     padding-left: 23px !important;
+}
+
+/* Premium Submenu Styles */
+.dropdown-submenu {
+    position: relative !important;
+}
+
+.dropdown-submenu .dropdown-submenu-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 100% !important;
+    transform: translateX(10px) !important;
+    min-width: 280px !important;
+    background: #0889b1 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+    flex-direction: column !important;
+    z-index: 10000 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.dropdown-submenu.active .dropdown-submenu-menu {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.dropdown-menu1 .dropdown-submenu-menu li a {
+    padding: 10px 18px !important;
+    display: block !important;
+    color: #ffffff !important;
+    white-space: normal !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    text-align: left !important;
+}
+
+.dropdown-menu1 .dropdown-submenu-menu li:last-child a {
+    border-bottom: none !important;
+}
+
+.dropdown-menu1 .dropdown-submenu-menu li a:hover {
+    background: #1d669a !important;
+    color: #ffffff !important;
+    padding-left: 23px !important;
+}
+
+/* Submenu Arrow styling */
+.submenu-arrow {
+    float: right !important;
+    font-size: 10px !important;
+    margin-left: 10px !important;
+    line-height: inherit !important;
+}
+
+/* Badge styling for NEW */
+.badge-new {
+    background-color: #ff0000 !important;
+    color: #ffffff !important;
+    font-size: 9px !important;
+    font-weight: bold !important;
+    padding: 1px 4px !important;
+    border-radius: 3px !important;
+    margin-left: 5px !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
 }
 
 .hamburger {
@@ -381,6 +459,52 @@
     .dropdown-menu1 .dropdown-menu1 {
         top: 0 !important;
         left: 100% !important;
+    }
+
+    .dropdown-submenu {
+        position: relative !important;
+    }
+
+    .dropdown-submenu .dropdown-submenu-menu {
+        display: none !important;
+        position: relative !important;
+        top: auto !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        background: rgba(0, 0, 0, 0.15) !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        opacity: 1 !important;
+        min-width: auto !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    .dropdown-submenu.active .dropdown-submenu-menu {
+        display: flex !important;
+    }
+
+    .dropdown-menu1 .dropdown-submenu-menu li a {
+        padding: 12px 20px 12px 55px !important;
+        color: #cfe1ff !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        white-space: normal !important;
+    }
+
+    .dropdown-menu1 .dropdown-submenu-menu li a:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #ffffff !important;
+        padding-left: 55px !important;
+    }
+
+    .dropdown-submenu.active > a > .submenu-arrow {
+        transform: rotate(90deg) !important;
+    }
+    
+    .submenu-arrow {
+        display: inline-block !important;
+        transition: transform 0.2s ease !important;
     }
 }
 
